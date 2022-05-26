@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jugantor.com/settings_service.dart';
 
 import 'routes/app_pages.dart';
-
-main(List<String> args) {
+initServices() async {
+  await Get.putAsync<SettingsService>(() async => await SettingsService());
+}
+main(List<String> args) async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await initServices();
   runApp(MyApp());
 }
 
@@ -17,6 +22,8 @@ class MyApp extends StatelessWidget {
       title: "Application",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+      // theme: Get.find<SettingsService>().getLightTheme(),
+      // darkTheme: Get.find<SettingsService>().getDarkTheme(),
 
     );
 
@@ -26,4 +33,6 @@ class MyApp extends StatelessWidget {
     //   home: HomePage(),
     // );
   }
+
+
 }

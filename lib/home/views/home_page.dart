@@ -3,20 +3,15 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/home/controllers/home_controller.dart';
 
-import '../../fragments/first_fragment.dart';
-import '../../fragments/second_fragment.dart';
-import '../../fragments/third_fragment.dart';
-
-
-
 class HomePage extends GetView<HomeController> {
-  final HomeController _taskController = Get.put(HomeController());
+  final HomeController homeController = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
-
+    Get.find<HomeController>();
+    //homeController.get_bn_date(context);
     return Scaffold(
       appBar:AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xff2A394D),
         title: Stack(alignment: Alignment.center,
           children: <Widget>[
             // Container(
@@ -28,10 +23,10 @@ class HomePage extends GetView<HomeController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-
-                  Text("বৃহস্পতিবার, ২৬ মে ২০২২, ১২ জ্যৈষ্ঠ ১৪২৯ ",
-                    style: TextStyle(color: Colors.white,fontSize: 12),
-                    textAlign:TextAlign.center,
+                  Obx(() => Text(""+homeController.banglaDate.value,
+                      style: TextStyle(color: Colors.white,fontSize: 12),
+                      textAlign:TextAlign.center,
+                    ),
                   ),
 
                   SizedBox(
@@ -41,7 +36,6 @@ class HomePage extends GetView<HomeController> {
                     style: TextStyle(color: Colors.white,fontSize: 12),
                     textAlign:TextAlign.center,
                   ),
-
                 ],
               ),
             )
@@ -88,7 +82,9 @@ class HomePage extends GetView<HomeController> {
                           title: Text("Home Page"),
                           trailing: Icon(Icons.menu),
                           onTap: () {
-                            _getDrawerItemWidget(0);
+                            Get.back();
+                            homeController.selectedIndex.value = 0;
+                            //_taskController.getDrawerItemWidget(0);
                           }
                       ),
 
@@ -96,7 +92,9 @@ class HomePage extends GetView<HomeController> {
                           title: Text("About Page"),
                           trailing: Icon(Icons.info),
                           onTap: () {
-                            _getDrawerItemWidget(1);
+                            Get.back();
+                            homeController.selectedIndex.value = 1;
+                            //_taskController.getDrawerItemWidget(1);
                           }
                       ),
 
@@ -104,7 +102,9 @@ class HomePage extends GetView<HomeController> {
                           title: Text("Settings Page"),
                           trailing: Icon(Icons.security),
                           onTap: () {
-                            _getDrawerItemWidget(2);
+                            Get.back();
+                            homeController.selectedIndex.value = 2;
+                           // _taskController.getDrawerItemWidget(2);
                           }
                       ),
                       Divider(thickness: 1.0,),
@@ -119,33 +119,15 @@ class HomePage extends GetView<HomeController> {
 
 
               body:Obx(() {
-                _getDrawerItemWidget(_taskController.selectedIndex.value);
+                return Container(
+                  child:homeController.getDrawerItemWidget(homeController.selectedIndex.value),
+                );
               }
           )
         ),
         )
     );
   }
-
-
-
-  _getDrawerItemWidget(int pos) {
-    switch (pos) {
-      case 0:
-        return new FirstFragment();
-      case 1:
-        return new SecondFragment();
-      case 2:
-        return new ThirdFragment();
-
-      default:
-        return new Text("Error");
-    }
-  }
-
-
-
-
 
 }
 
