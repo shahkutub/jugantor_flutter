@@ -41,7 +41,7 @@ class APIManager {
     var responseJson;
     try {
       final response = await http.get(Uri.parse(url));
-      print(response.body);
+      //print(response.body);
       responseJson = _response(response);
     } on SocketException {
       throw FetchDataException('No Internet connection');

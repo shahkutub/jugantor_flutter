@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
-import 'package:jugantor.com/home/bindings/home_binding.dart';
-import 'package:jugantor.com/home/views/home_page.dart';
-import 'package:jugantor.com/splashscreen/bindings/splashscreen_binding.dart';
-import 'package:jugantor.com/splashscreen/views/splashscreen_view.dart';
+import 'package:jugantor.com/modules/home/bindings/home_binding.dart';
+import 'package:jugantor.com/modules/home/views/home_page.dart';
+import 'package:jugantor.com/modules/splashscreen/bindings/splashscreen_binding.dart';
+import 'package:jugantor.com/modules/splashscreen/views/splashscreen_view.dart';
+
 
 
 
