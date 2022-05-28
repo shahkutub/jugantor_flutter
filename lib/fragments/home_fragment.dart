@@ -14,6 +14,8 @@ class HomeFragment extends GetView<HomeController> {
     double width = Get.width;
     Get.find<HomeController>();
 
+
+
     return new Container(
       child: Obx(() {
         if(homeController.dataLoaded.isTrue){
@@ -224,7 +226,15 @@ class HomeFragment extends GetView<HomeController> {
                     Container(
                       margin: EdgeInsets.only(bottom: 20),
                       alignment: Alignment.center,
-                      child: const Text('Fixed Height Content'),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          homeController.CustomRadioButton("Single", 1),
+                          homeController.CustomRadioButton("Married", 2),
+                          homeController.CustomRadioButton("Other", 3)
+                        ],
+                      )
                     ),
 
 
@@ -241,7 +251,8 @@ class HomeFragment extends GetView<HomeController> {
     );
 
 
-
   }
+
+
 
 }

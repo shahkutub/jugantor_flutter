@@ -28,6 +28,7 @@ class HomeController extends GetxController {
   List<CatExtraLinkResponse> catExtraLinkList = <CatExtraLinkResponse>[].obs;
   List<ShowNewsResponse> showNewsList = <ShowNewsResponse>[].obs;
   final dataLoaded = false.obs;
+  var button = 0.obs;
   @override
   void onInit() {
     get_bn_date();
@@ -135,6 +136,24 @@ class HomeController extends GetxController {
     } on SocketException {
 
     }
+  }
+
+
+  Widget CustomRadioButton(String text, int index) {
+    return OutlineButton(
+      onPressed: () {
+        button.value = index;
+      },
+      child: Text(
+        text,
+        style: TextStyle(
+          color: (button.value == index) ? Colors.green : Colors.black,
+        ),
+      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      borderSide:
+      BorderSide(color: (button.value == index) ? Colors.green : Colors.black),
+    );
   }
 
   getDrawerItemWidget(int pos) {
