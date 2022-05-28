@@ -11,9 +11,12 @@ import 'package:jugantor.com/api/api_manager.dart';
 import 'package:jugantor.com/fragments/home_fragment.dart';
 import 'package:jugantor.com/fragments/second_fragment.dart';
 import 'package:jugantor.com/fragments/third_fragment.dart';
+import 'package:jugantor.com/model/CatExtraLinkResponse.dart';
 import 'package:jugantor.com/model/CategoryResponse.dart';
 import 'package:http/http.dart' as http;
 import 'package:jugantor.com/model/LeadNewsResponse.dart';
+import 'package:jugantor.com/model/ShowNewsResponse.dart';
+import 'package:jugantor.com/ui.dart';
 
 
 class HomeController extends GetxController {
@@ -22,14 +25,22 @@ class HomeController extends GetxController {
   var banglaDate = "".obs;
   var leadnews = LeadNewsResponse().obs;
   List<CategoryResponse> categoryList = <CategoryResponse>[].obs;
-
+  List<CatExtraLinkResponse> catExtraLinkList = <CatExtraLinkResponse>[].obs;
+  List<ShowNewsResponse> showNewsList = <ShowNewsResponse>[].obs;
+  final dataLoaded = false.obs;
   @override
   void onInit() {
     get_bn_date();
-    get_category();
     get_lead_news();
+    get_category();
+    get_extracat();
+    get_show_news();
+
+
     super.onInit();
   }
+
+
 
   Future<dynamic> get_bn_date() async {
 
@@ -61,6 +72,7 @@ class HomeController extends GetxController {
 
       if(response != null){
         leadnews.value = LeadNewsResponse.fromJson(response);
+
         print('leadnews: ${leadnews.value.title}');
         //Navigator.of(Get.context).pop();
       }
@@ -78,7 +90,7 @@ class HomeController extends GetxController {
       List<CategoryResponse> list = (json.decode(response.body) as List)
           .map((data) => CategoryResponse.fromJson(data))
           .toList();
-      categoryList = list;
+      categoryList.addAll(list);
       var cattegory = CategoryResponse();
       cattegory.cat_name = "প্রচ্ছদ";
       cattegory.id = 0;
@@ -88,6 +100,38 @@ class HomeController extends GetxController {
 
       print('categoryname: ${categoryList[0].cat_name.toString()}');
 
+    } on SocketException {
+
+    }
+  }
+
+  get_extracat() async {
+    print("Calling API: "+ApiClient.category);
+    try {
+      final response = await http.get(Uri.parse(ApiClient.cat_extra_link));
+      //print(response.body);
+      List<CatExtraLinkResponse> list = (json.decode(response.body) as List)
+          .map((data) => CatExtraLinkResponse.fromJson(data))
+          .toList();
+      catExtraLinkList.addAll(list);
+      //print('categoryname: ${categoryList[0].cat_name.toString()}');
+      //dataLoaded.value = true;
+    } on SocketException {
+
+    }
+  }
+
+  get_show_news() async {
+    print("Calling API: "+ApiClient.category);
+    try {
+      final response = await http.get(Uri.parse(ApiClient.show_news));
+      print(response.body);
+      List<ShowNewsResponse> list = (json.decode(response.body) as List)
+          .map((data) => ShowNewsResponse.fromJson(data))
+          .toList();
+      showNewsList.addAll(list);
+      print('showNewsList: ${showNewsList[0].title.toString()}');
+      dataLoaded.value = true;
     } on SocketException {
 
     }
@@ -107,6 +151,14 @@ class HomeController extends GetxController {
     }
   }
 
+  @override
+  void onReady() {
+    // TODO: implement onReady
+    super.onReady();
+    //get_lead_news();
+    //get_category();
+
+  }
 
 
 }

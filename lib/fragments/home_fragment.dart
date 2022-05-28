@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
@@ -7,44 +9,239 @@ class HomeFragment extends GetView<HomeController> {
   final HomeController homeController = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
+    Get.find<HomeController>();
     double height = Get.height;
     double width = Get.width;
     Get.find<HomeController>();
-    return new SingleChildScrollView(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          Container(
-              margin: EdgeInsets.all(10),
-              alignment: Alignment.center,
-              child:Container(
-                child: Center(child: Text('test'),),
-                height: 190.0,
-                width: width,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: Colors.blue,
-                    image: DecorationImage(
-                        image: new NetworkImage(
-                            "https://storage.googleapis.com/gd-wagtail-prod-assets/original_images/MDA2018_inline_03.jpg"
+
+    return new Container(
+      child: Obx(() {
+        if(homeController.dataLoaded.isTrue){
+          return new SingleChildScrollView(
+              child: Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+
+                    Obx(() =>
+
+                        Container(
+                          margin: EdgeInsets.only(top: 15,bottom: 5,right: 15,left: 15),
+                          height: width*.6,
+                          width: width,
+                          child: Center(child: Container(
+                            //margin: EdgeInsets.only(top: width*.5),
+                              alignment: Alignment.bottomCenter,
+
+                              //height: 50,
+                              width: width,
+
+                              //padding: EdgeInsets.all(10),
+                              child: Container(
+                                padding: EdgeInsets.all(10),
+                                color: Colors.black54,
+                                width: width,
+                                child: Text(""+homeController.leadnews.value.title.toString()
+                                    .toString(), style: TextStyle(color: Colors.white,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold)),
+                              )
+                          )),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                              color: Colors.blue,
+                              image: DecorationImage(
+                                  image: new NetworkImage(
+                                    homeController.leadnews.value.img_url.toString(),
+                                  ),
+                                  fit: BoxFit.fill
+                              )
+                          ),
+                        )
+                    ),
+                    Obx(() =>
+                        Container(
+                            margin: EdgeInsets.only(top: 15,bottom: 5,right: 15,left: 15),
+                            alignment: Alignment.center,
+                            child:GridView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 10.0,
+                                  mainAxisSpacing: 10.0,
+                                  childAspectRatio: 4
+                              ),
+                              itemCount: homeController.catExtraLinkList.length,
+                              itemBuilder: (context, index) {
+                                return  GestureDetector(
+                                  onTap: (){
+                                    Get.back();
+                                    if(homeController.catExtraLinkList[index].cat_name == "প্রচ্ছদ"){
+                                      //homeController.selectedIndex.value = 0;
+                                    }else{
+                                     // homeController.selectedIndex.value = 1;
+                                    }
+                                  },
+
+                                  child: Obx(() => Container(
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(0),
+                                        //color: Colors.blue,
+                                        image: DecorationImage(
+                                            image: new NetworkImage(
+                                              homeController.catExtraLinkList[index].cat_photo,
+                                            ),
+                                            fit: BoxFit.fill
+                                        )
+                                    ),
+                                    // decoration: BoxDecoration(
+                                    //   color: Color(0xff3A495F),
+                                    //   borderRadius: BorderRadius.circular(10),
+                                    // ),
+                                    // child: Row(
+                                    //   mainAxisAlignment: MainAxisAlignment.center,
+                                    //   crossAxisAlignment: CrossAxisAlignment.center,
+                                    //   children: [
+                                    //     Container(
+                                    //       child: Image.network(homeController.catExtraLinkList[index].cat_photo),
+                                    //       // height: 80,
+                                    //       // width: 60,
+                                    //     ),
+                                    //
+                                    //     // Text(homeController.catExtraLinkList[index].cat_name,
+                                    //     //   style: TextStyle(color: Colors.white,fontSize: 15, ),),
+                                    //   ],
+                                    // )
+                                    )
+                                  ),
+                                );
+                              },
+                            )
                         ),
-                        fit: BoxFit.fill
-                    )
+                    ),
+
+                    Obx(() =>
+                        Container(
+                            margin: EdgeInsets.only(top: 15,bottom: 5,right: 15,left: 15),
+                            alignment: Alignment.center,
+                            child:GridView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 10.0,
+                                  mainAxisSpacing: 10.0,
+                                  childAspectRatio: 1.2
+                              ),
+                              itemCount: homeController.showNewsList.length,
+                              itemBuilder: (context, index) {
+                                return  GestureDetector(
+                                  onTap: (){
+                                    //Get.back();
+                                    // if(homeController.showNewsList[index].cat_name == "প্রচ্ছদ"){
+                                    //   //homeController.selectedIndex.value = 0;
+                                    // }else{
+                                    //   // homeController.selectedIndex.value = 1;
+                                    // }
+                                  },
+
+                                  child: Obx(() => Container(
+                                    //height: ,
+                                    //alignment: Alignment.center,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          child: Image.network(homeController.showNewsList[index].img_url),
+                                           // height: 80,
+                                           // width: 60,
+                                        ),
+
+                                        Text(homeController.showNewsList[index].title,
+                                          style: TextStyle(color: Colors.black,fontSize: 14, ),),
+                                      ],
+                                    )
+                                  )
+                                  ),
+                                );
+                              },
+                            )
+                        ),
+                    ),
+                    // Obx(() =>
+                    //   Container(
+                    //       margin: EdgeInsets.all(15),
+                    //       //alignment: Alignment.center,
+                    //       child:Obx(() {
+                    //         if(homeController.dataLoaded == true){
+                    //           return  Container(
+                    //             child: Center(child: Container(
+                    //               //margin: EdgeInsets.only(top: width*.5),
+                    //               alignment: Alignment.bottomCenter,
+                    //
+                    //               //height: 50,
+                    //               width: width,
+                    //
+                    //               //padding: EdgeInsets.all(10),
+                    //               child: Container(
+                    //                 padding: EdgeInsets.all(10),
+                    //                 color: Colors.black54,
+                    //                 width: width,
+                    //                 child: Text(""+homeController.leadnews.value.title.toString()
+                    //                     .toString(), style: TextStyle(color: Colors.white,
+                    //                     fontSize: 15,
+                    //                     fontWeight: FontWeight.bold)),
+                    //               )
+                    //             )),
+                    //             height: width*.6,
+                    //             width: width,
+                    //             decoration: BoxDecoration(
+                    //                 borderRadius: BorderRadius.circular(0),
+                    //                 color: Colors.blue,
+                    //                 image: DecorationImage(
+                    //                     image: new NetworkImage(
+                    //                       homeController.leadnews.value.img_url.toString(),
+                    //                     ),
+                    //                     fit: BoxFit.fill
+                    //                 )
+                    //             ),
+                    //           );
+                    //         }else{
+                    //           return Center(child: CircularProgressIndicator());
+                    //         }
+                    //
+                    //
+                    //       }),
+                    //
+                    //
+                    //     ),
+                    // ),
+
+                    Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      alignment: Alignment.center,
+                      child: const Text('Fixed Height Content'),
+                    ),
+
+
+                  ],
                 ),
-              ),
+              )
 
-          ),
-          Container(
-            margin: EdgeInsets.only(bottom: 20),
-            alignment: Alignment.center,
-            child: const Text('Fixed Height Content'),
-          ),
+          );
+        }else{
+          return Center(child: CircularProgressIndicator());
+        }
 
-
-        ],
-      ),
+      })
     );
+
+
+
   }
 
 }

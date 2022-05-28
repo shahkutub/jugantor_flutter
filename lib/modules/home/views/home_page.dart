@@ -87,35 +87,41 @@ class HomePage extends GetView<HomeController> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
-                        Container(
-                            padding: EdgeInsets.all(20),
-                            alignment: Alignment.center,
-                            child: GridView.builder(
-                              physics: NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 5.0,
-                                  mainAxisSpacing: 5.0,
-                                  childAspectRatio: 3
-                              ),
-                              itemCount: homeController.categoryList.length,
-                              itemBuilder: (context, index) {
-                                return  GestureDetector(
-                                  onTap: (){
-                                    Get.back();
-                                    if(homeController.categoryList[index].cat_name == "প্রচ্ছদ"){
-                                      homeController.selectedIndex.value = 0;
-                                    }else{
-                                      homeController.selectedIndex.value = 1;
-                                    }
+                        Obx(() =>
+                            Container(
+                                padding: EdgeInsets.all(20),
+                                alignment: Alignment.center,
+                                child:GridView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      crossAxisSpacing: 5.0,
+                                      mainAxisSpacing: 5.0,
+                                      childAspectRatio: 3
+                                  ),
+                                  itemCount: homeController.categoryList.length,
+                                  itemBuilder: (context, index) {
+                                    return  GestureDetector(
+                                      onTap: (){
+                                        Get.back();
+                                        if(homeController.categoryList[index].cat_name == "প্রচ্ছদ"){
+                                          homeController.selectedIndex.value = 0;
+                                        }else{
+                                          homeController.selectedIndex.value = 1;
+                                        }
+                                      },
+
+
+                                      child: Obx(() => Text(homeController.categoryList[index].cat_name,
+                                        style: TextStyle(color: Colors.black,fontSize: 15, ),),
+                                      ),
+                                    );
                                   },
-                                  child: Text(homeController.categoryList[index].cat_name,
-                                    style: TextStyle(color: Colors.black,fontSize: 15, ),),
-                                );
-                              },
-                            )
+                                )
+                            ),
                         ),
+
                         Container(
                           margin: EdgeInsets.only(bottom: 20),
                           alignment: Alignment.center,
