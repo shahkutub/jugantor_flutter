@@ -20,6 +20,7 @@ class SplashscreenView extends GetView<SplashscreenController> {
         child: Center(
             child: SvgPicture.asset(
               'assets/images/jugantorlogo.svg',
+              height: 40, width: 130,
             )
             ),
 
