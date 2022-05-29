@@ -136,7 +136,7 @@ class HomeFragment extends GetView<HomeController> {
                                   crossAxisCount: 2,
                                   crossAxisSpacing: 10.0,
                                   mainAxisSpacing: 10.0,
-                                  childAspectRatio: 1.2
+                                  childAspectRatio: 1
                               ),
                               itemCount: homeController.showNewsList.length,
                               itemBuilder: (context, index) {
