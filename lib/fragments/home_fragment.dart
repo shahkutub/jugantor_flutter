@@ -224,15 +224,16 @@ class HomeFragment extends GetView<HomeController> {
                     // ),
 
                     Container(
-                      margin: EdgeInsets.only(bottom: 20),
-                      alignment: Alignment.center,
+                      margin: EdgeInsets.only(bottom: 10,left: 20,right: 20),
+                      //alignment: Alignment.center,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          homeController.CustomRadioButton("Single", 1),
-                          homeController.CustomRadioButton("Married", 2),
-                          homeController.CustomRadioButton("Other", 3)
+                          Flexible(child: homeController.CustomRadioButton("সর্বশেষ", 1),flex: 1,),
+                          SizedBox(width: 20,),
+                          Flexible(child: homeController.CustomRadioButton("সর্বাধিক পঠিত", 2),flex: 1,),
+
                         ],
                       )
                     ),
