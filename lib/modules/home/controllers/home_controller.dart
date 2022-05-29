@@ -25,6 +25,7 @@ class HomeController extends GetxController {
   var banglaDate = "".obs;
   var leadnews = LeadNewsResponse().obs;
   List<CategoryResponse> categoryList = <CategoryResponse>[].obs;
+  List<CategoryResponse> home_categoryList = <CategoryResponse>[].obs;
   List<CatExtraLinkResponse> catExtraLinkList = <CatExtraLinkResponse>[].obs;
   List<ShowNewsResponse> showNewsList = <ShowNewsResponse>[].obs;
   final dataLoaded = false.obs;
@@ -36,7 +37,7 @@ class HomeController extends GetxController {
     get_category();
     get_extracat();
     get_show_news();
-
+    get_home_category();
 
     super.onInit();
   }
@@ -100,6 +101,21 @@ class HomeController extends GetxController {
       print('categoryList: ${list.length.toString()}');
 
       print('categoryname: ${categoryList[0].cat_name.toString()}');
+
+    } on SocketException {
+
+    }
+  }
+
+  get_home_category() async {
+    print("Calling API: "+ApiClient.home_category);
+    try {
+      final response = await http.get(Uri.parse(ApiClient.home_category));
+      //print(response.body);
+      List<CategoryResponse> list = (json.decode(response.body) as List)
+          .map((data) => CategoryResponse.fromJson(data))
+          .toList();
+      home_categoryList.addAll(list);
 
     } on SocketException {
 
