@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
+import 'package:jugantor.com/utils/utils.dart';
 
 class HomePage extends GetView<HomeController> {
   final HomeController homeController = Get.put(HomeController());
@@ -26,17 +27,17 @@ class HomePage extends GetView<HomeController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Obx(() => Text(""+homeController.banglaDate.value,
-                      style: TextStyle(color: Colors.white,fontSize: 12),
+                  Obx(() => Text(""+Utils.currentDateBengali()+' ,   '+homeController.banglaDate.value,
+                      style: TextStyle(color: Colors.white,fontSize: 15),
                       textAlign:TextAlign.center,
                     ),
                   ),
 
                   SizedBox(
-                    height: 10,
+                    height: 7,
                   ),
                   Text(" আজকের পত্রিকা | ই-পেপার ",
-                    style: TextStyle(color: Colors.white,fontSize: 12),
+                    style: TextStyle(color: Colors.white,fontSize: 15),
                     textAlign:TextAlign.center,
                   ),
                 ],

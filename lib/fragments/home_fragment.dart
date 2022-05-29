@@ -14,8 +14,6 @@ class HomeFragment extends GetView<HomeController> {
     double width = Get.width;
     Get.find<HomeController>();
 
-
-
     return new Container(
       child: Obx(() {
         if(homeController.dataLoaded.isTrue){
@@ -136,7 +134,8 @@ class HomeFragment extends GetView<HomeController> {
                                   crossAxisCount: 2,
                                   crossAxisSpacing: 10.0,
                                   mainAxisSpacing: 10.0,
-                                  childAspectRatio: 1
+                                  //childAspectRatio: width / (height / 1.9)
+                                  //childAspectRatio: 1
                               ),
                               itemCount: homeController.showNewsList.length,
                               itemBuilder: (context, index) {
@@ -158,8 +157,12 @@ class HomeFragment extends GetView<HomeController> {
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
                                         Container(
-                                          child: Image.network(homeController.showNewsList[index].img_url),
-                                           // height: 80,
+                                          child: Image.network(homeController.showNewsList[index].img_url,
+                                          fit: BoxFit.fitWidth,
+                                            height: 100,
+
+                                          ),
+                                            //height: 80,
                                            // width: 60,
                                         ),
 
