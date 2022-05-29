@@ -177,54 +177,6 @@ class HomeFragment extends GetView<HomeController> {
                             )
                         ),
                     ),
-                    // Obx(() =>
-                    //   Container(
-                    //       margin: EdgeInsets.all(15),
-                    //       //alignment: Alignment.center,
-                    //       child:Obx(() {
-                    //         if(homeController.dataLoaded == true){
-                    //           return  Container(
-                    //             child: Center(child: Container(
-                    //               //margin: EdgeInsets.only(top: width*.5),
-                    //               alignment: Alignment.bottomCenter,
-                    //
-                    //               //height: 50,
-                    //               width: width,
-                    //
-                    //               //padding: EdgeInsets.all(10),
-                    //               child: Container(
-                    //                 padding: EdgeInsets.all(10),
-                    //                 color: Colors.black54,
-                    //                 width: width,
-                    //                 child: Text(""+homeController.leadnews.value.title.toString()
-                    //                     .toString(), style: TextStyle(color: Colors.white,
-                    //                     fontSize: 15,
-                    //                     fontWeight: FontWeight.bold)),
-                    //               )
-                    //             )),
-                    //             height: width*.6,
-                    //             width: width,
-                    //             decoration: BoxDecoration(
-                    //                 borderRadius: BorderRadius.circular(0),
-                    //                 color: Colors.blue,
-                    //                 image: DecorationImage(
-                    //                     image: new NetworkImage(
-                    //                       homeController.leadnews.value.img_url.toString(),
-                    //                     ),
-                    //                     fit: BoxFit.fill
-                    //                 )
-                    //             ),
-                    //           );
-                    //         }else{
-                    //           return Center(child: CircularProgressIndicator());
-                    //         }
-                    //
-                    //
-                    //       }),
-                    //
-                    //
-                    //     ),
-                    // ),
 
                     Container(
                       margin: EdgeInsets.only(bottom: 10,left: 20,right: 20),
@@ -241,7 +193,127 @@ class HomeFragment extends GetView<HomeController> {
                       )
                     ),
 
+                    Obx(() =>
+                        Container(
+                            margin: EdgeInsets.only(top: 15,bottom: 5,right: 15,left: 15),
+                            alignment: Alignment.center,
+                            child:ListView.builder(
+                                 primary: false,
+                                 shrinkWrap: true,
+                              // Let the ListView know how many items it needs to build.
+                              itemCount: homeController.showNewsList.length,
+                              // Provide a builder function. This is where the magic happens.
+                              // Convert each item into a widget based on the type of item it is.
+                              itemBuilder: (context, index) {
+                                final item = homeController.showNewsList[index];
 
+                                return Container(
+                                  child:   GestureDetector(
+                                        onTap: (){
+                                          //Get.back();
+                                          // if(homeController.showNewsList[index].cat_name == "প্রচ্ছদ"){
+                                          //   //homeController.selectedIndex.value = 0;
+                                          // }else{
+                                          //   // homeController.selectedIndex.value = 1;
+                                          // }
+                                        },
+
+                                        child: Obx(() => Container(
+                                          //height: ,
+                                          //alignment: Alignment.center,
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                  child: Image.network(homeController.showNewsList[index].img_url,
+                                                    fit: BoxFit.fitWidth,
+                                                    height: 70,
+
+                                                  ),
+                                                  //height: 80,
+                                                  // width: 60,
+                                                ),
+
+                                                Flexible(child: Text(homeController.showNewsList[index].title,
+                                                  style: TextStyle(color: Colors.black,fontSize: 14, ),),),
+
+                                              ],
+                                            )
+                                        )
+                                        ),
+                                      )
+                                );
+                              },
+                            )
+
+                            // ListView(
+                            //   primary: false,
+                            //   shrinkWrap: true,
+                            //   children: [
+                            //     Text("data"),
+                            //     Text("data"),
+                            //     Text("data"),
+                            //     Text("data"),
+                            //     Text("data"),
+                            //   ],
+                            // )
+
+                            // GridView.builder(
+                            //   physics: NeverScrollableScrollPhysics(),
+                            //   shrinkWrap: true,
+                            //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            //     crossAxisCount: 1,
+                            //     // crossAxisSpacing: 10.0,
+                            //     // mainAxisSpacing: 10.0,
+                            //     //childAspectRatio: width / (height / 1.9)
+                            //     childAspectRatio: 3
+                            //   ),
+                            //   itemCount: homeController.showNewsList.length,
+                            //   itemBuilder: (context, index) {
+                            //     return  GestureDetector(
+                            //       onTap: (){
+                            //         //Get.back();
+                            //         // if(homeController.showNewsList[index].cat_name == "প্রচ্ছদ"){
+                            //         //   //homeController.selectedIndex.value = 0;
+                            //         // }else{
+                            //         //   // homeController.selectedIndex.value = 1;
+                            //         // }
+                            //       },
+                            //
+                            //       child: Obx(() => Container(
+                            //         //height: ,
+                            //         //alignment: Alignment.center,
+                            //           child: Row(
+                            //             mainAxisAlignment: MainAxisAlignment.center,
+                            //             crossAxisAlignment: CrossAxisAlignment.center,
+                            //             children: [
+                            //               Container(
+                            //                 child: Image.network(homeController.showNewsList[index].img_url,
+                            //                   fit: BoxFit.fitWidth,
+                            //                   height: 70,
+                            //
+                            //                 ),
+                            //                 //height: 80,
+                            //                 // width: 60,
+                            //               ),
+                            //
+                            //               Text(homeController.showNewsList[index].title,
+                            //                 style: TextStyle(color: Colors.black,fontSize: 14, ),),
+                            //             ],
+                            //           )
+                            //       )
+                            //       ),
+                            //     );
+                            //   },
+                            // )
+                        ),
+                    ),
+
+
+
+                    
+                    
                   ],
                 ),
               )
