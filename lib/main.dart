@@ -22,9 +22,10 @@ class MyApp extends StatelessWidget {
       title: "Application",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+      theme: ThemeData(fontFamily: 'SolaimanLipi'),
       //theme: ThemeData(fontFamily: 'Roboto'),
-       theme: Get.find<SettingsService>().getLightTheme(),
-       darkTheme: Get.find<SettingsService>().getDarkTheme(),
+      //  theme: Get.find<SettingsService>().getLightTheme(),
+      //  darkTheme: Get.find<SettingsService>().getDarkTheme(),
 
     );
 

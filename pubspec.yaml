@@ -68,6 +68,11 @@ flutter:
     - assets/images/
 
 
+  fonts:
+    - family: SolaimanLipi
+      fonts:
+        - asset: fonts/SolaimanLipi.ttf
+
 
 
   #   - images/a_dot_burr.jpeg
