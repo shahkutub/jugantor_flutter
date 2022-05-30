@@ -14,6 +14,7 @@ import 'package:jugantor.com/fragments/third_fragment.dart';
 import 'package:jugantor.com/model/CatExtraLinkResponse.dart';
 import 'package:jugantor.com/model/CategoryResponse.dart';
 import 'package:http/http.dart' as http;
+import 'package:jugantor.com/model/HomeCategoryWithNewsList.dart';
 import 'package:jugantor.com/model/LastEntryNewsResponse.dart';
 import 'package:jugantor.com/model/LeadNewsResponse.dart';
 import 'package:jugantor.com/model/ShowNewsResponse.dart';
@@ -27,25 +28,37 @@ class HomeController extends GetxController {
   var banglaDate = "".obs;
   var leadnews = LeadNewsResponse().obs;
   List<CategoryResponse> categoryList = <CategoryResponse>[].obs;
-  List<CategoryResponse> home_categoryList = <CategoryResponse>[].obs;
   List<CatExtraLinkResponse> catExtraLinkList = <CatExtraLinkResponse>[].obs;
   List<ShowNewsResponse> showNewsList = <ShowNewsResponse>[].obs;
   List<LastEntryNewsResponse> last_entry_newsList = <LastEntryNewsResponse>[].obs;
-  List<LastEntryNewsResponse> category_wise_newsList = <LastEntryNewsResponse>[];
+
+  List<CategoryResponse> home_categoryList = <CategoryResponse>[].obs;
+  //List<LastEntryNewsResponse> category_wise_newsList = <LastEntryNewsResponse>[].obs;
+  List<HomeCategoryWithNewsList> category_list_with_news_newsList = <HomeCategoryWithNewsList>[].obs;
+
+
+  var scrollController = ScrollController().obs;
+
   final dataLoaded = false.obs;
   var button = 0.obs;
 
   List<VideoData> banner = <VideoData>[].obs;
   @override
   void onInit() {
+    //scrollController.value = 0.0;
+    //print(scrollController.value.offset.toString());
     get_bn_date();
     get_lead_news();
     get_category();
     get_extracat();
     get_show_news();
     get_last_entry_news();
-    get_home_category();
+    //get_home_category();
 
+
+    // if(scrollController.value.offset > 68){
+    //
+    // }
     super.onInit();
   }
 
@@ -62,6 +75,7 @@ class HomeController extends GetxController {
 
       if(response != null){
         banglaDate.value = response.toString();
+
         //Navigator.of(Get.context).pop();
       }
 
@@ -157,6 +171,9 @@ class HomeController extends GetxController {
           .map((data) => LastEntryNewsResponse.fromJson(data))
           .toList();
       last_entry_newsList.addAll(list);
+      dataLoaded.value = true;
+
+      get_home_category();
       print('last_entry_newsList: ${last_entry_newsList[0].title.toString()}');
 
     } on SocketException {
@@ -173,24 +190,35 @@ class HomeController extends GetxController {
           .map((data) => CategoryResponse.fromJson(data))
           .toList();
       home_categoryList.addAll(list);
-      dataLoaded.value = true;
+
+      home_categoryList.forEach((element) {
+        get_category_wise_news(element);
+
+      });
+
+
+
     } on SocketException {
 
     }
   }
 
-  Future<dynamic> get_category_wise_news(int catId) async {
-    print("Calling API: "+ApiClient.category_wise_news);
-    category_wise_newsList.clear();
+  get_category_wise_news(CategoryResponse category) async {
+    print("Calling API: "+ApiClient.category_wise_news+'/'+category.id.toString());
+    List<LastEntryNewsResponse> newsList = <LastEntryNewsResponse>[];
     try {
-      final response = await http.get(Uri.parse(ApiClient.category_wise_news+'/'+catId.toString()));
-      print(response.body);
+      final response = await http.get(Uri.parse(ApiClient.category_wise_news+'/'+category.id.toString()));
+      print(response.body.toString());
       List<LastEntryNewsResponse> list = (json.decode(response.body) as List)
           .map((data) => LastEntryNewsResponse.fromJson(data))
           .toList();
-      category_wise_newsList.addAll(list);
-      print('category_wise_newsList: ${category_wise_newsList[0].title.toString()}');
+      newsList.addAll(list);
 
+      var data = HomeCategoryWithNewsList(category.cat_name,category.id,newsList);
+      category_list_with_news_newsList.add(data);
+
+     // print('category_wise_newsList: ${category_wise_newsList[0].title.toString()}');
+      //return category_wise_newsList;
     } on SocketException {
 
     }

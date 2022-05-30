@@ -9,6 +9,7 @@ import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 
 class HomeFragment extends GetView<HomeController> {
   final HomeController homeController = Get.put(HomeController());
+
   @override
   Widget build(BuildContext context) {
     Get.find<HomeController>();
@@ -16,10 +17,14 @@ class HomeFragment extends GetView<HomeController> {
     double width = Get.width;
     Get.find<HomeController>();
 
+
+    //scrollController.offset.toString();
+
     return new Container(
       child: Obx(() {
         if(homeController.dataLoaded.isTrue){
           return new SingleChildScrollView(
+              //controller: homeController.scrollController.value,
               child: Container(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -262,12 +267,12 @@ class HomeFragment extends GetView<HomeController> {
                               primary: false,
                               shrinkWrap: true,
                               // Let the ListView know how many items it needs to build.
-                              itemCount: homeController.home_categoryList.length,
+                              itemCount: homeController.category_list_with_news_newsList.length,
                               // Provide a builder function. This is where the magic happens.
                               // Convert each item into a widget based on the type of item it is.
                               itemBuilder: (context, index) {
-                                final item = homeController.home_categoryList[index];
-                                homeController.get_category_wise_news(homeController.home_categoryList[index].id);
+                                final item = homeController.category_list_with_news_newsList[index];
+                                //homeController.get_category_wise_news(homeController.home_categoryList[index].id);
 
                                 return Container(
                                     child:   GestureDetector(
@@ -280,8 +285,8 @@ class HomeFragment extends GetView<HomeController> {
                                         // }
                                       },
 
-                                      //child: Obx(() =>
-                                          child:Container(
+                                      child: Obx(() =>
+                                          Container(
                                         //height: ,
                                         //alignment: Alignment.center,
                                           child: Column(
@@ -292,14 +297,14 @@ class HomeFragment extends GetView<HomeController> {
                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                 crossAxisAlignment: CrossAxisAlignment.center,
                                                 children: [
-                                                  Flexible(child: Text(homeController.home_categoryList[index].cat_name),),
+                                                  Flexible(child: Text(homeController.category_list_with_news_newsList[index].cat_name),),
                                                   Icon(Icons.arrow_forward_sharp,color: Colors.red,),
                                                 ],
                                               ),
                                               Divider(
                                                   color: Colors.red
                                               ),
-                                             // Obx(() =>
+                                              Obx(() =>
                                                   Container(
                                                       margin: EdgeInsets.only(top: 15,bottom: 5,right: 15,left: 15),
                                                       alignment: Alignment.center,
@@ -307,11 +312,11 @@ class HomeFragment extends GetView<HomeController> {
                                                         primary: false,
                                                         shrinkWrap: true,
                                                         // Let the ListView know how many items it needs to build.
-                                                        itemCount: homeController.category_wise_newsList.length,
+                                                        itemCount: homeController.category_list_with_news_newsList[index].category_wise_newsList.length,
                                                         // Provide a builder function. This is where the magic happens.
                                                         // Convert each item into a widget based on the type of item it is.
-                                                        itemBuilder: (context, index) {
-                                                          final item = homeController.category_wise_newsList[index];
+                                                        itemBuilder: (context, index2) {
+                                                          final item = homeController.category_list_with_news_newsList[index].category_wise_newsList[index2];
                                                           //homeController.homecatId.value = homeController.showNewsList[index].id;
 
                                                           return Container(
@@ -325,8 +330,8 @@ class HomeFragment extends GetView<HomeController> {
                                                                   // }
                                                                 },
 
-                                                                //child: Obx(() =>
-                                                                  child:Container(
+                                                                child: Obx(() =>
+                                                                  Container(
                                                                   //height: ,
                                                                   //alignment: Alignment.center,
                                                                     child: Row(
@@ -334,7 +339,7 @@ class HomeFragment extends GetView<HomeController> {
                                                                       crossAxisAlignment: CrossAxisAlignment.center,
                                                                       children: [
                                                                         Container(
-                                                                          child: Image.network(homeController.category_wise_newsList[index].img_url,
+                                                                          child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
                                                                             fit: BoxFit.fitWidth,
                                                                             height: 70,
 
@@ -343,24 +348,24 @@ class HomeFragment extends GetView<HomeController> {
                                                                           // width: 60,
                                                                         ),
 
-                                                                        Flexible(child: Text(homeController.category_wise_newsList[index].title,
+                                                                        Flexible(child: Text(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].title,
                                                                           style: TextStyle(color: Colors.black,fontSize: 14, ),),),
 
                                                                       ],
                                                                     )
                                                                 )
-                                                               // ),
+                                                                ),
                                                               )
                                                           );
                                                         },
                                                       )
 
                                                   ),
-                                              //),
+                                              ),
                                             ],
                                           )
                                       )
-                                      //),
+                                      ),
                                     )
                                 );
                               },
@@ -370,70 +375,71 @@ class HomeFragment extends GetView<HomeController> {
                     ),
 
 
-                    Obx(() =>
-                        Container(
-                            margin: EdgeInsets.only(top: 15,bottom: 5,right: 15,left: 15),
-                            alignment: Alignment.center,
-                            child:CarouselSlider(
-                              options: CarouselOptions(
-                                height: 200,
-                                viewportFraction: 1.0,
-                                autoPlay: true,
-                                onPageChanged: (index, index1) {
-                                  // setState(
-                                  //       () {
-                                  //     _current = index;
-                                  //   },
-                                  // );
-                                },
-                              ),
-                              items: homeController.banner.map((bannerData) {
-                                return Builder(
-                                  builder: (BuildContext context) {
-                                    return InkWell(
-                                      onTap: () async {
-                                        //await launch(bannerData.link!);
-                                      },
-                                      child: Column(
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Container(
-                                                alignment: Alignment.topLeft,
-                                                child: Stack(
-                                                  children: <Widget>[
-                                                    Material(
-                                                      color: Colors.white,
-                                                      borderRadius: BorderRadius.circular(15.0),
-                                                      elevation: 2.0,
-                                                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                                                      type: MaterialType.transparency,
-                                                      child: CachedNetworkImage(
-                                                        imageUrl: bannerData.fullImage,
-                                                        fit: BoxFit.fill,
-                                                        //height: height * 0.12,
-                                                        width: width*0.92,
-                                                       // placeholder: (context, url) => SpinKitFadingCircle(color: Palette.blue),
-                                                        errorWidget: (context, url, error) => Image.asset("images/no_image.png"),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-
-                                            ],
-                                          ),
-
-                                        ],
-                                      ),
-                                    );
-                                  },
-                                );
-                              }).toList(),
-                            ),
-
-                        ),
-                    ),
+                    //
+                    // Obx(() =>
+                    //     Container(
+                    //         margin: EdgeInsets.only(top: 15,bottom: 5,right: 15,left: 15),
+                    //         alignment: Alignment.center,
+                    //         child:CarouselSlider(
+                    //           options: CarouselOptions(
+                    //             height: 200,
+                    //             viewportFraction: 1.0,
+                    //             autoPlay: true,
+                    //             onPageChanged: (index, index1) {
+                    //               // setState(
+                    //               //       () {
+                    //               //     _current = index;
+                    //               //   },
+                    //               // );
+                    //             },
+                    //           ),
+                    //           items: homeController.banner.map((bannerData) {
+                    //             return Builder(
+                    //               builder: (BuildContext context) {
+                    //                 return InkWell(
+                    //                   onTap: () async {
+                    //                     //await launch(bannerData.link!);
+                    //                   },
+                    //                   child: Column(
+                    //                     children: [
+                    //                       Row(
+                    //                         children: [
+                    //                           Container(
+                    //                             alignment: Alignment.topLeft,
+                    //                             child: Stack(
+                    //                               children: <Widget>[
+                    //                                 Material(
+                    //                                   color: Colors.white,
+                    //                                   borderRadius: BorderRadius.circular(15.0),
+                    //                                   elevation: 2.0,
+                    //                                   clipBehavior: Clip.antiAliasWithSaveLayer,
+                    //                                   type: MaterialType.transparency,
+                    //                                   child: CachedNetworkImage(
+                    //                                     imageUrl: bannerData.fullImage,
+                    //                                     fit: BoxFit.fill,
+                    //                                     //height: height * 0.12,
+                    //                                     width: width*0.92,
+                    //                                    // placeholder: (context, url) => SpinKitFadingCircle(color: Palette.blue),
+                    //                                     errorWidget: (context, url, error) => Image.asset("images/no_image.png"),
+                    //                                   ),
+                    //                                 ),
+                    //                               ],
+                    //                             ),
+                    //                           ),
+                    //
+                    //                         ],
+                    //                       ),
+                    //
+                    //                     ],
+                    //                   ),
+                    //                 );
+                    //               },
+                    //             );
+                    //           }).toList(),
+                    //         ),
+                    //
+                    //     ),
+                    // ),
 
 
                   ],
