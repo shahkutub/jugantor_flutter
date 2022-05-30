@@ -375,71 +375,71 @@ class HomeFragment extends GetView<HomeController> {
                     ),
 
 
-                    //
-                    // Obx(() =>
-                    //     Container(
-                    //         margin: EdgeInsets.only(top: 15,bottom: 5,right: 15,left: 15),
-                    //         alignment: Alignment.center,
-                    //         child:CarouselSlider(
-                    //           options: CarouselOptions(
-                    //             height: 200,
-                    //             viewportFraction: 1.0,
-                    //             autoPlay: true,
-                    //             onPageChanged: (index, index1) {
-                    //               // setState(
-                    //               //       () {
-                    //               //     _current = index;
-                    //               //   },
-                    //               // );
-                    //             },
-                    //           ),
-                    //           items: homeController.banner.map((bannerData) {
-                    //             return Builder(
-                    //               builder: (BuildContext context) {
-                    //                 return InkWell(
-                    //                   onTap: () async {
-                    //                     //await launch(bannerData.link!);
-                    //                   },
-                    //                   child: Column(
-                    //                     children: [
-                    //                       Row(
-                    //                         children: [
-                    //                           Container(
-                    //                             alignment: Alignment.topLeft,
-                    //                             child: Stack(
-                    //                               children: <Widget>[
-                    //                                 Material(
-                    //                                   color: Colors.white,
-                    //                                   borderRadius: BorderRadius.circular(15.0),
-                    //                                   elevation: 2.0,
-                    //                                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                    //                                   type: MaterialType.transparency,
-                    //                                   child: CachedNetworkImage(
-                    //                                     imageUrl: bannerData.fullImage,
-                    //                                     fit: BoxFit.fill,
-                    //                                     //height: height * 0.12,
-                    //                                     width: width*0.92,
-                    //                                    // placeholder: (context, url) => SpinKitFadingCircle(color: Palette.blue),
-                    //                                     errorWidget: (context, url, error) => Image.asset("images/no_image.png"),
-                    //                                   ),
-                    //                                 ),
-                    //                               ],
-                    //                             ),
-                    //                           ),
-                    //
-                    //                         ],
-                    //                       ),
-                    //
-                    //                     ],
-                    //                   ),
-                    //                 );
-                    //               },
-                    //             );
-                    //           }).toList(),
-                    //         ),
-                    //
-                    //     ),
-                    // ),
+
+                    Obx(() =>
+                        Container(
+                            margin: EdgeInsets.only(top: 15,bottom: 5,right: 15,left: 15),
+                            alignment: Alignment.center,
+                            child:CarouselSlider(
+                              options: CarouselOptions(
+                                height: 200,
+                                viewportFraction: 1.0,
+                                autoPlay: true,
+                                onPageChanged: (index, index1) {
+                                  // setState(
+                                  //       () {
+                                  //     _current = index;
+                                  //   },
+                                  // );
+                                },
+                              ),
+                              items: homeController.last_VidListList.map((bannerData) {
+                                return Builder(
+                                  builder: (BuildContext context) {
+                                    return InkWell(
+                                      onTap: () async {
+                                        //await launch(bannerData.link!);
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Container(
+                                                alignment: Alignment.topLeft,
+                                                child: Stack(
+                                                  children: <Widget>[
+                                                    Material(
+                                                      color: Colors.white,
+                                                      borderRadius: BorderRadius.circular(0),
+                                                      elevation: 0,
+                                                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                                                      type: MaterialType.transparency,
+                                                      child: CachedNetworkImage(
+                                                        imageUrl: bannerData.cover_photo,
+                                                        fit: BoxFit.fill,
+                                                        //height: height * 0.12,
+                                                        width: width*0.92,
+                                                       // placeholder: (context, url) => SpinKitFadingCircle(color: Palette.blue),
+                                                        errorWidget: (context, url, error) => Image.asset("images/jugantordefault.jpg"),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+
+                                            ],
+                                          ),
+
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                );
+                              }).toList(),
+                            ),
+
+                        ),
+                    ),
 
 
                   ],

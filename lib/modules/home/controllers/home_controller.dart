@@ -17,6 +17,7 @@ import 'package:http/http.dart' as http;
 import 'package:jugantor.com/model/HomeCategoryWithNewsList.dart';
 import 'package:jugantor.com/model/LastEntryNewsResponse.dart';
 import 'package:jugantor.com/model/LeadNewsResponse.dart';
+import 'package:jugantor.com/model/LsatThreeVideo.dart';
 import 'package:jugantor.com/model/ShowNewsResponse.dart';
 import 'package:jugantor.com/ui.dart';
 
@@ -42,7 +43,9 @@ class HomeController extends GetxController {
   final dataLoaded = false.obs;
   var button = 0.obs;
 
-  List<VideoData> banner = <VideoData>[].obs;
+  List<LsatThreeVideo> last_VidListList = <LsatThreeVideo>[].obs;
+
+
   @override
   void onInit() {
     //scrollController.value.position = 0;
@@ -53,6 +56,7 @@ class HomeController extends GetxController {
     get_extracat();
     get_show_news();
     get_last_entry_news();
+    get_last_three_videos();
     //get_home_category();
 
 
@@ -223,6 +227,23 @@ class HomeController extends GetxController {
 
     }
   }
+
+
+  get_last_three_videos() async {
+    print("Calling API: "+ApiClient.last_three_videos);
+    try {
+      final response = await http.get(Uri.parse(ApiClient.last_three_videos));
+      print(response.body);
+      List<LsatThreeVideo> list = (json.decode(response.body) as List)
+          .map((data) => LsatThreeVideo.fromJson(data))
+          .toList();
+      last_VidListList.addAll(list);
+
+    } on SocketException {
+
+    }
+  }
+
 
   Widget CustomRadioButton(String text, int index) {
     return OutlineButton(
