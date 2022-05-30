@@ -45,7 +45,7 @@ class HomeController extends GetxController {
   List<VideoData> banner = <VideoData>[].obs;
   @override
   void onInit() {
-    //scrollController.value = 0.0;
+    //scrollController.value.position = 0;
     //print(scrollController.value.offset.toString());
     get_bn_date();
     get_lead_news();
