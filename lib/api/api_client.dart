@@ -10,6 +10,7 @@ class ApiClient {
   static String show_news = '${baseUrl}api/ver1/show_news';
   static String last_entry_news = '${baseUrl}api/ver1/last_entry_news';
   static String category_wise_news = '${baseUrl}api/ver1/category_wise_news';
+  static String last_three_videos = '${baseUrl}api/ver1/last_three_videos';
 
 
 }
