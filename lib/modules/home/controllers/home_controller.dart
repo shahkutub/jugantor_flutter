@@ -23,6 +23,7 @@ import 'package:jugantor.com/ui.dart';
 class HomeController extends GetxController {
 
   var selectedIndex = 0.obs;
+  var homecatId = 0.obs;
   var banglaDate = "".obs;
   var leadnews = LeadNewsResponse().obs;
   List<CategoryResponse> categoryList = <CategoryResponse>[].obs;
@@ -30,9 +31,11 @@ class HomeController extends GetxController {
   List<CatExtraLinkResponse> catExtraLinkList = <CatExtraLinkResponse>[].obs;
   List<ShowNewsResponse> showNewsList = <ShowNewsResponse>[].obs;
   List<LastEntryNewsResponse> last_entry_newsList = <LastEntryNewsResponse>[].obs;
-  List<LastEntryNewsResponse> category_wise_newsList = <LastEntryNewsResponse>[].obs;
+  List<LastEntryNewsResponse> category_wise_newsList = <LastEntryNewsResponse>[];
   final dataLoaded = false.obs;
   var button = 0.obs;
+
+  List<VideoData> banner = <VideoData>[].obs;
   @override
   void onInit() {
     get_bn_date();
@@ -176,8 +179,9 @@ class HomeController extends GetxController {
     }
   }
 
-  get_category_wise_news(int catId) async {
+  Future<dynamic> get_category_wise_news(int catId) async {
     print("Calling API: "+ApiClient.category_wise_news);
+    category_wise_newsList.clear();
     try {
       final response = await http.get(Uri.parse(ApiClient.category_wise_news+'/'+catId.toString()));
       print(response.body);
@@ -241,4 +245,8 @@ class HomeController extends GetxController {
   }
 
 
+}
+
+class VideoData {
+  var fullImage = "";
 }
