@@ -14,6 +14,7 @@ import 'package:jugantor.com/fragments/third_fragment.dart';
 import 'package:jugantor.com/model/CatExtraLinkResponse.dart';
 import 'package:jugantor.com/model/CategoryResponse.dart';
 import 'package:http/http.dart' as http;
+import 'package:jugantor.com/model/LastEntryNewsResponse.dart';
 import 'package:jugantor.com/model/LeadNewsResponse.dart';
 import 'package:jugantor.com/model/ShowNewsResponse.dart';
 import 'package:jugantor.com/ui.dart';
@@ -25,8 +26,11 @@ class HomeController extends GetxController {
   var banglaDate = "".obs;
   var leadnews = LeadNewsResponse().obs;
   List<CategoryResponse> categoryList = <CategoryResponse>[].obs;
+  List<CategoryResponse> home_categoryList = <CategoryResponse>[].obs;
   List<CatExtraLinkResponse> catExtraLinkList = <CatExtraLinkResponse>[].obs;
   List<ShowNewsResponse> showNewsList = <ShowNewsResponse>[].obs;
+  List<LastEntryNewsResponse> last_entry_newsList = <LastEntryNewsResponse>[].obs;
+  List<LastEntryNewsResponse> category_wise_newsList = <LastEntryNewsResponse>[].obs;
   final dataLoaded = false.obs;
   var button = 0.obs;
   @override
@@ -36,7 +40,8 @@ class HomeController extends GetxController {
     get_category();
     get_extracat();
     get_show_news();
-
+    get_last_entry_news();
+    get_home_category();
 
     super.onInit();
   }
@@ -106,6 +111,8 @@ class HomeController extends GetxController {
     }
   }
 
+
+
   get_extracat() async {
     print("Calling API: "+ApiClient.category);
     try {
@@ -132,12 +139,58 @@ class HomeController extends GetxController {
           .toList();
       showNewsList.addAll(list);
       print('showNewsList: ${showNewsList[0].title.toString()}');
+      //dataLoaded.value = true;
+    } on SocketException {
+
+    }
+  }
+
+  get_last_entry_news() async {
+    print("Calling API: "+ApiClient.last_entry_news);
+    try {
+      final response = await http.get(Uri.parse(ApiClient.last_entry_news));
+      print(response.body);
+      List<LastEntryNewsResponse> list = (json.decode(response.body) as List)
+          .map((data) => LastEntryNewsResponse.fromJson(data))
+          .toList();
+      last_entry_newsList.addAll(list);
+      print('last_entry_newsList: ${last_entry_newsList[0].title.toString()}');
+
+    } on SocketException {
+
+    }
+  }
+
+  get_home_category() async {
+    print("Calling API: "+ApiClient.home_category);
+    try {
+      final response = await http.get(Uri.parse(ApiClient.home_category));
+      //print(response.body);
+      List<CategoryResponse> list = (json.decode(response.body) as List)
+          .map((data) => CategoryResponse.fromJson(data))
+          .toList();
+      home_categoryList.addAll(list);
       dataLoaded.value = true;
     } on SocketException {
 
     }
   }
 
+  get_category_wise_news(int catId) async {
+    print("Calling API: "+ApiClient.category_wise_news);
+    try {
+      final response = await http.get(Uri.parse(ApiClient.category_wise_news+'/'+catId.toString()));
+      print(response.body);
+      List<LastEntryNewsResponse> list = (json.decode(response.body) as List)
+          .map((data) => LastEntryNewsResponse.fromJson(data))
+          .toList();
+      category_wise_newsList.addAll(list);
+      print('category_wise_newsList: ${category_wise_newsList[0].title.toString()}');
+
+    } on SocketException {
+
+    }
+  }
 
   Widget CustomRadioButton(String text, int index) {
     return OutlineButton(
