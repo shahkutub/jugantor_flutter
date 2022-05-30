@@ -7,6 +7,7 @@ class ShowNewsResponse {
     Object shoulder;
     String title;
     int video_dis;
+    //int news_date;
 
     ShowNewsResponse({this.generate_url, this.hanger, this.id, this.img_url, this.parent_cat_id, this.shoulder, this.title, this.video_dis});
 
@@ -17,7 +18,8 @@ class ShowNewsResponse {
             img_url: json['img_url'], 
             parent_cat_id: json['parent_cat_id'], 
             title: json['title'],
-            video_dis: json['video_dis'], 
+            video_dis: json['video_dis']
+
         );
     }
 

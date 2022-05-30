@@ -8,6 +8,8 @@ class ApiClient {
   static String leadnews = '${baseUrl}api/ver1/lead_news';
   static String cat_extra_link = '${baseUrl}api/ver1/cat_extra_link';
   static String show_news = '${baseUrl}api/ver1/show_news';
+  static String last_entry_news = '${baseUrl}api/ver1/last_entry_news';
+  static String category_wise_news = '${baseUrl}api/ver1/category_wise_news';
 
 
 }

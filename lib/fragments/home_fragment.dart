@@ -178,6 +178,7 @@ class HomeFragment extends GetView<HomeController> {
                         ),
                     ),
 
+
                     Container(
                       margin: EdgeInsets.only(bottom: 10,left: 20,right: 20),
                       //alignment: Alignment.center,
@@ -193,6 +194,7 @@ class HomeFragment extends GetView<HomeController> {
                       )
                     ),
 
+                    //last_entry_newsList
                     Obx(() =>
                         Container(
                             margin: EdgeInsets.only(top: 15,bottom: 5,right: 15,left: 15),
@@ -201,11 +203,11 @@ class HomeFragment extends GetView<HomeController> {
                                  primary: false,
                                  shrinkWrap: true,
                               // Let the ListView know how many items it needs to build.
-                              itemCount: homeController.showNewsList.length,
+                              itemCount: homeController.last_entry_newsList.length,
                               // Provide a builder function. This is where the magic happens.
                               // Convert each item into a widget based on the type of item it is.
                               itemBuilder: (context, index) {
-                                final item = homeController.showNewsList[index];
+                                final item = homeController.last_entry_newsList[index];
 
                                 return Container(
                                   child:   GestureDetector(
@@ -226,7 +228,7 @@ class HomeFragment extends GetView<HomeController> {
                                               crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 Container(
-                                                  child: Image.network(homeController.showNewsList[index].img_url,
+                                                  child: Image.network(homeController.last_entry_newsList[index].img_url,
                                                     fit: BoxFit.fitWidth,
                                                     height: 70,
 
@@ -235,7 +237,7 @@ class HomeFragment extends GetView<HomeController> {
                                                   // width: 60,
                                                 ),
 
-                                                Flexible(child: Text(homeController.showNewsList[index].title,
+                                                Flexible(child: Text(homeController.last_entry_newsList[index].title,
                                                   style: TextStyle(color: Colors.black,fontSize: 14, ),),),
 
                                               ],
@@ -362,9 +364,6 @@ class HomeFragment extends GetView<HomeController> {
                         ),
                     ),
 
-
-                    
-                    
                   ],
                 ),
               )
