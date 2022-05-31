@@ -55,7 +55,8 @@ class HomePage extends GetView<HomeController> {
               appBar:AppBar(
                 backgroundColor: Colors.white,
                 iconTheme: IconThemeData(color: Colors.black),
-                title: Stack(alignment: Alignment.centerLeft,
+                title:
+                Stack(alignment: Alignment.centerLeft,
                   children: <Widget>[
                     Container(
                       //height: 80,

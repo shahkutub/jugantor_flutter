@@ -34,10 +34,11 @@ class HomeFragment extends GetView<HomeController> {
                     Obx(() =>
 
                         Container(
-                          margin: EdgeInsets.only(top: 15,bottom: 5,right: 15,left: 15),
+                          margin: EdgeInsets.only(top: 15,bottom: 5,right: 20,left: 20),
                           height: width*.6,
                           width: width,
-                          child: Center(child: Container(
+                          child: Center(
+                              child: Container(
                             //margin: EdgeInsets.only(top: width*.5),
                               alignment: Alignment.bottomCenter,
 
@@ -57,11 +58,13 @@ class HomeFragment extends GetView<HomeController> {
                           )),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(0),
-                              color: Colors.blue,
+                              //color: Colors.blue,
                               image: DecorationImage(
-                                  image: new NetworkImage(
-                                    homeController.leadnews.value.img_url.toString(),
-                                  ),
+                                  // image: new NetworkImage(
+                                  //   homeController.leadnews.value.img_url.toString(),
+                                  // ),
+                                  image: homeController.leadnews.value.img_url  == null ?
+                                  Image.asset('assets/images/jugantordefault.jpg') : NetworkImage(homeController.leadnews.value.img_url),
                                   fit: BoxFit.fill
                               )
                           ),
@@ -69,7 +72,7 @@ class HomeFragment extends GetView<HomeController> {
                     ),
                     Obx(() =>
                         Container(
-                            margin: EdgeInsets.only(top: 15,bottom: 5,right: 15,left: 15),
+                            margin: EdgeInsets.only(top: 15,bottom: 5,right: 20,left: 20),
                             alignment: Alignment.center,
                             child:GridView.builder(
                               physics: NeverScrollableScrollPhysics(),
@@ -130,16 +133,17 @@ class HomeFragment extends GetView<HomeController> {
                         ),
                     ),
 
+                    //show news
                     Obx(() =>
                         Container(
-                            margin: EdgeInsets.only(top: 15,bottom: 5,right: 15,left: 15),
+                            margin: EdgeInsets.only(top: 15,bottom: 5,right: 20,left: 20),
                             alignment: Alignment.center,
                             child:GridView.builder(
                               physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
-                                  crossAxisSpacing: 10.0,
+                                  crossAxisSpacing: 15.0,
                                   mainAxisSpacing: 10.0,
                                   //childAspectRatio: width / (height / 1.9)
                                   //childAspectRatio: 1
@@ -157,6 +161,7 @@ class HomeFragment extends GetView<HomeController> {
                                   },
 
                                   child: Obx(() => Container(
+
                                     //height: ,
                                     //alignment: Alignment.center,
                                     child: Column(
@@ -164,17 +169,27 @@ class HomeFragment extends GetView<HomeController> {
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
                                         Container(
-                                          child: Image.network(homeController.showNewsList[index].img_url,
-                                          fit: BoxFit.fitWidth,
-                                            height: 100,
-
-                                          ),
+                                          // child: Image.network(homeController.showNewsList[index].img_url,
+                                          // fit: BoxFit.fitWidth,
+                                          //   height: 100,
+                                          //
+                                          // ),
                                             //height: 80,
                                            // width: 60,
+                                          child: CachedNetworkImage(
+                                            imageUrl: homeController.showNewsList[index].img_url,
+                                            fit: BoxFit.fill,
+                                            //height: height * 0.12,
+                                            width: width*0.92,
+                                             //placeholder: (context, url) => SpinKitFadingCircle(color: Palette.blue),
+                                            errorWidget: (context, url, error) => Image.asset("assets/images/jugantordefault.jpg"),
+                                          ),
                                         ),
 
                                         Text(homeController.showNewsList[index].title,
-                                          style: TextStyle(color: Colors.black,fontSize: 14, ),),
+                                          style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                          textAlign: TextAlign.justify,
+                                        ),
                                       ],
                                     )
                                   )
@@ -187,7 +202,7 @@ class HomeFragment extends GetView<HomeController> {
 
 
                     Container(
-                      margin: EdgeInsets.only(bottom: 10,left: 20,right: 20),
+                      margin: EdgeInsets.only(left: 20,right: 20),
                       //alignment: Alignment.center,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -204,7 +219,7 @@ class HomeFragment extends GetView<HomeController> {
                     //last_entry_newsList
                     Obx(() =>
                         Container(
-                            margin: EdgeInsets.only(top: 15,bottom: 5,right: 15,left: 15),
+                            margin: EdgeInsets.only(top: 10,bottom: 5,right: 20,left: 20),
                             alignment: Alignment.center,
                             child:ListView.builder(
                                  primary: false,
@@ -217,6 +232,7 @@ class HomeFragment extends GetView<HomeController> {
                                 final item = homeController.last_entry_newsList[index];
 
                                 return Container(
+                                    margin: EdgeInsets.only(top: 10),
                                   child:   GestureDetector(
                                         onTap: (){
                                           //Get.back();
@@ -231,21 +247,26 @@ class HomeFragment extends GetView<HomeController> {
                                           //height: ,
                                           //alignment: Alignment.center,
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              mainAxisAlignment: MainAxisAlignment.start,
                                               crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 Container(
+                                                  margin: EdgeInsets.only(right: 10),
+                                                  height: 70,
+                                                  width: 100,
                                                   child: Image.network(homeController.last_entry_newsList[index].img_url,
-                                                    fit: BoxFit.fitWidth,
-                                                    height: 70,
-
+                                                    fit: BoxFit.fill,
                                                   ),
                                                   //height: 80,
                                                   // width: 60,
                                                 ),
 
                                                 Flexible(child: Text(homeController.last_entry_newsList[index].title,
-                                                  style: TextStyle(color: Colors.black,fontSize: 14, ),),),
+                                                  style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                                  textAlign: TextAlign.justify,
+                                                ),
+
+                                                ),
 
                                               ],
                                             )
@@ -259,9 +280,10 @@ class HomeFragment extends GetView<HomeController> {
                         ),
                     ),
 
+                    //body cat news
                     Obx(() =>
                         Container(
-                            margin: EdgeInsets.only(top: 15,bottom: 5,right: 15,left: 15),
+                            margin: EdgeInsets.only(top: 15,bottom: 5,right: 20,left: 20),
                             alignment: Alignment.center,
                             child:ListView.builder(
                               primary: false,
@@ -289,16 +311,28 @@ class HomeFragment extends GetView<HomeController> {
                                           Container(
                                         //height: ,
                                         //alignment: Alignment.center,
-                                          child: Column(
+                                          child:
+                                          Column(
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             crossAxisAlignment: CrossAxisAlignment.center,
                                             children: [
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                children: [
-                                                  Flexible(child: Text(homeController.category_list_with_news_newsList[index].cat_name),),
-                                                  Icon(Icons.arrow_forward_sharp,color: Colors.red,),
+                                              Stack(alignment: Alignment.centerLeft,
+                                                children: <Widget>[
+                                                  Container(
+                                                    //height: 80,
+                                                    alignment: Alignment.centerLeft,
+                                                    child: Flexible(child: Text(homeController.category_list_with_news_newsList[index].cat_name),),
+                                                  ),
+                                                  Container(
+                                                    alignment: Alignment.centerRight,
+                                                    child: Column(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                                      children: [
+                                                        Icon(Icons.arrow_forward_sharp,color: Colors.red,),
+                                                      ],
+                                                    ),
+                                                  )
                                                 ],
                                               ),
                                               Divider(
@@ -306,7 +340,7 @@ class HomeFragment extends GetView<HomeController> {
                                               ),
                                               Obx(() =>
                                                   Container(
-                                                      margin: EdgeInsets.only(top: 15,bottom: 5,right: 15,left: 15),
+                                                      margin: EdgeInsets.only(top: 15,bottom: 5),
                                                       alignment: Alignment.center,
                                                       child:ListView.builder(
                                                         primary: false,
@@ -320,6 +354,7 @@ class HomeFragment extends GetView<HomeController> {
                                                           //homeController.homecatId.value = homeController.showNewsList[index].id;
 
                                                           return Container(
+                                                            margin: EdgeInsets.only(top: 10),
                                                               child:   GestureDetector(
                                                                 onTap: (){
                                                                   //Get.back();
@@ -335,26 +370,53 @@ class HomeFragment extends GetView<HomeController> {
                                                                   //height: ,
                                                                   //alignment: Alignment.center,
                                                                     child: Row(
-                                                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                                      mainAxisAlignment: MainAxisAlignment.start,
                                                                       crossAxisAlignment: CrossAxisAlignment.center,
                                                                       children: [
                                                                         Container(
+                                                                          margin: EdgeInsets.only(right: 10),
+                                                                          height: 70,
+                                                                          width: 100,
                                                                           child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
-                                                                            fit: BoxFit.fitWidth,
-                                                                            height: 70,
-
+                                                                            fit: BoxFit.fill,
                                                                           ),
                                                                           //height: 80,
                                                                           // width: 60,
                                                                         ),
 
                                                                         Flexible(child: Text(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].title,
-                                                                          style: TextStyle(color: Colors.black,fontSize: 14, ),),),
+                                                                          style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                                                          textAlign: TextAlign.justify,
+                                                                        ),
+
+                                                                        ),
 
                                                                       ],
                                                                     )
+                                                                    // child: Row(
+                                                                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                                    //   crossAxisAlignment: CrossAxisAlignment.center,
+                                                                    //   children: [
+                                                                    //     Container(
+                                                                    //       child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
+                                                                    //         fit: BoxFit.fitWidth,
+                                                                    //         height: 70,
+                                                                    //
+                                                                    //       ),
+                                                                    //       //height: 80,
+                                                                    //       // width: 60,
+                                                                    //     ),
+                                                                    //
+                                                                    //     Flexible(child: Text(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].title,
+                                                                    //       style: TextStyle(color: Colors.black,fontSize: 14, ),),),
+                                                                    //
+                                                                    //   ],
+                                                                    // )
+
+
                                                                 )
                                                                 ),
+
                                                               )
                                                           );
                                                         },
@@ -420,7 +482,7 @@ class HomeFragment extends GetView<HomeController> {
                                                         //height: height * 0.12,
                                                         width: width*0.92,
                                                        // placeholder: (context, url) => SpinKitFadingCircle(color: Palette.blue),
-                                                        errorWidget: (context, url, error) => Image.asset("images/jugantordefault.jpg"),
+                                                        errorWidget: (context, url, error) => Image.asset("assets/images/jugantordefault.jpg"),
                                                       ),
                                                     ),
                                                   ],
