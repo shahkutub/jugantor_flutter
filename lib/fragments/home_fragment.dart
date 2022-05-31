@@ -17,7 +17,10 @@ class HomeFragment extends GetView<HomeController> {
     double width = Get.width;
     Get.find<HomeController>();
 
-
+    List<TopButtonModel> buttons = [
+      TopButtonModel(buttonLable: 'সর্বশেষ', isOnTp: true),
+      TopButtonModel(buttonLable: 'সর্বাধিক পঠিত', isOnTp: false)
+    ];
     //scrollController.offset.toString();
 
     return new Container(
@@ -216,6 +219,42 @@ class HomeFragment extends GetView<HomeController> {
                       )
                     ),
 
+                    // Container(
+                    //   height: 50,
+                    //   color: Colors.white,
+                    //   child: ListView.builder(
+                    //     // Rpadding: const EdgeInsets.only(right: 9),
+                    //     scrollDirection: Axis.horizontal,
+                    //     itemCount: buttons.length,
+                    //     itemBuilder: (context, index) {
+                    //       // myIndex =in
+                    //       return Padding(
+                    //         padding: const EdgeInsets.only(right: 9, top: 9),
+                    //         child: FlatButton(
+                    //           color: buttons[index].isOnTp ? Colors.indigo : Colors.grey[200],
+                    //           onPressed: () {
+                    //             print(index);
+                    //             // setState(
+                    //             //       () {
+                    //                 buttons[homeController.myIndex.value].isOnTp = false;
+                    //                 homeController.myIndex.value = index;
+                    //                 buttons[index].isOnTp = true;
+                    //               //},
+                    //             //);
+                    //           },
+                    //           child: Text(
+                    //             buttons[index].buttonLable,
+                    //             style: TextStyle(
+                    //               color: buttons[index].isOnTp ? Colors.white : Colors.black,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       );
+                    //     },
+                    //   ),
+                    // ),
+
+
                     //last_entry_newsList
                     Obx(() =>
                         Container(
@@ -283,7 +322,7 @@ class HomeFragment extends GetView<HomeController> {
                     //body cat news
                     Obx(() =>
                         Container(
-                            margin: EdgeInsets.only(top: 15,bottom: 5,right: 20,left: 20),
+                            margin: EdgeInsets.only(top: 15,bottom: 0,right: 20,left: 20),
                             alignment: Alignment.center,
                             child:ListView.builder(
                               primary: false,
@@ -309,10 +348,10 @@ class HomeFragment extends GetView<HomeController> {
 
                                       child: Obx(() =>
                                           Container(
+                                              //margin: EdgeInsets.only(top: 20),
                                         //height: ,
                                         //alignment: Alignment.center,
-                                          child:
-                                          Column(
+                                          child: Column(
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             crossAxisAlignment: CrossAxisAlignment.center,
                                             children: [
@@ -321,7 +360,10 @@ class HomeFragment extends GetView<HomeController> {
                                                   Container(
                                                     //height: 80,
                                                     alignment: Alignment.centerLeft,
-                                                    child: Flexible(child: Text(homeController.category_list_with_news_newsList[index].cat_name),),
+                                                    child: Flexible(child: Text(homeController.category_list_with_news_newsList[index].cat_name,
+                                                        style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold)
+                                                    )
+                                                    ),
                                                   ),
                                                   Container(
                                                     alignment: Alignment.centerRight,
@@ -340,7 +382,7 @@ class HomeFragment extends GetView<HomeController> {
                                               ),
                                               Obx(() =>
                                                   Container(
-                                                      margin: EdgeInsets.only(top: 15,bottom: 5),
+                                                      margin: EdgeInsets.only(top: 0,bottom: 5),
                                                       alignment: Alignment.center,
                                                       child:ListView.builder(
                                                         primary: false,
@@ -353,72 +395,112 @@ class HomeFragment extends GetView<HomeController> {
                                                           final item = homeController.category_list_with_news_newsList[index].category_wise_newsList[index2];
                                                           //homeController.homecatId.value = homeController.showNewsList[index].id;
 
-                                                          return Container(
-                                                            margin: EdgeInsets.only(top: 10),
-                                                              child:   GestureDetector(
-                                                                onTap: (){
-                                                                  //Get.back();
-                                                                  // if(homeController.showNewsList[index].cat_name == "প্রচ্ছদ"){
-                                                                  //   //homeController.selectedIndex.value = 0;
-                                                                  // }else{
-                                                                  //   // homeController.selectedIndex.value = 1;
-                                                                  // }
-                                                                },
+                                                          if(index2 == 0){
+                                                            return Container(
+                                                              //margin: EdgeInsets.only(top: 15,bottom: 5,right: 20,left: 20),
+                                                              height: width*.6,
+                                                              width: width,
+                                                              child: Center(
+                                                                  child: Container(
+                                                                    //margin: EdgeInsets.only(top: width*.5),
+                                                                      alignment: Alignment.bottomCenter,
 
-                                                                child: Obx(() =>
-                                                                  Container(
-                                                                  //height: ,
-                                                                  //alignment: Alignment.center,
-                                                                    child: Row(
-                                                                      mainAxisAlignment: MainAxisAlignment.start,
-                                                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                                                      children: [
-                                                                        Container(
-                                                                          margin: EdgeInsets.only(right: 10),
-                                                                          height: 70,
-                                                                          width: 100,
-                                                                          child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
-                                                                            fit: BoxFit.fill,
-                                                                          ),
-                                                                          //height: 80,
-                                                                          // width: 60,
-                                                                        ),
+                                                                      //height: 50,
+                                                                      width: width,
 
-                                                                        Flexible(child: Text(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].title,
-                                                                          style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
-                                                                          textAlign: TextAlign.justify,
-                                                                        ),
+                                                                      //padding: EdgeInsets.all(10),
+                                                                      child: Container(
+                                                                        padding: EdgeInsets.all(10),
+                                                                        color: Colors.black54,
+                                                                        width: width,
+                                                                        child: Text(""+homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].title.toString()
+                                                                            .toString(), style: TextStyle(color: Colors.white,
+                                                                            fontSize: 14,
+                                                                            fontWeight: FontWeight.bold)),
+                                                                      )
+                                                                  )),
+                                                              decoration: BoxDecoration(
+                                                                  borderRadius: BorderRadius.circular(0),
+                                                                  //color: Colors.blue,
+                                                                  image: DecorationImage(
+                                                                    // image: new NetworkImage(
+                                                                    //   homeController.leadnews.value.img_url.toString(),
+                                                                    // ),
+                                                                      image: homeController.leadnews.value.img_url  == null ?
+                                                                      Image.asset('assets/images/jugantordefault.jpg') : NetworkImage(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url),
+                                                                      fit: BoxFit.fill
+                                                                  )
+                                                              ),
+                                                            );
+                                                          }else{
+                                                            return Container(
+                                                               margin: EdgeInsets.only(top: 10),
+                                                                child:   GestureDetector(
+                                                                  onTap: (){
+                                                                    //Get.back();
+                                                                    // if(homeController.showNewsList[index].cat_name == "প্রচ্ছদ"){
+                                                                    //   //homeController.selectedIndex.value = 0;
+                                                                    // }else{
+                                                                    //   // homeController.selectedIndex.value = 1;
+                                                                    // }
+                                                                  },
 
-                                                                        ),
+                                                                  child: Obx(() =>
+                                                                      Container(
+                                                                        //height: ,
+                                                                        //alignment: Alignment.center,
+                                                                          child: Row(
+                                                                            mainAxisAlignment: MainAxisAlignment.start,
+                                                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                                                            children: [
+                                                                              Container(
+                                                                                margin: EdgeInsets.only(right: 10),
+                                                                                height: 70,
+                                                                                width: 100,
+                                                                                child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
+                                                                                  fit: BoxFit.fill,
+                                                                                ),
+                                                                                //height: 80,
+                                                                                // width: 60,
+                                                                              ),
 
-                                                                      ],
-                                                                    )
-                                                                    // child: Row(
-                                                                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                                    //   crossAxisAlignment: CrossAxisAlignment.center,
-                                                                    //   children: [
-                                                                    //     Container(
-                                                                    //       child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
-                                                                    //         fit: BoxFit.fitWidth,
-                                                                    //         height: 70,
-                                                                    //
-                                                                    //       ),
-                                                                    //       //height: 80,
-                                                                    //       // width: 60,
-                                                                    //     ),
-                                                                    //
-                                                                    //     Flexible(child: Text(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].title,
-                                                                    //       style: TextStyle(color: Colors.black,fontSize: 14, ),),),
-                                                                    //
-                                                                    //   ],
-                                                                    // )
+                                                                              Flexible(child: Text(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].title,
+                                                                                style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                                                                textAlign: TextAlign.justify,
+                                                                              ),
 
+                                                                              ),
+
+                                                                            ],
+                                                                          )
+                                                                        // child: Row(
+                                                                        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                                        //   crossAxisAlignment: CrossAxisAlignment.center,
+                                                                        //   children: [
+                                                                        //     Container(
+                                                                        //       child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
+                                                                        //         fit: BoxFit.fitWidth,
+                                                                        //         height: 70,
+                                                                        //
+                                                                        //       ),
+                                                                        //       //height: 80,
+                                                                        //       // width: 60,
+                                                                        //     ),
+                                                                        //
+                                                                        //     Flexible(child: Text(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].title,
+                                                                        //       style: TextStyle(color: Colors.black,fontSize: 14, ),),),
+                                                                        //
+                                                                        //   ],
+                                                                        // )
+
+
+                                                                      )
+                                                                  ),
 
                                                                 )
-                                                                ),
+                                                            );
+                                                          }
 
-                                                              )
-                                                          );
                                                         },
                                                       )
 
@@ -519,6 +601,10 @@ class HomeFragment extends GetView<HomeController> {
 
   }
 
+}
 
-
+class TopButtonModel {
+  String buttonLable;
+  bool isOnTp;
+  TopButtonModel({this.buttonLable, this.isOnTp});
 }

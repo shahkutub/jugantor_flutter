@@ -41,11 +41,11 @@ class HomeController extends GetxController {
   var scrollController = ScrollController().obs;
 
   final dataLoaded = false.obs;
-  var button = 0.obs;
+  var button = 1.obs;
 
   List<LsatThreeVideo> last_VidListList = <LsatThreeVideo>[].obs;
 
-
+  var myIndex = 0.obs;
   @override
   void onInit() {
     //scrollController.value.position = 0;
@@ -174,6 +174,28 @@ class HomeController extends GetxController {
       List<LastEntryNewsResponse> list = (json.decode(response.body) as List)
           .map((data) => LastEntryNewsResponse.fromJson(data))
           .toList();
+
+      last_entry_newsList.clear();
+      last_entry_newsList.addAll(list);
+      dataLoaded.value = true;
+
+      get_home_category();
+      print('last_entry_newsList: ${last_entry_newsList[0].title.toString()}');
+
+    } on SocketException {
+
+    }
+  }
+
+  get_most_view_news() async {
+    print("Calling API: "+ApiClient.most_view_news);
+    try {
+      final response = await http.get(Uri.parse(ApiClient.most_view_news));
+      print(response.body);
+      List<LastEntryNewsResponse> list = (json.decode(response.body) as List)
+          .map((data) => LastEntryNewsResponse.fromJson(data))
+          .toList();
+      last_entry_newsList.clear();
       last_entry_newsList.addAll(list);
       dataLoaded.value = true;
 
@@ -246,18 +268,25 @@ class HomeController extends GetxController {
 
 
   Widget CustomRadioButton(String text, int index) {
-    return OutlineButton(
+    return FlatButton(
 
-      //color: (button.value == index) ? Colors.green : Colors.black,
+      color: (button.value == index) ? Colors.black : Colors.white,
       onPressed: () {
         button.value = index;
+        if(button.value == 1){
+          get_last_entry_news();
+        }else{
+          get_most_view_news();
+        }
       },
       child: Expanded(
           child:Container(
+
+              color: (button.value == index) ? Colors.black : Colors.white,
               child:Center(child: Text(
                 text,
                 style: TextStyle(
-                  color: (button.value == index) ? Colors.green : Colors.black,
+                  color: (button.value == index) ? Colors.white : Colors.black,
                 ),
               ),)
                )
@@ -265,7 +294,7 @@ class HomeController extends GetxController {
 
 
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      borderSide: BorderSide(color: (button.value == index) ? Colors.green : Colors.black),
+      //borderSide: BorderSide(color: (button.value == index) ? Colors.green : Colors.black),
 
     );
   }
