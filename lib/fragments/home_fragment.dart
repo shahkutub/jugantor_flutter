@@ -35,19 +35,23 @@ class HomeFragment extends GetView<HomeController> {
                   children: <Widget>[
 
                     Obx(() =>
+                  GestureDetector(
+                      onTap: (){
+                        homeController.selectedIndex.value = 1;
+                        homeController.newsId.value = homeController.leadnews.value.id.toString();
+                        homeController.get_news_details();
 
-                        Container(
-                          margin: EdgeInsets.only(top: 15,bottom: 5,right: 20,left: 20),
-                          height: width*.6,
-                          width: width,
-                          child: Center(
-                              child: Container(
+                      },
+                    child: Container(
+                      margin: EdgeInsets.only(top: 15,bottom: 5,right: 20,left: 20),
+                      height: width*.6,
+                      width: width,
+                      child: Center(
+                          child: Container(
                             //margin: EdgeInsets.only(top: width*.5),
                               alignment: Alignment.bottomCenter,
-
                               //height: 50,
                               width: width,
-
                               //padding: EdgeInsets.all(10),
                               child: Container(
                                 padding: EdgeInsets.all(10),
@@ -59,19 +63,21 @@ class HomeFragment extends GetView<HomeController> {
                                     fontWeight: FontWeight.bold)),
                               )
                           )),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(0),
-                              //color: Colors.blue,
-                              image: DecorationImage(
-                                  // image: new NetworkImage(
-                                  //   homeController.leadnews.value.img_url.toString(),
-                                  // ),
-                                  image: homeController.leadnews.value.img_url  == null ?
-                                  Image.asset('assets/images/jugantordefault.jpg') : NetworkImage(homeController.leadnews.value.img_url),
-                                  fit: BoxFit.fill
-                              )
-                          ),
-                        )
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(0),
+                          //color: Colors.blue,
+                          image: DecorationImage(
+                            // image: new NetworkImage(
+                            //   homeController.leadnews.value.img_url.toString(),
+                            // ),
+                              image: homeController.leadnews.value.img_url  == null ?
+                              Image.asset('assets/images/jugantordefault.jpg') : NetworkImage(homeController.leadnews.value.img_url),
+                              fit: BoxFit.fill
+                          )
+                      ),
+                    )
+                  ),
+
                     ),
                     Obx(() =>
                         Container(
@@ -90,12 +96,13 @@ class HomeFragment extends GetView<HomeController> {
                               itemBuilder: (context, index) {
                                 return  GestureDetector(
                                   onTap: (){
-                                    Get.back();
-                                    if(homeController.catExtraLinkList[index].cat_name == "প্রচ্ছদ"){
-                                      //homeController.selectedIndex.value = 0;
-                                    }else{
-                                     // homeController.selectedIndex.value = 1;
-                                    }
+                                    //Get.back();
+                                    homeController.selectedIndex.value = 1;
+                                    // if(homeController.catExtraLinkList[index].cat_name == "প্রচ্ছদ"){
+                                    //   //homeController.selectedIndex.value = 0;
+                                    // }else{
+                                    //  // homeController.selectedIndex.value = 1;
+                                    // }
                                   },
 
                                   child: Obx(() => Container(

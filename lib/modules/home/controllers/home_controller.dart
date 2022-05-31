@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:jugantor.com/api/api_client.dart';
 import 'package:jugantor.com/api/api_manager.dart';
 import 'package:jugantor.com/fragments/home_fragment.dart';
-import 'package:jugantor.com/fragments/second_fragment.dart';
+import 'package:jugantor.com/fragments/news_detailse_fragment.dart';
 import 'package:jugantor.com/fragments/third_fragment.dart';
 import 'package:jugantor.com/model/CatExtraLinkResponse.dart';
 import 'package:jugantor.com/model/CategoryResponse.dart';
@@ -18,6 +18,7 @@ import 'package:jugantor.com/model/HomeCategoryWithNewsList.dart';
 import 'package:jugantor.com/model/LastEntryNewsResponse.dart';
 import 'package:jugantor.com/model/LeadNewsResponse.dart';
 import 'package:jugantor.com/model/LsatThreeVideo.dart';
+import 'package:jugantor.com/model/NewsDetailseResponse.dart';
 import 'package:jugantor.com/model/ShowNewsResponse.dart';
 import 'package:jugantor.com/ui.dart';
 
@@ -27,7 +28,7 @@ class HomeController extends GetxController {
   var selectedIndex = 0.obs;
   var homecatId = 0.obs;
   var banglaDate = "".obs;
-  var leadnews = LeadNewsResponse().obs;
+
   List<CategoryResponse> categoryList = <CategoryResponse>[].obs;
   List<CatExtraLinkResponse> catExtraLinkList = <CatExtraLinkResponse>[].obs;
   List<ShowNewsResponse> showNewsList = <ShowNewsResponse>[].obs;
@@ -37,6 +38,8 @@ class HomeController extends GetxController {
   //List<LastEntryNewsResponse> category_wise_newsList = <LastEntryNewsResponse>[].obs;
   List<HomeCategoryWithNewsList> category_list_with_news_newsList = <HomeCategoryWithNewsList>[].obs;
 
+  var leadnews = LeadNewsResponse().obs;
+  var newsDetails = NewsDetailseResponse().obs;
 
   var scrollController = ScrollController().obs;
 
@@ -46,6 +49,8 @@ class HomeController extends GetxController {
   List<LsatThreeVideo> last_VidListList = <LsatThreeVideo>[].obs;
 
   var myIndex = 0.obs;
+
+  var newsId = "".obs;
   @override
   void onInit() {
     //scrollController.value.position = 0;
@@ -108,6 +113,27 @@ class HomeController extends GetxController {
 
     }
   }
+
+  Future<dynamic> get_news_details() async {
+
+    //Ui.showLoaderDialog(Get.context);
+    APIManager _manager = APIManager();
+    var response;
+    try {
+      response = await _manager.get(ApiClient.newsDetails+newsId.value);
+      print('today_bn_date: ${response}');
+
+      if(response != null){
+        newsDetails.value = NewsDetailseResponse.fromJson(response);
+        print('leadnews: ${leadnews.value.title}');
+        //Navigator.of(Get.context).pop();
+      }
+
+    } catch (e) {
+
+    }
+  }
+
 
   get_category() async {
     print("Calling API: "+ApiClient.category);
@@ -304,7 +330,7 @@ class HomeController extends GetxController {
       case 0:
         return new HomeFragment();
       case 1:
-        return new SecondFragment();
+        return new NewsDetailseFragment();
       case 2:
         return new ThirdFragment();
 
