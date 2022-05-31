@@ -348,7 +348,7 @@ class HomeFragment extends GetView<HomeController> {
 
                                       child: Obx(() =>
                                           Container(
-                                              //margin: EdgeInsets.only(top: 20),
+                                              margin: EdgeInsets.only(top: 20),
                                         //height: ,
                                         //alignment: Alignment.center,
                                           child: Column(
@@ -361,7 +361,7 @@ class HomeFragment extends GetView<HomeController> {
                                                     //height: 80,
                                                     alignment: Alignment.centerLeft,
                                                     child: Flexible(child: Text(homeController.category_list_with_news_newsList[index].cat_name,
-                                                        style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold)
+                                                        style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)
                                                     )
                                                     ),
                                                   ),

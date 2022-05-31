@@ -197,7 +197,7 @@ class HomeController extends GetxController {
           .toList();
       last_entry_newsList.clear();
       last_entry_newsList.addAll(list);
-      dataLoaded.value = true;
+      //dataLoaded.value = true;
 
       get_home_category();
       print('last_entry_newsList: ${last_entry_newsList[0].title.toString()}');
