@@ -15,7 +15,7 @@ class HomeFragment extends GetView<HomeController> {
     Get.find<HomeController>();
     double height = Get.height;
     double width = Get.width;
-    Get.find<HomeController>();
+    //Get.find<HomeController>();
 
     List<TopButtonModel> buttons = [
       TopButtonModel(buttonLable: 'সর্বশেষ', isOnTp: true),

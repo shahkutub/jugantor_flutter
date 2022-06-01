@@ -1,7 +1,7 @@
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/cupertino.dart';
-
+import 'package:intl/intl.dart';
 class Utils{
 
    static Future<bool> checkConnection() async{
@@ -93,4 +93,61 @@ class Utils{
       print(date_str);
       return date_str;
    }
+
+
+    static String dateTimeFormat (String datedata){
+
+       var inputFormat = DateFormat('yyyy-MM-dd HH:mm:ss');
+       var inputDate = inputFormat.parse(datedata); // <-- dd/MM 24H format
+
+       var outputFormat = DateFormat('MM-dd-yyyy hh:mm a');
+       var outputDate = outputFormat.format(inputDate);
+       print(outputDate);
+       return outputDate;
+
+
+   }
+
+   static String dateBengaliNewsDetailse(String datedta){
+      var parts = datedta.split(' ');
+      //print(parts[0]);
+
+      var date = parts[0];
+      var partsMoths = date.trim().split('-');
+
+      var time = parts[1];
+      var ampm = parts[2];
+
+      const bangMonths = ["জানুয়ারী","ফেব্রুয়ারি","মার্চ","এপ্রিল","মে","জুন","জুলাই","অগাস্ট","সেপ্টেম্বর","অক্টবর","নভেম্বর","ডিসেম্বর"];
+      const bangDayNames = ['সোমবার' ,'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার','শনিবার','রোববার'];
+      var date_str = "";
+      var monthBngStr = "";
+      var dayNameBngStr = "";
+      var dayBngStr = "";
+
+      print(partsMoths[1]);
+      monthBngStr = bangMonths[int.parse(partsMoths[1].substring(1))];
+      print(monthBngStr);
+
+
+      var someDateTime = new DateTime.now();
+      var monthInt = someDateTime.month;
+      var dayNameInt = someDateTime.weekday;
+      var dayInt = someDateTime.day;
+      var yearInt = someDateTime.year;
+
+      dayBngStr = replaceEngNumberToBangla(dayInt.toString());
+      print(dayBngStr);
+
+
+
+      dayNameBngStr = bangDayNames[dayNameInt-1];
+      print(dayNameBngStr);
+      //input = months[mon-1];
+      date_str = dayNameBngStr+', '+dayBngStr+' '+monthBngStr+' '+replaceEngNumberToBangla(yearInt.toString());
+      print(date_str);
+      return date_str;
+   }
+
+
 }

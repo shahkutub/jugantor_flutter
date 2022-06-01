@@ -21,6 +21,7 @@ import 'package:jugantor.com/model/LsatThreeVideo.dart';
 import 'package:jugantor.com/model/NewsDetailseResponse.dart';
 import 'package:jugantor.com/model/ShowNewsResponse.dart';
 import 'package:jugantor.com/ui.dart';
+import 'package:jugantor.com/utils/utils.dart';
 
 
 class HomeController extends GetxController {
@@ -41,6 +42,8 @@ class HomeController extends GetxController {
   var leadnews = LeadNewsResponse().obs;
   var newsDetails = NewsDetailseResponse().obs;
   var categoryName = ''.obs;
+  var newsDate = ''.obs;
+  var newsEdition = ''.obs;
 
   var scrollController = ScrollController().obs;
 
@@ -121,7 +124,8 @@ class HomeController extends GetxController {
     APIManager _manager = APIManager();
     var response;
     try {
-      response = await _manager.get(ApiClient.newsDetails+'/'+newsId.value);
+      //response = await _manager.get(ApiClient.newsDetails+'/'+newsId.value);
+      response = await _manager.get(ApiClient.newsDetails+'/557140');
       print('today_bn_date: ${response}');
 
       //if(response != null){
@@ -132,6 +136,13 @@ class HomeController extends GetxController {
         //Navigator.of(Get.context).pop();
      // }
 
+      newsDate.value = Utils.dateTimeFormat(newsDetails.value.news_date_time);
+      if(newsDetails.value.news_edition == 1){
+        newsEdition.value = "অনলাইন সংস্করণ";
+      }else{
+        newsEdition.value = "প্রিন্ট সংস্করণ";
+      }
+      //Utils.dateBengaliNewsDetailse(Utils.dateTimeFormat(newsDetails.value.news_date_time));
     } catch (e) {
 
     }
