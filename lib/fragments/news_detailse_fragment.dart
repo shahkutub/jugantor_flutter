@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:webview_flutter_plus/webview_flutter_plus.dart';
 import 'package:webviewx/webviewx.dart';
 
 class NewsDetailseFragment extends StatelessWidget {
@@ -170,25 +171,26 @@ class NewsDetailseFragment extends StatelessWidget {
                       // )
 
                       Container(
-                          width: double.infinity,
+                          width: width,
                           height: 600,
-                          child: WebView(
-                            initialUrl: "<html>\n" +
-                                "<head>\n" +
-                                "<style type=\"text/css\">\n" +
-                                "\tp{\n" +
-                                "\t\ttext-align: justify;\n" +
-                                "\t\tfont-family: SolaimanLipi;\n" +
-                                "\t}\n" +
-                                "</style>\n" +
-                                "</head>\n" +
-                                "\n" +
-                                "<body>\n" +
-                                homeController.newsDetails.value.detail+
-                                "</body>\n" +
-                                "</html>",
-                            // enable Javascript on WebView
+                          child: WebViewPlus(
                             //javascriptMode: JavascriptMode.unrestricted,
+                            onWebViewCreated: (controller) {
+                              controller.loadString("<html>\n" +
+                                        "<head>\n" +
+                                        "<style type=\"text/css\">\n" +
+                                        "\tp{\n" +
+                                        "\t\ttext-align: justify;\n" +
+                                        "\t\tfont-family: SolaimanLipi;\n" +
+                                        "\t}\n" +
+                                        "</style>\n" +
+                                        "</head>\n" +
+                                        "\n" +
+                                        "<body>\n" +
+                                  homeController.newsDetails.value.detail+
+                                        "</body>\n" +
+                                        "</html>");
+                            },
                           )
                       ),
 
