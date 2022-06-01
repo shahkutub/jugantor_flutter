@@ -40,6 +40,7 @@ class HomeController extends GetxController {
 
   var leadnews = LeadNewsResponse().obs;
   var newsDetails = NewsDetailseResponse().obs;
+  var categoryName = ''.obs;
 
   var scrollController = ScrollController().obs;
 
@@ -120,14 +121,16 @@ class HomeController extends GetxController {
     APIManager _manager = APIManager();
     var response;
     try {
-      response = await _manager.get(ApiClient.newsDetails+newsId.value);
+      response = await _manager.get(ApiClient.newsDetails+'/'+newsId.value);
       print('today_bn_date: ${response}');
 
-      if(response != null){
+      //if(response != null){
         newsDetails.value = NewsDetailseResponse.fromJson(response);
+        categoryName.value = newsDetails.value.bread_parent_cat_name;
+        dataLoaded.value = true;
         print('leadnews: ${leadnews.value.title}');
         //Navigator.of(Get.context).pop();
-      }
+     // }
 
     } catch (e) {
 

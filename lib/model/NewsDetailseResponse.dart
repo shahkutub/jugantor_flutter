@@ -1,7 +1,7 @@
 class NewsDetailseResponse {
     int bread_parent_cat_id;
     String bread_parent_cat_name;
-    String bread_sub_cat_id;
+    int bread_sub_cat_id;
     String bread_sub_cat_name;
     String category_name;
     String detail;
@@ -22,10 +22,10 @@ class NewsDetailseResponse {
     String people_name;
     String people_tag;
     String photo_alt_txt;
-    String photo_caption;
+    Object photo_caption;
     String reporter;
     String shoulder;
-    String spc_event_tag_id;
+    Object spc_event_tag_id;
     String title;
     int video_dis;
 
@@ -33,35 +33,33 @@ class NewsDetailseResponse {
 
     factory NewsDetailseResponse.fromJson(Map<String, dynamic> json) {
         return NewsDetailseResponse(
-            bread_parent_cat_id: json['bread_parent_cat_id'], 
-            bread_parent_cat_name: json['bread_parent_cat_name'], 
-            bread_sub_cat_id: json['bread_sub_cat_id'], 
-            bread_sub_cat_name: json['bread_sub_cat_name'], 
-            category_name: json['category_name'], 
-            detail: json['detail'], 
+            bread_parent_cat_id: json['bread_parent_cat_id'],
+            bread_parent_cat_name: json['bread_parent_cat_name'],
+            bread_sub_cat_id: json['bread_sub_cat_id'],
+            bread_sub_cat_name: json['bread_sub_cat_name'],
+            category_name: json['category_name'],
+            detail: json['detail'],
             generate_url: json['generate_url'],
             hanger: json['hanger'],
             id: json['id'],
-            img_url: json['img_url'], 
-            location_name: json['location_name'], 
-            location_tag: json['location_tag'], 
-            news_date_time: json['news_date_time'], 
-            news_edition: json['news_edition'], 
-            news_sum: json['news_sum'], 
-            news_tags: json['news_tags'], 
-            org_name: json['org_name'], 
-            org_tag: json['org_tag'], 
-            parent_cat_id: json['parent_cat_id'], 
-            parent_cat_url: json['parent_cat_url'], 
-            people_name: json['people_name'], 
-            people_tag: json['people_tag'], 
-            photo_alt_txt: json['photo_alt_txt'], 
-            photo_caption: json['photo_caption'],
+            img_url: json['img_url'],
+            location_name: json['location_name'],
+            location_tag: json['location_tag'],
+            news_date_time: json['news_date_time'],
+            news_edition: json['news_edition'],
+            news_sum: json['news_sum'],
+            news_tags: json['news_tags'],
+            org_name: json['org_name'],
+            org_tag: json['org_tag'],
+            parent_cat_id: json['parent_cat_id'],
+            parent_cat_url: json['parent_cat_url'],
+            people_name: json['people_name'],
+            people_tag: json['people_tag'],
+            photo_alt_txt: json['photo_alt_txt'],
             reporter: json['reporter'],
             shoulder: json['shoulder'],
-            spc_event_tag_id: json['spc_event_tag_id'],
-            title: json['title'], 
-            video_dis: json['video_dis'], 
+            title: json['title'],
+            video_dis: json['video_dis'],
         );
     }
 
@@ -74,6 +72,7 @@ class NewsDetailseResponse {
         data['category_name'] = this.category_name;
         data['detail'] = this.detail;
         data['generate_url'] = this.generate_url;
+        data['hanger'] = this.hanger;
         data['id'] = this.id;
         data['img_url'] = this.img_url;
         data['location_name'] = this.location_name;
@@ -90,12 +89,10 @@ class NewsDetailseResponse {
         data['people_tag'] = this.people_tag;
         data['photo_alt_txt'] = this.photo_alt_txt;
         data['reporter'] = this.reporter;
-        data['spc_event_tag_id'] = this.spc_event_tag_id;
+        data['shoulder'] = this.shoulder;
         data['title'] = this.title;
         data['video_dis'] = this.video_dis;
-        data['hanger'] = this.hanger;
-        data['photo_caption'] = this.photo_caption;
-        data['shoulder'] = this.shoulder;
+
         return data;
     }
 }

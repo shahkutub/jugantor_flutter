@@ -19,25 +19,27 @@ class NewsDetailseFragment extends StatelessWidget {
         child: Obx(() {
           if (homeController.dataLoaded.isTrue) {
             return new SingleChildScrollView(
-                controller: homeController.scrollController.value,
+                //controller: homeController.scrollController.value,
                 child: Container(
                   child: Column(
 
                     children: <Widget>[
 
-                      //Obx(() =>
+                      Obx(() =>
                           Container(
                             margin: EdgeInsets.only(top: 15, bottom: 5, right: 20, left: 20),
-                            child:Row(
+                            child: Row(
                               children: [
                                 Text("প্রচ্ছদ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
                                 Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
-                                Visibility(visible: true,child:Text("cat name",style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
+                              Obx(() =>
+                                  Visibility(visible: true,child:Text(""+homeController.categoryName.value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
+                              ),
                                 Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
                               ],
                             )
                           )
-                      //),
+                      ),
 
 
                     ],

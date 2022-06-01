@@ -37,9 +37,10 @@ class HomeFragment extends GetView<HomeController> {
                     Obx(() =>
                   GestureDetector(
                       onTap: (){
-                        homeController.selectedIndex.value = 1;
+                        homeController.dataLoaded.value = false;
                         homeController.newsId.value = homeController.leadnews.value.id.toString();
                         homeController.get_news_details();
+                        homeController.selectedIndex.value = 1;
 
                       },
                     child: Container(
@@ -67,11 +68,12 @@ class HomeFragment extends GetView<HomeController> {
                           borderRadius: BorderRadius.circular(0),
                           //color: Colors.blue,
                           image: DecorationImage(
+                            //image: AssetImage('assets/images/jugantordefault.jpg'),
                             // image: new NetworkImage(
                             //   homeController.leadnews.value.img_url.toString(),
                             // ),
                               image: homeController.leadnews.value.img_url  == null ?
-                              Image.asset('assets/images/jugantordefault.jpg') : NetworkImage(homeController.leadnews.value.img_url),
+                              AssetImage('assets/images/jugantordefault.jpg') : NetworkImage(homeController.leadnews.value.img_url),
                               fit: BoxFit.fill
                           )
                       ),
