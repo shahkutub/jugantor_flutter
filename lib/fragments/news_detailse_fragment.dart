@@ -1,13 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/rich_text_parser.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'package:webview_flutter_plus/webview_flutter_plus.dart';
-import 'package:webviewx/webviewx.dart';
-
+import 'package:flutter_html/flutter_html.dart';
 class NewsDetailseFragment extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());
 
@@ -148,51 +146,24 @@ class NewsDetailseFragment extends StatelessWidget {
 
                         ],
                       ),
+                      Html(data: "<html>\n" +
+                          "<head>\n" +
+                          "<style type=\"text/css\">\n" +
+                          "\tp{\n" +
+                          "\t\ttext-align: justify;\n" +
+                          "\t\tfont-family: SolaimanLipi;\n" +
+                          "\t}\n" +
+                          "</style>\n" +
+                          "</head>\n" +
+                          "\n" +
+                          "<body>\n" +
+                          homeController.newsDetails.value.detail +
+                          "</body>\n" +
+                          "</html>",
+                        defaultTextStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
 
-                      //details
-                      // WebViewX(
-                      //   //initialContent: homeController.newsDetails.value.detail,
-                      //   initialContent: "<html>\n" +
-                      //       "<head>\n" +
-                      //       "<style type=\"text/css\">\n" +
-                      //       "\tp{\n" +
-                      //       "\t\ttext-align: justify;\n" +
-                      //       "\t\tfont-family: SolaimanLipi;\n" +
-                      //       "\t}\n" +
-                      //       "</style>\n" +
-                      //       "</head>\n" +
-                      //       "\n" +
-                      //       "<body>\n" +
-                      //       "Hi"+
-                      //       "</body>\n" +
-                      //       "</html>",
-                      //   initialSourceType: SourceType.html,
-                      //   //onWebViewCreated: (controller) => webviewController = controller,
-                      // )
 
-                      Container(
-                          width: width,
-                          height: 600,
-                          child: WebViewPlus(
-                            //javascriptMode: JavascriptMode.unrestricted,
-                            onWebViewCreated: (controller) {
-                              controller.loadString("<html>\n" +
-                                        "<head>\n" +
-                                        "<style type=\"text/css\">\n" +
-                                        "\tp{\n" +
-                                        "\t\ttext-align: justify;\n" +
-                                        "\t\tfont-family: SolaimanLipi;\n" +
-                                        "\t}\n" +
-                                        "</style>\n" +
-                                        "</head>\n" +
-                                        "\n" +
-                                        "<body>\n" +
-                                  homeController.newsDetails.value.detail+
-                                        "</body>\n" +
-                                        "</html>");
-                            },
-                          )
-                      ),
+                          ),
 
                     ],
                   ),
