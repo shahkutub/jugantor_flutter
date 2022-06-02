@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/rich_text_parser.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -24,6 +25,7 @@ class NewsDetailseFragment extends StatelessWidget {
                 child: Container(
                   child:Column(
                     children: [
+
                       Row(
                         children: <Widget>[
                           Text("প্রচ্ছদ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
@@ -146,6 +148,14 @@ class NewsDetailseFragment extends StatelessWidget {
 
                         ],
                       ),
+
+                      FadeInImage.assetNetwork(
+                        fit: BoxFit.fill,
+                        image:homeController.newsDetails.value.img_url,
+                        placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                      ),
+
+
                       Html(data: "<html>\n" +
                           "<head>\n" +
                           "<style type=\"text/css\">\n" +
