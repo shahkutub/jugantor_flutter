@@ -2,11 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/rich_text_parser.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
-import 'package:flutter_html/flutter_html.dart';
 class NewsDetailseFragment extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());
 
@@ -149,13 +148,16 @@ class NewsDetailseFragment extends StatelessWidget {
                         ],
                       ),
 
+                      SizedBox(
+                        height: 20,
+                      ),
                       FadeInImage.assetNetwork(
                         fit: BoxFit.fill,
                         image:homeController.newsDetails.value.img_url!,
                         placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                       ),
                       // Center(
-                      //   child: Text(""+homeController.newsDetails.value.photo_caption!),
+                      //   child: Text(homeController.newsDetails.value.photo_caption),
                       // ),
 
 
@@ -173,8 +175,6 @@ class NewsDetailseFragment extends StatelessWidget {
                           homeController.newsDetails.value.detail! +
                           "</body>\n" +
                           "</html>",
-                        defaultTextStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
-
 
                           ),
 

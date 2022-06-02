@@ -427,7 +427,7 @@ class HomeFragment extends GetView<HomeController> {
                                                         // Provide a builder function. This is where the magic happens.
                                                         // Convert each item into a widget based on the type of item it is.
                                                         itemBuilder: (context, index2) {
-                                                          final item = homeController.category_list_with_news_newsList[index].category_wise_newsList![index2];
+                                                          //final item = homeController.category_list_with_news_newsList[index].category_wise_newsList![index2];
                                                           //homeController.homecatId.value = homeController.showNewsList[index].id;
 
                                                           if(index2 == 0){

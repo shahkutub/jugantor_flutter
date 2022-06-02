@@ -130,7 +130,7 @@ class HomeController extends GetxController {
 
       //if(response != null){
         newsDetails.value = NewsDetailseResponse.fromJson(response);
-        categoryName.value = newsDetails.value.bread_parent_cat_name;
+        categoryName.value = newsDetails.value.bread_parent_cat_name!;
         dataLoaded.value = true;
         print('leadnews: ${leadnews.value.title}');
         //Navigator.of(Get.context).pop();

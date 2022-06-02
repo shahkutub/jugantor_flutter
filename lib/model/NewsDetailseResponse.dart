@@ -22,7 +22,7 @@ class NewsDetailseResponse {
     String? people_name;
     String? people_tag;
     String? photo_alt_txt;
-    String? photo_caption = '';
+    String? photo_caption = null;
     String? reporter;
     String? shoulder;
     String? spc_event_tag_id;
