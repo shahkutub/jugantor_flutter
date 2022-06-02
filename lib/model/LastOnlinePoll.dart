@@ -1,14 +1,14 @@
 class LastOnlinePoll {
-    String operator;
-    String display_on;
-    String entry_time;
-    int id;
-    String options;
-    String poll_caption;
-    int publish;
-    String ques;
-    String update_time;
-    String votes;
+    String? operator;
+    String? display_on;
+    String? entry_time;
+    int? id;
+    String? options;
+    String? poll_caption;
+    int? publish;
+    String? ques;
+    String? update_time;
+    String? votes;
 
     LastOnlinePoll({this.operator, this.display_on, this.entry_time, this.id, this.options, this.poll_caption, this.publish, this.ques, this.update_time, this.votes});
 

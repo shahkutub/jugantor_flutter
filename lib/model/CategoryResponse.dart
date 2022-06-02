@@ -1,6 +1,6 @@
 class CategoryResponse {
-    String cat_name;
-    int id;
+    String? cat_name;
+    int? id;
 
     CategoryResponse({this.cat_name, this.id});
 

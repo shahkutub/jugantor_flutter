@@ -39,7 +39,7 @@ class NewsDetailseFragment extends StatelessWidget {
                       SizedBox(height: 20,),
 
                       //news title
-                      Text(homeController.newsDetails.value.title,
+                      Text(homeController.newsDetails.value.title!,
                         style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,color: Colors.black),
                         textAlign: TextAlign.justify,
 
@@ -49,7 +49,7 @@ class NewsDetailseFragment extends StatelessWidget {
                       Row(
                         children: <Widget>[
                           Icon(Icons.person, color: Colors.blueGrey ),
-                          Text(" "+homeController.newsDetails.value.reporter,style: TextStyle(fontSize: 10,fontWeight: FontWeight.bold,color: Colors.grey),),
+                          Text(" "+homeController.newsDetails.value.reporter!,style: TextStyle(fontSize: 10,fontWeight: FontWeight.bold,color: Colors.grey),),
                         ],
                       ),
 
@@ -151,9 +151,12 @@ class NewsDetailseFragment extends StatelessWidget {
 
                       FadeInImage.assetNetwork(
                         fit: BoxFit.fill,
-                        image:homeController.newsDetails.value.img_url,
+                        image:homeController.newsDetails.value.img_url!,
                         placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                       ),
+                      // Center(
+                      //   child: Text(""+homeController.newsDetails.value.photo_caption!),
+                      // ),
 
 
                       Html(data: "<html>\n" +
@@ -167,7 +170,7 @@ class NewsDetailseFragment extends StatelessWidget {
                           "</head>\n" +
                           "\n" +
                           "<body>\n" +
-                          homeController.newsDetails.value.detail +
+                          homeController.newsDetails.value.detail! +
                           "</body>\n" +
                           "</html>",
                         defaultTextStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),

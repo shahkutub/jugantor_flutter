@@ -1,12 +1,12 @@
 class LastPhotoAlbam {
-    String album_name;
-    String common_photo_title;
-    String generate_url;
-    int id;
-    List<String> images;
-    List<String> img_titles;
-    String parent_url_dis;
-    String trim_album_name;
+    String? album_name;
+    String? common_photo_title;
+    String? generate_url;
+    int? id;
+    List<String>? images;
+    List<String>? img_titles;
+    String? parent_url_dis;
+    String? trim_album_name;
 
     LastPhotoAlbam({this.album_name, this.common_photo_title, this.generate_url, this.id, this.images, this.img_titles, this.parent_url_dis, this.trim_album_name});
 

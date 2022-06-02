@@ -1,9 +1,9 @@
 class District {
-    String district_name;
-    int division;
-    int id;
-    int publish;
-    String url_dis_title;
+    String? district_name;
+    int? division;
+    int? id;
+    int? publish;
+    String? url_dis_title;
 
     District({this.district_name, this.division, this.id, this.publish, this.url_dis_title});
 

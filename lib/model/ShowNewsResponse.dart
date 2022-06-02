@@ -1,12 +1,12 @@
 class ShowNewsResponse {
-    String generate_url;
-    Object hanger;
-    int id;
-    String img_url;
-    int parent_cat_id;
-    Object shoulder;
-    String title;
-    int video_dis;
+    String? generate_url;
+    Object? hanger;
+    int? id;
+    String? img_url;
+    int? parent_cat_id;
+    Object? shoulder;
+    String? title;
+    int? video_dis;
     //int news_date;
 
     ShowNewsResponse({this.generate_url, this.hanger, this.id, this.img_url, this.parent_cat_id, this.shoulder, this.title, this.video_dis});

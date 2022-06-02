@@ -136,7 +136,7 @@ class HomeController extends GetxController {
         //Navigator.of(Get.context).pop();
      // }
 
-      newsDate.value = Utils.dateTimeFormat(newsDetails.value.news_date_time);
+      newsDate.value = Utils.dateTimeFormat(newsDetails.value.news_date_time!);
       if(newsDetails.value.news_edition == 1){
         newsEdition.value = "অনলাইন সংস্করণ";
       }else{

@@ -44,6 +44,7 @@ class HomeFragment extends GetView<HomeController> {
 
                       },
                     child: Container(
+                      alignment: Alignment.centerLeft,
                       margin: EdgeInsets.only(top: 15,bottom: 5,right: 20,left: 20),
                       height: width*.6,
                       width: width,
@@ -52,32 +53,72 @@ class HomeFragment extends GetView<HomeController> {
                         children: [
                           FadeInImage.assetNetwork(
                               fit: BoxFit.fill,
-                              image:homeController.leadnews.value.img_url,
+                              image:homeController.leadnews.value.img_url!,
                               placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                           ),
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              width: width,
-                              child:Text(
-                                homeController.leadnews.value.title,
-                                style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                              ),
-                              padding: EdgeInsets.all(10),
-                              color: Colors.black54,
-                            )
 
-                          ],
-                        ),
-                      )
+
+                          Positioned(
+                            bottom: width*.3,
+                            left:width/2.5 ,
+                            child: homeController.leadnews.value.video_dis  == 0 ?
+                            Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
+
+                          ),
+
+                          Positioned(
+                            bottom: 0,
+                            left: 0,
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  width: width,
+                                  child:Text(
+                                    homeController.leadnews.value.title!,
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                  padding: EdgeInsets.all(10),
+                                  color: Colors.black54,
+                                )
+
+                              ],
+                            ),
+                          )
+                      // Positioned(
+                      //   bottom: 0,
+                      //   left: 0,
+                      //   child: Image.asset("name"),
+                      // ),
+                      // Positioned(
+                      //   bottom: 0,
+                      //   left: 0,
+                      //   child: Column(
+                      //     children: <Widget>[
+                      //       Container(
+                      //           padding: EdgeInsets.all(10),
+                      //           color: Colors.black54,
+                      //         width: width,
+                      //         child:Flexible(
+                      //           child:Text(
+                      //             homeController.leadnews.value.title,
+                      //             style: TextStyle(
+                      //                 fontSize: 17,
+                      //                 fontWeight: FontWeight.bold,
+                      //                 color: Colors.white),
+                      //           ),
+                      //         )
+                      //       )
+                      //
+                      //     ],
+                      //   ),
+                      // )
                         ],
                       ),
+
                     )
                   ),
 
@@ -115,7 +156,7 @@ class HomeFragment extends GetView<HomeController> {
                                         //color: Colors.blue,
                                         image: DecorationImage(
                                             image: new NetworkImage(
-                                              homeController.catExtraLinkList[index].cat_photo,
+                                              homeController.catExtraLinkList[index].cat_photo!,
                                             ),
                                             fit: BoxFit.fill
                                         )
@@ -182,32 +223,31 @@ class HomeFragment extends GetView<HomeController> {
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
                                         Container(
-                                          // child: Image.network(homeController.showNewsList[index].img_url,
-                                          // fit: BoxFit.fitWidth,
-                                          //   height: 100,
-                                          //
-                                          // ),
-                                            //height: 80,
-                                           // width: 60,
-                                          child: FadeInImage.assetNetwork(
-                                              height: height * 0.12,
-                                              width: width*0.92,
-                                              fit: BoxFit.fill,
-                                              image:homeController.showNewsList[index].img_url,
-                                              placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                          child: Stack(
+                                           // fit: StackFit.expand,
+                                            children: [
+                                                  FadeInImage.assetNetwork(
+                                                  height: height * 0.12,
+                                                  width: width*0.92,
+                                                  fit: BoxFit.fill,
+                                                  image:homeController.showNewsList[index].img_url!,
+                                                  placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                              ),
+
+                                              // Positioned(
+                                              //   bottom: 10,
+                                              //   left:10,
+                                              //   child: homeController.showNewsList[index].video_dis  == 0 ?
+                                              //   Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+                                              //
+                                              // ),
+
+                                            ],
                                           ),
 
-                                          // CachedNetworkImage(
-                                          //   imageUrl: homeController.showNewsList[index].img_url,
-                                          //   fit: BoxFit.fill,
-                                          //   //height: height * 0.12,
-                                          //   width: width*0.92,
-                                          //    //placeholder: (context, url) => SpinKitFadingCircle(color: Palette.blue),
-                                          //   errorWidget: (context, url, error) => Image.asset("assets/images/jugantordefault.jpg"),
-                                          // ),
                                         ),
 
-                                        Text(homeController.showNewsList[index].title,
+                                        Text(homeController.showNewsList[index].title!,
                                           style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                           textAlign: TextAlign.justify,
                                         ),
@@ -275,19 +315,27 @@ class HomeFragment extends GetView<HomeController> {
                                                   margin: EdgeInsets.only(right: 10),
                                                   height: 70,
                                                   width: 100,
-                                                  child: FadeInImage.assetNetwork(
-                                                      height: 70,
-                                                      width: 100,
-                                                      fit: BoxFit.fill,
-                                                      image:homeController.last_entry_newsList[index].img_url,
-                                                      placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                  child: Stack(
+                                                    fit: StackFit.expand,
+                                                    children: [
+                                                       FadeInImage.assetNetwork(
+                                                          height: 70,
+                                                          width: 100,
+                                                          fit: BoxFit.fill,
+                                                          image:homeController.last_entry_newsList[index].img_url!,
+                                                          placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                      ),
+                                                      Positioned(
+                                                        bottom: 20,
+                                                        left:35,
+                                                        child: homeController.last_entry_newsList[index].video_dis  == 1 ?
+                                                        Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+
+                                                      ),
+                                                    ],
                                                   ),
-                                                  //height: 80,
-                                                  // width: 60,
                                                 ),
-
-
-                                                Flexible(child: Text(homeController.last_entry_newsList[index].title,
+                                                Flexible(child: Text(homeController.last_entry_newsList[index].title!,
                                                   style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                   textAlign: TextAlign.justify,
                                                 ),
@@ -347,7 +395,7 @@ class HomeFragment extends GetView<HomeController> {
                                                   Container(
                                                     //height: 80,
                                                     alignment: Alignment.centerLeft,
-                                                    child: Flexible(child: Text(homeController.category_list_with_news_newsList[index].cat_name,
+                                                    child: Flexible(child: Text(homeController.category_list_with_news_newsList[index].cat_name!,
                                                         style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)
                                                     )
                                                     ),
@@ -375,11 +423,11 @@ class HomeFragment extends GetView<HomeController> {
                                                         primary: false,
                                                         shrinkWrap: true,
                                                         // Let the ListView know how many items it needs to build.
-                                                        itemCount: homeController.category_list_with_news_newsList[index].category_wise_newsList.length,
+                                                        itemCount: homeController.category_list_with_news_newsList[index].category_wise_newsList!.length,
                                                         // Provide a builder function. This is where the magic happens.
                                                         // Convert each item into a widget based on the type of item it is.
                                                         itemBuilder: (context, index2) {
-                                                          final item = homeController.category_list_with_news_newsList[index].category_wise_newsList[index2];
+                                                          final item = homeController.category_list_with_news_newsList[index].category_wise_newsList![index2];
                                                           //homeController.homecatId.value = homeController.showNewsList[index].id;
 
                                                           if(index2 == 0){
@@ -392,9 +440,16 @@ class HomeFragment extends GetView<HomeController> {
                                                           children: [
                                                           FadeInImage.assetNetwork(
                                                           fit: BoxFit.fill,
-                                                          image:homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
+                                                          image:homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].img_url!,
                                                           placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                                                           ),
+                                                            Positioned(
+                                                              bottom: width*.2,
+                                                              left:width/2.5 ,
+                                                              child: homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].video_dis  == 1 ?
+                                                              Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
+
+                                                            ),
                                                           Positioned(
                                                           bottom: 0,
                                                           left: 0,
@@ -403,7 +458,7 @@ class HomeFragment extends GetView<HomeController> {
                                                           Container(
                                                           width: width,
                                                           child:Text(
-                                                            homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].title,
+                                                            homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].title!,
                                                           style: TextStyle(
                                                           fontSize: 17,
                                                           fontWeight: FontWeight.bold,
@@ -419,43 +474,6 @@ class HomeFragment extends GetView<HomeController> {
                                                           ],
                                                           ),
                                                           );
-
-                                                            // return Container(
-                                                            //   //margin: EdgeInsets.only(top: 15,bottom: 5,right: 20,left: 20),
-                                                            //   height: width*.6,
-                                                            //   width: width,
-                                                            //   child: Center(
-                                                            //       child: Container(
-                                                            //         //margin: EdgeInsets.only(top: width*.5),
-                                                            //           alignment: Alignment.bottomCenter,
-                                                            //
-                                                            //           //height: 50,
-                                                            //           width: width,
-                                                            //
-                                                            //           //padding: EdgeInsets.all(10),
-                                                            //           child: Container(
-                                                            //             padding: EdgeInsets.all(10),
-                                                            //             color: Colors.black54,
-                                                            //             width: width,
-                                                            //             child: Text(""+homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].title.toString()
-                                                            //                 .toString(), style: TextStyle(color: Colors.white,
-                                                            //                 fontSize: 14,
-                                                            //                 fontWeight: FontWeight.bold)),
-                                                            //           )
-                                                            //       )),
-                                                            //   decoration: BoxDecoration(
-                                                            //       borderRadius: BorderRadius.circular(0),
-                                                            //       //color: Colors.blue,
-                                                            //       image: DecorationImage(
-                                                            //         // image: new NetworkImage(
-                                                            //         //   homeController.leadnews.value.img_url.toString(),
-                                                            //         // ),
-                                                            //           image: homeController.leadnews.value.img_url  == null ?
-                                                            //           Image.asset('assets/images/jugantordefault.jpg') : NetworkImage(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url),
-                                                            //           fit: BoxFit.fill
-                                                            //       )
-                                                            //   ),
-                                                            // );
                                                           }else{
                                                             return Container(
                                                                margin: EdgeInsets.only(top: 10),
@@ -492,18 +510,28 @@ class HomeFragment extends GetView<HomeController> {
                                                                                 margin: EdgeInsets.only(right: 10),
                                                                                 height: 70,
                                                                                 width: 100,
-                                                                                child: FadeInImage.assetNetwork(
-                                                                                    height: 70,
-                                                                                    width: 100,
-                                                                                    fit: BoxFit.fill,
-                                                                                    image:homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
-                                                                                    placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                                                child: Stack(
+                                                                                  fit: StackFit.expand,
+                                                                                  children: [
+                                                                                    FadeInImage.assetNetwork(
+                                                                                        height: 70,
+                                                                                        width: 100,
+                                                                                        fit: BoxFit.fill,
+                                                                                        image:homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].img_url!,
+                                                                                        placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                                                    ),
+                                                                                    Positioned(
+                                                                                      bottom: 20,
+                                                                                      left:35,
+                                                                                      child: homeController.last_entry_newsList[index].video_dis  == 1 ?
+                                                                                      Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+
+                                                                                    ),
+                                                                                  ],
                                                                                 ),
-                                                                                //height: 80,
-                                                                                // width: 60,
                                                                               ),
 
-                                                                              Flexible(child: Text(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].title,
+                                                                              Flexible(child: Text(homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].title!,
                                                                                 style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                                                 textAlign: TextAlign.justify,
                                                                               ),
@@ -598,7 +626,7 @@ class HomeFragment extends GetView<HomeController> {
                                                       clipBehavior: Clip.antiAliasWithSaveLayer,
                                                       type: MaterialType.transparency,
                                                       child: CachedNetworkImage(
-                                                        imageUrl: bannerData.cover_photo,
+                                                        imageUrl: bannerData.cover_photo!,
                                                         fit: BoxFit.fill,
                                                         //height: height * 0.12,
                                                         width: width*0.92,
@@ -643,7 +671,7 @@ class HomeFragment extends GetView<HomeController> {
 }
 
 class TopButtonModel {
-  String buttonLable;
-  bool isOnTp;
+  String? buttonLable;
+  bool? isOnTp;
   TopButtonModel({this.buttonLable, this.isOnTp});
 }

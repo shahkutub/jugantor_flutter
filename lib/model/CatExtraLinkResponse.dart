@@ -1,11 +1,11 @@
 
 class CatExtraLinkResponse {
-    int cat_id;
-    String cat_link;
-    String cat_name;
-    String cat_photo;
-    int parent_cat_id;
-    String parent_cat_name;
+    int? cat_id;
+    String? cat_link;
+    String? cat_name;
+    String? cat_photo;
+    int? parent_cat_id;
+    String? parent_cat_name;
 
     CatExtraLinkResponse({this.cat_id, this.cat_link, this.cat_name, this.cat_photo, this.parent_cat_id, this.parent_cat_name});
 

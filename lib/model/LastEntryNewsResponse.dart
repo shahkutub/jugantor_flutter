@@ -1,13 +1,13 @@
 class LastEntryNewsResponse {
-    String generate_url;
-    Object hanger;
-    int id;
-    String img_url;
-    String news_date;
-    int parent_cat_id;
-    Object shoulder;
-    String title;
-    int video_dis;
+    String? generate_url;
+    Object? hanger;
+    int? id;
+    String? img_url;
+    String? news_date;
+    int? parent_cat_id;
+    Object? shoulder;
+    String? title;
+    int? video_dis;
 
     LastEntryNewsResponse({this.generate_url, this.hanger, this.id, this.img_url, this.news_date, this.parent_cat_id, this.shoulder, this.title, this.video_dis});
 

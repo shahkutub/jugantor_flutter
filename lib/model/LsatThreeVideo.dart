@@ -1,12 +1,12 @@
 class LsatThreeVideo {
-    String cover_photo;
-    String embed_code;
-    String generate_url;
-    int id;
-    int video_cat_id;
-    String video_cat_name;
-    String video_sum;
-    String video_title;
+    String? cover_photo;
+    String? embed_code;
+    String? generate_url;
+    int? id;
+    int? video_cat_id;
+    String? video_cat_name;
+    String? video_sum;
+    String? video_title;
 
     LsatThreeVideo({this.cover_photo, this.embed_code, this.generate_url, this.id, this.video_cat_id, this.video_cat_name, this.video_sum, this.video_title});
 

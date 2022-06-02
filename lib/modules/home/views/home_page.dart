@@ -115,7 +115,7 @@ class HomePage extends GetView<HomeController> {
                                       },
 
 
-                                      child: Obx(() => Text(homeController.categoryList[index].cat_name,
+                                      child: Obx(() => Text(homeController.categoryList[index].cat_name!,
                                         style: TextStyle(color: Colors.black,fontSize: 15, ),),
                                       ),
                                     );

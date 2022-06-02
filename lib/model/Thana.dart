@@ -1,10 +1,10 @@
 class Thana {
-    int district;
-    int division;
-    int id;
-    int publish;
-    String thana_name;
-    String url_dis_title;
+    int? district;
+    int? division;
+    int? id;
+    int? publish;
+    String? thana_name;
+    String? url_dis_title;
 
     Thana({this.district, this.division, this.id, this.publish, this.thana_name, this.url_dis_title});
 

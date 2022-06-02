@@ -1,8 +1,8 @@
 class Division {
-    String division_name;
-    int id;
-    int publish;
-    String url_dis_title;
+    String? division_name;
+    int? id;
+    int? publish;
+    String? url_dis_title;
 
     Division({this.division_name, this.id, this.publish, this.url_dis_title});
 
