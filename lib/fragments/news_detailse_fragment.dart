@@ -76,7 +76,7 @@ class NewsDetailseFragment extends StatelessWidget {
                                 height: 40, width: 40,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.indigoAccent,
+                                color: Color(0xff4469B3),
                                 borderRadius: BorderRadius.all(Radius.circular(20)),
                               ),
                             ),
@@ -91,7 +91,7 @@ class NewsDetailseFragment extends StatelessWidget {
                                 height: 40, width: 40,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.indigoAccent,
+                                color: Color(0xff90BAFE),
                                 borderRadius: BorderRadius.all(Radius.circular(20)),
                               ),
                             ),
@@ -107,7 +107,7 @@ class NewsDetailseFragment extends StatelessWidget {
                                 height: 40, width: 40,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.indigoAccent,
+                                color: Color(0xff90BAFE),
                                 borderRadius: BorderRadius.all(Radius.circular(20)),
                               ),
                             ),
@@ -122,7 +122,7 @@ class NewsDetailseFragment extends StatelessWidget {
                                 height: 40, width: 40,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.indigoAccent,
+                                color: Color(0xff35B94A),
                                 borderRadius: BorderRadius.all(Radius.circular(20)),
                               ),
                             ),
@@ -138,7 +138,7 @@ class NewsDetailseFragment extends StatelessWidget {
                                 height: 40, width: 40,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.indigoAccent,
+                                color: Color(0xff007AB9),
                                 borderRadius: BorderRadius.all(Radius.circular(20)),
                               ),
                             ),
