@@ -17,11 +17,6 @@ class HomeFragment extends GetView<HomeController> {
     double width = Get.width;
     //Get.find<HomeController>();
 
-    List<TopButtonModel> buttons = [
-      TopButtonModel(buttonLable: 'সর্বশেষ', isOnTp: true),
-      TopButtonModel(buttonLable: 'সর্বাধিক পঠিত', isOnTp: false)
-    ];
-    //scrollController.offset.toString();
 
     return new Container(
       child: Obx(() {

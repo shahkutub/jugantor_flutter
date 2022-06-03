@@ -1,12 +1,12 @@
 class NewsDetailseResponse {
     int? bread_parent_cat_id;
     String? bread_parent_cat_name;
-    int? bread_sub_cat_id;
+    String? bread_sub_cat_id;
     String? bread_sub_cat_name;
     String? category_name;
     String? detail;
     String? generate_url;
-    String? hanger;
+    Object? hanger;
     int? id;
     String? img_url;
     String? location_name;
@@ -22,9 +22,9 @@ class NewsDetailseResponse {
     String? people_name;
     String? people_tag;
     String? photo_alt_txt;
-    String? photo_caption = null;
+    String? photo_caption;
     String? reporter;
-    String? shoulder;
+    Object? shoulder;
     String? spc_event_tag_id;
     String? title;
     int? video_dis;
@@ -40,7 +40,7 @@ class NewsDetailseResponse {
             category_name: json['category_name'],
             detail: json['detail'],
             generate_url: json['generate_url'],
-            hanger: json['hanger'],
+            //hanger: json['hanger'] != null ? Object.fromJson(json['hanger']) : null,
             id: json['id'],
             img_url: json['img_url'],
             location_name: json['location_name'],
@@ -56,8 +56,10 @@ class NewsDetailseResponse {
             people_name: json['people_name'],
             people_tag: json['people_tag'],
             photo_alt_txt: json['photo_alt_txt'],
+            photo_caption: json['photo_caption'],
             reporter: json['reporter'],
-            shoulder: json['shoulder'],
+            //shoulder: json['shoulder'] != null ? Object.fromJson(json['shoulder']) : null,
+            spc_event_tag_id: json['spc_event_tag_id'],
             title: json['title'],
             video_dis: json['video_dis'],
         );
@@ -72,7 +74,6 @@ class NewsDetailseResponse {
         data['category_name'] = this.category_name;
         data['detail'] = this.detail;
         data['generate_url'] = this.generate_url;
-        data['hanger'] = this.hanger;
         data['id'] = this.id;
         data['img_url'] = this.img_url;
         data['location_name'] = this.location_name;
@@ -88,8 +89,9 @@ class NewsDetailseResponse {
         data['people_name'] = this.people_name;
         data['people_tag'] = this.people_tag;
         data['photo_alt_txt'] = this.photo_alt_txt;
+        data['photo_caption'] = this.photo_caption;
         data['reporter'] = this.reporter;
-        data['shoulder'] = this.shoulder;
+        data['spc_event_tag_id'] = this.spc_event_tag_id;
         data['title'] = this.title;
         data['video_dis'] = this.video_dis;
 

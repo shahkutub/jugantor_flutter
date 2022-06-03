@@ -33,6 +33,7 @@ class HomeController extends GetxController {
   List<CategoryResponse> categoryList = <CategoryResponse>[].obs;
   List<CatExtraLinkResponse> catExtraLinkList = <CatExtraLinkResponse>[].obs;
   List<ShowNewsResponse> showNewsList = <ShowNewsResponse>[].obs;
+  List<ShowNewsResponse> moreCatNewsList = <ShowNewsResponse>[].obs;
   List<LastEntryNewsResponse> last_entry_newsList = <LastEntryNewsResponse>[].obs;
 
   List<CategoryResponse> home_categoryList = <CategoryResponse>[].obs;
@@ -120,12 +121,13 @@ class HomeController extends GetxController {
 
   Future<dynamic> get_news_details() async {
 
+    print('url: ${ApiClient.newsDetails+'/'+newsId.value}');
     //Ui.showLoaderDialog(Get.context);
     APIManager _manager = APIManager();
     var response;
     try {
-      //response = await _manager.get(ApiClient.newsDetails+'/'+newsId.value);
-      response = await _manager.get(ApiClient.newsDetails+'/557140');
+      response = await _manager.get(ApiClient.newsDetails+'/'+newsId.value);
+      //response = await _manager.get(ApiClient.newsDetails+'/558122');
       print('today_bn_date: ${response}');
 
       //if(response != null){
@@ -142,6 +144,23 @@ class HomeController extends GetxController {
       }else{
         newsEdition.value = "প্রিন্ট সংস্করণ";
       }
+
+      get_more_cat_news(newsDetails.value.parent_cat_id.toString(),newsDetails.value.id.toString());
+      var tag = "";
+      if(newsDetails.value.location_name!.isNotEmpty){
+        tag = newsDetails.value.location_name!;
+      }
+
+      if(newsDetails.value.org_name!.isNotEmpty){
+        tag = newsDetails.value.org_name!;
+      }
+
+      if(newsDetails.value.people_name!.isNotEmpty){
+        tag = newsDetails.value.people_name!;
+      }
+
+      get_tag_wise_news(tag);
+
       //Utils.dateBengaliNewsDetailse(Utils.dateTimeFormat(newsDetails.value.news_date_time));
     } catch (e) {
 
@@ -205,6 +224,41 @@ class HomeController extends GetxController {
 
     }
   }
+
+  get_more_cat_news(String catid,String newsId) async {
+    print("Calling API: "+ApiClient.more_cat_wise_news);
+    moreCatNewsList.clear();
+    try {
+      final response = await http.get(Uri.parse(ApiClient.more_cat_wise_news+'/'+catid.toString()+'/'+newsId.toString()));
+      print(response.body);
+      List<ShowNewsResponse> list = (json.decode(response.body) as List)
+          .map((data) => ShowNewsResponse.fromJson(data))
+          .toList();
+      moreCatNewsList.addAll(list);
+      print('moreNewsList: ${moreCatNewsList[0].title.toString()}');
+      //dataLoaded.value = true;
+    } on SocketException {
+
+    }
+  }
+
+  get_tag_wise_news(String tag) async {
+    print("Calling API: "+ApiClient.tag_wise_news);
+    moreCatNewsList.clear();
+    try {
+      final response = await http.get(Uri.parse(ApiClient.tag_wise_news+'/'+tag));
+      print(response.body);
+      List<ShowNewsResponse> list = (json.decode(response.body) as List)
+          .map((data) => ShowNewsResponse.fromJson(data))
+          .toList();
+      moreCatNewsList.addAll(list);
+      print('moreNewsList: ${moreCatNewsList[0].title.toString()}');
+      //dataLoaded.value = true;
+    } on SocketException {
+
+    }
+  }
+
 
   get_last_entry_news() async {
     print("Calling API: "+ApiClient.last_entry_news);
