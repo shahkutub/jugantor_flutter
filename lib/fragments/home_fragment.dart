@@ -523,7 +523,7 @@ class HomeFragment extends GetView<HomeController> {
                                                                                     Positioned(
                                                                                       bottom: 20,
                                                                                       left:35,
-                                                                                      child: homeController.last_entry_newsList[index].video_dis  == 1 ?
+                                                                                      child: homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].video_dis  == 1 ?
                                                                                       Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
 
                                                                                     ),

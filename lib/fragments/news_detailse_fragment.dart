@@ -74,7 +74,7 @@ class NewsDetailseFragment extends StatelessWidget {
                               alignment: Alignment.center,
                               child: SvgPicture.asset(
                                 'assets/images/facebook.svg',
-                                height: 40, width: 40,
+                                height: 35, width: 35,
                               ),
                               decoration: BoxDecoration(
                                 color: Color(0xff4469B3),
@@ -86,13 +86,14 @@ class NewsDetailseFragment extends StatelessWidget {
                           GestureDetector(
                             child:Container(
                               //height: 80,
+                              padding: EdgeInsets.all(5),
                               alignment: Alignment.center,
                               child: SvgPicture.asset(
                                 'assets/images/messenger.svg',
-                                height: 40, width: 40,
+                                height: 30, width: 30,
                               ),
                               decoration: BoxDecoration(
-                                color: Color(0xff90BAFE),
+                                color: Color(0xff00B0ED),
                                 borderRadius: BorderRadius.all(Radius.circular(20)),
                               ),
                             ),
@@ -102,13 +103,14 @@ class NewsDetailseFragment extends StatelessWidget {
                           GestureDetector(
                             child:Container(
                               //height: 80,
+                              padding: EdgeInsets.all(5),
                               alignment: Alignment.center,
                               child: SvgPicture.asset(
                                 'assets/images/twitter.svg',
-                                height: 40, width: 40,
+                                height: 30, width: 30,
                               ),
                               decoration: BoxDecoration(
-                                color: Color(0xff90BAFE),
+                                color: Color(0xff00B0ED),
                                 borderRadius: BorderRadius.all(Radius.circular(20)),
                               ),
                             ),
@@ -116,11 +118,11 @@ class NewsDetailseFragment extends StatelessWidget {
                           SizedBox(width: 10,),
                           GestureDetector(
                             child:Container(
-                              //height: 80,
+                              padding: EdgeInsets.all(3),
                               alignment: Alignment.center,
                               child: SvgPicture.asset(
                                 'assets/images/whatsapp.svg',
-                                height: 40, width: 40,
+                                height: 35, width: 35,
                               ),
                               decoration: BoxDecoration(
                                 color: Color(0xff35B94A),
@@ -167,6 +169,7 @@ class NewsDetailseFragment extends StatelessWidget {
                           "\tp{\n" +
                           "\t\ttext-align: justify;\n" +
                           "\t\tfont-family: SolaimanLipi;\n" +
+                          "\t\tfont-size:18px;\n" +
                           "\t}\n" +
                           "</style>\n" +
                           "</head>\n" +
@@ -178,8 +181,40 @@ class NewsDetailseFragment extends StatelessWidget {
 
                           ),
 
+                      SizedBox( height:20),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("যুগান্তর ইউটিউব চ্যানেলে সাবস্ক্রাইব করুন",style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,color: Colors.black),),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              // Image.asset(
+                              //     'assets/images/youtube.jpg',
+                              //     height: 70,
+                              //     fit:BoxFit.fill),
+                              Image.asset(
+                                  'assets/images/juganyoutubepng.png',
+                                 // height: 70,
+                                  fit:BoxFit.fill)
+                            ],
+                          )
+                        ],
+                      ),
+                      SizedBox( height:20),
+
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        color: Color(0xff3B5998),
+                        padding: EdgeInsets.all(7),
+                        child: Text("আরও খবর",style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,color: Colors.white)),
+                      ),
+
+                      SizedBox( height:20),
                     ],
                   ),
+
                   // child: Row(
                   //   children: <Widget>[
                   //     Text("প্রচ্ছদ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
