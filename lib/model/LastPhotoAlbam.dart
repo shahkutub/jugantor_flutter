@@ -17,7 +17,7 @@ class LastPhotoAlbam {
             generate_url: json['generate_url'], 
             id: json['id'], 
             images: json['images'] != null ? new List<String>.from(json['images']) : null, 
-            img_titles: json['img_titles'] != null ? new List<String>.from(json['img_titles']) : null, 
+            //img_titles: json['img_titles'] != null ? new List<String>.from(json['img_titles']) : null,
             parent_url_dis: json['parent_url_dis'], 
             trim_album_name: json['trim_album_name'], 
         );

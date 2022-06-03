@@ -16,6 +16,7 @@ import 'package:jugantor.com/model/CategoryResponse.dart';
 import 'package:http/http.dart' as http;
 import 'package:jugantor.com/model/HomeCategoryWithNewsList.dart';
 import 'package:jugantor.com/model/LastEntryNewsResponse.dart';
+import 'package:jugantor.com/model/LastPhotoAlbam.dart';
 import 'package:jugantor.com/model/LeadNewsResponse.dart';
 import 'package:jugantor.com/model/LsatThreeVideo.dart';
 import 'package:jugantor.com/model/NewsDetailseResponse.dart';
@@ -34,6 +35,7 @@ class HomeController extends GetxController {
   List<CatExtraLinkResponse> catExtraLinkList = <CatExtraLinkResponse>[].obs;
   List<ShowNewsResponse> showNewsList = <ShowNewsResponse>[].obs;
   List<ShowNewsResponse> moreCatNewsList = <ShowNewsResponse>[].obs;
+  List<ShowNewsResponse> tagNewsList = <ShowNewsResponse>[].obs;
   List<LastEntryNewsResponse> last_entry_newsList = <LastEntryNewsResponse>[].obs;
 
   List<CategoryResponse> home_categoryList = <CategoryResponse>[].obs;
@@ -52,21 +54,24 @@ class HomeController extends GetxController {
   var button = 1.obs;
 
   List<LsatThreeVideo> last_VidListList = <LsatThreeVideo>[].obs;
+  List<LastPhotoAlbam> last_photo_albumList = <LastPhotoAlbam>[].obs;
 
   var myIndex = 0.obs;
 
   var newsId = "".obs;
+  var tag = "".obs;
   @override
   void onInit() {
     //scrollController.value.position = 0;
     //print(scrollController.value.offset.toString());
     get_bn_date();
+    get_last_photo_album();
     get_lead_news();
     get_category();
     get_extracat();
     get_show_news();
     get_last_entry_news();
-    get_last_three_videos();
+
     //get_home_category();
 
 
@@ -146,20 +151,23 @@ class HomeController extends GetxController {
       }
 
       get_more_cat_news(newsDetails.value.parent_cat_id.toString(),newsDetails.value.id.toString());
-      var tag = "";
+
       if(newsDetails.value.location_name!.isNotEmpty){
-        tag = newsDetails.value.location_name!;
+        tag.value = newsDetails.value.location_name!;
       }
 
       if(newsDetails.value.org_name!.isNotEmpty){
-        tag = newsDetails.value.org_name!;
+        tag.value = newsDetails.value.org_name!;
       }
 
       if(newsDetails.value.people_name!.isNotEmpty){
-        tag = newsDetails.value.people_name!;
+        tag.value = newsDetails.value.people_name!;
       }
 
-      get_tag_wise_news(tag);
+      if(newsDetails.value.location_name!.isNotEmpty){
+        get_tag_wise_news(tag.value);
+      }
+
 
       //Utils.dateBengaliNewsDetailse(Utils.dateTimeFormat(newsDetails.value.news_date_time));
     } catch (e) {
@@ -244,15 +252,15 @@ class HomeController extends GetxController {
 
   get_tag_wise_news(String tag) async {
     print("Calling API: "+ApiClient.tag_wise_news);
-    moreCatNewsList.clear();
+    tagNewsList.clear();
     try {
       final response = await http.get(Uri.parse(ApiClient.tag_wise_news+'/'+tag));
       print(response.body);
       List<ShowNewsResponse> list = (json.decode(response.body) as List)
           .map((data) => ShowNewsResponse.fromJson(data))
           .toList();
-      moreCatNewsList.addAll(list);
-      print('moreNewsList: ${moreCatNewsList[0].title.toString()}');
+      tagNewsList.addAll(list);
+      print('tagNewsList: ${tagNewsList[0].title.toString()}');
       //dataLoaded.value = true;
     } on SocketException {
 
@@ -354,6 +362,21 @@ class HomeController extends GetxController {
           .map((data) => LsatThreeVideo.fromJson(data))
           .toList();
       last_VidListList.addAll(list);
+
+    } on SocketException {
+
+    }
+  }
+
+  get_last_photo_album() async {
+    print("last_photo_album API: "+ApiClient.last_photo_album);
+    try {
+      final response = await http.get(Uri.parse(ApiClient.last_photo_album));
+      print(response.body);
+      List<LastPhotoAlbam> list = (json.decode(response.body) as List)
+          .map((data) => LastPhotoAlbam.fromJson(data))
+          .toList();
+      last_photo_albumList.addAll(list);
 
     } on SocketException {
 

@@ -11,6 +11,7 @@ class ApiClient {
   static String last_entry_news = '${baseUrl}api/ver1/last_entry_news';
   static String most_view_news = '${baseUrl}api/ver1/most_view_news';
   static String category_wise_news = '${baseUrl}api/ver1/category_wise_news';
+  static String last_photo_album = '${baseUrl}api/ver1/last_photo_album';
   static String last_three_videos = '${baseUrl}api/ver1/last_three_videos';
 
 

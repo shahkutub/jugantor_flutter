@@ -581,10 +581,44 @@ class HomeFragment extends GetView<HomeController> {
                     ),
 
 
+                    //photo gallery
+
+                    Container(
+                      margin: EdgeInsets.only(top: 10,left: 20,right: 20),
+                      child: Column(
+                        children: [
+                          Stack(alignment: Alignment.centerLeft,
+                            children: <Widget>[
+                              Container(
+                                //height: 80,
+                                alignment: Alignment.centerLeft,
+                                child: Flexible(child: Text('ফটো গ্যালারি',
+                                    style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)
+                                )
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.centerRight,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.arrow_forward_sharp,color: Colors.red,),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                          Divider(
+                              color: Colors.red
+                          ),
+                        ],
+                      ),
+                    ),
 
                     Obx(() =>
                         Container(
-                            margin: EdgeInsets.only(top: 15,bottom: 5,right: 15,left: 15),
+                            margin: EdgeInsets.only(top: 5,bottom: 5,right: 15,left: 15),
                             alignment: Alignment.center,
                             child:CarouselSlider(
                               options: CarouselOptions(
@@ -599,7 +633,7 @@ class HomeFragment extends GetView<HomeController> {
                                   // );
                                 },
                               ),
-                              items: homeController.last_VidListList.map((bannerData) {
+                              items: homeController.last_photo_albumList[0].images!.map((bannerData) {
                                 return Builder(
                                   builder: (BuildContext context) {
                                     return InkWell(
@@ -621,7 +655,7 @@ class HomeFragment extends GetView<HomeController> {
                                                       clipBehavior: Clip.antiAliasWithSaveLayer,
                                                       type: MaterialType.transparency,
                                                       child: CachedNetworkImage(
-                                                        imageUrl: bannerData.cover_photo!,
+                                                        imageUrl: bannerData!,
                                                         fit: BoxFit.fill,
                                                         //height: height * 0.12,
                                                         width: width*0.92,

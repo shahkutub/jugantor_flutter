@@ -6,7 +6,7 @@ class NewsDetailseResponse {
     String? category_name;
     String? detail;
     String? generate_url;
-    Object? hanger;
+    String? hanger;
     int? id;
     String? img_url;
     String? location_name;
@@ -24,7 +24,7 @@ class NewsDetailseResponse {
     String? photo_alt_txt;
     String? photo_caption;
     String? reporter;
-    Object? shoulder;
+    String? shoulder;
     String? spc_event_tag_id;
     String? title;
     int? video_dis;
@@ -40,7 +40,7 @@ class NewsDetailseResponse {
             category_name: json['category_name'],
             detail: json['detail'],
             generate_url: json['generate_url'],
-            //hanger: json['hanger'] != null ? Object.fromJson(json['hanger']) : null,
+            hanger: json['hanger'],
             id: json['id'],
             img_url: json['img_url'],
             location_name: json['location_name'],
@@ -58,7 +58,7 @@ class NewsDetailseResponse {
             photo_alt_txt: json['photo_alt_txt'],
             photo_caption: json['photo_caption'],
             reporter: json['reporter'],
-            //shoulder: json['shoulder'] != null ? Object.fromJson(json['shoulder']) : null,
+            shoulder: json['shoulder'],
             spc_event_tag_id: json['spc_event_tag_id'],
             title: json['title'],
             video_dis: json['video_dis'],

@@ -378,6 +378,102 @@ class NewsDetailseFragment extends StatelessWidget {
                           ),
                       ),
 
+
+                      SizedBox(
+                        height: 10,
+                      ),
+
+                      Container(
+                        child: homeController.tag.value.isNotEmpty ?
+                         Column(
+                           children: [
+                             Row(
+                               mainAxisAlignment: MainAxisAlignment.start,
+                               crossAxisAlignment: CrossAxisAlignment.center,
+                               children: [
+                                 Text('আরওঃ '), Text(''+homeController.tag.value,style: TextStyle(color: Color(0xff217DFF)),),
+                               ],
+                             ),
+                             Divider(color: Colors.red),
+                             Obx(() =>
+                                 Container(
+                                     margin: EdgeInsets.only(top: 0,bottom: 5,right: 0,left: 0),
+                                     alignment: Alignment.center,
+                                     child:ListView.builder(
+                                       primary: false,
+                                       shrinkWrap: true,
+                                       // Let the ListView know how many items it needs to build.
+                                       itemCount: homeController.tagNewsList.length,
+                                       // Provide a builder function. This is where the magic happens.
+                                       // Convert each item into a widget based on the type of item it is.
+                                       itemBuilder: (context, index) {
+
+                                         return Container(
+                                             margin: EdgeInsets.only(top: 8),
+                                             child:   GestureDetector(
+                                               onTap: (){
+                                                 //Get.back();
+                                                 // if(homeController.showNewsList[index].cat_name == "প্রচ্ছদ"){
+                                                 //   //homeController.selectedIndex.value = 0;
+                                                 // }else{
+                                                 //   // homeController.selectedIndex.value = 1;
+                                                 // }
+                                               },
+
+                                               child: Obx(() => Container(
+                                                 //height: ,
+                                                 //alignment: Alignment.center,
+                                                   child: Row(
+                                                     mainAxisAlignment: MainAxisAlignment.start,
+                                                     crossAxisAlignment: CrossAxisAlignment.center,
+                                                     children: [
+                                                       Container(
+                                                         margin: EdgeInsets.only(right: 10),
+                                                         height: 70,
+                                                         width: 100,
+                                                         child: Stack(
+                                                           fit: StackFit.expand,
+                                                           children: [
+                                                             FadeInImage.assetNetwork(
+                                                                 height: 70,
+                                                                 width: 100,
+                                                                 fit: BoxFit.fill,
+                                                                 image:homeController.tagNewsList[index].img_url!,
+                                                                 placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                             ),
+                                                             Positioned(
+                                                               bottom: 20,
+                                                               left:35,
+                                                               child: homeController.tagNewsList[index].video_dis  == 1 ?
+                                                               Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+
+                                                             ),
+                                                           ],
+                                                         ),
+                                                       ),
+                                                       Flexible(child: Text(homeController.tagNewsList[index].title!,
+                                                         style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                                         textAlign: TextAlign.justify,
+                                                       ),
+
+                                                       ),
+
+                                                     ],
+                                                   )
+                                               )
+                                               ),
+                                             )
+                                         );
+                                       },
+                                     )
+
+                                 ),
+                             ),
+                           ],
+                         ): Text("")
+                      ),
+
+
                     ],
                   ),
 
