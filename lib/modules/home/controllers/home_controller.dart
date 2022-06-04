@@ -60,12 +60,15 @@ class HomeController extends GetxController {
 
   var newsId = "".obs;
   var tag = "".obs;
+  var currentDateEng = "".obs;
   @override
   void onInit() {
     //scrollController.value.position = 0;
     //print(scrollController.value.offset.toString());
+    currentDateEng.value = Utils.getCurrentDateEng();
     get_bn_date();
     get_last_photo_album();
+    get_last_three_videos();
     get_lead_news();
     get_category();
     get_extracat();

@@ -582,7 +582,6 @@ class HomeFragment extends GetView<HomeController> {
 
 
                     //photo gallery
-
                     Container(
                       margin: EdgeInsets.only(top: 10,left: 20,right: 20),
                       child: Column(
@@ -615,7 +614,6 @@ class HomeFragment extends GetView<HomeController> {
                         ],
                       ),
                     ),
-
                     Obx(() =>
                         Container(
                             margin: EdgeInsets.only(top: 5,bottom: 5,right: 15,left: 15),
@@ -681,6 +679,219 @@ class HomeFragment extends GetView<HomeController> {
                         ),
                     ),
 
+                    //ভিডিও gallery
+                    Container(
+                      margin: EdgeInsets.only(top: 10,left: 20,right: 20),
+                      child: Column(
+                        children: [
+                          Stack(alignment: Alignment.centerLeft,
+                            children: <Widget>[
+                              Container(
+                                //height: 80,
+                                alignment: Alignment.centerLeft,
+                                child: Flexible(child: Text('ভিডিও গ্যালারি',
+                                    style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)
+                                )
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.centerRight,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.arrow_forward_sharp,color: Colors.red,),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                          Divider(
+                              color: Colors.red
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    Obx(() =>
+                        Container(
+                          margin: EdgeInsets.only(top: 0,bottom: 5,right: 15,left: 15),
+                          alignment: Alignment.center,
+                            child:ListView.builder(
+                              primary: false,
+                              shrinkWrap: true,
+                              // Let the ListView know how many items it needs to build.
+                              itemCount: homeController.last_VidListList!.length,
+                              // Provide a builder function. This is where the magic happens.
+                              // Convert each item into a widget based on the type of item it is.
+                              itemBuilder: (context, index2) {
+                                //final item = homeController.category_list_with_news_newsList[index].category_wise_newsList![index2];
+                                //homeController.homecatId.value = homeController.showNewsList[index].id;
+
+                                if(index2 == 0){
+                                  return Container(
+                                    margin: EdgeInsets.only(top: 0,bottom: 5,right: 0,left: 0),
+                                    height: width*.6,
+                                    width: width,
+                                    child: Stack(
+                                      fit: StackFit.expand,
+                                      children: [
+                                        FadeInImage.assetNetwork(
+                                            fit: BoxFit.fill,
+                                            image:homeController.last_VidListList[index2].cover_photo!,
+                                            placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                        ),
+                                        Positioned(
+                                          bottom: width*.2,
+                                          left:width/2.5 ,
+                                          child:Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
+
+                                        ),
+                                        Positioned(
+                                          bottom: 0,
+                                          left: 0,
+                                          child: Column(
+                                            children: <Widget>[
+                                              Container(
+                                                width: width,
+                                                child:Text(
+                                                  homeController.last_VidListList[index2].video_title!,
+                                                  style: TextStyle(
+                                                      fontSize: 17,
+                                                      fontWeight: FontWeight.bold,
+                                                      color: Colors.white),
+                                                ),
+                                                padding: EdgeInsets.all(10),
+                                                color: Colors.black54,
+                                              )
+
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                }else{
+                                  return Container(
+                                      margin: EdgeInsets.only(top: 10),
+                                      child:   GestureDetector(
+                                        onTap: (){
+                                          //Get.back();
+                                          // if(homeController.showNewsList[index].cat_name == "প্রচ্ছদ"){
+                                          //   //homeController.selectedIndex.value = 0;
+                                          // }else{
+                                          //   // homeController.selectedIndex.value = 1;
+                                          // }
+                                        },
+
+                                        child: Obx(() =>
+                                            Container(
+                                              //height: ,
+                                              //alignment: Alignment.center,
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    // Container(
+                                                    //   margin: EdgeInsets.only(right: 10),
+                                                    //   height: 70,
+                                                    //   width: 100,
+                                                    //   child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
+                                                    //     fit: BoxFit.fill,
+                                                    //   ),
+                                                    //   //height: 80,
+                                                    //   // width: 60,
+                                                    // ),
+
+                                                    Container(
+                                                      margin: EdgeInsets.only(right: 10),
+                                                      height: 70,
+                                                      width: 100,
+                                                      child: Stack(
+                                                        fit: StackFit.expand,
+                                                        children: [
+                                                          FadeInImage.assetNetwork(
+                                                              height: 70,
+                                                              width: 100,
+                                                              fit: BoxFit.fill,
+                                                              image:homeController.last_VidListList[index2].cover_photo!,
+                                                              placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                          ),
+                                                          Positioned(
+                                                            bottom: 20,
+                                                            left:35,
+                                                            child: Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+
+                                                    Flexible(child: Text(homeController.last_VidListList[index2].video_title!,
+                                                      style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                                      textAlign: TextAlign.justify,
+                                                    ),
+
+                                                    ),
+
+                                                  ],
+                                                )
+                                              // child: Row(
+                                              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              //   crossAxisAlignment: CrossAxisAlignment.center,
+                                              //   children: [
+                                              //     Container(
+                                              //       child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
+                                              //         fit: BoxFit.fitWidth,
+                                              //         height: 70,
+                                              //
+                                              //       ),
+                                              //       //height: 80,
+                                              //       // width: 60,
+                                              //     ),
+                                              //
+                                              //     Flexible(child: Text(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].title,
+                                              //       style: TextStyle(color: Colors.black,fontSize: 14, ),),),
+                                              //
+                                              //   ],
+                                              // )
+
+
+                                            )
+                                        ),
+
+                                      )
+                                  );
+                                }
+
+                              },
+                            )
+                        ),
+                    ),
+
+                    Container(
+                      margin: const EdgeInsets.all(20.0),
+                      //padding: const EdgeInsets.all(3.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey)
+                      ),
+                      child:Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(height: 20,),
+                          Image.asset("assets/images/img_epaper.png"),
+                          SizedBox(height: 20,),
+                          FadeInImage.assetNetwork(
+                            width: width,
+                              fit: BoxFit.fill,
+                              image:'https://epaper.jugantor.com/'+homeController.currentDateEng.value+'/1.jpg',
+                              placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                          ),
+                        ],
+                      ),
+                      width: width,
+
+                    ),
 
                   ],
                 ),

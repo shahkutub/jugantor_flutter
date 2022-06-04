@@ -65,6 +65,13 @@ class Utils{
    }
 
 
+   static String getCurrentDateEng(){
+
+      var now = new DateTime.now();
+      var formatter = new DateFormat('yyyy/MM/dd');
+      String formattedDate = formatter.format(now);
+      return formattedDate;
+   }
    static String currentDateBengali(){
 
       const bangMonths = ["জানুয়ারী","ফেব্রুয়ারি","মার্চ","এপ্রিল","মে","জুন","জুলাই","অগাস্ট","সেপ্টেম্বর","অক্টবর","নভেম্বর","ডিসেম্বর"];
