@@ -315,8 +315,6 @@ class NewsDetailseFragment extends StatelessWidget {
                             ],
                           )
                       ),
-
-
                       Obx(() =>
                           Container(
                               margin: EdgeInsets.only(top: 10,bottom: 5,right: 0,left: 0),

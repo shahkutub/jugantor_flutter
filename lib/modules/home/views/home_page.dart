@@ -33,13 +33,44 @@ class HomePage extends GetView<HomeController> {
                     ),
                   ),
 
-                  SizedBox(
-                    height: 7,
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+
+                      GestureDetector(
+                        onTap: (){
+                          // ajker paper page index 3
+                          homeController.selectedPageIndex.value = 3;
+                          homeController.selectedCategoryName.value = "আজকের পত্রিকা";
+                          homeController.ajker_paper_sub_category();
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(5),
+                          child: Text(" আজকের পত্রিকা  ",
+                            style: TextStyle(color: Colors.white,fontSize: 15),
+                            textAlign:TextAlign.center,
+                          ),
+                        ),
+                        
+                      ),
+                      GestureDetector(
+                        onTap: (){
+
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(5),
+                          child: Text("|  ই-পেপার ",
+                            style: TextStyle(color: Colors.white,fontSize: 15),
+                            textAlign:TextAlign.center,
+                          ),
+                        ),
+
+                      )
+                    ],
                   ),
-                  Text(" আজকের পত্রিকা | ই-পেপার ",
-                    style: TextStyle(color: Colors.white,fontSize: 15),
-                    textAlign:TextAlign.center,
-                  ),
+
                 ],
               ),
             )
@@ -108,12 +139,13 @@ class HomePage extends GetView<HomeController> {
                                       onTap: (){
                                         Get.back();
                                         if(homeController.categoryList[index].cat_name == "প্রচ্ছদ"){
-                                          homeController.selectedIndex.value = 0;
+                                          homeController.selectedPageIndex.value = 0;
                                         }else{
                                           homeController.selectedCategoryName.value = homeController.categoryList[index].cat_name.toString();
                                           homeController.dataLoaded.value = false;
                                           homeController.get_sub_category(homeController.categoryList![index].id!);
-                                          homeController.selectedIndex.value = 2;
+                                          //sub_category page index 2
+                                          homeController.selectedPageIndex.value = 2;
                                         }
                                       },
 
@@ -142,7 +174,7 @@ class HomePage extends GetView<HomeController> {
 
               body:Obx(() {
                 return Container(
-                  child:homeController.getDrawerItemWidget(homeController.selectedIndex.value),
+                  child:homeController.getDrawerItemWidget(homeController.selectedPageIndex.value),
                 );
               }
           )

@@ -8,6 +8,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/api/api_client.dart';
 import 'package:jugantor.com/api/api_manager.dart';
+import 'package:jugantor.com/fragments/ajker_paper_fragment.dart';
 import 'package:jugantor.com/fragments/home_fragment.dart';
 import 'package:jugantor.com/fragments/news_detailse_fragment.dart';
 import 'package:jugantor.com/fragments/sub_cat_fragment.dart';
@@ -29,7 +30,7 @@ import 'package:jugantor.com/utils/utils.dart';
 
 class HomeController extends GetxController {
 
-  var selectedIndex = 0.obs;
+  var selectedPageIndex = 0.obs;
   var homecatId = 0.obs;
   var banglaDate = "".obs;
 
@@ -45,6 +46,10 @@ class HomeController extends GetxController {
   List<LastEntryNewsResponse> category_wise_newsList = <LastEntryNewsResponse>[].obs;
   List<HomeCategoryWithNewsList> category_list_with_news_newsList = <HomeCategoryWithNewsList>[].obs;
   List<HomeCategoryWithNewsList> subcategory_list_with_news_newsList = <HomeCategoryWithNewsList>[].obs;
+  List<HomeCategoryWithNewsList> ajker_paper_subcategory_list_with_newsList = <HomeCategoryWithNewsList>[].obs;
+
+  List<CategoryResponse> ajkert_paper_sub_categoryList = <CategoryResponse>[].obs;
+
 
   var leadnews = LeadNewsResponse().obs;
   var newsDetails = NewsDetailseResponse().obs;
@@ -400,6 +405,25 @@ class HomeController extends GetxController {
     }
   }
 
+  ajker_paper_sub_category() async {
+    ajkert_paper_sub_categoryList.clear();
+    print("Calling API: "+ApiClient.ajker_paper_sub_cats);
+    try {
+      final response = await http.get(Uri.parse(ApiClient.ajker_paper_sub_cats));
+      print(response.body);
+      List<CategoryResponse> list = (json.decode(response.body) as List)
+          .map((data) => CategoryResponse.fromJson(data))
+          .toList();
+      ajkert_paper_sub_categoryList.addAll(list);
+      ajkert_paper_sub_categoryList.forEach((element) {
+        get_ajker_paper_subcategory_wise_newsList(element);
+      });
+
+    } on SocketException {
+
+    }
+  }
+
   get_subcategory_wise_newsList(CategoryResponse categoryResponse) async {
     subcategory_list_with_news_newsList.clear();
     print("Calling API: "+ApiClient.category_wise_news+'/'+categoryResponse.id.toString());
@@ -421,6 +445,30 @@ class HomeController extends GetxController {
 
     }
   }
+
+  get_ajker_paper_subcategory_wise_newsList(CategoryResponse categoryResponse) async {
+    ajker_paper_subcategory_list_with_newsList.clear();
+    print("Calling API: "+ApiClient.ajker_paper_sub_cats_wise_news+'/'+categoryResponse.id.toString());
+    List<LastEntryNewsResponse> newsList = <LastEntryNewsResponse>[];
+    try {
+      final response = await http.get(Uri.parse(ApiClient.ajker_paper_sub_cats_wise_news+'/'+categoryResponse.id.toString()));
+      print(response.body.toString());
+      List<LastEntryNewsResponse> list = (json.decode(response.body) as List)
+          .map((data) => LastEntryNewsResponse.fromJson(data))
+          .toList();
+      newsList.addAll(list);
+
+      var data = HomeCategoryWithNewsList(categoryResponse.cat_name,categoryResponse.id,newsList);
+      ajker_paper_subcategory_list_with_newsList.add(data);
+      dataLoaded.value = true;
+      // print('category_wise_newsList: ${category_wise_newsList[0].title.toString()}');
+      //return category_wise_newsList;
+    } on SocketException {
+
+    }
+  }
+
+
 
   get_category_wise_news(CategoryResponse category) async {
     print("Calling API: "+ApiClient.category_wise_news+'/'+category.id.toString());
@@ -539,6 +587,9 @@ class HomeController extends GetxController {
         return new NewsDetailseFragment();
       case 2:
         return new SubCatFragment();
+        case 3:
+        return new AjkerPaperFragment();
+
 
       default:
         return new Text("Error");

@@ -25,5 +25,9 @@ class ApiClient {
   static String sub_category_list = '${baseUrl}api/ver1/sub_category_list';
 
 
+  static String ajker_paper_sub_cats = '${baseUrl}api/ver1/todays_sub_cats';
+  static String ajker_paper_sub_cats_wise_news = '${baseUrl}api/ver1/todays_subcat_wise_news';
+
+
 
 }

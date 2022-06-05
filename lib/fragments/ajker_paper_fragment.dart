@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 
-class SubCatFragment extends StatelessWidget {
+class AjkerPaperFragment extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());
 
   @override
@@ -85,14 +85,14 @@ class SubCatFragment extends StatelessWidget {
                                 mainAxisSpacing: 5.0,
                                 childAspectRatio: 5.5
                             ),
-                            itemCount: homeController.sub_categoryList.length,
+                            itemCount: homeController.ajkert_paper_sub_categoryList.length,
                             itemBuilder: (context, index) {
                               return  GestureDetector(
                                 onTap: (){
 
                                 },
 
-                                child: Text(homeController.sub_categoryList[index].cat_name!,
+                                child: Text(homeController.ajkert_paper_sub_categoryList[index].cat_name!,
                                   style: TextStyle(color: Colors.black,fontSize: 15, ),
                                   textAlign: TextAlign.justify,
                                 ),
@@ -259,17 +259,17 @@ class SubCatFragment extends StatelessWidget {
                       //body cat news
                       Obx(() =>
                           Container(
-                              margin: EdgeInsets.only(top: 15,bottom: 0,right: 20,left: 20),
+                              margin: EdgeInsets.only(top: 15,bottom: 0,right: 0,left: 0),
                               alignment: Alignment.center,
                               child:ListView.builder(
                                 primary: false,
                                 shrinkWrap: true,
                                 // Let the ListView know how many items it needs to build.
-                                itemCount: homeController.subcategory_list_with_news_newsList.length,
+                                itemCount: homeController.ajker_paper_subcategory_list_with_newsList.length,
                                 // Provide a builder function. This is where the magic happens.
                                 // Convert each item into a widget based on the type of item it is.
                                 itemBuilder: (context, index) {
-                                  final item = homeController.subcategory_list_with_news_newsList[index];
+                                  //final item = homeController.ajker_paper_subcategory_list_with_newsList[index];
                                   //homeController.get_category_wise_news(homeController.home_categoryList[index].id);
 
                                   return Container(
@@ -285,7 +285,7 @@ class SubCatFragment extends StatelessWidget {
 
                                         child: Obx(() =>
                                             Container(
-                                                margin: EdgeInsets.only(top: 20),
+                                                margin: EdgeInsets.only(top: 0),
                                                 //height: ,
                                                 //alignment: Alignment.center,
                                                 child: Column(
@@ -297,7 +297,7 @@ class SubCatFragment extends StatelessWidget {
                                                         Container(
                                                           //height: 80,
                                                           alignment: Alignment.centerLeft,
-                                                          child: Flexible(child: Text(homeController.subcategory_list_with_news_newsList[index].cat_name!,
+                                                          child: Flexible(child: Text(homeController.ajker_paper_subcategory_list_with_newsList[index].cat_name!,
                                                               style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)
                                                           )
                                                           ),
@@ -325,7 +325,7 @@ class SubCatFragment extends StatelessWidget {
                                                               primary: false,
                                                               shrinkWrap: true,
                                                               // Let the ListView know how many items it needs to build.
-                                                              itemCount: homeController.subcategory_list_with_news_newsList[index].category_wise_newsList!.length,
+                                                              itemCount: homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList!.length,
                                                               // Provide a builder function. This is where the magic happens.
                                                               // Convert each item into a widget based on the type of item it is.
                                                               itemBuilder: (context, index2) {
@@ -342,13 +342,13 @@ class SubCatFragment extends StatelessWidget {
                                                                       children: [
                                                                         FadeInImage.assetNetwork(
                                                                             fit: BoxFit.fill,
-                                                                            image:homeController.subcategory_list_with_news_newsList[index].category_wise_newsList![index2].img_url!,
+                                                                            image:homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].img_url!,
                                                                             placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                                                                         ),
                                                                         Positioned(
                                                                           bottom: width*.2,
                                                                           left:width/2.5 ,
-                                                                          child: homeController.subcategory_list_with_news_newsList[index].category_wise_newsList![index2].video_dis  == 1 ?
+                                                                          child: homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].video_dis  == 1 ?
                                                                           Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
 
                                                                         ),
@@ -360,7 +360,7 @@ class SubCatFragment extends StatelessWidget {
                                                                               Container(
                                                                                 width: width,
                                                                                 child:Text(
-                                                                                  homeController.subcategory_list_with_news_newsList[index].category_wise_newsList![index2].title!,
+                                                                                  homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].title!,
                                                                                   style: TextStyle(
                                                                                       fontSize: 17,
                                                                                       fontWeight: FontWeight.bold,
@@ -382,7 +382,7 @@ class SubCatFragment extends StatelessWidget {
                                                                       child:   GestureDetector(
                                                                         onTap: (){
                                                                           homeController.dataLoaded.value = false;
-                                                                          homeController.newsId.value = homeController.subcategory_list_with_news_newsList[index].category_wise_newsList![index2].id.toString();
+                                                                          homeController.newsId.value = homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].id.toString();
                                                                           homeController.selectedPageIndex.value = 1;
                                                                           homeController.get_news_details();
                                                                         },
@@ -417,13 +417,13 @@ class SubCatFragment extends StatelessWidget {
                                                                                               height: 70,
                                                                                               width: 100,
                                                                                               fit: BoxFit.fill,
-                                                                                              image:homeController.subcategory_list_with_news_newsList[index].category_wise_newsList![index2].img_url!,
+                                                                                              image:homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].img_url!,
                                                                                               placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                                                                                           ),
                                                                                           Positioned(
                                                                                             bottom: 20,
                                                                                             left:35,
-                                                                                            child: homeController.subcategory_list_with_news_newsList[index].category_wise_newsList![index2].video_dis  == 1 ?
+                                                                                            child: homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].video_dis  == 1 ?
                                                                                             Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
 
                                                                                           ),
@@ -431,7 +431,7 @@ class SubCatFragment extends StatelessWidget {
                                                                                       ),
                                                                                     ),
 
-                                                                                    Flexible(child: Text(homeController.subcategory_list_with_news_newsList[index].category_wise_newsList![index2].title!,
+                                                                                    Flexible(child: Text(homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].title!,
                                                                                       style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                                                       textAlign: TextAlign.justify,
                                                                                     ),
