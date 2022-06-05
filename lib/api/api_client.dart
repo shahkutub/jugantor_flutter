@@ -13,12 +13,16 @@ class ApiClient {
   static String category_wise_news = '${baseUrl}api/ver1/category_wise_news';
   static String last_photo_album = '${baseUrl}api/ver1/last_photo_album';
   static String last_three_videos = '${baseUrl}api/ver1/last_three_videos';
+  static String last_online_poll = '${baseUrl}api/ver1/last_online_poll';
 
 
   static String newsDetails = '${baseUrl}api/ver1/news';
   static String more_cat_wise_news = '${baseUrl}api/ver1/more_cat_wise_news';
   static String tag_wise_news = '${baseUrl}api/ver1/tag_wise_news';
   static String tag_name = '${baseUrl}api/ver1/event_stream';
+
+
+  static String sub_category_list = '${baseUrl}api/ver1/sub_category_list';
 
 
 

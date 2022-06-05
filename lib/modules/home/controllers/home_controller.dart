@@ -10,12 +10,13 @@ import 'package:jugantor.com/api/api_client.dart';
 import 'package:jugantor.com/api/api_manager.dart';
 import 'package:jugantor.com/fragments/home_fragment.dart';
 import 'package:jugantor.com/fragments/news_detailse_fragment.dart';
-import 'package:jugantor.com/fragments/third_fragment.dart';
+import 'package:jugantor.com/fragments/sub_cat_fragment.dart';
 import 'package:jugantor.com/model/CatExtraLinkResponse.dart';
 import 'package:jugantor.com/model/CategoryResponse.dart';
 import 'package:http/http.dart' as http;
 import 'package:jugantor.com/model/HomeCategoryWithNewsList.dart';
 import 'package:jugantor.com/model/LastEntryNewsResponse.dart';
+import 'package:jugantor.com/model/LastOnlinePoll.dart';
 import 'package:jugantor.com/model/LastPhotoAlbam.dart';
 import 'package:jugantor.com/model/LeadNewsResponse.dart';
 import 'package:jugantor.com/model/LsatThreeVideo.dart';
@@ -40,12 +41,15 @@ class HomeController extends GetxController {
   List<LastEntryNewsResponse> last_entry_newsList = <LastEntryNewsResponse>[].obs;
 
   List<CategoryResponse> home_categoryList = <CategoryResponse>[].obs;
-  //List<LastEntryNewsResponse> category_wise_newsList = <LastEntryNewsResponse>[].obs;
+  List<CategoryResponse> sub_categoryList = <CategoryResponse>[].obs;
+  List<LastEntryNewsResponse> category_wise_newsList = <LastEntryNewsResponse>[].obs;
   List<HomeCategoryWithNewsList> category_list_with_news_newsList = <HomeCategoryWithNewsList>[].obs;
+  List<HomeCategoryWithNewsList> subcategory_list_with_news_newsList = <HomeCategoryWithNewsList>[].obs;
 
   var leadnews = LeadNewsResponse().obs;
   var newsDetails = NewsDetailseResponse().obs;
   var tagNameResponse = TagNameResponse().obs;
+  var last_online_pollResponse = LastOnlinePoll().obs;
   var categoryName = ''.obs;
   var newsDate = ''.obs;
   var newsEdition = ''.obs;
@@ -63,6 +67,8 @@ class HomeController extends GetxController {
   var newsId = "".obs;
   var tag = "".obs;
   var currentDateEng = "".obs;
+  var selectedCategoryName = "".obs;
+  var catListShow = false.obs;
   @override
   void onInit() {
     //scrollController.value.position = 0;
@@ -76,7 +82,7 @@ class HomeController extends GetxController {
     get_extracat();
     get_show_news();
     get_last_entry_news();
-
+    last_online_poll();
     //get_home_category();
 
 
@@ -185,7 +191,6 @@ class HomeController extends GetxController {
   }
 
   Future<dynamic> get_tag_name(String tag_id) async {
-
     print('urltagname: ${ApiClient.tag_name+'/'+tag_id}');
     //Ui.showLoaderDialog(Get.context);
     APIManager _manager = APIManager();
@@ -194,11 +199,26 @@ class HomeController extends GetxController {
       response = await _manager.get(ApiClient.tag_name+'/'+tag_id);
       //response = await _manager.get(ApiClient.newsDetails+'/558122');
       print('tagname: ${response}');
-
       //if(response != null){
       tagNameResponse.value = TagNameResponse.fromJson(response);
+      //Utils.dateBengaliNewsDetailse(Utils.dateTimeFormat(newsDetails.value.news_date_time));
+    } catch (e) {
+
+    }
+  }
 
 
+  Future<dynamic> last_online_poll() async {
+    print('urllast_online_poll: ${ApiClient.last_online_poll}');
+    //Ui.showLoaderDialog(Get.context);
+    APIManager _manager = APIManager();
+    var response;
+    try {
+      response = await _manager.get(ApiClient.last_online_poll);
+      //response = await _manager.get(ApiClient.newsDetails+'/558122');
+      print('last_online_poll: ${response}');
+      //if(response != null){
+      last_online_pollResponse.value = LastOnlinePoll.fromJson(response);
       //Utils.dateBengaliNewsDetailse(Utils.dateTimeFormat(newsDetails.value.news_date_time));
     } catch (e) {
 
@@ -356,7 +376,47 @@ class HomeController extends GetxController {
       });
 
 
+    } on SocketException {
 
+    }
+  }
+
+  get_sub_category(int catId) async {
+    sub_categoryList.clear();
+    print("Calling API: "+ApiClient.sub_category_list);
+    try {
+      final response = await http.get(Uri.parse(ApiClient.sub_category_list+'/'+catId.toString()));
+      print(response.body);
+      List<CategoryResponse> list = (json.decode(response.body) as List)
+          .map((data) => CategoryResponse.fromJson(data))
+          .toList();
+      sub_categoryList.addAll(list);
+      get_category_page_cat_wise_news(catId);
+
+
+
+    } on SocketException {
+
+    }
+  }
+
+  get_subcategory_wise_newsList(CategoryResponse categoryResponse) async {
+    subcategory_list_with_news_newsList.clear();
+    print("Calling API: "+ApiClient.category_wise_news+'/'+categoryResponse.id.toString());
+    List<LastEntryNewsResponse> newsList = <LastEntryNewsResponse>[];
+    try {
+      final response = await http.get(Uri.parse(ApiClient.category_wise_news+'/'+categoryResponse.id.toString()));
+      print(response.body.toString());
+      List<LastEntryNewsResponse> list = (json.decode(response.body) as List)
+          .map((data) => LastEntryNewsResponse.fromJson(data))
+          .toList();
+      newsList.addAll(list);
+
+      var data = HomeCategoryWithNewsList(categoryResponse.cat_name,categoryResponse.id,newsList);
+      subcategory_list_with_news_newsList.add(data);
+      dataLoaded.value = true;
+      // print('category_wise_newsList: ${category_wise_newsList[0].title.toString()}');
+      //return category_wise_newsList;
     } on SocketException {
 
     }
@@ -378,6 +438,30 @@ class HomeController extends GetxController {
 
      // print('category_wise_newsList: ${category_wise_newsList[0].title.toString()}');
       //return category_wise_newsList;
+    } on SocketException {
+
+    }
+  }
+
+  get_category_page_cat_wise_news(int catId) async {
+    category_wise_newsList.clear();
+    print("Calling API: "+ApiClient.category_wise_news+'/'+catId.toString());
+
+    try {
+      final response = await http.get(Uri.parse(ApiClient.category_wise_news+'/'+catId.toString()));
+      print(response.body.toString());
+      List<LastEntryNewsResponse> list = (json.decode(response.body) as List)
+          .map((data) => LastEntryNewsResponse.fromJson(data))
+          .toList();
+      category_wise_newsList.addAll(list);
+
+      sub_categoryList.forEach((element) {
+        get_subcategory_wise_newsList(element);
+
+      });
+
+
+
     } on SocketException {
 
     }
@@ -454,7 +538,7 @@ class HomeController extends GetxController {
       case 1:
         return new NewsDetailseFragment();
       case 2:
-        return new ThirdFragment();
+        return new SubCatFragment();
 
       default:
         return new Text("Error");

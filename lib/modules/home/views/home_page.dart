@@ -110,7 +110,10 @@ class HomePage extends GetView<HomeController> {
                                         if(homeController.categoryList[index].cat_name == "প্রচ্ছদ"){
                                           homeController.selectedIndex.value = 0;
                                         }else{
-                                          homeController.selectedIndex.value = 1;
+                                          homeController.selectedCategoryName.value = homeController.categoryList[index].cat_name.toString();
+                                          homeController.dataLoaded.value = false;
+                                          homeController.get_sub_category(homeController.categoryList![index].id!);
+                                          homeController.selectedIndex.value = 2;
                                         }
                                       },
 
