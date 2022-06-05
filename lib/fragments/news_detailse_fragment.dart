@@ -205,6 +205,21 @@ class NewsDetailseFragment extends StatelessWidget {
                       SizedBox( height:20),
 
                       Container(
+                        child: homeController.newsDetails.value.spc_event_tag_id!.isNotEmpty ?
+                            Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(Icons.calendar_today_sharp,color: Colors.black,),
+                                    Text(homeController.tagNameResponse.value.tag_name.toString()),
+                                  ],
+                                )
+                              ],
+                            ) : SizedBox()
+                      ),
+
+
+                      Container(
                         alignment: Alignment.centerLeft,
                         color: Color(0xff3B5998),
                         padding: EdgeInsets.all(7),

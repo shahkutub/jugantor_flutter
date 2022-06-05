@@ -135,13 +135,11 @@ class HomeFragment extends GetView<HomeController> {
                               itemBuilder: (context, index) {
                                 return  GestureDetector(
                                   onTap: (){
-                                    //Get.back();
-                                    homeController.selectedIndex.value = 1;
-                                    // if(homeController.catExtraLinkList[index].cat_name == "প্রচ্ছদ"){
-                                    //   //homeController.selectedIndex.value = 0;
-                                    // }else{
-                                    //  // homeController.selectedIndex.value = 1;
-                                    // }
+                                    // homeController.dataLoaded.value = false;
+                                    // homeController.newsId.value = homeController.leadnews.value.id.toString();
+                                    // homeController.get_news_details();
+                                    // homeController.selectedIndex.value = 1;
+
                                   },
 
                                   child: Obx(() => Container(
@@ -201,12 +199,11 @@ class HomeFragment extends GetView<HomeController> {
                               itemBuilder: (context, index) {
                                 return  GestureDetector(
                                   onTap: (){
-                                    //Get.back();
-                                    // if(homeController.showNewsList[index].cat_name == "প্রচ্ছদ"){
-                                    //   //homeController.selectedIndex.value = 0;
-                                    // }else{
-                                    //   // homeController.selectedIndex.value = 1;
-                                    // }
+                                    homeController.dataLoaded.value = false;
+                                    homeController.newsId.value = homeController.showNewsList[index].id.toString();
+                                    homeController.selectedIndex.value = 1;
+                                    homeController.get_news_details();
+
                                   },
 
                                   child: Obx(() => Container(
@@ -291,12 +288,10 @@ class HomeFragment extends GetView<HomeController> {
                                     margin: EdgeInsets.only(top: 10),
                                   child:   GestureDetector(
                                         onTap: (){
-                                          //Get.back();
-                                          // if(homeController.showNewsList[index].cat_name == "প্রচ্ছদ"){
-                                          //   //homeController.selectedIndex.value = 0;
-                                          // }else{
-                                          //   // homeController.selectedIndex.value = 1;
-                                          // }
+                                          homeController.dataLoaded.value = false;
+                                          homeController.newsId.value = homeController.last_entry_newsList[index].id.toString();
+                                          homeController.selectedIndex.value = 1;
+                                          homeController.get_news_details();
                                         },
 
                                         child: Obx(() => Container(
@@ -474,12 +469,10 @@ class HomeFragment extends GetView<HomeController> {
                                                                margin: EdgeInsets.only(top: 10),
                                                                 child:   GestureDetector(
                                                                   onTap: (){
-                                                                    //Get.back();
-                                                                    // if(homeController.showNewsList[index].cat_name == "প্রচ্ছদ"){
-                                                                    //   //homeController.selectedIndex.value = 0;
-                                                                    // }else{
-                                                                    //   // homeController.selectedIndex.value = 1;
-                                                                    // }
+                                                                    homeController.dataLoaded.value = false;
+                                                                    homeController.newsId.value = homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].id.toString();
+                                                                    homeController.selectedIndex.value = 1;
+                                                                    homeController.get_news_details();
                                                                   },
 
                                                                   child: Obx(() =>

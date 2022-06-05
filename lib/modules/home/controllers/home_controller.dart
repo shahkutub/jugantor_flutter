@@ -21,6 +21,7 @@ import 'package:jugantor.com/model/LeadNewsResponse.dart';
 import 'package:jugantor.com/model/LsatThreeVideo.dart';
 import 'package:jugantor.com/model/NewsDetailseResponse.dart';
 import 'package:jugantor.com/model/ShowNewsResponse.dart';
+import 'package:jugantor.com/model/TagNameResponse.dart';
 import 'package:jugantor.com/ui.dart';
 import 'package:jugantor.com/utils/utils.dart';
 
@@ -44,6 +45,7 @@ class HomeController extends GetxController {
 
   var leadnews = LeadNewsResponse().obs;
   var newsDetails = NewsDetailseResponse().obs;
+  var tagNameResponse = TagNameResponse().obs;
   var categoryName = ''.obs;
   var newsDate = ''.obs;
   var newsEdition = ''.obs;
@@ -171,6 +173,10 @@ class HomeController extends GetxController {
         get_tag_wise_news(tag.value);
       }
 
+      if(newsDetails.value.spc_event_tag_id!.isNotEmpty){
+        get_tag_name(newsDetails.value.spc_event_tag_id.toString());
+      }
+
 
       //Utils.dateBengaliNewsDetailse(Utils.dateTimeFormat(newsDetails.value.news_date_time));
     } catch (e) {
@@ -178,6 +184,26 @@ class HomeController extends GetxController {
     }
   }
 
+  Future<dynamic> get_tag_name(String tag_id) async {
+
+    print('urltagname: ${ApiClient.tag_name+'/'+tag_id}');
+    //Ui.showLoaderDialog(Get.context);
+    APIManager _manager = APIManager();
+    var response;
+    try {
+      response = await _manager.get(ApiClient.tag_name+'/'+tag_id);
+      //response = await _manager.get(ApiClient.newsDetails+'/558122');
+      print('tagname: ${response}');
+
+      //if(response != null){
+      tagNameResponse.value = TagNameResponse.fromJson(response);
+
+
+      //Utils.dateBengaliNewsDetailse(Utils.dateTimeFormat(newsDetails.value.news_date_time));
+    } catch (e) {
+
+    }
+  }
 
   get_category() async {
     print("Calling API: "+ApiClient.category);
@@ -269,6 +295,8 @@ class HomeController extends GetxController {
 
     }
   }
+
+
 
 
   get_last_entry_news() async {
