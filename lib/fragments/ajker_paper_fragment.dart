@@ -494,7 +494,7 @@ class AjkerPaperFragment extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Flexible(child: homeController.CustomRadioButton("সর্বশেষ", 1,context),flex: 1,),
-                              SizedBox(width: 20,),
+                              SizedBox(width: 10,),
                               Flexible(child: homeController.CustomRadioButton("সর্বাধিক পঠিত", 2,context),flex: 1,),
 
                             ],

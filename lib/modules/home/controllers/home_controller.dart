@@ -52,6 +52,7 @@ class HomeController extends GetxController {
 
   List<CategoryResponse> ajkert_paper_sub_categoryList = <CategoryResponse>[].obs;
 
+  List<dynamic> all_latest_newsList = <dynamic>[].obs;
 
   var leadnews = LeadNewsResponse().obs;
   var newsDetails = NewsDetailseResponse().obs;
@@ -88,7 +89,7 @@ class HomeController extends GetxController {
     get_category();
     get_extracat();
     get_show_news();
-    get_last_entry_news();
+    get_last_entry_news1();
     last_online_poll();
     //get_home_category();
 
@@ -324,9 +325,7 @@ class HomeController extends GetxController {
   }
 
 
-
-
-  get_last_entry_news() async {
+  get_last_entry_news1() async {
     print("Calling API: "+ApiClient.last_entry_news);
     try {
       final response = await http.get(Uri.parse(ApiClient.last_entry_news));
@@ -338,7 +337,7 @@ class HomeController extends GetxController {
       last_entry_newsList.clear();
       last_entry_newsList.addAll(list);
       dataLoaded.value = true;
-
+      //Navigator.of(context).pop();
       get_home_category();
       print('last_entry_newsList: ${last_entry_newsList[0].title.toString()}');
 
@@ -347,7 +346,28 @@ class HomeController extends GetxController {
     }
   }
 
-  get_most_view_news() async {
+  get_last_entry_news(BuildContext context) async {
+    print("Calling API: "+ApiClient.last_entry_news);
+    try {
+      final response = await http.get(Uri.parse(ApiClient.last_entry_news));
+      print(response.body);
+      List<LastEntryNewsResponse> list = (json.decode(response.body) as List)
+          .map((data) => LastEntryNewsResponse.fromJson(data))
+          .toList();
+
+      last_entry_newsList.clear();
+      last_entry_newsList.addAll(list);
+      dataLoaded.value = true;
+      Navigator.of(context).pop();
+      //get_home_category();
+      print('last_entry_newsList: ${last_entry_newsList[0].title.toString()}');
+
+    } on SocketException {
+
+    }
+  }
+
+  get_most_view_news(BuildContext context) async {
     print("Calling API: "+ApiClient.most_view_news);
     try {
       final response = await http.get(Uri.parse(ApiClient.most_view_news));
@@ -358,8 +378,8 @@ class HomeController extends GetxController {
       last_entry_newsList.clear();
       last_entry_newsList.addAll(list);
       //dataLoaded.value = true;
-
-      get_home_category();
+      Navigator.of(context).pop();
+      //get_home_category();
       print('last_entry_newsList: ${last_entry_newsList[0].title.toString()}');
 
     } on SocketException {
@@ -554,9 +574,22 @@ class HomeController extends GetxController {
       final response = await http.get(Uri.parse(ApiClient.all_latest_news+page.toString()));
       print(response.body);
 
-      Map<String, dynamic> user = jsonDecode(response.body);
-      //print('Howdy, ${user['name']}!');
+      //var jsonData = json.decode(response.body);
+      //var jsonData = json.decode(response.body) as Map<String, dynamic>;
 
+
+      Map<String, dynamic> user = jsonDecode(response.body);
+      var datanews = jsonEncode(user['data']);
+     // print('datanews: ${datanews}');
+      print('datanews: ${datanews}');
+
+
+      Map<String, dynamic> newsdata = jsonDecode(datanews);
+      newsdata.forEach((k, v) =>
+          //print("Key : $k, Value : $v")
+          all_latest_newsList.add(v)
+      );
+      print('newslenth: ${all_latest_newsList.length}');
 
     } on SocketException {
 
@@ -572,12 +605,12 @@ class HomeController extends GetxController {
         button.value = index;
         if(button.value == 1){
           Ui.showLoaderDialog(context);
-          get_last_entry_news();
-          Navigator.of(context).pop();
+          get_last_entry_news(context);
+
         }else{
           Ui.showLoaderDialog(context);
-          get_most_view_news();
-          Navigator.of(context).pop();
+          get_most_view_news(context);
+          //Navigator.of(context).pop();
         }
       },
       child: Expanded(

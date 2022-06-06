@@ -261,7 +261,7 @@ class SubCatFragment extends StatelessWidget {
                       //body cat news
                       Obx(() =>
                           Container(
-                              margin: EdgeInsets.only(top: 15,bottom: 0,right: 20,left: 20),
+                              margin: EdgeInsets.only(top: 15,bottom: 0,right: 0,left: 0),
                               alignment: Alignment.center,
                               child:ListView.builder(
                                 primary: false,
