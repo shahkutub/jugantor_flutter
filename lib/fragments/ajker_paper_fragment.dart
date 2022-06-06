@@ -12,6 +12,7 @@ class AjkerPaperFragment extends StatelessWidget {
     double width = Get.width;
 
 
+
     return new Container(
         margin: EdgeInsets.only(left: 20,right: 20,top: 10),
         child: Obx(() {

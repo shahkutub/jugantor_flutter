@@ -490,16 +490,6 @@ class NewsDetailseFragment extends StatelessWidget {
                     ],
                   ),
 
-                  // child: Row(
-                  //   children: <Widget>[
-                  //     Text("প্রচ্ছদ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
-                  //     Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
-                  //     Obx(() =>
-                  //         Visibility(visible: true,child:Text(""+homeController.categoryName.value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
-                  //     ),
-                  //
-                  //   ],
-                  // ),
                 )
 
             );
@@ -510,46 +500,5 @@ class NewsDetailseFragment extends StatelessWidget {
         })
     );
 
-    // return new Container(
-    //     child: Obx(() {
-    //       if (homeController.dataLoaded.isTrue) {
-    //         return new SingleChildScrollView(
-    //             //controller: homeController.scrollController.value,
-    //             child: Container(
-    //               child: Column(
-    //
-    //                 children: <Widget>[
-    //
-    //                   Obx(() =>
-    //                       Container(
-    //                         margin: EdgeInsets.only(top: 15, bottom: 5, right: 20, left: 20),
-    //                         child:Obx(() {
-    //                           return Row(
-    //                             children: [
-    //                               // Text("প্রচ্ছদ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
-    //                               // Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
-
-    //                               Obx(() =>
-    //                                   Visibility(visible: true,child:Text(""+homeController.categoryName.value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
-    //                               ),
-    //                               //Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
-    //                             ],
-    //                           );
-    //                         })
-    //
-    //                       )
-    //                   ),
-    //
-    //
-    //                 ],
-    //               ),
-    //             )
-    //
-    //         );
-    //       } else {
-    //         return Center(child: CircularProgressIndicator());
-    //       }
-    //     })
-    // );
   }
 }

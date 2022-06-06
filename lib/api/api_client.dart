@@ -30,4 +30,8 @@ class ApiClient {
 
 
 
+  static String all_latest_news = '${baseUrl}api/ver1/all_latest_news?page=';
+
+
+
 }

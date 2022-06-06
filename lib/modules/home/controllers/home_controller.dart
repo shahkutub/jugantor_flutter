@@ -9,8 +9,10 @@ import 'package:get/get.dart';
 import 'package:jugantor.com/api/api_client.dart';
 import 'package:jugantor.com/api/api_manager.dart';
 import 'package:jugantor.com/fragments/ajker_paper_fragment.dart';
+import 'package:jugantor.com/fragments/e_paper_frgment.dart';
 import 'package:jugantor.com/fragments/home_fragment.dart';
 import 'package:jugantor.com/fragments/news_detailse_fragment.dart';
+import 'package:jugantor.com/fragments/sob_khobor_fragment.dart';
 import 'package:jugantor.com/fragments/sub_cat_fragment.dart';
 import 'package:jugantor.com/model/CatExtraLinkResponse.dart';
 import 'package:jugantor.com/model/CategoryResponse.dart';
@@ -29,7 +31,7 @@ import 'package:jugantor.com/utils/utils.dart';
 
 
 class HomeController extends GetxController {
-
+  var isLoading=true.obs;
   var selectedPageIndex = 0.obs;
   var homecatId = 0.obs;
   var banglaDate = "".obs;
@@ -546,6 +548,16 @@ class HomeController extends GetxController {
     }
   }
 
+  get_all_latest_news(int page) async {
+    print("API: "+ApiClient.all_latest_news+page.toString());
+    try {
+      final response = await http.get(Uri.parse(ApiClient.all_latest_news+page.toString()));
+      print(response.body);
+    } on SocketException {
+
+    }
+  }
+
 
   Widget CustomRadioButton(String text, int index) {
     return FlatButton(
@@ -581,15 +593,18 @@ class HomeController extends GetxController {
 
   getDrawerItemWidget(int pos) {
     switch (pos) {
-      case 0:
+        case 0:
         return new HomeFragment();
-      case 1:
+        case 1:
         return new NewsDetailseFragment();
-      case 2:
+        case 2:
         return new SubCatFragment();
         case 3:
         return new AjkerPaperFragment();
-
+        case 4:
+        return new EpaperFragment();
+        case 5:
+        return new SobKhoborFragment();
 
       default:
         return new Text("Error");

@@ -57,7 +57,7 @@ class HomePage extends GetView<HomeController> {
                       ),
                       GestureDetector(
                         onTap: (){
-
+                          homeController.selectedPageIndex.value = 4;
                         },
                         child: Container(
                           padding: EdgeInsets.all(5),
@@ -92,10 +92,15 @@ class HomePage extends GetView<HomeController> {
                     Container(
                       //height: 80,
                       alignment: Alignment.centerLeft,
-                      child: SvgPicture.asset(
-                        'assets/images/jugantorlogo.svg',
+                      child:GestureDetector(
+                        onTap: (){
+                          homeController.selectedPageIndex.value = 0;
+                        },
+                        child:SvgPicture.asset(
+                          'assets/images/jugantorlogo.svg',
                           height: 40, width: 130,
 
+                        )
                       )
                     ),
                   Container(

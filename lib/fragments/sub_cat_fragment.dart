@@ -18,6 +18,8 @@ class SubCatFragment extends StatelessWidget {
           if(homeController.dataLoaded.isTrue){
             return new SingleChildScrollView(
               // controller: homeController.scrollController.value,
+
+
                 child: Container(
                   child:Column(
                     children: [
@@ -574,6 +576,27 @@ class SubCatFragment extends StatelessWidget {
 
                           ),
                       ),
+
+                      GestureDetector(
+                        onTap: (){
+                          homeController.selectedPageIndex.value = 5;
+                          homeController.get_all_latest_news(1);
+                        },
+                        child:Container(
+                          alignment: Alignment.centerLeft,
+                          color: Color(0xff3A495E),
+                          padding: EdgeInsets.all(7),
+                          child:Text("সব খবর",
+                              style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,
+                                  color: Colors.white),
+                            textAlign: TextAlign.center,
+                          ),
+
+                        ),
+
+                      ),
+                      SizedBox(height: 20,)
+
 
 
                     ],
