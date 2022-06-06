@@ -553,22 +553,31 @@ class HomeController extends GetxController {
     try {
       final response = await http.get(Uri.parse(ApiClient.all_latest_news+page.toString()));
       print(response.body);
+
+      Map<String, dynamic> user = jsonDecode(response.body);
+      //print('Howdy, ${user['name']}!');
+
+
     } on SocketException {
 
     }
   }
 
 
-  Widget CustomRadioButton(String text, int index) {
+  Widget CustomRadioButton(String text, int index,BuildContext  context) {
     return FlatButton(
 
       color: (button.value == index) ? Colors.black : Colors.white,
       onPressed: () {
         button.value = index;
         if(button.value == 1){
+          Ui.showLoaderDialog(context);
           get_last_entry_news();
+          Navigator.of(context).pop();
         }else{
+          Ui.showLoaderDialog(context);
           get_most_view_news();
+          Navigator.of(context).pop();
         }
       },
       child: Expanded(
