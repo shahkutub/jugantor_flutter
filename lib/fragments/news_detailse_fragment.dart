@@ -218,6 +218,92 @@ class NewsDetailseFragment extends StatelessWidget {
                             ) : SizedBox()
                       ),
 
+                      Container(
+                          margin: EdgeInsets.only(top: 10,bottom: 10,right: 0,left: 0),
+                          alignment: Alignment.center,
+                          child:ListView.builder(
+                            primary: false,
+                            shrinkWrap: true,
+                            // Let the ListView know how many items it needs to build.
+                            itemCount: homeController.detail_page_aro_button_newsList.length,
+                            // Provide a builder function. This is where the magic happens.
+                            // Convert each item into a widget based on the type of item it is.
+                            itemBuilder: (context, index) {
+                              //final item = homeController.last_entry_newsList[index];
+
+                              return Container(
+                                  margin: EdgeInsets.only(top: 10),
+                                  child:   GestureDetector(
+                                    onTap: (){
+                                      //Get.back();
+                                      // if(homeController.showNewsList[index].cat_name == "প্রচ্ছদ"){
+                                      //   //homeController.selectedIndex.value = 0;
+                                      // }else{
+                                      //   // homeController.selectedIndex.value = 1;
+                                      // }
+                                    },
+
+                                    child: Obx(() => Container(
+                                      //height: ,
+                                      //alignment: Alignment.center,
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                              margin: EdgeInsets.only(right: 10),
+                                              height: 70,
+                                              width: 100,
+                                              child: Stack(
+                                                fit: StackFit.expand,
+                                                children: [
+                                                  FadeInImage.assetNetwork(
+                                                      height: 70,
+                                                      width: 100,
+                                                      fit: BoxFit.fill,
+                                                      image:homeController.detail_page_aro_button_newsList[index]["img_url"],
+                                                      placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                  ),
+                                                  Positioned(
+                                                    bottom: 20,
+                                                    left:35,
+                                                    child: homeController.detail_page_aro_button_newsList[index]["video_dis"]  == 1 ?
+                                                    Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Flexible(child: Text(homeController.detail_page_aro_button_newsList[index]["title"],
+                                              style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                              textAlign: TextAlign.justify,
+                                            ),
+
+                                            ),
+
+                                          ],
+                                        )
+                                    )
+                                    ),
+                                  )
+                              );
+                            },
+                          )
+
+                      ),
+
+                      GestureDetector(
+                        onTap: (){
+                          homeController.get_event_news_paginate(homeController.eventPage.value+1);
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(top: 10,bottom: 15),
+                          alignment: Alignment.center,
+                          color: Color(0xffEEEEEE),
+                          padding: EdgeInsets.all(7),
+                          child: Text("আরও",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black)),
+                        ),
+                      ),
 
                       Container(
                         alignment: Alignment.centerLeft,

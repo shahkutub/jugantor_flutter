@@ -53,6 +53,8 @@ class HomeController extends GetxController {
   List<CategoryResponse> ajkert_paper_sub_categoryList = <CategoryResponse>[].obs;
 
   List<dynamic> all_latest_newsList = <dynamic>[].obs;
+  List<dynamic> detail_page_aro_button_newsList = <dynamic>[].obs;
+  var eventPage = 1.obs;
 
   var leadnews = LeadNewsResponse().obs;
   var newsDetails = NewsDetailseResponse().obs;
@@ -74,6 +76,7 @@ class HomeController extends GetxController {
 
   var newsId = "".obs;
   var tag = "".obs;
+  var spc_event_tag_id = "".obs;
   var currentDateEng = "".obs;
   var selectedCategoryName = "".obs;
   var catListShow = false.obs;
@@ -170,6 +173,12 @@ class HomeController extends GetxController {
       }
 
       get_more_cat_news(newsDetails.value.parent_cat_id.toString(),newsDetails.value.id.toString());
+
+      spc_event_tag_id.value = newsDetails.value.spc_event_tag_id!;
+
+      if(spc_event_tag_id.value.isNotEmpty){
+        get_event_news_paginate(eventPage.value);
+      }
 
       if(newsDetails.value.location_name!.isNotEmpty){
         tag.value = newsDetails.value.location_name!;
@@ -595,6 +604,37 @@ class HomeController extends GetxController {
 
     }
   }
+
+  get_event_news_paginate(int page) async {
+    var url = ApiClient.event_news_paginate+'/'+spc_event_tag_id.value+'?page='+page.toString();
+    print("API: "+url);
+    try {
+      final response = await http.get(Uri.parse(url));
+      print(response.body);
+
+      //var jsonData = json.decode(response.body);
+      //var jsonData = json.decode(response.body) as Map<String, dynamic>;
+
+
+      Map<String, dynamic> user = jsonDecode(response.body);
+      var datanews = jsonEncode(user['data']);
+     // print('datanews: ${datanews}');
+      print('datanews: ${datanews}');
+
+
+      Map<String, dynamic> newsdata = jsonDecode(datanews);
+      newsdata.forEach((k, v) =>
+          //print("Key : $k, Value : $v")
+      detail_page_aro_button_newsList.add(v)
+      );
+      print('newslenth: ${detail_page_aro_button_newsList.length}');
+
+    } on SocketException {
+
+    }
+  }
+
+
 
 
   Widget CustomRadioButton(String text, int index,BuildContext  context) {

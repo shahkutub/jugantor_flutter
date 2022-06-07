@@ -61,8 +61,6 @@ class SobKhoborFragment extends StatelessWidget {
                       ),
 
                       //all news
-
-
                       Container(
                           margin: EdgeInsets.only(top: 10,bottom: 10,right: 0,left: 0),
                           alignment: Alignment.center,

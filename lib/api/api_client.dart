@@ -20,6 +20,7 @@ class ApiClient {
   static String more_cat_wise_news = '${baseUrl}api/ver1/more_cat_wise_news';
   static String tag_wise_news = '${baseUrl}api/ver1/tag_wise_news';
   static String tag_name = '${baseUrl}api/ver1/event_stream';
+  static String event_news_paginate = '${baseUrl}api/ver1/event_news_paginate';
 
 
   static String sub_category_list = '${baseUrl}api/ver1/sub_category_list';
