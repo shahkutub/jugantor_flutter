@@ -218,6 +218,10 @@ class NewsDetailseFragment extends StatelessWidget {
                             ) : SizedBox()
                       ),
 
+                      Divider(
+                          color: Colors.red
+                      ),
+
                       Container(
                           margin: EdgeInsets.only(top: 10,bottom: 10,right: 0,left: 0),
                           alignment: Alignment.center,

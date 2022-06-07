@@ -9,7 +9,7 @@ class Ui {
       content: new Row(
         children: [
           CircularProgressIndicator(),
-          Container(margin: EdgeInsets.only(left: 7),child:Text("অনুগ্রহ করে অপেক্ষা করুন..." )),
+          Container(margin: EdgeInsets.only(left: 7),child:Text("অপেক্ষা করুন..." )),
         ],),
     );
     showDialog(barrierDismissible: false,

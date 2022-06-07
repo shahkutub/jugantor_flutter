@@ -6,6 +6,9 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
+import 'package:jugantor.com/utils/loaders/color_loader_5.dart';
+import 'package:jugantor.com/utils/loaders/dot_type.dart';
+
 
 class HomeFragment extends GetView<HomeController> {
   final HomeController homeController = Get.put(HomeController());
@@ -16,7 +19,6 @@ class HomeFragment extends GetView<HomeController> {
     double height = Get.height;
     double width = Get.width;
     //Get.find<HomeController>();
-
 
     return new Container(
       child: Obx(() {
@@ -892,7 +894,19 @@ class HomeFragment extends GetView<HomeController> {
 
           );
         }else{
-          return Center(child: CircularProgressIndicator());
+          return Center(
+
+              //child: CircularProgressIndicator()
+              //child: _sendingMsgProgressBar.show(context)
+              child:ColorLoader5(
+                dotOneColor: Colors.red,
+                dotTwoColor: Colors.blue,
+                dotThreeColor: Colors.green,
+                dotType: DotType.circle,
+                duration: Duration(seconds: 1),
+              )
+
+          );
         }
 
       })

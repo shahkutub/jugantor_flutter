@@ -12,6 +12,7 @@ import 'package:jugantor.com/fragments/ajker_paper_fragment.dart';
 import 'package:jugantor.com/fragments/e_paper_frgment.dart';
 import 'package:jugantor.com/fragments/home_fragment.dart';
 import 'package:jugantor.com/fragments/news_detailse_fragment.dart';
+import 'package:jugantor.com/fragments/sob_khobor_cat_wise_fragment.dart';
 import 'package:jugantor.com/fragments/sob_khobor_fragment.dart';
 import 'package:jugantor.com/fragments/sub_cat_fragment.dart';
 import 'package:jugantor.com/model/CatExtraLinkResponse.dart';
@@ -33,7 +34,7 @@ import 'package:jugantor.com/utils/utils.dart';
 class HomeController extends GetxController {
   var isLoading=true.obs;
   var selectedPageIndex = 0.obs;
-  var homecatId = 0.obs;
+  var catId = 0.obs;
   var banglaDate = "".obs;
 
   List<CategoryResponse> categoryList = <CategoryResponse>[].obs;
@@ -53,6 +54,7 @@ class HomeController extends GetxController {
   List<CategoryResponse> ajkert_paper_sub_categoryList = <CategoryResponse>[].obs;
 
   List<dynamic> all_latest_newsList = <dynamic>[].obs;
+  List<dynamic> all_cat_wise_newsList = <dynamic>[].obs;
   List<dynamic> detail_page_aro_button_newsList = <dynamic>[].obs;
   var eventPage = 1.obs;
 
@@ -345,7 +347,7 @@ class HomeController extends GetxController {
 
       last_entry_newsList.clear();
       last_entry_newsList.addAll(list);
-      dataLoaded.value = true;
+      //dataLoaded.value = true;
       //Navigator.of(context).pop();
       get_home_category();
       print('last_entry_newsList: ${last_entry_newsList[0].title.toString()}');
@@ -410,7 +412,7 @@ class HomeController extends GetxController {
         get_category_wise_news(element);
 
       });
-
+      dataLoaded.value = true;
 
     } on SocketException {
 
@@ -533,7 +535,7 @@ class HomeController extends GetxController {
           .map((data) => LastEntryNewsResponse.fromJson(data))
           .toList();
       category_wise_newsList.addAll(list);
-
+      dataLoaded.value = true;
       sub_categoryList.forEach((element) {
         get_subcategory_wise_newsList(element);
 
@@ -599,6 +601,36 @@ class HomeController extends GetxController {
           all_latest_newsList.add(v)
       );
       print('newslenth: ${all_latest_newsList.length}');
+
+    } on SocketException {
+
+    }
+  }
+
+  get_all_cat_wise_news(int page,BuildContext context) async {
+    var url = ApiClient.all_cat_wise_news+"/"+catId.value.toString()+'?page='+page.toString();
+    print("API: "+url);
+    try {
+      final response = await http.get(Uri.parse(url));
+      print(response.body);
+
+      //var jsonData = json.decode(response.body);
+      //var jsonData = json.decode(response.body) as Map<String, dynamic>;
+
+
+      Map<String, dynamic> user = jsonDecode(response.body);
+      var datanews = jsonEncode(user['data']);
+      // print('datanews: ${datanews}');
+      print('datanews: ${datanews}');
+
+
+      Map<String, dynamic> newsdata = jsonDecode(datanews);
+      newsdata.forEach((k, v) =>
+      //print("Key : $k, Value : $v")
+      all_cat_wise_newsList.add(v)
+      );
+      dataLoaded.value = true;
+      //print('newslenth: ${all_cat_wise_newsList.length}');
 
     } on SocketException {
 
@@ -687,6 +719,10 @@ class HomeController extends GetxController {
         return new EpaperFragment();
         case 5:
         return new SobKhoborFragment();
+        case 6:
+        return new SobKhoborCatWiseFragment();
+
+
 
       default:
         return new Text("Error");

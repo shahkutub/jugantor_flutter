@@ -146,6 +146,8 @@ class HomePage extends GetView<HomeController> {
                                         if(homeController.categoryList[index].cat_name == "প্রচ্ছদ"){
                                           homeController.selectedPageIndex.value = 0;
                                         }else{
+                                          homeController.subcategory_list_with_news_newsList.clear();
+                                          homeController.catId.value = homeController.categoryList[index].id!;
                                           homeController.selectedCategoryName.value = homeController.categoryList[index].cat_name.toString();
                                           homeController.dataLoaded.value = false;
                                           homeController.get_sub_category(homeController.categoryList![index].id!);
