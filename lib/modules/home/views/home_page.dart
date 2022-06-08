@@ -44,11 +44,12 @@ class HomePage extends GetView<HomeController> {
                           // ajker paper page index 3
                           homeController.selectedPageIndex.value = 3;
                           homeController.selectedCategoryName.value = "আজকের পত্রিকা";
+                          homeController.catListShow.value = false;
                           homeController.ajker_paper_sub_category();
                         },
                         child: Container(
                           padding: EdgeInsets.all(5),
-                          child: Text(" আজকের পত্রিকা  ",
+                          child: Text(" আজকের পত্রিকা ",
                             style: TextStyle(color: Colors.white,fontSize: 15),
                             textAlign:TextAlign.center,
                           ),
@@ -61,7 +62,7 @@ class HomePage extends GetView<HomeController> {
                         },
                         child: Container(
                           padding: EdgeInsets.all(5),
-                          child: Text("|  ই-পেপার ",
+                          child: Text("| ই-পেপার ",
                             style: TextStyle(color: Colors.white,fontSize: 15),
                             textAlign:TextAlign.center,
                           ),

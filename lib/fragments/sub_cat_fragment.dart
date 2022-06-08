@@ -36,7 +36,9 @@ class SubCatFragment extends StatelessWidget {
                                 child: Row(
                                   //mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text(""+homeController.selectedCategoryName.value),
+                                    Text(""+homeController.selectedCategoryName.value,
+                                    textAlign: TextAlign.center,style: TextStyle(fontSize: 15,
+                                    fontWeight: FontWeight.bold)),
 
                                     GestureDetector(
                                       onTap: (){
@@ -63,7 +65,10 @@ class SubCatFragment extends StatelessWidget {
                             Container(
                               //height: 80,
                                 alignment: Alignment.centerRight,
-                                child: Text('|  '+homeController.selectedCategoryName.value,textAlign: TextAlign.center,)
+                                child: homeController.selectedSubCategoryName.value.toString().isNotEmpty?
+                                Text('| '+homeController.selectedSubCategoryName.value,
+                                  textAlign: TextAlign.center,style: TextStyle(fontSize: 15,
+                                      fontWeight: FontWeight.bold),):Text('')
                               // child: Row(
                               //   children: [
                               //     Text('|')
@@ -76,7 +81,7 @@ class SubCatFragment extends StatelessWidget {
                       ),
 
                       Container(
-                          padding: EdgeInsets.all(20),
+                          padding: EdgeInsets.all(0),
                           alignment: Alignment.center,
                           child:homeController.catListShow.value?
                           GridView.builder(
@@ -86,19 +91,26 @@ class SubCatFragment extends StatelessWidget {
                                 crossAxisCount: 2,
                                 crossAxisSpacing: 5.0,
                                 mainAxisSpacing: 5.0,
-                                childAspectRatio: 5.5
+                                childAspectRatio: 4.0
                             ),
                             itemCount: homeController.sub_categoryList.length,
                             itemBuilder: (context, index) {
                               return  GestureDetector(
                                 onTap: (){
-
+                                  homeController.catListShow.value = false;
+                                  homeController.selectedSubCategoryName.value = homeController.sub_categoryList[index].cat_name!;
+                                  homeController.get_category_page_subcat_wise_news(homeController.sub_categoryList[index].id!);
                                 },
 
-                                child: Text(homeController.sub_categoryList[index].cat_name!,
-                                  style: TextStyle(color: Colors.black,fontSize: 15, ),
-                                  textAlign: TextAlign.justify,
+                                child: Container(
+                                  padding: EdgeInsets.all(10),
+                                  child: Text(homeController.sub_categoryList[index].cat_name!,
+                                    style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold ),
+                                    textAlign: TextAlign.justify,
+                                  ),
                                 ),
+                                
+                                
                               );
                             },
                           ):SizedBox(height: 0,)
@@ -106,7 +118,7 @@ class SubCatFragment extends StatelessWidget {
 
                       //cat top news
                       Container(
-                          margin: EdgeInsets.only(top: 0,bottom: 5),
+                          margin: EdgeInsets.only(top: 10,bottom: 5),
                           alignment: Alignment.center,
                           child:ListView.builder(
                             primary: false,
@@ -270,11 +282,11 @@ class SubCatFragment extends StatelessWidget {
 
                         },
                         child:Container(
-                          alignment: Alignment.centerLeft,
+                          alignment: Alignment.center,
                           color: Color(0xff0069D9),
                           padding: EdgeInsets.all(7),
                           child:Text("পরবর্তী >",
-                            style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,
+                            style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,
                                 color: Colors.white),
                             textAlign: TextAlign.center,
                           ),

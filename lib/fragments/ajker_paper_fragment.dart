@@ -34,7 +34,9 @@ class AjkerPaperFragment extends StatelessWidget {
                                 child: Row(
                                   //mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text(""+homeController.selectedCategoryName.value),
+                                    Text(""+homeController.selectedCategoryName.value,
+                                        textAlign: TextAlign.center,style: TextStyle(fontSize: 15,
+                                        fontWeight: FontWeight.bold)),
 
                                     GestureDetector(
                                       onTap: (){
@@ -61,12 +63,10 @@ class AjkerPaperFragment extends StatelessWidget {
                             Container(
                               //height: 80,
                                 alignment: Alignment.centerRight,
-                                child: Text('|  '+homeController.selectedCategoryName.value,textAlign: TextAlign.center,)
-                              // child: Row(
-                              //   children: [
-                              //     Text('|')
-                              //   ],
-                              // ),
+                                child: homeController.selectedSubCategoryName.value.toString().isNotEmpty?
+                                Text('| '+homeController.selectedSubCategoryName.value,
+                                  textAlign: TextAlign.center,style: TextStyle(fontSize: 15,
+                                      fontWeight: FontWeight.bold),):Text('')
                             ),
 
                           ],
@@ -74,7 +74,7 @@ class AjkerPaperFragment extends StatelessWidget {
                       ),
 
                       Container(
-                          padding: EdgeInsets.all(20),
+                          padding: EdgeInsets.all(0),
                           alignment: Alignment.center,
                           child:homeController.catListShow.value?
                           GridView.builder(
@@ -84,18 +84,24 @@ class AjkerPaperFragment extends StatelessWidget {
                                 crossAxisCount: 2,
                                 crossAxisSpacing: 5.0,
                                 mainAxisSpacing: 5.0,
-                                childAspectRatio: 5.5
+                                childAspectRatio: 4.0
                             ),
                             itemCount: homeController.ajkert_paper_sub_categoryList.length,
                             itemBuilder: (context, index) {
                               return  GestureDetector(
                                 onTap: (){
-
+                                  homeController.catListShow.value = false;
+                                  homeController.selectedSubCategoryName.value = homeController.ajkert_paper_sub_categoryList[index].cat_name!;
+                                  homeController.ajker_paper_subcategory_list_with_newsList.clear();
+                                  homeController.get_category_page_subcat_wise_news(homeController.ajkert_paper_sub_categoryList[index].id!);
                                 },
 
-                                child: Text(homeController.ajkert_paper_sub_categoryList[index].cat_name!,
-                                  style: TextStyle(color: Colors.black,fontSize: 15, ),
-                                  textAlign: TextAlign.justify,
+                                child: Container(
+                                  padding: EdgeInsets.all(10),
+                                  child: Text(homeController.ajkert_paper_sub_categoryList[index].cat_name!,
+                                    style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold ),
+                                    textAlign: TextAlign.justify,
+                                  ),
                                 ),
                               );
                             },
@@ -103,7 +109,7 @@ class AjkerPaperFragment extends StatelessWidget {
                       ),
 
                       Container(
-                          margin: EdgeInsets.only(top: 0,bottom: 5),
+                          margin: EdgeInsets.only(top: 10,bottom: 5),
                           alignment: Alignment.center,
                           child:ListView.builder(
                             primary: false,

@@ -1,4 +1,5 @@
 
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -27,6 +28,8 @@ import 'package:jugantor.com/model/LsatThreeVideo.dart';
 import 'package:jugantor.com/model/NewsDetailseResponse.dart';
 import 'package:jugantor.com/model/ShowNewsResponse.dart';
 import 'package:jugantor.com/model/TagNameResponse.dart';
+import 'package:jugantor.com/modules/splashscreen/controllers/splashscreen_controller.dart';
+import 'package:jugantor.com/routes/app_pages.dart';
 import 'package:jugantor.com/ui.dart';
 import 'package:jugantor.com/utils/utils.dart';
 
@@ -81,6 +84,7 @@ class HomeController extends GetxController {
   var spc_event_tag_id = "".obs;
   var currentDateEng = "".obs;
   var selectedCategoryName = "".obs;
+  var selectedSubCategoryName = "".obs;
   var catListShow = false.obs;
 
   // Group Value for Radio Button.
@@ -90,18 +94,30 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
+
     //scrollController.value.position = 0;
     //print(scrollController.value.offset.toString());
     currentDateEng.value = Utils.getCurrentDateEng();
-    get_bn_date();
+    //Get.find<SplashscreenController>();
+    banglaDate.value = Get.find<SplashscreenController>().banglaDate.value;
+    categoryList = Get.find<SplashscreenController>().categoryList;
+    catExtraLinkList = Get.find<SplashscreenController>().catExtraLinkList;
+    last_entry_newsList = Get.find<SplashscreenController>().last_entry_newsList;
+    home_categoryList = Get.find<SplashscreenController>().home_categoryList;
+    category_list_with_news_newsList = Get.find<SplashscreenController>().category_list_with_news_newsList;
+
+    // get_bn_date();
+    // get_category();
+
+
+    //get_extracat();
+    get_lead_news();
+    get_show_news();
+    //get_last_entry_news1();
+
+    last_online_poll();
     get_last_photo_album();
     get_last_three_videos();
-    get_lead_news();
-    get_category();
-    get_extracat();
-    get_show_news();
-    get_last_entry_news1();
-    last_online_poll();
     //get_home_category();
 
 
@@ -113,25 +129,6 @@ class HomeController extends GetxController {
 
 
 
-  Future<dynamic> get_bn_date() async {
-
-    //Ui.showLoaderDialog(Get.context);
-    APIManager _manager = APIManager();
-    var response;
-    try {
-      response = await _manager.get(ApiClient.today_bn_date);
-      print('today_bn_date: ${response}');
-
-      if(response != null){
-        banglaDate.value = response.toString();
-
-        //Navigator.of(Get.context).pop();
-      }
-
-    } catch (e) {
-
-    }
-  }
 
   Future<dynamic> get_lead_news() async {
 
@@ -244,52 +241,18 @@ class HomeController extends GetxController {
       print('last_online_poll: ${response}');
       //if(response != null){
       last_online_pollResponse.value = LastOnlinePoll.fromJson(response);
+      dataLoaded.value =true;
       //Utils.dateBengaliNewsDetailse(Utils.dateTimeFormat(newsDetails.value.news_date_time));
     } catch (e) {
 
     }
   }
 
-  get_category() async {
-    print("Calling API: "+ApiClient.category);
-    try {
-      final response = await http.get(Uri.parse(ApiClient.category));
-      //print(response.body);
-      List<CategoryResponse> list = (json.decode(response.body) as List)
-          .map((data) => CategoryResponse.fromJson(data))
-          .toList();
-      categoryList.addAll(list);
-      var cattegory = CategoryResponse();
-      cattegory.cat_name = "প্রচ্ছদ";
-      cattegory.id = 0;
-      categoryList.add(cattegory);
-      categoryList.insert(0, cattegory);
-      print('categoryList: ${list.length.toString()}');
-
-      print('categoryname: ${categoryList[0].cat_name.toString()}');
-
-    } on SocketException {
-
-    }
-  }
 
 
 
-  get_extracat() async {
-    print("Calling API: "+ApiClient.category);
-    try {
-      final response = await http.get(Uri.parse(ApiClient.cat_extra_link));
-      //print(response.body);
-      List<CatExtraLinkResponse> list = (json.decode(response.body) as List)
-          .map((data) => CatExtraLinkResponse.fromJson(data))
-          .toList();
-      catExtraLinkList.addAll(list);
-      //print('categoryname: ${categoryList[0].cat_name.toString()}');
-      //dataLoaded.value = true;
-    } on SocketException {
 
-    }
-  }
+
 
   get_show_news() async {
     print("Calling API: "+ApiClient.category);
@@ -362,6 +325,26 @@ class HomeController extends GetxController {
 
     }
   }
+  get_home_category() async {
+    print("Calling API: "+ApiClient.home_category);
+    try {
+      final response = await http.get(Uri.parse(ApiClient.home_category));
+      //print(response.body);
+      List<CategoryResponse> list = (json.decode(response.body) as List)
+          .map((data) => CategoryResponse.fromJson(data))
+          .toList();
+      home_categoryList.addAll(list);
+
+      home_categoryList.forEach((element) {
+        get_category_wise_news(element);
+
+      });
+      dataLoaded.value = true;
+
+    } on SocketException {
+
+    }
+  }
 
   get_last_entry_news(BuildContext context) async {
     print("Calling API: "+ApiClient.last_entry_news);
@@ -404,26 +387,7 @@ class HomeController extends GetxController {
     }
   }
 
-  get_home_category() async {
-    print("Calling API: "+ApiClient.home_category);
-    try {
-      final response = await http.get(Uri.parse(ApiClient.home_category));
-      //print(response.body);
-      List<CategoryResponse> list = (json.decode(response.body) as List)
-          .map((data) => CategoryResponse.fromJson(data))
-          .toList();
-      home_categoryList.addAll(list);
 
-      home_categoryList.forEach((element) {
-        get_category_wise_news(element);
-
-      });
-      dataLoaded.value = true;
-
-    } on SocketException {
-
-    }
-  }
 
   get_sub_category(int catId) async {
     sub_categoryList.clear();
@@ -542,10 +506,32 @@ class HomeController extends GetxController {
           .toList();
       category_wise_newsList.addAll(list);
       dataLoaded.value = true;
+      subcategory_list_with_news_newsList.clear();
       sub_categoryList.forEach((element) {
         get_subcategory_wise_newsList(element);
 
       });
+
+
+
+    } on SocketException {
+
+    }
+  }
+
+  get_category_page_subcat_wise_news(int catId) async {
+    category_wise_newsList.clear();
+    print("Calling API: "+ApiClient.category_wise_news+'/'+catId.toString());
+
+    try {
+      final response = await http.get(Uri.parse(ApiClient.category_wise_news+'/'+catId.toString()));
+      print(response.body.toString());
+      List<LastEntryNewsResponse> list = (json.decode(response.body) as List)
+          .map((data) => LastEntryNewsResponse.fromJson(data))
+          .toList();
+      category_wise_newsList.addAll(list);
+      dataLoaded.value = true;
+      subcategory_list_with_news_newsList.clear();
 
 
 
@@ -672,7 +658,62 @@ class HomeController extends GetxController {
     }
   }
 
+  get_category() async {
+    print("Calling API: "+ApiClient.category);
+    try {
+      final response = await http.get(Uri.parse(ApiClient.category));
+      //print(response.body);
+      List<CategoryResponse> list = (json.decode(response.body) as List)
+          .map((data) => CategoryResponse.fromJson(data))
+          .toList();
+      categoryList.addAll(list);
+      var cattegory = CategoryResponse();
+      cattegory.cat_name = "প্রচ্ছদ";
+      cattegory.id = 0;
+      categoryList.add(cattegory);
+      categoryList.insert(0, cattegory);
+      print('categoryList: ${list.length.toString()}');
 
+      print('categoryname: ${categoryList[0].cat_name.toString()}');
+      Get.offAllNamed(Routes.HOME);
+    } on SocketException {
+
+    }
+  }
+  Future<dynamic> get_bn_date() async {
+
+    //Ui.showLoaderDialog(Get.context);
+    APIManager _manager = APIManager();
+    var response;
+    try {
+      response = await _manager.get(ApiClient.today_bn_date);
+      print('today_bn_date: ${response}');
+
+      if(response != null){
+        banglaDate.value = response.toString();
+
+        //Navigator.of(Get.context).pop();
+      }
+
+    } catch (e) {
+
+    }
+  }
+  get_extracat() async {
+    print("Calling API: "+ApiClient.category);
+    try {
+      final response = await http.get(Uri.parse(ApiClient.cat_extra_link));
+      //print(response.body);
+      List<CatExtraLinkResponse> list = (json.decode(response.body) as List)
+          .map((data) => CatExtraLinkResponse.fromJson(data))
+          .toList();
+      catExtraLinkList.addAll(list);
+      //print('categoryname: ${categoryList[0].cat_name.toString()}');
+      //dataLoaded.value = true;
+    } on SocketException {
+
+    }
+  }
 
 
   Widget CustomRadioButton(String text, int index,BuildContext  context) {

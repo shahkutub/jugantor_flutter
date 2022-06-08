@@ -910,7 +910,7 @@ class HomeFragment extends GetView<HomeController> {
                             color: Colors.orange,
                             child: Text(
                               'অনলাইন জরিপ',style: TextStyle(
-                              color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold
+                              color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold
                             ),
                             ),
                           ),
@@ -920,9 +920,7 @@ class HomeFragment extends GetView<HomeController> {
                             child: Column(
                               children: [
                                 Text(
-                                  'সীতাকুণ্ডে বিএম কনটেইনার ডিপোতে ভয়াবহ বিস্ফোরণের পেছনে '
-                                      '‘কিছু একটা ঘটেছে’ বলে মন্তব্য করেছেন স্বরাষ্ট্রমন্ত্রী '
-                                      'আসাদুজ্জামান খান কামাল। আপনিও কি তেমন কিছু সন্দেহ করেন?'
+                                  homeController.last_online_pollResponse.value.ques!
                                   ,style: TextStyle(
                                     color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold
                                 ),
@@ -991,37 +989,39 @@ class HomeFragment extends GetView<HomeController> {
                             ),
                           ),
                           SizedBox(height: 20,),
-
+                          // Row(children: <Widget>[
+                          //   Expanded(
+                          //     child: ListTile(
+                          //       title: const Text('Lafayette'),
+                          //       leading: Radio<SingingCharacter>(
+                          //         value: SingingCharacter.lafayette,
+                          //         groupValue: homeController.character.value,
+                          //         onChanged: (SingingCharacter? value) {
+                          //           homeController.character.value = value!;
+                          //         },
+                          //       ),),
+                          //   ),
+                          //   Expanded(
+                          //     child: ListTile(
+                          //       title: const Text('Thomas Jefferson'),
+                          //       leading: Radio<SingingCharacter>(
+                          //         value: SingingCharacter.jefferson,
+                          //         groupValue: homeController.character.value,
+                          //         onChanged: (SingingCharacter? value) {
+                          //           homeController.character.value = value!;
+                          //         },
+                          //       ),
+                          //     ),
+                          //   ),
+                          //
+                          // ],
+                          // )
                         ],
                       ),
-
                     ),
-                    // Row(
-                    //   children: <Widget>[
-                    //     ListTile(
-                    //       title: const Text('Lafayette'),
-                    //       leading: Radio<SingingCharacter>(
-                    //         value: SingingCharacter.lafayette,
-                    //         groupValue: homeController.character.value,
-                    //         onChanged: (SingingCharacter? value) {
-                    //           homeController.character.value = value!;
-                    //         },
-                    //       ),
-                    //     ),
-                    //
-                    //     ListTile(
-                    //       title: const Text('Thomas Jefferson'),
-                    //       leading: Radio<SingingCharacter>(
-                    //         value: SingingCharacter.jefferson,
-                    //         groupValue: homeController.character.value,
-                    //         onChanged: (SingingCharacter? value) {
-                    //           homeController.character.value = value!;
-                    //         },
-                    //       ),
-                    //     ),
-                    //
-                    //   ],
-                    // )
+
+
+
                   ],
                 ),
               )

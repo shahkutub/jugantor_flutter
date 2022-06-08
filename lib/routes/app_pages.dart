@@ -6,8 +6,6 @@ import 'package:jugantor.com/modules/splashscreen/views/splashscreen_view.dart';
 
 
 
-
-
 part 'app_routes.dart';
 
 class AppPages {
