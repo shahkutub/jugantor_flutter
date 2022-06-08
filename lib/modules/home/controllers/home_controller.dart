@@ -82,6 +82,12 @@ class HomeController extends GetxController {
   var currentDateEng = "".obs;
   var selectedCategoryName = "".obs;
   var catListShow = false.obs;
+
+  // Group Value for Radio Button.
+  var radioButtonItem = ''.obs;
+  var id = 0.obs;
+  var character = SingingCharacter.lafayette.obs;
+
   @override
   void onInit() {
     //scrollController.value.position = 0;

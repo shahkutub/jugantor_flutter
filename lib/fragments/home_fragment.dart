@@ -20,6 +20,8 @@ class HomeFragment extends GetView<HomeController> {
     double width = Get.width;
     //Get.find<HomeController>();
 
+
+
     return new Container(
       child: Obx(() {
         if(homeController.dataLoaded.isTrue){
@@ -863,6 +865,7 @@ class HomeFragment extends GetView<HomeController> {
                         ),
                     ),
 
+                    //e paper
                     Container(
                       margin: const EdgeInsets.all(20.0),
                       //padding: const EdgeInsets.all(3.0),
@@ -888,6 +891,137 @@ class HomeFragment extends GetView<HomeController> {
 
                     ),
 
+                    //online poll
+                    Container(
+                      margin: const EdgeInsets.all(20.0),
+                      //padding: const EdgeInsets.all(3.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.orange),
+                        borderRadius:BorderRadius.circular(10),
+                      ),
+                      width: width,
+                      child: 
+                      
+                      Column(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(15),
+                            alignment: Alignment.center,
+                            color: Colors.orange,
+                            child: Text(
+                              'অনলাইন জরিপ',style: TextStyle(
+                              color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold
+                            ),
+                            ),
+                          ),
+                          SizedBox(height: 20,),
+                          Container(
+                            margin: EdgeInsets.all(10),
+                            child: Column(
+                              children: [
+                                Text(
+                                  'সীতাকুণ্ডে বিএম কনটেইনার ডিপোতে ভয়াবহ বিস্ফোরণের পেছনে '
+                                      '‘কিছু একটা ঘটেছে’ বলে মন্তব্য করেছেন স্বরাষ্ট্রমন্ত্রী '
+                                      'আসাদুজ্জামান খান কামাল। আপনিও কি তেমন কিছু সন্দেহ করেন?'
+                                  ,style: TextStyle(
+                                    color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold
+                                ),
+                                  textAlign: TextAlign.justify,
+                                ),
+                                SizedBox(height: 20,),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Transform.scale(
+                                      scale: 1.5,
+                                      child:  Radio(
+                                        value: 1,
+                                        groupValue: homeController.id.value,
+                                        onChanged: (val) {
+                                          homeController.radioButtonItem.value = 'হ্যাঁ';
+                                          homeController.id.value = 1;
+                                        },
+                                        toggleable: true,
+                                      ),
+                                    ),
+
+                                    Text(
+                                      'হ্যাঁ',
+                                      style: new TextStyle(fontSize: 17.0),
+                                    ),
+
+                                    Transform.scale(
+                                      scale: 1.5,
+                                      child:Radio(
+                                        value: 2,
+                                        groupValue: homeController.id.value,
+                                        onChanged: (val) {
+                                          homeController.radioButtonItem.value = 'না';
+                                          homeController.id.value = 2;
+                                        },
+                                      ),
+                                    ),
+
+                                    Text(
+                                      'না',
+                                      style: new TextStyle(
+                                        fontSize: 17.0,
+                                      ),
+                                    ),
+
+                                    Transform.scale(
+                                      scale: 1.5,
+                                      child: Radio(
+                                        value: 3,
+                                        groupValue: homeController.id.value,
+                                        onChanged: (val) {
+                                          homeController.radioButtonItem.value = 'মন্তব্য নেই';
+                                          homeController.id.value = 3;
+                                        },
+                                      ),
+                                    ),
+
+                                    Text(
+                                      'মন্তব্য নেই',
+                                      style: new TextStyle(fontSize: 17.0),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 20,),
+
+                        ],
+                      ),
+
+                    ),
+                    // Row(
+                    //   children: <Widget>[
+                    //     ListTile(
+                    //       title: const Text('Lafayette'),
+                    //       leading: Radio<SingingCharacter>(
+                    //         value: SingingCharacter.lafayette,
+                    //         groupValue: homeController.character.value,
+                    //         onChanged: (SingingCharacter? value) {
+                    //           homeController.character.value = value!;
+                    //         },
+                    //       ),
+                    //     ),
+                    //
+                    //     ListTile(
+                    //       title: const Text('Thomas Jefferson'),
+                    //       leading: Radio<SingingCharacter>(
+                    //         value: SingingCharacter.jefferson,
+                    //         groupValue: homeController.character.value,
+                    //         onChanged: (SingingCharacter? value) {
+                    //           homeController.character.value = value!;
+                    //         },
+                    //       ),
+                    //     ),
+                    //
+                    //   ],
+                    // )
                   ],
                 ),
               )
@@ -922,3 +1056,5 @@ class TopButtonModel {
   bool? isOnTp;
   TopButtonModel({this.buttonLable, this.isOnTp});
 }
+
+enum SingingCharacter { lafayette, jefferson }
