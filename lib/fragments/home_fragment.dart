@@ -21,6 +21,19 @@ class HomeFragment extends GetView<HomeController> {
     //Get.find<HomeController>();
 
 
+    homeController.scrollController.value.addListener(() { //listener
+      print('scroll'+homeController.scrollController.value.offset.toString());
+      if(homeController.scrollController.value.offset > 219){
+        // homeController.home_categoryList.clear();
+        // homeController.category_list_with_news_newsList.clear();
+        if(homeController.category_list_with_news_newsList.length == 0){
+          homeController.get_home_category();
+        }
+
+        //homeController.get_last_entry_news1();
+      }
+    });
+
 
     return new Container(
       child: Obx(() {

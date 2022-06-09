@@ -91,9 +91,11 @@ class HomeController extends GetxController {
   var radioButtonItem = ''.obs;
   var id = 0.obs;
   var character = SingingCharacter.lafayette.obs;
-
   @override
   void onInit() {
+
+
+
 
     //scrollController.value.position = 0;
     //print(scrollController.value.offset.toString());
@@ -113,7 +115,7 @@ class HomeController extends GetxController {
     //get_extracat();
     get_lead_news();
     get_show_news();
-    //get_last_entry_news1();
+    get_last_entry_news1();
 
     last_online_poll();
     get_last_photo_album();
@@ -318,7 +320,7 @@ class HomeController extends GetxController {
       last_entry_newsList.addAll(list);
       //dataLoaded.value = true;
       //Navigator.of(context).pop();
-      get_home_category();
+      //get_home_category();
       print('last_entry_newsList: ${last_entry_newsList[0].title.toString()}');
 
     } on SocketException {
@@ -326,6 +328,8 @@ class HomeController extends GetxController {
     }
   }
   get_home_category() async {
+    home_categoryList.clear();
+    category_list_with_news_newsList.clear();
     print("Calling API: "+ApiClient.home_category);
     try {
       final response = await http.get(Uri.parse(ApiClient.home_category));
@@ -474,6 +478,7 @@ class HomeController extends GetxController {
 
 
   get_category_wise_news(CategoryResponse category) async {
+
     print("Calling API: "+ApiClient.category_wise_news+'/'+category.id.toString());
     List<LastEntryNewsResponse> newsList = <LastEntryNewsResponse>[];
     try {

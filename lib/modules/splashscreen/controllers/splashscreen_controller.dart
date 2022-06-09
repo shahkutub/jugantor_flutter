@@ -34,7 +34,7 @@ class SplashscreenController extends GetxController {
     get_bn_date();
     get_extracat();
     get_category();
-    get_last_entry_news1();
+    //get_last_entry_news1();
     super.onInit();
   }
 
@@ -56,7 +56,7 @@ class SplashscreenController extends GetxController {
       print('categoryList: ${list.length.toString()}');
 
       print('categoryname: ${categoryList[0].cat_name.toString()}');
-
+      Get.offAllNamed(Routes.HOME);
     } on SocketException {
 
     }
