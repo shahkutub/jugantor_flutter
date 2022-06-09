@@ -13,12 +13,16 @@ import 'package:jugantor.com/fragments/ajker_paper_fragment.dart';
 import 'package:jugantor.com/fragments/e_paper_frgment.dart';
 import 'package:jugantor.com/fragments/home_fragment.dart';
 import 'package:jugantor.com/fragments/news_detailse_fragment.dart';
+import 'package:jugantor.com/fragments/sara_desh_district_fragment.dart';
+import 'package:jugantor.com/fragments/sara_desh_fragment.dart';
 import 'package:jugantor.com/fragments/sob_khobor_cat_wise_fragment.dart';
 import 'package:jugantor.com/fragments/sob_khobor_fragment.dart';
 import 'package:jugantor.com/fragments/sub_cat_fragment.dart';
 import 'package:jugantor.com/model/CatExtraLinkResponse.dart';
 import 'package:jugantor.com/model/CategoryResponse.dart';
 import 'package:http/http.dart' as http;
+import 'package:jugantor.com/model/District.dart';
+import 'package:jugantor.com/model/Division.dart';
 import 'package:jugantor.com/model/HomeCategoryWithNewsList.dart';
 import 'package:jugantor.com/model/LastEntryNewsResponse.dart';
 import 'package:jugantor.com/model/LastOnlinePoll.dart';
@@ -46,6 +50,14 @@ class HomeController extends GetxController {
   List<ShowNewsResponse> moreCatNewsList = <ShowNewsResponse>[].obs;
   List<ShowNewsResponse> tagNewsList = <ShowNewsResponse>[].obs;
   List<LastEntryNewsResponse> last_entry_newsList = <LastEntryNewsResponse>[].obs;
+
+  List<Division> division_list = <Division>[].obs;
+  List<District> districtList = <District>[].obs;
+
+  List<LastEntryNewsResponse> saradesh_top_newsList = <LastEntryNewsResponse>[].obs;
+  List<LastEntryNewsResponse> saradesh_division_newsList = <LastEntryNewsResponse>[].obs;
+  List<LastEntryNewsResponse> saradesh_district_newsList = <LastEntryNewsResponse>[].obs;
+  List<LastEntryNewsResponse> saradesh_thana_newsList = <LastEntryNewsResponse>[].obs;
 
   List<CategoryResponse> home_categoryList = <CategoryResponse>[].obs;
   List<CategoryResponse> sub_categoryList = <CategoryResponse>[].obs;
@@ -85,6 +97,7 @@ class HomeController extends GetxController {
   var currentDateEng = "".obs;
   var selectedCategoryName = "".obs;
   var selectedSubCategoryName = "".obs;
+  var selectedDivisionName = "".obs;
   var catListShow = false.obs;
 
   // Group Value for Radio Button.
@@ -120,12 +133,9 @@ class HomeController extends GetxController {
     last_online_poll();
     get_last_photo_album();
     get_last_three_videos();
-    //get_home_category();
-
-
-    // if(scrollController.value.offset > 68){
-    //
-    // }
+    Timer(Duration(seconds: 20), () {
+      get_home_category();
+    });
     super.onInit();
   }
 
@@ -162,13 +172,13 @@ class HomeController extends GetxController {
     try {
       response = await _manager.get(ApiClient.newsDetails+'/'+newsId.value);
       //response = await _manager.get(ApiClient.newsDetails+'/558122');
-      print('today_bn_date: ${response}');
+      print('newsdetails: ${response}');
 
       //if(response != null){
         newsDetails.value = NewsDetailseResponse.fromJson(response);
         categoryName.value = newsDetails.value.bread_parent_cat_name!;
         dataLoaded.value = true;
-        print('leadnews: ${leadnews.value.title}');
+        print('newsdetailstitle: ${newsDetails.value.title}');
         //Navigator.of(Get.context).pop();
      // }
 
@@ -231,7 +241,6 @@ class HomeController extends GetxController {
     }
   }
 
-
   Future<dynamic> last_online_poll() async {
     print('urllast_online_poll: ${ApiClient.last_online_poll}');
     //Ui.showLoaderDialog(Get.context);
@@ -249,12 +258,6 @@ class HomeController extends GetxController {
 
     }
   }
-
-
-
-
-
-
 
   get_show_news() async {
     print("Calling API: "+ApiClient.category);
@@ -306,7 +309,6 @@ class HomeController extends GetxController {
     }
   }
 
-
   get_last_entry_news1() async {
     print("Calling API: "+ApiClient.last_entry_news);
     try {
@@ -327,6 +329,142 @@ class HomeController extends GetxController {
 
     }
   }
+
+  get_saradesh_top_news() async {
+    print("Calling API: "+ApiClient.sara_desh_top_news);
+    try {
+      final response = await http.get(Uri.parse(ApiClient.sara_desh_top_news));
+      print(response.body);
+      List<LastEntryNewsResponse> list = (json.decode(response.body) as List)
+          .map((data) => LastEntryNewsResponse.fromJson(data))
+          .toList();
+
+      saradesh_top_newsList.clear();
+      saradesh_top_newsList.addAll(list);
+      selectedPageIndex.value = 7;
+      dataLoaded.value = true;
+      //dataLoaded.value = true;
+      //Navigator.of(context).pop();
+      //get_home_category();
+      print('last_entry_newsList: ${saradesh_top_newsList[0].title.toString()}');
+
+    } on SocketException {
+
+    }
+  }
+
+  get_division() async {
+    print("Calling API: "+ApiClient.sara_desh_divisions);
+    try {
+      final response = await http.get(Uri.parse(ApiClient.sara_desh_divisions));
+      print(response.body);
+      List<Division> list = (json.decode(response.body) as List)
+          .map((data) => Division.fromJson(data))
+          .toList();
+
+      division_list.clear();
+      division_list.addAll(list);
+      // selectedPageIndex.value = 7;
+      // dataLoaded.value = true;
+      //dataLoaded.value = true;
+      //Navigator.of(context).pop();
+      //get_home_category();
+      print('division_list: ${division_list[0].division_name.toString()}');
+
+    } on SocketException {
+
+    }
+  }
+  get_district(int divisionId) async {
+    print("Calling API: "+ApiClient.sara_desh_districts+divisionId.toString());
+    try {
+      final response = await http.get(Uri.parse(ApiClient.sara_desh_districts+divisionId.toString()));
+      print(response.body);
+      List<District> list = (json.decode(response.body) as List)
+          .map((data) => District.fromJson(data))
+          .toList();
+
+      districtList.clear();
+      districtList.addAll(list);
+      // selectedPageIndex.value = 7;
+      // dataLoaded.value = true;
+      //dataLoaded.value = true;
+      //Navigator.of(context).pop();
+      //get_home_category();
+      print('division_list: ${districtList[0].district_name.toString()}');
+
+    } on SocketException {
+
+    }
+  }
+
+  get_saradesh_division_news(String divname) async {
+    var url = ApiClient.sara_desh_division_news+'/'+divname.toString();
+    print("Calling API: "+url);
+    try {
+      final response = await http.get(Uri.parse(url));
+      print(response.body);
+      List<LastEntryNewsResponse> list = (json.decode(response.body) as List)
+          .map((data) => LastEntryNewsResponse.fromJson(data))
+          .toList();
+
+      saradesh_division_newsList.clear();
+      saradesh_division_newsList.addAll(list);
+      dataLoaded.value = true;
+      //Navigator.of(context).pop();
+      //get_home_category();
+      print('last_entry_newsList: ${saradesh_division_newsList[0].title.toString()}');
+
+    } on SocketException {
+
+    }
+  }
+
+  get_saradesh_district_news(String id) async {
+    var url = ApiClient.sara_desh_district_news+'/'+id;
+    print("Calling API: "+url);
+    try {
+      final response = await http.get(Uri.parse(url));
+      print(response.body);
+      List<LastEntryNewsResponse> list = (json.decode(response.body) as List)
+          .map((data) => LastEntryNewsResponse.fromJson(data))
+          .toList();
+
+      saradesh_district_newsList.clear();
+      saradesh_district_newsList.addAll(list);
+      //dataLoaded.value = true;
+      //Navigator.of(context).pop();
+      //get_home_category();
+      print('last_entry_newsList: ${saradesh_district_newsList[0].title.toString()}');
+
+    } on SocketException {
+
+    }
+  }
+
+  get_saradesh_thana_news(String id) async {
+    var url = ApiClient.sara_desh_thana_news+'/'+id;
+    print("Calling API: "+url);
+    try {
+      final response = await http.get(Uri.parse(url));
+      print(response.body);
+      List<LastEntryNewsResponse> list = (json.decode(response.body) as List)
+          .map((data) => LastEntryNewsResponse.fromJson(data))
+          .toList();
+
+      saradesh_thana_newsList.clear();
+      saradesh_thana_newsList.addAll(list);
+
+      //dataLoaded.value = true;
+      //Navigator.of(context).pop();
+      //get_home_category();
+      print('last_entry_newsList: ${saradesh_thana_newsList[0].title.toString()}');
+
+    } on SocketException {
+
+    }
+  }
+
   get_home_category() async {
     home_categoryList.clear();
     category_list_with_news_newsList.clear();
@@ -390,8 +528,6 @@ class HomeController extends GetxController {
 
     }
   }
-
-
 
   get_sub_category(int catId) async {
     sub_categoryList.clear();
@@ -475,8 +611,6 @@ class HomeController extends GetxController {
     }
   }
 
-
-
   get_category_wise_news(CategoryResponse category) async {
 
     print("Calling API: "+ApiClient.category_wise_news+'/'+category.id.toString());
@@ -544,7 +678,6 @@ class HomeController extends GetxController {
 
     }
   }
-
 
   get_last_three_videos() async {
     print("Calling API: "+ApiClient.last_three_videos);
@@ -685,6 +818,7 @@ class HomeController extends GetxController {
 
     }
   }
+
   Future<dynamic> get_bn_date() async {
 
     //Ui.showLoaderDialog(Get.context);
@@ -704,6 +838,7 @@ class HomeController extends GetxController {
 
     }
   }
+
   get_extracat() async {
     print("Calling API: "+ApiClient.category);
     try {
@@ -773,6 +908,12 @@ class HomeController extends GetxController {
         return new SobKhoborFragment();
         case 6:
         return new SobKhoborCatWiseFragment();
+        case 7:
+        return new SaraDeshFragment();
+        case 8:
+        return new SaraDeshDistrictFragment();
+
+
 
 
 

@@ -6,7 +6,7 @@ class NewsDetailseResponse {
     String? category_name;
     String? detail;
     String? generate_url;
-    String? hanger;
+    dynamic? hanger;
     int? id;
     String? img_url;
     String? location_name;
@@ -22,10 +22,10 @@ class NewsDetailseResponse {
     String? people_name;
     String? people_tag;
     String? photo_alt_txt;
-    String? photo_caption;
+    dynamic? photo_caption;
     String? reporter;
-    String? shoulder;
-    String? spc_event_tag_id;
+    dynamic? shoulder;
+    dynamic? spc_event_tag_id;
     String? title;
     int? video_dis;
 

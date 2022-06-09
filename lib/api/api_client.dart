@@ -35,5 +35,14 @@ class ApiClient {
   static String all_cat_wise_news = '${baseUrl}api/ver1/all_cat_wise_news';
 
 
+  static String sara_desh_top_news = '${baseUrl}api/ver1/category_wise_news_21/11';
+  static String sara_desh_division_news = '${baseUrl}api/ver1/division_news';
+  static String sara_desh_district_news = '${baseUrl}api/ver1/district_news';
+  static String sara_desh_thana_news = '${baseUrl}api/ver1/thana_news';
+  static String sara_desh_divisions = '${baseUrl}api/ver1/divisions';
+  static String sara_desh_districts = '${baseUrl}api/ver1/districts/';
+  static String sara_desh_thanas = '${baseUrl}api/ver1/thanas/';
+
+
 
 }

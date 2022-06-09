@@ -27,7 +27,7 @@ class HomeFragment extends GetView<HomeController> {
         // homeController.home_categoryList.clear();
         // homeController.category_list_with_news_newsList.clear();
         if(homeController.category_list_with_news_newsList.length == 0){
-          homeController.get_home_category();
+         // homeController.get_home_category();
         }
 
         //homeController.get_last_entry_news1();
@@ -45,9 +45,8 @@ class HomeFragment extends GetView<HomeController> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-
                     Obx(() =>
-                  GestureDetector(
+                    GestureDetector(
                       onTap: (){
                         homeController.dataLoaded.value = false;
                         homeController.newsId.value = homeController.leadnews.value.id.toString();
@@ -133,7 +132,6 @@ class HomeFragment extends GetView<HomeController> {
 
                     )
                   ),
-
                     ),
                     Obx(() =>
                         Container(
@@ -196,7 +194,6 @@ class HomeFragment extends GetView<HomeController> {
                             )
                         ),
                     ),
-
                     //show news
                     Obx(() =>
                         Container(
@@ -270,7 +267,6 @@ class HomeFragment extends GetView<HomeController> {
                         ),
                     ),
 
-
                     Container(
                       margin: EdgeInsets.only(left: 20,right: 20),
                       //alignment: Alignment.center,
@@ -285,7 +281,6 @@ class HomeFragment extends GetView<HomeController> {
                         ],
                       )
                     ),
-
 
                     Obx(() =>
                         Container(
@@ -589,7 +584,6 @@ class HomeFragment extends GetView<HomeController> {
 
                         ),
                     ),
-
 
                     //photo gallery
                     Container(
@@ -1033,7 +1027,10 @@ class HomeFragment extends GetView<HomeController> {
                       ),
                     ),
 
-
+                    //bottom 
+                    Image.asset('assets/images/jugantorbottom.png',
+                      width: width,
+                    )
 
                   ],
                 ),

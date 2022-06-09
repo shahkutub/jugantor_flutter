@@ -146,6 +146,11 @@ class HomePage extends GetView<HomeController> {
                                         Get.back();
                                         if(homeController.categoryList[index].cat_name == "প্রচ্ছদ"){
                                           homeController.selectedPageIndex.value = 0;
+                                        }else if(homeController.categoryList[index].cat_name == "সারাদেশ"){
+                                          homeController.selectedCategoryName.value = "সারাদেশ";
+                                          homeController.dataLoaded.value = false;
+                                          homeController.get_saradesh_top_news();
+                                          homeController.get_division();
                                         }else{
                                           homeController.subcategory_list_with_news_newsList.clear();
                                           homeController.catId.value = homeController.categoryList[index].id!;
