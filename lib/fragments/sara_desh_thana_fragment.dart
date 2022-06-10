@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 import 'package:jugantor.com/ui.dart';
 
-class SaraDeshFragment extends StatelessWidget {
+class SaraDeshThanaFragment extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());
 
   @override
@@ -24,67 +24,61 @@ class SaraDeshFragment extends StatelessWidget {
                 child: Container(
                   child:Column(
                     children: [
-                      Container(
-                        padding: EdgeInsets.all(5),
-                        decoration: BoxDecoration(color: Colors.grey),
-                        child: Stack(
-                          alignment: Alignment.centerLeft,
-                          children: <Widget>[
-                            Container(
-                              //height: 80,
-                                alignment: Alignment.centerLeft,
-                                child: Row(
-                                  //mainAxisAlignment: MainAxisAlignment.start,
+                      Row(
+                        children: <Widget>[
+                          GestureDetector(
+                            child:Text("প্রচ্ছদ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
+                            onTap: (){
+                              homeController.selectedPageIndex.value = 0;
+                            },
+                          ),
+                          Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
+                          Obx(() =>
+                              Visibility(visible: true,
+                                child:GestureDetector(
+                                  onTap: (){
+                                    homeController.selectedPageIndex.value = 7;
+                                  },
+                                child:Text(""+homeController.selectedCategoryName.value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
+
+                              ),
+                          ),
+                          Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
+                          Obx(() =>
+                              Visibility(visible: true,child:GestureDetector(
+                                onTap: (){
+                                  homeController.selectedPageIndex.value = 8;
+                                },
+                                child:Text(""+homeController.selectedDistrictName.value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
+                              ),
+                          ),
+                          Container(
+                            child: homeController.selectedThanaName.value.isNotEmpty?
+                                Row(
                                   children: [
-                                    Text(""+homeController.selectedCategoryName.value,
-                                    textAlign: TextAlign.center,style: TextStyle(fontSize: 15,
-                                    fontWeight: FontWeight.bold)),
-
-                                    GestureDetector(
-                                      onTap: (){
-                                        if(homeController.catListShow.value){
-                                          homeController.catListShow.value = false;
-                                        }else{
-                                          homeController.catListShow.value = true;
-                                        }
-
-                                      },
-                                      child:Container(
-                                        //height: 80,
-                                          alignment: Alignment.centerRight,
-                                          child:homeController.catListShow.value?
-                                          Icon(Icons.keyboard_arrow_up_sharp,size: 40,):
-                                          Icon(Icons.keyboard_arrow_down_sharp,size: 40,)
-                                      )
-                                    )
-
+                                    Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
+                                    Text(""+homeController.selectedThanaName.value,style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.grey),),
                                   ],
-                                ),
-                            ),
+                                ):SizedBox()
+                          ),
 
-                            Container(
-                              //height: 80,
-                                alignment: Alignment.centerRight,
-                                child: homeController.selectedSubCategoryName.value.toString().isNotEmpty?
-                                Text('| '+homeController.selectedSubCategoryName.value,
-                                  textAlign: TextAlign.center,style: TextStyle(fontSize: 15,
-                                      fontWeight: FontWeight.bold),):Text('')
-                              // child: Row(
-                              //   children: [
-                              //     Text('|')
-                              //   ],
-                              // ),
-                            ),
-
-                          ],
-                        ),
+                        ],
+                      ),
+                      SizedBox(height: 7,),
+                      Divider(
+                        color: Colors.grey,
+                      ),
+                      SizedBox(height: 5,),
+                      Text(""+homeController.selectedThanaName.value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),
+                      SizedBox(height: 5,),
+                      Divider(
+                        color: Colors.grey,
                       ),
 
                       Container(
                           padding: EdgeInsets.all(0),
                           alignment: Alignment.center,
-                          child:homeController.catListShow.value?
-                          GridView.builder(
+                          child:GridView.builder(
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -93,33 +87,27 @@ class SaraDeshFragment extends StatelessWidget {
                                 mainAxisSpacing: 5.0,
                                 childAspectRatio: 4.0
                             ),
-                            itemCount: homeController.division_list.length,
+                            itemCount: homeController.thanaList.length,
                             itemBuilder: (context, index) {
                               return  GestureDetector(
                                 onTap: (){
-                                  homeController.dataLoaded.value = false;
-                                  homeController.selectedPageIndex.value = 8;
                                   homeController.catListShow.value = false;
-                                  homeController.selectedDivisionName.value = homeController.division_list[index].division_name!;
-                                  homeController.selectedDistrictName.value = homeController.division_list[index].division_name!;
-                                  homeController.get_district(homeController.division_list[index].id!);
-                                  homeController.get_saradesh_division_news(homeController.division_list[index].url_dis_title!);
-
+                                  homeController.selectedThanaName.value = homeController.thanaList[index].thana_name!;
+                                  //homeController.selectedSubCategoryName.value = homeController.districtList[index].district_name!;
                                   //homeController.get_category_page_subcat_wise_news(homeController.sub_categoryList[index].id!);
                                 },
 
                                 child: Container(
                                   padding: EdgeInsets.all(10),
-                                  child: Text(homeController.division_list[index].division_name!,
+                                  child: Text(homeController.thanaList[index].thana_name!,
                                     style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold ),
                                     textAlign: TextAlign.justify,
                                   ),
                                 ),
-                                
-                                
+
                               );
                             },
-                          ):SizedBox(height: 0,)
+                          )
                       ),
 
                       //cat top news
@@ -130,7 +118,7 @@ class SaraDeshFragment extends StatelessWidget {
                             primary: false,
                             shrinkWrap: true,
                             // Let the ListView know how many items it needs to build.
-                            itemCount: homeController.saradesh_top_newsList!.length,
+                            itemCount: homeController.saradesh_division_newsList!.length,
                             // Provide a builder function. This is where the magic happens.
                             // Convert each item into a widget based on the type of item it is.
                             itemBuilder: (context, index2) {
@@ -147,13 +135,13 @@ class SaraDeshFragment extends StatelessWidget {
                                     children: [
                                       FadeInImage.assetNetwork(
                                           fit: BoxFit.fill,
-                                          image:homeController.saradesh_top_newsList![index2].img_url!,
+                                          image:homeController.saradesh_division_newsList![index2].img_url!,
                                           placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                                       ),
                                       Positioned(
                                         bottom: width*.2,
                                         left:width/2.5 ,
-                                        child: homeController.saradesh_top_newsList![index2].video_dis  == 1 ?
+                                        child: homeController.saradesh_division_newsList![index2].video_dis  == 1 ?
                                         Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
 
                                       ),
@@ -165,7 +153,7 @@ class SaraDeshFragment extends StatelessWidget {
                                             Container(
                                               width: width,
                                               child:Text(
-                                                homeController.saradesh_top_newsList![index2].title!,
+                                                homeController.saradesh_division_newsList![index2].title!,
                                                 style: TextStyle(
                                                     fontSize: 17,
                                                     fontWeight: FontWeight.bold,
@@ -222,13 +210,13 @@ class SaraDeshFragment extends StatelessWidget {
                                                             height: 70,
                                                             width: 100,
                                                             fit: BoxFit.fill,
-                                                            image:homeController.saradesh_top_newsList![index2].img_url!,
+                                                            image:homeController.saradesh_division_newsList![index2].img_url!,
                                                             placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                                                         ),
                                                         Positioned(
                                                           bottom: 20,
                                                           left:35,
-                                                          child: homeController.saradesh_top_newsList![index2].video_dis  == 1 ?
+                                                          child: homeController.saradesh_division_newsList![index2].video_dis  == 1 ?
                                                           Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
 
                                                         ),
@@ -236,7 +224,7 @@ class SaraDeshFragment extends StatelessWidget {
                                                     ),
                                                   ),
 
-                                                  Flexible(child: Text(homeController.saradesh_top_newsList![index2].title!,
+                                                  Flexible(child: Text(homeController.saradesh_division_newsList![index2].title!,
                                                     style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                     textAlign: TextAlign.justify,
                                                   ),

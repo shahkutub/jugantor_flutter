@@ -24,67 +24,40 @@ class SaraDeshDistrictFragment extends StatelessWidget {
                 child: Container(
                   child:Column(
                     children: [
-                      Container(
-                        padding: EdgeInsets.all(5),
-                        decoration: BoxDecoration(color: Colors.grey),
-                        child: Stack(
-                          alignment: Alignment.centerLeft,
-                          children: <Widget>[
-                            Container(
-                              //height: 80,
-                                alignment: Alignment.centerLeft,
-                                child: Row(
-                                  //mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Text(""+homeController.selectedCategoryName.value,
-                                    textAlign: TextAlign.center,style: TextStyle(fontSize: 15,
-                                    fontWeight: FontWeight.bold)),
-
-                                    GestureDetector(
-                                      onTap: (){
-                                        if(homeController.catListShow.value){
-                                          homeController.catListShow.value = false;
-                                        }else{
-                                          homeController.catListShow.value = true;
-                                        }
-
-                                      },
-                                      child:Container(
-                                        //height: 80,
-                                          alignment: Alignment.centerRight,
-                                          child:homeController.catListShow.value?
-                                          Icon(Icons.keyboard_arrow_up_sharp,size: 40,):
-                                          Icon(Icons.keyboard_arrow_down_sharp,size: 40,)
-                                      )
-                                    )
-
-                                  ],
-                                ),
-                            ),
-
-                            Container(
-                              //height: 80,
-                                alignment: Alignment.centerRight,
-                                child: homeController.selectedDivisionName.value.toString().isNotEmpty?
-                                Text('| '+homeController.selectedDivisionName.value,
-                                  textAlign: TextAlign.center,style: TextStyle(fontSize: 15,
-                                      fontWeight: FontWeight.bold),):Text('')
-                              // child: Row(
-                              //   children: [
-                              //     Text('|')
-                              //   ],
-                              // ),
-                            ),
-
-                          ],
-                        ),
+                      Row(
+                        children: <Widget>[
+                          GestureDetector(
+                            child:Text("প্রচ্ছদ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
+                          ),
+                          Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
+                          Obx(() =>
+                              Visibility(visible: true,child:GestureDetector(
+                                child:Text(""+homeController.selectedCategoryName.value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
+                              ),
+                          ),
+                          Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
+                          Obx(() =>
+                              Visibility(visible: true,child:GestureDetector(
+                                child:Text(""+homeController.selectedDivisionName.value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
+                              ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 7,),
+                      Divider(
+                        color: Colors.grey,
+                      ),
+                      SizedBox(height: 5,),
+                      Text(""+homeController.selectedDistrictName.value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),
+                      SizedBox(height: 5,),
+                      Divider(
+                        color: Colors.grey,
                       ),
 
                       Container(
                           padding: EdgeInsets.all(0),
                           alignment: Alignment.center,
-                          child:homeController.catListShow.value?
-                          GridView.builder(
+                          child:GridView.builder(
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -97,9 +70,14 @@ class SaraDeshDistrictFragment extends StatelessWidget {
                             itemBuilder: (context, index) {
                               return  GestureDetector(
                                 onTap: (){
+                                  homeController.dataLoaded.value = false;
                                   homeController.catListShow.value = false;
-                                  homeController.selectedSubCategoryName.value = homeController.districtList[index].district_name!;
-                                  //homeController.get_category_page_subcat_wise_news(homeController.sub_categoryList[index].id!);
+                                  homeController.selectedDistrictName.value = homeController.districtList[index].district_name!;
+                                  homeController.selectedThanaName.value = homeController.districtList[index].district_name!;
+                                  homeController.selectedPageIndex.value = 9;
+                                  homeController.get_thana(homeController.districtList[index].id!);
+                                  homeController.get_saradesh_district_news(homeController.districtList[index].url_dis_title!.toString());
+
                                 },
 
                                 child: Container(
@@ -109,11 +87,10 @@ class SaraDeshDistrictFragment extends StatelessWidget {
                                     textAlign: TextAlign.justify,
                                   ),
                                 ),
-                                
-                                
+
                               );
                             },
-                          ):SizedBox(height: 0,)
+                          )
                       ),
 
                       //cat top news
