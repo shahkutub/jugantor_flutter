@@ -27,7 +27,12 @@ class NewsDetailseFragment extends StatelessWidget {
 
                       Row(
                         children: <Widget>[
-                          Text("প্রচ্ছদ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
+                          GestureDetector(
+                            onTap: (){
+                              homeController.selectedPageIndex.value = 0;
+                            },
+                            child:Text("প্রচ্ছদ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
+                          ),
                           Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
                           Obx(() =>
                               Visibility(visible: true,child:Text(""+homeController.categoryName.value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
@@ -205,7 +210,7 @@ class NewsDetailseFragment extends StatelessWidget {
                       SizedBox( height:20),
 
                       Container(
-                        child: homeController.newsDetails.value.spc_event_tag_id!.isNotEmpty ?
+                        child: homeController.detail_page_aro_button_newsList.length > 0?
                             Column(
                               children: [
                                 Row(
@@ -213,180 +218,188 @@ class NewsDetailseFragment extends StatelessWidget {
                                     Icon(Icons.calendar_today_sharp,color: Colors.black,),
                                     Text(homeController.tagNameResponse.value.tag_name.toString()),
                                   ],
-                                )
+                                ),
+                                Divider(
+                                    color: Colors.red
+                                ),
+
+                                Container(
+                                    margin: EdgeInsets.only(top: 10,bottom: 10,right: 0,left: 0),
+                                    alignment: Alignment.center,
+                                    child:ListView.builder(
+                                      primary: false,
+                                      shrinkWrap: true,
+                                      // Let the ListView know how many items it needs to build.
+                                      itemCount: homeController.detail_page_aro_button_newsList.length,
+                                      // Provide a builder function. This is where the magic happens.
+                                      // Convert each item into a widget based on the type of item it is.
+                                      itemBuilder: (context, index) {
+                                        //final item = homeController.last_entry_newsList[index];
+
+                                        return Container(
+                                            margin: EdgeInsets.only(top: 10),
+                                            child:   GestureDetector(
+                                              onTap: (){
+                                                //Get.back();
+                                                // if(homeController.showNewsList[index].cat_name == "প্রচ্ছদ"){
+                                                //   //homeController.selectedIndex.value = 0;
+                                                // }else{
+                                                //   // homeController.selectedIndex.value = 1;
+                                                // }
+                                              },
+
+                                              child: Obx(() =>
+                                                  GestureDetector(
+                                                      onTap: (){
+                                                        homeController.newsId.value = homeController.detail_page_aro_button_newsList[index]["id"];
+                                                        homeController.get_news_details();
+                                                      },
+                                                      child: Container(
+                                                        //height: ,
+                                                        //alignment: Alignment.center,
+                                                          child: Row(
+                                                            mainAxisAlignment: MainAxisAlignment.start,
+                                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                                            children: [
+                                                              Container(
+                                                                margin: EdgeInsets.only(right: 10),
+                                                                height: 70,
+                                                                width: 100,
+                                                                child: Stack(
+                                                                  fit: StackFit.expand,
+                                                                  children: [
+                                                                    FadeInImage.assetNetwork(
+                                                                        height: 70,
+                                                                        width: 100,
+                                                                        fit: BoxFit.fill,
+                                                                        image:homeController.detail_page_aro_button_newsList[index]["img_url"],
+                                                                        placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                                    ),
+                                                                    Positioned(
+                                                                      bottom: 20,
+                                                                      left:35,
+                                                                      child: homeController.detail_page_aro_button_newsList[index]["video_dis"]  == 0 ?
+                                                                      Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                              Flexible(child: Text(homeController.detail_page_aro_button_newsList[index]["title"],
+                                                                style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                                                textAlign: TextAlign.justify,
+                                                              ),
+
+                                                              ),
+
+                                                            ],
+                                                          )
+                                                      )
+                                                  ),
+                                              ),
+                                            )
+                                        );
+                                      },
+                                    )
+
+                                ),
+
+                                GestureDetector(
+                                  onTap: (){
+                                    homeController.get_event_news_paginate(homeController.eventPage.value+1);
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.only(top: 10,bottom: 15),
+                                    alignment: Alignment.center,
+                                    color: Color(0xffEEEEEE),
+                                    padding: EdgeInsets.all(7),
+                                    child: Text("আরও",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black)),
+                                  ),
+                                ),
+
                               ],
                             ) : SizedBox()
                       ),
 
-                      Divider(
-                          color: Colors.red
-                      ),
+
 
                       Container(
-                          margin: EdgeInsets.only(top: 10,bottom: 10,right: 0,left: 0),
-                          alignment: Alignment.center,
-                          child:ListView.builder(
-                            primary: false,
-                            shrinkWrap: true,
-                            // Let the ListView know how many items it needs to build.
-                            itemCount: homeController.detail_page_aro_button_newsList.length,
-                            // Provide a builder function. This is where the magic happens.
-                            // Convert each item into a widget based on the type of item it is.
-                            itemBuilder: (context, index) {
-                              //final item = homeController.last_entry_newsList[index];
-
-                              return Container(
-                                  margin: EdgeInsets.only(top: 10),
-                                  child:   GestureDetector(
-                                    onTap: (){
-                                      //Get.back();
-                                      // if(homeController.showNewsList[index].cat_name == "প্রচ্ছদ"){
-                                      //   //homeController.selectedIndex.value = 0;
-                                      // }else{
-                                      //   // homeController.selectedIndex.value = 1;
-                                      // }
-                                    },
-
-                                    child: Obx(() => Container(
-                                      //height: ,
-                                      //alignment: Alignment.center,
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          children: [
-                                            Container(
-                                              margin: EdgeInsets.only(right: 10),
-                                              height: 70,
-                                              width: 100,
-                                              child: Stack(
-                                                fit: StackFit.expand,
-                                                children: [
-                                                  FadeInImage.assetNetwork(
-                                                      height: 70,
-                                                      width: 100,
-                                                      fit: BoxFit.fill,
-                                                      image:homeController.detail_page_aro_button_newsList[index]["img_url"],
-                                                      placeholder:"assets/images/jugantordefault.jpg" // your assets image path
-                                                  ),
-                                                  Positioned(
-                                                    bottom: 20,
-                                                    left:35,
-                                                    child: homeController.detail_page_aro_button_newsList[index]["video_dis"]  == 1 ?
-                                                    Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
-
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Flexible(child: Text(homeController.detail_page_aro_button_newsList[index]["title"],
-                                              style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
-                                              textAlign: TextAlign.justify,
-                                            ),
-
-                                            ),
-
-                                          ],
-                                        )
-                                    )
-                                    ),
-                                  )
-                              );
-                            },
-                          )
-
-                      ),
-
-                      GestureDetector(
-                        onTap: (){
-                          homeController.get_event_news_paginate(homeController.eventPage.value+1);
-                        },
-                        child: Container(
-                          margin: EdgeInsets.only(top: 10,bottom: 15),
-                          alignment: Alignment.center,
-                          color: Color(0xffEEEEEE),
-                          padding: EdgeInsets.all(7),
-                          child: Text("আরও",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black)),
-                        ),
-                      ),
-
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        color: Color(0xff3B5998),
-                        padding: EdgeInsets.all(7),
-                        child: Text("আরও খবর",style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,color: Colors.white)),
-                      ),
-
-                     // SizedBox( height:20),
-
-                      Container(
-                          margin: EdgeInsets.only(top: 15,bottom: 5,right: 0,left: 0),
-                          alignment: Alignment.center,
-                          child:GridView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 15.0,
-                              mainAxisSpacing: 10.0,
-                              //childAspectRatio: width / (height / 1.9)
-                              //childAspectRatio: 1
+                        child: homeController.moreCatNewsList.length > 0? Column(
+                          children: [
+                            Container(
+                              alignment: Alignment.centerLeft,
+                              color: Color(0xff3B5998),
+                              padding: EdgeInsets.all(7),
+                              child: Text("আরও খবর",style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,color: Colors.white)),
                             ),
-                            itemCount: homeController.moreCatNewsList.length,
-                            itemBuilder: (context, index) {
-                              return  GestureDetector(
-                                onTap: (){
-                                  //Get.back();
-                                  // if(homeController.showNewsList[index].cat_name == "প্রচ্ছদ"){
-                                  //   //homeController.selectedIndex.value = 0;
-                                  // }else{
-                                  //   // homeController.selectedIndex.value = 1;
-                                  // }
-                                },
+                            Container(
+                                margin: EdgeInsets.only(top: 15,bottom: 5,right: 0,left: 0),
+                                alignment: Alignment.center,
+                                child:GridView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 15.0,
+                                    mainAxisSpacing: 10.0,
+                                    //childAspectRatio: width / (height / 1.9)
+                                    //childAspectRatio: 1
+                                  ),
+                                  itemCount: homeController.moreCatNewsList.length,
+                                  itemBuilder: (context, index) {
+                                    return  GestureDetector(
+                                      onTap: (){
+                                        homeController.newsId.value = homeController.moreCatNewsList[index].id.toString();
+                                        homeController.get_news_details();
+                                      },
 
-                                child: Obx(() => Container(
+                                      child: Obx(() => Container(
 
-                                  //height: ,
-                                  //alignment: Alignment.center,
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          child: Stack(
-                                            // fit: StackFit.expand,
+                                        //height: ,
+                                        //alignment: Alignment.center,
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
                                             children: [
-                                              FadeInImage.assetNetwork(
-                                                  height: height * 0.12,
-                                                  width: width*0.92,
-                                                  fit: BoxFit.fill,
-                                                  image:homeController.moreCatNewsList[index].img_url!,
-                                                  placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                              Container(
+                                                child: Stack(
+                                                  // fit: StackFit.expand,
+                                                  children: [
+                                                    FadeInImage.assetNetwork(
+                                                        height: height * 0.12,
+                                                        width: width*0.92,
+                                                        fit: BoxFit.fill,
+                                                        image:homeController.moreCatNewsList[index].img_url!,
+                                                        placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                    ),
+
+                                                    // Positioned(
+                                                    //   bottom: 10,
+                                                    //   left:10,
+                                                    //   child: homeController.showNewsList[index].video_dis  == 0 ?
+                                                    //   Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+                                                    //
+                                                    // ),
+
+                                                  ],
+                                                ),
+
                                               ),
 
-                                              // Positioned(
-                                              //   bottom: 10,
-                                              //   left:10,
-                                              //   child: homeController.showNewsList[index].video_dis  == 0 ?
-                                              //   Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
-                                              //
-                                              // ),
-
+                                              Text(homeController.moreCatNewsList[index].title!,
+                                                style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                                textAlign: TextAlign.justify,
+                                              ),
                                             ],
-                                          ),
-
-                                        ),
-
-                                        Text(homeController.moreCatNewsList[index].title!,
-                                          style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
-                                          textAlign: TextAlign.justify,
-                                        ),
-                                      ],
-                                    )
+                                          )
+                                      )
+                                      ),
+                                    );
+                                  },
                                 )
-                                ),
-                              );
-                            },
-                          )
+                            ),
+                          ],
+                        ):SizedBox()
                       ),
 
                       SizedBox( height:20),
@@ -417,18 +430,13 @@ class NewsDetailseFragment extends StatelessWidget {
                                 // Provide a builder function. This is where the magic happens.
                                 // Convert each item into a widget based on the type of item it is.
                                 itemBuilder: (context, index) {
-                                  final item = homeController.last_entry_newsList[index];
 
                                   return Container(
                                       margin: EdgeInsets.only(top: 10),
                                       child:   GestureDetector(
                                         onTap: (){
-                                          //Get.back();
-                                          // if(homeController.showNewsList[index].cat_name == "প্রচ্ছদ"){
-                                          //   //homeController.selectedIndex.value = 0;
-                                          // }else{
-                                          //   // homeController.selectedIndex.value = 1;
-                                          // }
+                                          homeController.newsId.value = homeController.last_entry_newsList[index].id.toString();
+                                          homeController.get_news_details();
                                         },
 
                                         child: Obx(() => Container(
@@ -515,12 +523,8 @@ class NewsDetailseFragment extends StatelessWidget {
                                              margin: EdgeInsets.only(top: 8),
                                              child:   GestureDetector(
                                                onTap: (){
-                                                 //Get.back();
-                                                 // if(homeController.showNewsList[index].cat_name == "প্রচ্ছদ"){
-                                                 //   //homeController.selectedIndex.value = 0;
-                                                 // }else{
-                                                 //   // homeController.selectedIndex.value = 1;
-                                                 // }
+                                                 homeController.newsId.value = homeController.tagNewsList[index].id.toString();
+                                                 homeController.get_news_details();
                                                },
 
                                                child: Obx(() => Container(

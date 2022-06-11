@@ -182,7 +182,7 @@ class HomeController extends GetxController {
       final response = await http.get(Uri.parse(ApiClient.newsDetails+'/'+newsId.value));
       print(response.body);
      // print('newsdetails: ${response}');
-
+      dataLoaded.value = true;
       Map<String, dynamic> user = jsonDecode(response.body);
       newsDetails.value.id = user['id'];
       newsDetails.value.title = user['title'];
@@ -231,6 +231,7 @@ class HomeController extends GetxController {
       // //detail_page_aro_button_newsList.add(v)
       // );
       //print('newslenth: ${detail_page_aro_button_newsList.length}');
+
 
 
         categoryName.value = newsDetails.value.bread_parent_cat_name!;
