@@ -49,6 +49,18 @@ class SaraDeshThanaFragment extends StatelessWidget {
                                 onTap: (){
                                   homeController.selectedPageIndex.value = 8;
                                 },
+                                child:Text(""+homeController.selectedDivisionName.value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
+                              ),
+                          ),
+                          Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
+                          Obx(() =>
+                              Visibility(visible: true,child:GestureDetector(
+                                onTap: (){
+                                  //api call thana by districtid, district news
+                                  //homeController.selectedPageIndex.value = 8;
+                                  //homeController.get_thana(homeController.district_id.value);
+                                  homeController.get_saradesh_district_news(homeController.district_title.value);
+                                },
                                 child:Text(""+homeController.selectedDistrictName.value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
                               ),
                           ),
@@ -93,6 +105,7 @@ class SaraDeshThanaFragment extends StatelessWidget {
                                 onTap: (){
                                   homeController.catListShow.value = false;
                                   homeController.selectedThanaName.value = homeController.thanaList[index].thana_name!;
+                                  homeController.get_saradesh_thana_news(homeController.thanaList[index].url_dis_title!);
                                   //homeController.selectedSubCategoryName.value = homeController.districtList[index].district_name!;
                                   //homeController.get_category_page_subcat_wise_news(homeController.sub_categoryList[index].id!);
                                 },
@@ -118,7 +131,7 @@ class SaraDeshThanaFragment extends StatelessWidget {
                             primary: false,
                             shrinkWrap: true,
                             // Let the ListView know how many items it needs to build.
-                            itemCount: homeController.saradesh_division_newsList!.length,
+                            itemCount: homeController.saradesh_district_newsList!.length,
                             // Provide a builder function. This is where the magic happens.
                             // Convert each item into a widget based on the type of item it is.
                             itemBuilder: (context, index2) {
@@ -135,13 +148,13 @@ class SaraDeshThanaFragment extends StatelessWidget {
                                     children: [
                                       FadeInImage.assetNetwork(
                                           fit: BoxFit.fill,
-                                          image:homeController.saradesh_division_newsList![index2].img_url!,
+                                          image:homeController.saradesh_district_newsList![index2].img_url!,
                                           placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                                       ),
                                       Positioned(
                                         bottom: width*.2,
                                         left:width/2.5 ,
-                                        child: homeController.saradesh_division_newsList![index2].video_dis  == 1 ?
+                                        child: homeController.saradesh_district_newsList![index2].video_dis  == 1 ?
                                         Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
 
                                       ),
@@ -153,7 +166,7 @@ class SaraDeshThanaFragment extends StatelessWidget {
                                             Container(
                                               width: width,
                                               child:Text(
-                                                homeController.saradesh_division_newsList![index2].title!,
+                                                homeController.saradesh_district_newsList![index2].title!,
                                                 style: TextStyle(
                                                     fontSize: 17,
                                                     fontWeight: FontWeight.bold,
@@ -210,13 +223,13 @@ class SaraDeshThanaFragment extends StatelessWidget {
                                                             height: 70,
                                                             width: 100,
                                                             fit: BoxFit.fill,
-                                                            image:homeController.saradesh_division_newsList![index2].img_url!,
+                                                            image:homeController.saradesh_district_newsList![index2].img_url!,
                                                             placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                                                         ),
                                                         Positioned(
                                                           bottom: 20,
                                                           left:35,
-                                                          child: homeController.saradesh_division_newsList![index2].video_dis  == 1 ?
+                                                          child: homeController.saradesh_district_newsList![index2].video_dis  == 1 ?
                                                           Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
 
                                                         ),
@@ -224,7 +237,7 @@ class SaraDeshThanaFragment extends StatelessWidget {
                                                     ),
                                                   ),
 
-                                                  Flexible(child: Text(homeController.saradesh_division_newsList![index2].title!,
+                                                  Flexible(child: Text(homeController.saradesh_district_newsList![index2].title!,
                                                     style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                     textAlign: TextAlign.justify,
                                                   ),

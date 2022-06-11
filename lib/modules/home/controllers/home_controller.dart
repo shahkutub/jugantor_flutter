@@ -109,6 +109,9 @@ class HomeController extends GetxController {
   var radioButtonItem = ''.obs;
   var id = 0.obs;
   var character = SingingCharacter.lafayette.obs;
+
+  var district_id = 0.obs;
+  var district_title = ''.obs;
   @override
   void onInit() {
 
@@ -175,12 +178,61 @@ class HomeController extends GetxController {
     APIManager _manager = APIManager();
     var response;
     try {
-      response = await _manager.get(ApiClient.newsDetails+'/'+newsId.value);
-      //response = await _manager.get(ApiClient.newsDetails+'/558122');
-      print('newsdetails: ${response}');
+      //response = await _manager.get(ApiClient.newsDetails+'/'+newsId.value);
+      final response = await http.get(Uri.parse(ApiClient.newsDetails+'/'+newsId.value));
+      print(response.body);
+     // print('newsdetails: ${response}');
 
+      Map<String, dynamic> user = jsonDecode(response.body);
+      newsDetails.value.id = user['id'];
+      newsDetails.value.title = user['title'];
+      newsDetails.value.shoulder = user['shoulder'];
+      newsDetails.value.hanger = user['hanger'];
+      newsDetails.value.video_dis = user['video_dis'];
+      newsDetails.value.generate_url = user['generate_url'];
+      newsDetails.value.img_url = user['img_url'];
+      newsDetails.value.parent_cat_id = user['parent_cat_id'];
+      newsDetails.value.parent_cat_url = user['parent_cat_url'];
+      newsDetails.value.category_name = user['category_name'];
+      newsDetails.value.reporter = user['reporter'];
+      newsDetails.value.news_sum = user['news_sum'];
+      newsDetails.value.detail = user['detail'];
+      newsDetails.value.photo_caption = user['photo_caption'];
+      newsDetails.value.photo_alt_txt = user['photo_alt_txt'];
+      newsDetails.value.news_tags = user['news_tags'];
+      newsDetails.value.spc_event_tag_id = user['spc_event_tag_id'];
+      newsDetails.value.news_date_time = user['news_date_time'];
+      newsDetails.value.news_edition = user['news_edition'];
+      newsDetails.value.location_name = user['location_name'];
+      newsDetails.value.location_tag = user['location_tag'];
+      newsDetails.value.people_name = user['people_name'];
+      newsDetails.value.people_tag = user['people_tag'];
+      newsDetails.value.org_name = user['org_name'];
+      newsDetails.value.org_tag = user['org_tag'];
+      newsDetails.value.bread_parent_cat_id = user['bread_parent_cat_id'];
+      newsDetails.value.bread_parent_cat_name = user['bread_parent_cat_name'];
+      newsDetails.value.bread_sub_cat_id = user['bread_sub_cat_id'];
+      newsDetails.value.bread_sub_cat_name = user['bread_sub_cat_name'];
+      // print('datanews: ${datanews}');
+      //print('title: ${title}');
+
+
+      // Map<String, dynamic> newsdata = jsonDecode(response.body);
+      // newsdata.forEach((k, v) =>
+      //     print("Key : $k, Value : $v")
+      //   //detail_page_aro_button_newsList.add(v)
+      // );
       //if(response != null){
-        newsDetails.value = NewsDetailseResponse.fromJson(response);
+        //newsDetails.value = NewsDetailseResponse.fromJson(response.body.toString());
+
+      // Map<String, dynamic> newsdata = jsonDecode(response);
+      // newsdata.forEach((k, v) =>
+      // print("Key : $k, Value : $v")
+      // //detail_page_aro_button_newsList.add(v)
+      // );
+      //print('newslenth: ${detail_page_aro_button_newsList.length}');
+
+
         categoryName.value = newsDetails.value.bread_parent_cat_name!;
         dataLoaded.value = true;
         print('newsdetailstitle: ${newsDetails.value.title}');
@@ -462,6 +514,30 @@ class HomeController extends GetxController {
       saradesh_district_newsList.clear();
       saradesh_district_newsList.addAll(list);
       dataLoaded.value = true;
+      //dataLoaded.value = true;
+      //Navigator.of(context).pop();
+      //get_home_category();
+      print('last_entry_newsList: ${saradesh_district_newsList[0].title.toString()}');
+
+    } on SocketException {
+
+    }
+  }
+
+  get_saradesh_thana_news(String thana_name) async {
+    var url = ApiClient.sara_desh_thana_news+'/'+thana_name;
+    print("Calling API: "+url);
+    try {
+      final response = await http.get(Uri.parse(url));
+      print(response.body);
+
+      List<LastEntryNewsResponse> list = (json.decode(response.body) as List)
+          .map((data) => LastEntryNewsResponse.fromJson(data))
+          .toList();
+
+      saradesh_district_newsList.clear();
+      saradesh_district_newsList.addAll(list);
+      //dataLoaded.value = true;
       //dataLoaded.value = true;
       //Navigator.of(context).pop();
       //get_home_category();

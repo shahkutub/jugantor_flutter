@@ -28,6 +28,10 @@ class SaraDeshDistrictFragment extends StatelessWidget {
                         children: <Widget>[
                           GestureDetector(
                             child:Text("প্রচ্ছদ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
+                            onTap: (){
+                              homeController.selectedPageIndex.value = 0;
+                            },
+
                           ),
                           Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
                           Obx(() =>
@@ -35,12 +39,17 @@ class SaraDeshDistrictFragment extends StatelessWidget {
                                 child:Text(""+homeController.selectedCategoryName.value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
                               ),
                           ),
-                          Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
-                          Obx(() =>
-                              Visibility(visible: true,child:GestureDetector(
-                                child:Text(""+homeController.selectedDivisionName.value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
-                              ),
+
+                          Container(
+                              child: homeController.selectedDivisionName.value.isNotEmpty?
+                              Row(
+                                children: [
+                                  Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
+                                  Text(""+homeController.selectedDivisionName.value,style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.grey),),
+                                ],
+                              ):SizedBox()
                           ),
+
                         ],
                       ),
                       SizedBox(height: 7,),
@@ -73,6 +82,8 @@ class SaraDeshDistrictFragment extends StatelessWidget {
                                   homeController.dataLoaded.value = false;
                                   homeController.catListShow.value = false;
                                   homeController.selectedDistrictName.value = homeController.districtList[index].district_name!;
+                                  homeController.district_id.value = homeController.districtList[index].id!;
+                                  homeController.district_title.value = homeController.districtList[index].url_dis_title!;
                                   homeController.selectedThanaName.value = homeController.districtList[index].district_name!;
                                   homeController.selectedPageIndex.value = 9;
                                   homeController.get_thana(homeController.districtList[index].id!);
