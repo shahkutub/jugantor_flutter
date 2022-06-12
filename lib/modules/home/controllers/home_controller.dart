@@ -142,7 +142,7 @@ class HomeController extends GetxController {
     get_last_photo_album();
     get_last_three_videos();
     Timer(Duration(seconds: 20), () {
-      get_home_category();
+      //get_home_category();
     });
     super.onInit();
   }
@@ -378,7 +378,7 @@ class HomeController extends GetxController {
 
       last_entry_newsList.clear();
       last_entry_newsList.addAll(list);
-      //dataLoaded.value = true;
+      dataLoaded.value = true;
       //Navigator.of(context).pop();
       //get_home_category();
       print('last_entry_newsList: ${last_entry_newsList[0].title.toString()}');
@@ -803,6 +803,7 @@ class HomeController extends GetxController {
   }
 
   get_last_photo_album() async {
+    last_photo_albumList.clear();
     print("last_photo_album API: "+ApiClient.last_photo_album);
     try {
       final response = await http.get(Uri.parse(ApiClient.last_photo_album));

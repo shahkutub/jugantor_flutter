@@ -21,18 +21,34 @@ class HomeFragment extends GetView<HomeController> {
     //Get.find<HomeController>();
 
 
+
     homeController.scrollController.value.addListener(() { //listener
       print('scroll'+homeController.scrollController.value.offset.toString());
-      if(homeController.scrollController.value.offset > 219){
+      if(homeController.scrollController.value.offset > 500){
         // homeController.home_categoryList.clear();
         // homeController.category_list_with_news_newsList.clear();
-        if(homeController.category_list_with_news_newsList.length == 0){
-         // homeController.get_home_category();
+        if(homeController.home_categoryList.length == 0){
+          homeController.get_home_category();
         }
 
         //homeController.get_last_entry_news1();
       }
+      if(homeController.scrollController.value.offset > 1000){
+        // homeController.home_categoryList.clear();
+        // homeController.category_list_with_news_newsList.clear();
+        if(homeController.last_photo_albumList.length == 0){
+          // homeController.last_online_poll();
+          // homeController.get_last_photo_album();
+          // homeController.get_last_three_videos();
+        }
+
+        //homeController.get_last_entry_news1();
+      }
+
+
     });
+
+
 
 
     return new Container(
@@ -59,7 +75,8 @@ class HomeFragment extends GetView<HomeController> {
                       margin: EdgeInsets.only(top: 15,bottom: 5,right: 20,left: 20),
                       height: width*.6,
                       width: width,
-                      child: Stack(
+                      child: homeController.leadnews.value != null?
+                      Stack(
                         fit: StackFit.expand,
                         children: [
                           FadeInImage.assetNetwork(
@@ -128,7 +145,7 @@ class HomeFragment extends GetView<HomeController> {
                       //   ),
                       // )
                         ],
-                      ),
+                      ):SizedBox()
 
                     )
                   ),
@@ -137,7 +154,8 @@ class HomeFragment extends GetView<HomeController> {
                         Container(
                             margin: EdgeInsets.only(top: 15,bottom: 5,right: 20,left: 20),
                             alignment: Alignment.center,
-                            child:GridView.builder(
+                            child:homeController.catExtraLinkList.length > 0 ?
+                            GridView.builder(
                               physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -191,7 +209,7 @@ class HomeFragment extends GetView<HomeController> {
                                   ),
                                 );
                               },
-                            )
+                            ):SizedBox()
                         ),
                     ),
                     //show news
@@ -199,7 +217,8 @@ class HomeFragment extends GetView<HomeController> {
                         Container(
                             margin: EdgeInsets.only(top: 15,bottom: 5,right: 20,left: 20),
                             alignment: Alignment.center,
-                            child:GridView.builder(
+                            child:homeController.showNewsList.length >0 ?
+                            GridView.builder(
                               physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -263,7 +282,7 @@ class HomeFragment extends GetView<HomeController> {
                                   ),
                                 );
                               },
-                            )
+                            ):SizedBox()
                         ),
                     ),
 
@@ -286,7 +305,8 @@ class HomeFragment extends GetView<HomeController> {
                         Container(
                             margin: EdgeInsets.only(top: 10,bottom: 5,right: 20,left: 20),
                             alignment: Alignment.center,
-                            child:ListView.builder(
+                            child:homeController.last_entry_newsList.length >0 ?
+                            ListView.builder(
                                  primary: false,
                                  shrinkWrap: true,
                               // Let the ListView know how many items it needs to build.
@@ -294,7 +314,7 @@ class HomeFragment extends GetView<HomeController> {
                               // Provide a builder function. This is where the magic happens.
                               // Convert each item into a widget based on the type of item it is.
                               itemBuilder: (context, index) {
-                                final item = homeController.last_entry_newsList[index];
+                                //final item = homeController.last_entry_newsList[index];
 
                                 return Container(
                                     margin: EdgeInsets.only(top: 10),
@@ -351,7 +371,7 @@ class HomeFragment extends GetView<HomeController> {
                                       )
                                 );
                               },
-                            )
+                            ):SizedBox()
 
                         ),
                     ),
@@ -361,7 +381,8 @@ class HomeFragment extends GetView<HomeController> {
                         Container(
                             margin: EdgeInsets.only(top: 15,bottom: 0,right: 20,left: 20),
                             alignment: Alignment.center,
-                            child:ListView.builder(
+                            child:homeController.category_list_with_news_newsList.length > 0 ?
+                            ListView.builder(
                               primary: false,
                               shrinkWrap: true,
                               // Let the ListView know how many items it needs to build.
@@ -580,7 +601,7 @@ class HomeFragment extends GetView<HomeController> {
                                     )
                                 );
                               },
-                            )
+                            ):SizedBox()
 
                         ),
                     ),
@@ -622,7 +643,8 @@ class HomeFragment extends GetView<HomeController> {
                         Container(
                             margin: EdgeInsets.only(top: 5,bottom: 5,right: 15,left: 15),
                             alignment: Alignment.center,
-                            child:CarouselSlider(
+                            child:homeController.last_photo_albumList.length > 0 ?
+                            CarouselSlider(
                               options: CarouselOptions(
                                 height: 200,
                                 viewportFraction: 1.0,
@@ -678,7 +700,7 @@ class HomeFragment extends GetView<HomeController> {
                                   },
                                 );
                               }).toList(),
-                            ),
+                            ):SizedBox()
 
                         ),
                     ),
@@ -721,7 +743,8 @@ class HomeFragment extends GetView<HomeController> {
                         Container(
                           margin: EdgeInsets.only(top: 0,bottom: 5,right: 15,left: 15),
                           alignment: Alignment.center,
-                            child:ListView.builder(
+                            child:homeController.last_VidListList!.length > 0?
+                            ListView.builder(
                               primary: false,
                               shrinkWrap: true,
                               // Let the ListView know how many items it needs to build.
@@ -868,7 +891,7 @@ class HomeFragment extends GetView<HomeController> {
                                 }
 
                               },
-                            )
+                            ):SizedBox()
                         ),
                     ),
 
@@ -907,8 +930,7 @@ class HomeFragment extends GetView<HomeController> {
                         borderRadius:BorderRadius.circular(10),
                       ),
                       width: width,
-                      child: 
-                      
+                      child: homeController.last_online_pollResponse.value != null?
                       Column(
                         children: [
                           Container(
@@ -1024,7 +1046,7 @@ class HomeFragment extends GetView<HomeController> {
                           // ],
                           // )
                         ],
-                      ),
+                      ):SizedBox()
                     ),
 
                     //bottom 
