@@ -17,8 +17,7 @@ class SobKhoborFragment extends StatelessWidget {
         child: Obx(() {
           if(homeController.dataLoaded.isTrue){
             return new SingleChildScrollView(
-              // controller: homeController.scrollController.value,
-
+              controller: homeController.scrollController.value,
 
                 child: Container(
                   child:Column(

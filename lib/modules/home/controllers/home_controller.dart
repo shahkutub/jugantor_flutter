@@ -96,6 +96,8 @@ class HomeController extends GetxController {
 
   var newsId = "".obs;
   var tag = "".obs;
+  var picked = "Two";
+  var verticalGroupValue = "Pending".obs;
   var spc_event_tag_id = "".obs;
   var currentDateEng = "".obs;
   var selectedCategoryName = "".obs;
@@ -112,10 +114,12 @@ class HomeController extends GetxController {
 
   var district_id = 0.obs;
   var district_title = ''.obs;
+
+  var homecatApiCall = false.obs;
   @override
   void onInit() {
 
-
+    homecatApiCall.value = false;
 
 
     //scrollController.value.position = 0;
@@ -233,13 +237,13 @@ class HomeController extends GetxController {
       //print('newslenth: ${detail_page_aro_button_newsList.length}');
 
 
-
+        categoryName.value = '';
         categoryName.value = newsDetails.value.bread_parent_cat_name!;
         dataLoaded.value = true;
         print('newsdetailstitle: ${newsDetails.value.title}');
         //Navigator.of(Get.context).pop();
      // }
-
+      newsDate.value = '';
       newsDate.value = Utils.dateTimeFormat(newsDetails.value.news_date_time!);
       if(newsDetails.value.news_edition == 1){
         newsEdition.value = "অনলাইন সংস্করণ";
@@ -249,12 +253,14 @@ class HomeController extends GetxController {
 
       get_more_cat_news(newsDetails.value.parent_cat_id.toString(),newsDetails.value.id.toString());
 
+      spc_event_tag_id.value = '';
       spc_event_tag_id.value = newsDetails.value.spc_event_tag_id!;
 
       if(spc_event_tag_id.value.isNotEmpty){
         get_event_news_paginate(eventPage.value);
       }
 
+      tag.value = '';
       if(newsDetails.value.location_name!.isNotEmpty){
         tag.value = newsDetails.value.location_name!;
       }
@@ -378,7 +384,7 @@ class HomeController extends GetxController {
 
       last_entry_newsList.clear();
       last_entry_newsList.addAll(list);
-      dataLoaded.value = true;
+      //dataLoaded.value = true;
       //Navigator.of(context).pop();
       //get_home_category();
       print('last_entry_newsList: ${last_entry_newsList[0].title.toString()}');

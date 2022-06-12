@@ -20,7 +20,7 @@ class NewsDetailseFragment extends StatelessWidget {
         child: Obx(() {
           if(homeController.dataLoaded.isTrue){
             return new SingleChildScrollView(
-               // controller: homeController.scrollController.value,
+                controller: homeController.scrollController.value,
                 child: Container(
                   child:Column(
                     children: [
@@ -30,6 +30,7 @@ class NewsDetailseFragment extends StatelessWidget {
                           GestureDetector(
                             onTap: (){
                               homeController.selectedPageIndex.value = 0;
+                              Get.back();
                             },
                             child:Text("প্রচ্ছদ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
                           ),

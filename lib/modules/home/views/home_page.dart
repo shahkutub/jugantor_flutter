@@ -190,7 +190,16 @@ class HomePage extends GetView<HomeController> {
                   child:homeController.getDrawerItemWidget(homeController.selectedPageIndex.value),
                 );
               }
-          )
+          ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                homeController.scrollController.value.animateTo(0,
+                    duration: const Duration(seconds: 3), curve: Curves.linear);
+              },
+              child: Icon(Icons.arrow_circle_up_outlined,color: Colors.red,size: 40,),
+              backgroundColor: Colors.transparent,
+              foregroundColor: Colors.transparent,
+            ),
         ),
         )
     );
