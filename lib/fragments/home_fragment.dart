@@ -10,6 +10,7 @@ import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 import 'package:jugantor.com/utils/loaders/color_loader_5.dart';
 import 'package:jugantor.com/utils/loaders/dot_type.dart';
 import 'package:group_radio_button/group_radio_button.dart';
+import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class HomeFragment extends GetView<HomeController> {
   final HomeController homeController = Get.put(HomeController());
@@ -217,6 +218,9 @@ class HomeFragment extends GetView<HomeController> {
                             ):SizedBox()
                         ),
                     ),
+
+                    
+
                     //show news
                     Obx(() =>
                         Container(
