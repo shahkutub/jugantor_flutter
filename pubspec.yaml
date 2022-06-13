@@ -45,7 +45,6 @@ dependencies:
   webview_flutter: ^2.8.0
   group_button: ^5.0.1
   group_radio_button: ^1.2.0
-  syncfusion_flutter_datagrid: ^20.1.59
 #  flutter_svg: ^1.0.3
 #  flutter_html: ^0.11.1
 #  flutter_html: ^2.2.1

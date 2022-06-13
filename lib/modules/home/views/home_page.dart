@@ -42,14 +42,16 @@ class HomePage extends GetView<HomeController> {
                       GestureDetector(
                         onTap: (){
                           // ajker paper page index 3
+                          Get.back();
                           homeController.selectedPageIndex.value = 3;
                           homeController.selectedCategoryName.value = "আজকের পত্রিকা";
+                          homeController.selectedSubCategoryName.value = "";
                           homeController.catListShow.value = false;
                           homeController.ajker_paper_sub_category();
                         },
                         child: Container(
                           padding: EdgeInsets.all(5),
-                          child: Text(" আজকের পত্রিকা ",
+                          child: Text("আজকের পত্রিকা",
                             style: TextStyle(color: Colors.white,fontSize: 15),
                             textAlign:TextAlign.center,
                           ),
@@ -62,13 +64,26 @@ class HomePage extends GetView<HomeController> {
                         },
                         child: Container(
                           padding: EdgeInsets.all(5),
-                          child: Text("| ই-পেপার ",
+                          child: Text("|  ই-পেপার",
                             style: TextStyle(color: Colors.white,fontSize: 15),
                             textAlign:TextAlign.center,
                           ),
                         ),
+                      ),
 
-                      )
+                      GestureDetector(
+                        onTap: (){
+                          homeController.selectedPageIndex.value = 4;
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(5),
+                          child: Text("|  বেটা ভার্সন",
+                            style: TextStyle(color: Colors.white,fontSize: 15),
+                            textAlign:TextAlign.center,
+                          ),
+                        ),
+                      ),
+
                     ],
                   ),
 
@@ -154,6 +169,7 @@ class HomePage extends GetView<HomeController> {
                                         }else{
                                           homeController.subcategory_list_with_news_newsList.clear();
                                           homeController.catId.value = homeController.categoryList[index].id!;
+                                          homeController.selectedSubCategoryName.value = "";
                                           homeController.selectedCategoryName.value = homeController.categoryList[index].cat_name.toString();
                                           homeController.dataLoaded.value = false;
                                           homeController.get_sub_category(homeController.categoryList![index].id!);
@@ -164,7 +180,7 @@ class HomePage extends GetView<HomeController> {
 
 
                                       child: Obx(() => Text(homeController.categoryList[index].cat_name!,
-                                        style: TextStyle(color: Colors.black,fontSize: 15, ),),
+                                        style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold ),),
                                       ),
                                     );
                                   },
@@ -172,11 +188,90 @@ class HomePage extends GetView<HomeController> {
                             ),
                         ),
 
-                        Container(
-                          margin: EdgeInsets.only(bottom: 20),
-                          alignment: Alignment.center,
-                          child: const Text('Fixed Height Content'),
+                        Divider(
+                          thickness: 2.0,
+                          color: Colors.grey,
                         ),
+
+                        Container(
+                          margin: EdgeInsets.only(right: 15,left: 15,bottom: 40),
+                          child: Column(
+                            children: [
+                              Row(
+
+                                children: <Widget>[
+                                  Flexible(
+                                    child: GestureDetector(
+                                      child: Row(
+                                        children: [
+                                          Icon(Icons.library_books_outlined),
+                                          Text(" আজকের পত্রিকা")
+                                        ],
+                                      ),
+                                      onTap: (){
+                                        Get.back();
+                                        homeController.selectedPageIndex.value = 3;
+                                        homeController.selectedSubCategoryName.value = "";
+                                        homeController.selectedCategoryName.value = "আজকের পত্রিকা";
+                                        homeController.catListShow.value = false;
+                                        homeController.ajker_paper_sub_category();
+                                      },
+                                    ), flex: 1,),
+                                  Flexible(child: GestureDetector(
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.library_books_outlined,color: Colors.green,),
+                                        Text(" দ্বিতীয় সংস্করণ")
+                                      ],
+                                    ),
+                                    onTap: (){
+                                      Get.back();
+                                      homeController.selectedPageIndex.value = 3;
+                                      homeController.selectedCategoryName.value = "আজকের পত্রিকা";
+                                      homeController.selectedSubCategoryName.value = "দ্বিতীয় সংস্করণ";
+                                      homeController.catListShow.value = false;
+
+                                      homeController.get_ajker_cat_newsList(33);
+                                      homeController.ajker_paper_sub_categoryOnly();
+                                    },
+                                  ),
+                                   flex: 1,)
+                                ],
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  Flexible(child: GestureDetector(
+                                    child:Row(
+                                      children: [
+                                        Icon(Icons.photo),
+                                        Text(" ছবি")
+                                      ],
+                                    ),
+                                    onTap: (){
+
+                                    },
+                                  ), flex: 1,),
+                                  Flexible(child: GestureDetector(
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.video_library_sharp,),
+                                        Text(" ভিডিও")
+                                      ],
+                                    ),
+                                    onTap: (){
+
+                                    },
+                                  ),
+                                   flex: 1,)
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+
 
 
                       ],

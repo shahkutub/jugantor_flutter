@@ -10,7 +10,6 @@ import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 import 'package:jugantor.com/utils/loaders/color_loader_5.dart';
 import 'package:jugantor.com/utils/loaders/dot_type.dart';
 import 'package:group_radio_button/group_radio_button.dart';
-import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class HomeFragment extends GetView<HomeController> {
   final HomeController homeController = Get.put(HomeController());
@@ -174,11 +173,12 @@ class HomeFragment extends GetView<HomeController> {
                               itemBuilder: (context, index) {
                                 return  GestureDetector(
                                   onTap: (){
-                                    // homeController.dataLoaded.value = false;
-                                    // homeController.newsId.value = homeController.leadnews.value.id.toString();
-                                    // homeController.get_news_details();
-                                    // homeController.selectedIndex.value = 1;
-
+                                    homeController.selectedPageIndex.value = 2;
+                                    homeController.selectedCategoryName.value = homeController.catExtraLinkList[index].parent_cat_name!;
+                                    homeController.selectedSubCategoryName.value = homeController.catExtraLinkList[index].cat_name!;
+                                    homeController.catListShow.value = false;
+                                    homeController.get_sub_categoryListOnly(homeController.catExtraLinkList[index].parent_cat_id!);
+                                    homeController.get_category_page_subcat_wise_news(homeController.catExtraLinkList[index].cat_id!);
                                   },
 
                                   child: Obx(() => Container(
@@ -399,241 +399,239 @@ class HomeFragment extends GetView<HomeController> {
                               // Provide a builder function. This is where the magic happens.
                               // Convert each item into a widget based on the type of item it is.
                               itemBuilder: (context, index) {
-                                final item = homeController.category_list_with_news_newsList[index];
+                                //final item = homeController.category_list_with_news_newsList[index];
                                 //homeController.get_category_wise_news(homeController.home_categoryList[index].id);
 
                                 return Container(
-                                    child:   GestureDetector(
-                                      onTap: (){
-                                        //Get.back();
-                                        // if(homeController.showNewsList[index].cat_name == "প্রচ্ছদ"){
-                                        //   //homeController.selectedIndex.value = 0;
-                                        // }else{
-                                        //   // homeController.selectedIndex.value = 1;
-                                        // }
-                                      },
-
-                                      child: Obx(() =>
-                                          Container(
-                                              margin: EdgeInsets.only(top: 20),
+                                    child: Obx(() =>
+                                    Container(
+                                        margin: EdgeInsets.only(top: 20),
                                         //height: ,
                                         //alignment: Alignment.center,
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: [
-                                              GestureDetector(
-                                                onTap: (){
-                                                  if(homeController.categoryList[index].cat_name == "সারাদেশ"){
-                                                    homeController.selectedCategoryName.value = "সারাদেশ";
-                                                    homeController.dataLoaded.value = false;
-                                                    homeController.get_saradesh_top_news();
-                                                    homeController.get_division();
-                                                  }else{
-                                                    homeController.subcategory_list_with_news_newsList.clear();
-                                                    homeController.catId.value = homeController.categoryList[index].id!;
-                                                    homeController.selectedCategoryName.value = homeController.categoryList[index].cat_name.toString();
-                                                    homeController.dataLoaded.value = false;
-                                                    homeController.get_sub_category(homeController.categoryList![index].id!);
-                                                    //sub_category page index 2
-                                                    homeController.selectedPageIndex.value = 2;
-                                                  }
-                                                },
-                                                child:Stack(alignment: Alignment.centerLeft,
-                                                  children: <Widget>[
-                                                    Container(
-                                                      //height: 80,
-                                                      alignment: Alignment.centerLeft,
-                                                      child: Flexible(child: Text(homeController.category_list_with_news_newsList[index].cat_name!,
-                                                          style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)
-                                                      )
-                                                      ),
-                                                    ),
-                                                    Container(
-                                                      alignment: Alignment.centerRight,
-                                                      child: Column(
-                                                        mainAxisAlignment: MainAxisAlignment.center,
-                                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                                        children: [
-                                                          Icon(Icons.arrow_forward_sharp,color: Colors.red,),
-                                                        ],
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                              Divider(
-                                                  color: Colors.red
-                                              ),
-                                              Obx(() =>
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            GestureDetector(
+                                              onTap: (){
+                                                if(homeController.category_list_with_news_newsList[index].cat_name == "সারাদেশ"){
+
+                                                  homeController.subcategory_list_with_news_newsList.clear();
+                                                  homeController.selectedCategoryName.value = "সারাদেশ";
+                                                  homeController.selectedSubCategoryName.value = '';
+                                                  homeController.dataLoaded.value = false;
+                                                  //সারাদেশ page index 7
+                                                  homeController.selectedPageIndex.value = 7;
+                                                  homeController.get_saradesh_top_news();
+                                                  homeController.get_division();
+
+                                                }else{
+
+                                                  homeController.subcategory_list_with_news_newsList.clear();
+                                                  homeController.catId.value = homeController.category_list_with_news_newsList[index].id!;
+                                                  homeController.selectedSubCategoryName.value = '';
+                                                  homeController.selectedCategoryName.value = homeController.category_list_with_news_newsList[index].cat_name.toString();
+                                                  homeController.dataLoaded.value = false;
+                                                  homeController.get_sub_category(homeController.category_list_with_news_newsList![index].id!);
+                                                  //sub_category page index 2
+                                                  homeController.selectedPageIndex.value = 2;
+                                                }
+                                              },
+                                              child:Stack(alignment: Alignment.centerLeft,
+                                                children: <Widget>[
                                                   Container(
-                                                      margin: EdgeInsets.only(top: 0,bottom: 5),
-                                                      alignment: Alignment.center,
-                                                      child:ListView.builder(
-                                                        primary: false,
-                                                        shrinkWrap: true,
-                                                        // Let the ListView know how many items it needs to build.
-                                                        itemCount: homeController.category_list_with_news_newsList[index].category_wise_newsList!.length,
-                                                        // Provide a builder function. This is where the magic happens.
-                                                        // Convert each item into a widget based on the type of item it is.
-                                                        itemBuilder: (context, index2) {
-                                                          //final item = homeController.category_list_with_news_newsList[index].category_wise_newsList![index2];
-                                                          //homeController.homecatId.value = homeController.showNewsList[index].id;
-
-                                                          if(index2 == 0){
-                                                            return GestureDetector(
-                                                              onTap: (){
-                                                                homeController.dataLoaded.value = false;
-                                                                homeController.newsId.value = homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].id.toString();
-                                                                homeController.selectedPageIndex.value = 1;
-                                                                homeController.get_news_details();
-                                                              },
-                                                              child: Container(
-                                                                margin: EdgeInsets.only(top: 15,bottom: 5,right: 0,left: 0),
-                                                                height: width*.6,
-                                                                width: width,
-                                                                child: Stack(
-                                                                  fit: StackFit.expand,
-                                                                  children: [
-                                                                    FadeInImage.assetNetwork(
-                                                                        fit: BoxFit.fill,
-                                                                        image:homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].img_url!,
-                                                                        placeholder:"assets/images/jugantordefault.jpg" // your assets image path
-                                                                    ),
-                                                                    Positioned(
-                                                                      bottom: width*.2,
-                                                                      left:width/2.5 ,
-                                                                      child: homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].video_dis  == 1 ?
-                                                                      Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
-
-                                                                    ),
-                                                                    Positioned(
-                                                                      bottom: 0,
-                                                                      left: 0,
-                                                                      child: Column(
-                                                                        children: <Widget>[
-                                                                          Container(
-                                                                            width: width,
-                                                                            child:Text(
-                                                                              homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].title!,
-                                                                              style: TextStyle(
-                                                                                  fontSize: 17,
-                                                                                  fontWeight: FontWeight.bold,
-                                                                                  color: Colors.white),
-                                                                            ),
-                                                                            padding: EdgeInsets.all(10),
-                                                                            color: Colors.black54,
-                                                                          )
-
-                                                                        ],
-                                                                      ),
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            );
-                                                          }else{
-                                                            return Container(
-                                                               margin: EdgeInsets.only(top: 10),
-                                                                child:   GestureDetector(
-                                                                  onTap: (){
-                                                                    homeController.dataLoaded.value = false;
-                                                                    homeController.newsId.value = homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].id.toString();
-                                                                    homeController.selectedPageIndex.value = 1;
-                                                                    homeController.get_news_details();
-                                                                  },
-
-                                                                  child: Obx(() =>
-                                                                      Container(
-                                                                        //height: ,
-                                                                        //alignment: Alignment.center,
-                                                                          child: Row(
-                                                                            mainAxisAlignment: MainAxisAlignment.start,
-                                                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                                                            children: [
-                                                                              // Container(
-                                                                              //   margin: EdgeInsets.only(right: 10),
-                                                                              //   height: 70,
-                                                                              //   width: 100,
-                                                                              //   child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
-                                                                              //     fit: BoxFit.fill,
-                                                                              //   ),
-                                                                              //   //height: 80,
-                                                                              //   // width: 60,
-                                                                              // ),
-
-                                                                              Container(
-                                                                                margin: EdgeInsets.only(right: 10),
-                                                                                height: 70,
-                                                                                width: 100,
-                                                                                child: Stack(
-                                                                                  fit: StackFit.expand,
-                                                                                  children: [
-                                                                                    FadeInImage.assetNetwork(
-                                                                                        height: 70,
-                                                                                        width: 100,
-                                                                                        fit: BoxFit.fill,
-                                                                                        image:homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].img_url!,
-                                                                                        placeholder:"assets/images/jugantordefault.jpg" // your assets image path
-                                                                                    ),
-                                                                                    Positioned(
-                                                                                      bottom: 20,
-                                                                                      left:35,
-                                                                                      child: homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].video_dis  == 1 ?
-                                                                                      Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
-
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
-                                                                              ),
-
-                                                                              Flexible(child: Text(homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].title!,
-                                                                                style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
-                                                                                textAlign: TextAlign.justify,
-                                                                              ),
-
-                                                                              ),
-
-                                                                            ],
-                                                                          )
-                                                                        // child: Row(
-                                                                        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                                        //   crossAxisAlignment: CrossAxisAlignment.center,
-                                                                        //   children: [
-                                                                        //     Container(
-                                                                        //       child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
-                                                                        //         fit: BoxFit.fitWidth,
-                                                                        //         height: 70,
-                                                                        //
-                                                                        //       ),
-                                                                        //       //height: 80,
-                                                                        //       // width: 60,
-                                                                        //     ),
-                                                                        //
-                                                                        //     Flexible(child: Text(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].title,
-                                                                        //       style: TextStyle(color: Colors.black,fontSize: 14, ),),),
-                                                                        //
-                                                                        //   ],
-                                                                        // )
-
-
-                                                                      )
-                                                                  ),
-
-                                                                )
-                                                            );
-                                                          }
-
-                                                        },
-                                                      )
-
+                                                    //height: 80,
+                                                    alignment: Alignment.centerLeft,
+                                                    child: Flexible(child: Text(homeController.category_list_with_news_newsList[index].cat_name!,
+                                                        style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)
+                                                    )
+                                                    ),
                                                   ),
+                                                  Container(
+                                                    alignment: Alignment.centerRight,
+                                                    child: Column(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                                      children: [
+                                                        Icon(Icons.arrow_forward_sharp,color: Colors.red,),
+                                                      ],
+                                                    ),
+                                                  )
+                                                ],
                                               ),
-                                            ],
-                                          )
-                                      )
-                                      ),
+                                            ),
+                                            Divider(
+                                                color: Colors.red
+                                            ),
+                                            Obx(() =>
+                                                Container(
+                                                    margin: EdgeInsets.only(top: 0,bottom: 5),
+                                                    alignment: Alignment.center,
+                                                    child:ListView.builder(
+                                                      primary: false,
+                                                      shrinkWrap: true,
+                                                      // Let the ListView know how many items it needs to build.
+                                                      itemCount: homeController.category_list_with_news_newsList[index].category_wise_newsList!.length,
+                                                      // Provide a builder function. This is where the magic happens.
+                                                      // Convert each item into a widget based on the type of item it is.
+                                                      itemBuilder: (context, index2) {
+                                                        //final item = homeController.category_list_with_news_newsList[index].category_wise_newsList![index2];
+                                                        //homeController.homecatId.value = homeController.showNewsList[index].id;
+
+                                                        if(index2 == 0){
+                                                          return GestureDetector(
+                                                            onTap: (){
+                                                              homeController.dataLoaded.value = false;
+                                                              homeController.newsId.value = homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].id.toString();
+                                                              homeController.selectedPageIndex.value = 1;
+                                                              homeController.get_news_details();
+                                                            },
+                                                            child: Container(
+                                                              margin: EdgeInsets.only(top: 15,bottom: 5,right: 0,left: 0),
+                                                              height: width*.6,
+                                                              width: width,
+                                                              child: Stack(
+                                                                fit: StackFit.expand,
+                                                                children: [
+                                                                  FadeInImage.assetNetwork(
+                                                                      fit: BoxFit.fill,
+                                                                      image:homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].img_url!,
+                                                                      placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                                  ),
+                                                                  Positioned(
+                                                                    bottom: width*.2,
+                                                                    left:width/2.5 ,
+                                                                    child: homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].video_dis  == 1 ?
+                                                                    Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
+
+                                                                  ),
+                                                                  Positioned(
+                                                                    bottom: 0,
+                                                                    left: 0,
+                                                                    child: Column(
+                                                                      children: <Widget>[
+                                                                        Container(
+                                                                          width: width,
+                                                                          child:Text(
+                                                                            homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].title!,
+                                                                            style: TextStyle(
+                                                                                fontSize: 17,
+                                                                                fontWeight: FontWeight.bold,
+                                                                                color: Colors.white),
+                                                                          ),
+                                                                          padding: EdgeInsets.all(10),
+                                                                          color: Colors.black54,
+                                                                        )
+
+                                                                      ],
+                                                                    ),
+                                                                  )
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }else{
+                                                          return Container(
+                                                              margin: EdgeInsets.only(top: 10),
+                                                              child:   GestureDetector(
+                                                                onTap: (){
+                                                                  homeController.dataLoaded.value = false;
+                                                                  homeController.newsId.value = homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].id.toString();
+                                                                  homeController.selectedPageIndex.value = 1;
+                                                                  homeController.get_news_details();
+                                                                },
+
+                                                                child: Obx(() =>
+                                                                    Container(
+                                                                      //height: ,
+                                                                      //alignment: Alignment.center,
+                                                                        child: Row(
+                                                                          mainAxisAlignment: MainAxisAlignment.start,
+                                                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                                                          children: [
+                                                                            // Container(
+                                                                            //   margin: EdgeInsets.only(right: 10),
+                                                                            //   height: 70,
+                                                                            //   width: 100,
+                                                                            //   child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
+                                                                            //     fit: BoxFit.fill,
+                                                                            //   ),
+                                                                            //   //height: 80,
+                                                                            //   // width: 60,
+                                                                            // ),
+
+                                                                            Container(
+                                                                              margin: EdgeInsets.only(right: 10),
+                                                                              height: 70,
+                                                                              width: 100,
+                                                                              child: Stack(
+                                                                                fit: StackFit.expand,
+                                                                                children: [
+                                                                                  FadeInImage.assetNetwork(
+                                                                                      height: 70,
+                                                                                      width: 100,
+                                                                                      fit: BoxFit.fill,
+                                                                                      image:homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].img_url!,
+                                                                                      placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                                                  ),
+                                                                                  Positioned(
+                                                                                    bottom: 20,
+                                                                                    left:35,
+                                                                                    child: homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].video_dis  == 1 ?
+                                                                                    Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ),
+
+                                                                            Flexible(child: Text(homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].title!,
+                                                                              style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                                                              textAlign: TextAlign.justify,
+                                                                            ),
+
+                                                                            ),
+
+                                                                          ],
+                                                                        )
+                                                                      // child: Row(
+                                                                      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                                      //   crossAxisAlignment: CrossAxisAlignment.center,
+                                                                      //   children: [
+                                                                      //     Container(
+                                                                      //       child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
+                                                                      //         fit: BoxFit.fitWidth,
+                                                                      //         height: 70,
+                                                                      //
+                                                                      //       ),
+                                                                      //       //height: 80,
+                                                                      //       // width: 60,
+                                                                      //     ),
+                                                                      //
+                                                                      //     Flexible(child: Text(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].title,
+                                                                      //       style: TextStyle(color: Colors.black,fontSize: 14, ),),),
+                                                                      //
+                                                                      //   ],
+                                                                      // )
+
+
+                                                                    )
+                                                                ),
+
+                                                              )
+                                                          );
+                                                        }
+
+                                                      },
+                                                    )
+
+                                                ),
+                                            ),
+                                          ],
+                                        )
                                     )
+                                ),
+
                                 );
                               },
                             ):SizedBox()
@@ -972,7 +970,12 @@ class HomeFragment extends GetView<HomeController> {
                           Container(
                             padding: EdgeInsets.all(15),
                             alignment: Alignment.center,
-                            color: Colors.orange,
+
+                            decoration: BoxDecoration(
+                              color: Colors.orange,
+                              //border: Border.all(color: Colors.orange),
+                              borderRadius:BorderRadius.circular(10),
+                            ),
                             child: Text(
                               'অনলাইন জরিপ',style: TextStyle(
                               color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold
@@ -1060,6 +1063,7 @@ class HomeFragment extends GetView<HomeController> {
                             child: GestureDetector(
                               child:Container(
                                 padding: EdgeInsets.all(10),
+                                margin: EdgeInsets.only(left: 100,right: 100),
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),

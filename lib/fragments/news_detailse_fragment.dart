@@ -239,66 +239,55 @@ class NewsDetailseFragment extends StatelessWidget {
 
                                         return Container(
                                             margin: EdgeInsets.only(top: 10),
-                                            child:   GestureDetector(
-                                              onTap: (){
-                                                //Get.back();
-                                                // if(homeController.showNewsList[index].cat_name == "প্রচ্ছদ"){
-                                                //   //homeController.selectedIndex.value = 0;
-                                                // }else{
-                                                //   // homeController.selectedIndex.value = 1;
-                                                // }
-                                              },
-
-                                              child: Obx(() =>
-                                                  GestureDetector(
-                                                      onTap: (){
-                                                        homeController.newsId.value = homeController.detail_page_aro_button_newsList[index]["id"];
-                                                        homeController.get_news_details();
-                                                      },
-                                                      child: Container(
-                                                        //height: ,
-                                                        //alignment: Alignment.center,
-                                                          child: Row(
-                                                            mainAxisAlignment: MainAxisAlignment.start,
-                                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                                            children: [
-                                                              Container(
-                                                                margin: EdgeInsets.only(right: 10),
-                                                                height: 70,
-                                                                width: 100,
-                                                                child: Stack(
-                                                                  fit: StackFit.expand,
-                                                                  children: [
-                                                                    FadeInImage.assetNetwork(
-                                                                        height: 70,
-                                                                        width: 100,
-                                                                        fit: BoxFit.fill,
-                                                                        image:homeController.detail_page_aro_button_newsList[index]["img_url"],
-                                                                        placeholder:"assets/images/jugantordefault.jpg" // your assets image path
-                                                                    ),
-                                                                    Positioned(
-                                                                      bottom: 20,
-                                                                      left:35,
-                                                                      child: homeController.detail_page_aro_button_newsList[index]["video_dis"]  == 0 ?
-                                                                      Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
-
-                                                                    ),
-                                                                  ],
+                                          child: Obx(() =>
+                                              GestureDetector(
+                                                  onTap: (){
+                                                    homeController.newsId.value = homeController.detail_page_aro_button_newsList[index]["id"];
+                                                    homeController.get_news_details();
+                                                  },
+                                                  child: Container(
+                                                    //height: ,
+                                                    //alignment: Alignment.center,
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.start,
+                                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                                        children: [
+                                                          Container(
+                                                            margin: EdgeInsets.only(right: 10),
+                                                            height: 70,
+                                                            width: 100,
+                                                            child: Stack(
+                                                              fit: StackFit.expand,
+                                                              children: [
+                                                                FadeInImage.assetNetwork(
+                                                                    height: 70,
+                                                                    width: 100,
+                                                                    fit: BoxFit.fill,
+                                                                    image:homeController.detail_page_aro_button_newsList[index]["img_url"],
+                                                                    placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                                                                 ),
-                                                              ),
-                                                              Flexible(child: Text(homeController.detail_page_aro_button_newsList[index]["title"],
-                                                                style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
-                                                                textAlign: TextAlign.justify,
-                                                              ),
+                                                                Positioned(
+                                                                  bottom: 20,
+                                                                  left:35,
+                                                                  child: homeController.detail_page_aro_button_newsList[index]["video_dis"]  == 0 ?
+                                                                  Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
 
-                                                              ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          Flexible(child: Text(homeController.detail_page_aro_button_newsList[index]["title"],
+                                                            style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                                            textAlign: TextAlign.justify,
+                                                          ),
 
-                                                            ],
-                                                          )
+                                                          ),
+
+                                                        ],
                                                       )
-                                                  ),
+                                                  )
                                               ),
-                                            )
+                                          ),
                                         );
                                       },
                                     )

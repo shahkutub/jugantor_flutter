@@ -643,6 +643,26 @@ class HomeController extends GetxController {
     }
   }
 
+
+  get_sub_categoryListOnly(int catId) async {
+    sub_categoryList.clear();
+    print("Calling API: "+ApiClient.sub_category_list+'/'+catId.toString());
+    try {
+      final response = await http.get(Uri.parse(ApiClient.sub_category_list+'/'+catId.toString()));
+      print(response.body);
+      List<CategoryResponse> list = (json.decode(response.body) as List)
+          .map((data) => CategoryResponse.fromJson(data))
+          .toList();
+      sub_categoryList.addAll(list);
+      //get_category_page_cat_wise_news(catId);
+
+
+
+    } on SocketException {
+
+    }
+  }
+
   get_sub_category(int catId) async {
     sub_categoryList.clear();
     print("Calling API: "+ApiClient.sub_category_list);
@@ -680,6 +700,27 @@ class HomeController extends GetxController {
 
     }
   }
+
+  ajker_paper_sub_categoryOnly() async {
+    ajkert_paper_sub_categoryList.clear();
+    print("Calling API: "+ApiClient.ajker_paper_sub_cats);
+    try {
+      final response = await http.get(Uri.parse(ApiClient.ajker_paper_sub_cats));
+      print(response.body);
+      List<CategoryResponse> list = (json.decode(response.body) as List)
+          .map((data) => CategoryResponse.fromJson(data))
+          .toList();
+      ajkert_paper_sub_categoryList.addAll(list);
+      // ajkert_paper_sub_categoryList.forEach((element) {
+      //   get_ajker_paper_subcategory_wise_newsList(element);
+      // });
+
+    } on SocketException {
+
+    }
+  }
+
+
 
   get_subcategory_wise_newsList(CategoryResponse categoryResponse) async {
     subcategory_list_with_news_newsList.clear();
@@ -720,6 +761,23 @@ class HomeController extends GetxController {
       dataLoaded.value = true;
       // print('category_wise_newsList: ${category_wise_newsList[0].title.toString()}');
       //return category_wise_newsList;
+    } on SocketException {
+
+    }
+  }
+
+  get_ajker_cat_newsList(int id) async {
+    category_wise_newsList.clear();
+    print("Calling API: "+ApiClient.ajker_paper_sub_cats_wise_news+'/'+id.toString());
+    try {
+      final response = await http.get(Uri.parse(ApiClient.ajker_paper_sub_cats_wise_news+'/'+id.toString()));
+      print(response.body.toString());
+      List<LastEntryNewsResponse> list = (json.decode(response.body) as List)
+          .map((data) => LastEntryNewsResponse.fromJson(data))
+          .toList();
+      category_wise_newsList.addAll(list);
+
+
     } on SocketException {
 
     }
@@ -955,7 +1013,7 @@ class HomeController extends GetxController {
   }
 
   get_extracat() async {
-    print("Calling API: "+ApiClient.category);
+    print("Calling API: "+ApiClient.cat_extra_link);
     try {
       final response = await http.get(Uri.parse(ApiClient.cat_extra_link));
       //print(response.body);

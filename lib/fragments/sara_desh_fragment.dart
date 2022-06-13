@@ -137,58 +137,66 @@ class SaraDeshFragment extends StatelessWidget {
                               //homeController.homecatId.value = homeController.showNewsList[index].id;
 
                               if(index2 == 0){
-                                return Container(
-                                  margin: EdgeInsets.only(top: 0,bottom: 5,right: 0,left: 0),
-                                  height: width*.6,
-                                  width: width,
-                                  child: Stack(
-                                    fit: StackFit.expand,
-                                    children: [
-                                      FadeInImage.assetNetwork(
-                                          fit: BoxFit.fill,
-                                          image:homeController.saradesh_top_newsList![index2].img_url!,
-                                          placeholder:"assets/images/jugantordefault.jpg" // your assets image path
-                                      ),
-                                      Positioned(
-                                        bottom: width*.2,
-                                        left:width/2.5 ,
-                                        child: homeController.saradesh_top_newsList![index2].video_dis  == 1 ?
-                                        Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
-
-                                      ),
-                                      Positioned(
-                                        bottom: 0,
-                                        left: 0,
-                                        child: Column(
-                                          children: <Widget>[
-                                            Container(
-                                              width: width,
-                                              child:Text(
-                                                homeController.saradesh_top_newsList![index2].title!,
-                                                style: TextStyle(
-                                                    fontSize: 17,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white),
-                                              ),
-                                              padding: EdgeInsets.all(10),
-                                              color: Colors.black54,
-                                            )
-
-                                          ],
+                                return GestureDetector(
+                                  onTap: (){
+                                    homeController.dataLoaded.value = false;
+                                    homeController.newsId.value = homeController.saradesh_top_newsList[index2].id.toString();
+                                    homeController.selectedPageIndex.value = 1;
+                                    homeController.get_news_details();
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.only(top: 0,bottom: 5,right: 0,left: 0),
+                                    height: width*.6,
+                                    width: width,
+                                    child: Stack(
+                                      fit: StackFit.expand,
+                                      children: [
+                                        FadeInImage.assetNetwork(
+                                            fit: BoxFit.fill,
+                                            image:homeController.saradesh_top_newsList![index2].img_url!,
+                                            placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                                         ),
-                                      )
-                                    ],
-                                  ),
+                                        Positioned(
+                                          bottom: width*.2,
+                                          left:width/2.5 ,
+                                          child: homeController.saradesh_top_newsList![index2].video_dis  == 1 ?
+                                          Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
+
+                                        ),
+                                        Positioned(
+                                          bottom: 0,
+                                          left: 0,
+                                          child: Column(
+                                            children: <Widget>[
+                                              Container(
+                                                width: width,
+                                                child:Text(
+                                                  homeController.saradesh_top_newsList![index2].title!,
+                                                  style: TextStyle(
+                                                      fontSize: 17,
+                                                      fontWeight: FontWeight.bold,
+                                                      color: Colors.white),
+                                                ),
+                                                padding: EdgeInsets.all(10),
+                                                color: Colors.black54,
+                                              )
+
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  )
                                 );
                               }else{
                                 return Container(
                                     margin: EdgeInsets.only(top: 10),
                                     child:   GestureDetector(
                                       onTap: (){
-                                        // homeController.dataLoaded.value = false;
-                                        // homeController.newsId.value = homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].id.toString();
-                                        // homeController.selectedIndex.value = 1;
-                                        // homeController.get_news_details();
+                                        homeController.dataLoaded.value = false;
+                                        homeController.newsId.value = homeController.saradesh_top_newsList[index2].id.toString();
+                                        homeController.selectedPageIndex.value = 1;
+                                        homeController.get_news_details();
                                       },
 
                                       child: Obx(() =>
