@@ -1144,10 +1144,23 @@ class HomeFragment extends GetView<HomeController> {
                     ),
 
                     //bottom 
-                    Image.asset('assets/images/jugantorbottom.png',
+                    // Image.asset('assets/images/jugantorbottom.png',
+                    //   width: width,
+                    //   //height: 200,
+                    // )
+                    Container(
+
+                      child:Text('সম্পাদক : সাইফুল আলম, প্রকাশক : সালমা ইসলাম প্রকাশক কর্তৃক ক-২৪৪ প্রগতি সরণি, কুড়িল (বিশ্বরোড), '
+                          'বারিধারা, ঢাকা-১২২৯ থেকে প্রকাশিত এবং যমুনা প্রিন্টিং এন্ড পাবলিশিং লিঃ থেকে মুদ্রিত। ''পিএবিএক্স : ৯৮২৪০৫৪-৬১, '
+                          'রিপোর্টিং : ৯৮২৩০৭৩, বিজ্ঞাপন : ৯৮২৪০৬২, ফ্যাক্স : ৯৮২৪০৬৩, '
+                          'সার্কুলেশন : ৯৮২৪০৭২। ফ্যাক্স : ৯৮২৪০৬৬'
+                          'E-mail: jugantor.mail@gmail.com',style: TextStyle(fontSize: 13,color: Colors.white),),
                       width: width,
-                      //height: 200,
-                    )
+                      padding: EdgeInsets.all(20),
+                      color: Colors.black,
+                      alignment: Alignment.center,
+                    ),
+
 
                   ],
                 ),
