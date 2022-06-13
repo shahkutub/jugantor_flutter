@@ -958,6 +958,7 @@ class HomeFragment extends GetView<HomeController> {
 
                     //online poll
                     Container(
+
                       margin: const EdgeInsets.all(20.0),
                       //padding: const EdgeInsets.all(3.0),
                       decoration: BoxDecoration(
@@ -1051,6 +1052,23 @@ class HomeFragment extends GetView<HomeController> {
                                 ),
                               ],
                             ),
+                          ),
+
+                          SizedBox(height: 20,),
+                          Container(
+                            alignment: Alignment.center,
+                            child: GestureDetector(
+                              child:Container(
+                                padding: EdgeInsets.all(10),
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.green
+                                ),
+                                child: Text('মতামত দিন',style: TextStyle(color: Colors.white),),
+                              ),
+                            ),
+
                           ),
 
 
