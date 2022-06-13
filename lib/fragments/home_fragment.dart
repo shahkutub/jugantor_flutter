@@ -1146,6 +1146,7 @@ class HomeFragment extends GetView<HomeController> {
                     //bottom 
                     Image.asset('assets/images/jugantorbottom.png',
                       width: width,
+                      //height: 200,
                     )
 
                   ],
