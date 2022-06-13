@@ -974,7 +974,10 @@ class HomeFragment extends GetView<HomeController> {
                             decoration: BoxDecoration(
                               color: Colors.orange,
                               //border: Border.all(color: Colors.orange),
-                              borderRadius:BorderRadius.circular(10),
+                              borderRadius:BorderRadius.only(
+                                topLeft: Radius.circular(10.0),
+                                topRight: Radius.circular(10.0),
+                              ),
                             ),
                             child: Text(
                               'অনলাইন জরিপ',style: TextStyle(
@@ -1154,9 +1157,10 @@ class HomeFragment extends GetView<HomeController> {
                           'বারিধারা, ঢাকা-১২২৯ থেকে প্রকাশিত এবং যমুনা প্রিন্টিং এন্ড পাবলিশিং লিঃ থেকে মুদ্রিত। ''পিএবিএক্স : ৯৮২৪০৫৪-৬১, '
                           'রিপোর্টিং : ৯৮২৩০৭৩, বিজ্ঞাপন : ৯৮২৪০৬২, ফ্যাক্স : ৯৮২৪০৬৩, '
                           'সার্কুলেশন : ৯৮২৪০৭২। ফ্যাক্স : ৯৮২৪০৬৬'
-                          'E-mail: jugantor.mail@gmail.com',style: TextStyle(fontSize: 13,color: Colors.white),),
+                          'E-mail: jugantor.mail@gmail.com',style: TextStyle(fontSize: 13,color: Colors.white),
+                        textAlign: TextAlign.justify,),
                       width: width,
-                      padding: EdgeInsets.all(20),
+                      padding: EdgeInsets.all(10),
                       color: Colors.black,
                       alignment: Alignment.center,
                     ),

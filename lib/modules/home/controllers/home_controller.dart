@@ -116,6 +116,8 @@ class HomeController extends GetxController {
   var district_title = ''.obs;
 
   var homecatApiCall = false.obs;
+
+  var isSearch = false.obs;
   @override
   void onInit() {
 

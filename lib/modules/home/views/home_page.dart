@@ -102,37 +102,57 @@ class HomePage extends GetView<HomeController> {
               appBar:AppBar(
                 backgroundColor: Colors.white,
                 iconTheme: IconThemeData(color: Colors.black),
-                title:
+                title:Obx(() => homeController.isSearch.value == false?
                 Stack(alignment: Alignment.centerLeft,
                   children: <Widget>[
                     Container(
                       //height: 80,
-                      alignment: Alignment.centerLeft,
-                      child:GestureDetector(
-                        onTap: (){
-                          homeController.selectedPageIndex.value = 0;
-                        },
-                        child:SvgPicture.asset(
-                          'assets/images/jugantorlogo.svg',
-                          height: 40, width: 130,
+                        alignment: Alignment.centerLeft,
+                        child:GestureDetector(
+                            onTap: (){
+                              homeController.selectedPageIndex.value = 0;
+                            },
+                            child:SvgPicture.asset(
+                              'assets/images/jugantorlogo.svg',
+                              height: 40, width: 130,
 
+                            )
                         )
-                      )
                     ),
-                  Container(
+                    //https://www.google.com/search?q=poddasetu+jugantor
+
+                    Container(
                       alignment: Alignment.centerRight,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(Icons.search,
-                            size: 30.0,
-                            color: Colors.black,)
-                        ],
+                      child: IconButton(
+                        icon: const Icon(Icons.search),
+                        tooltip: 'Increase volume by 10',
+                        onPressed: () {
+                          homeController.isSearch.value = true;
+                        },
                       ),
                     )
                   ],
+                ):
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.tealAccent,
+                    borderRadius:  BorderRadius.circular(32),
+                  ),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintStyle: TextStyle(fontSize: 17),
+                      hintText: 'Search your trips',
+                      suffixIcon: IconButton(
+                        onPressed: () => homeController.isSearch.value = false,
+                        icon: Icon(Icons.clear,color: Colors.red,),
+                      ),
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.all(10),
+                    ),
+                  ),
                 ),
+                )
+
               ),
               drawer: new Drawer(
                 backgroundColor: Colors.white,

@@ -23,7 +23,7 @@ class SubCatFragment extends StatelessWidget {
                   child:Column(
                     children: [
                       Container(
-                        padding: EdgeInsets.all(5),
+                        padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(color: Colors.grey),
                         child: Stack(
                           alignment: Alignment.centerLeft,
