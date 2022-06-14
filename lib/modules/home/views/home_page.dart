@@ -135,17 +135,29 @@ class HomePage extends GetView<HomeController> {
                 ):
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.tealAccent,
+                    border: Border.all(color: Colors.blueAccent),
+                    color: Colors.white,
                     borderRadius:  BorderRadius.circular(32),
                   ),
                   child: TextField(
                     decoration: InputDecoration(
                       hintStyle: TextStyle(fontSize: 17),
-                      hintText: 'Search your trips',
-                      suffixIcon: IconButton(
-                        onPressed: () => homeController.isSearch.value = false,
-                        icon: Icon(Icons.clear,color: Colors.red,),
+                      hintText: 'Search ...',
+                      suffixIcon: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween, // added line
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            onPressed: () => homeController.isSearch.value = false,
+                            icon: Icon(Icons.search,color: Colors.green,),
+                          ),
+                          IconButton(
+                            onPressed: () => homeController.isSearch.value = false,
+                            icon: Icon(Icons.clear,color: Colors.red,),
+                          ),
+                        ],
                       ),
+
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.all(10),
                     ),

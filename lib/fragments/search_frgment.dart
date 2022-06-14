@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class EpaperFragment extends StatelessWidget{
+class SearchFragment extends StatelessWidget{
 
   final HomeController homeController = Get.put(HomeController());
   @override

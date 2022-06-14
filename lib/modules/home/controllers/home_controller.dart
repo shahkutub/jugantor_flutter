@@ -16,6 +16,7 @@ import 'package:jugantor.com/fragments/news_detailse_fragment.dart';
 import 'package:jugantor.com/fragments/sara_desh_district_fragment.dart';
 import 'package:jugantor.com/fragments/sara_desh_fragment.dart';
 import 'package:jugantor.com/fragments/sara_desh_thana_fragment.dart';
+import 'package:jugantor.com/fragments/search_frgment.dart';
 import 'package:jugantor.com/fragments/sob_khobor_cat_wise_fragment.dart';
 import 'package:jugantor.com/fragments/sob_khobor_fragment.dart';
 import 'package:jugantor.com/fragments/sub_cat_fragment.dart';
@@ -1089,9 +1090,8 @@ class HomeController extends GetxController {
         return new SaraDeshDistrictFragment();
         case 9:
         return new SaraDeshThanaFragment();
-
-
-
+        case 10:
+        return new SearchFragment();
 
 
 
