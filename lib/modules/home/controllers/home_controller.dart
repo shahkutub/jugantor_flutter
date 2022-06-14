@@ -75,6 +75,7 @@ class HomeController extends GetxController {
 
   List<dynamic> all_latest_newsList = <dynamic>[].obs;
   List<dynamic> all_cat_wise_newsList = <dynamic>[].obs;
+  List<dynamic> cat_wise_vidList = <dynamic>[].obs;
   List<dynamic> detail_page_aro_button_newsList = <dynamic>[].obs;
   var eventPage = 1.obs;
 
@@ -124,6 +125,9 @@ class HomeController extends GetxController {
   var searchQuery = ''.obs;
 
   var searchController = TextEditingController().obs;
+
+  var vidDataInfo = LsatThreeVideo().obs;
+  var vidEmbed = ''.obs;
   @override
   void onInit() {
 
@@ -912,6 +916,37 @@ class HomeController extends GetxController {
           all_latest_newsList.add(v)
       );
       print('newslenth: ${all_latest_newsList.length}');
+
+    } on SocketException {
+
+    }
+  }
+
+
+  get_cat_wise_video(int page,BuildContext context) async {
+    var url = ApiClient.cat_wise_videos+"/"+vidDataInfo.value.video_cat_id.toString()+'?page='+page.toString();
+    print("API: "+url);
+    try {
+      final response = await http.get(Uri.parse(url));
+      print(response.body);
+
+      //var jsonData = json.decode(response.body);
+      //var jsonData = json.decode(response.body) as Map<String, dynamic>;
+
+
+      Map<String, dynamic> user = jsonDecode(response.body);
+      var datanews = jsonEncode(user['data']);
+      // print('datanews: ${datanews}');
+      print('datanews: ${datanews}');
+
+
+      Map<String, dynamic> newsdata = jsonDecode(datanews);
+      newsdata.forEach((k, v) =>
+      //print("Key : $k, Value : $v")
+      cat_wise_vidList.add(v)
+      );
+      dataLoaded.value = true;
+      print('newslenth: ${all_cat_wise_newsList.length}');
 
     } on SocketException {
 

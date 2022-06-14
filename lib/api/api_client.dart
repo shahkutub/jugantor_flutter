@@ -13,6 +13,7 @@ class ApiClient {
   static String category_wise_news = '${baseUrl}api/ver1/category_wise_news';
   static String last_photo_album = '${baseUrl}api/ver1/last_photo_album';
   static String last_three_videos = '${baseUrl}api/ver1/last_three_videos';
+  static String cat_wise_videos = '${baseUrl}api/ver1/video_list_cat';
   static String last_online_poll = '${baseUrl}api/ver1/last_online_poll';
 
 
