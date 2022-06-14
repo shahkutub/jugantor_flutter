@@ -16,10 +16,10 @@ class SearchFragment extends StatelessWidget{
     Completer<WebViewController>();
     Get.find<HomeController>();
 
-    var now = new DateTime.now();
-    var formatter = new DateFormat('yyyy/MM/dd');
-    String formattedDate = formatter.format(now);
-    print(formattedDate);
+    // var now = new DateTime.now();
+    // var formatter = new DateFormat('yyyy/MM/dd');
+    // String formattedDate = formatter.format(now);
+    // print(formattedDate);
 
     return Container(
       child:
@@ -27,7 +27,7 @@ class SearchFragment extends StatelessWidget{
           Stack(
             children: <Widget>[
               WebView(
-                initialUrl: 'https://epaper.jugantor.com/'+formattedDate+'/index.php',
+                initialUrl: 'https://www.google.com/search?q='+homeController.searchQuery.value+'jugantor',
                 javascriptMode: JavascriptMode.unrestricted,
                 onProgress: (int progress) {
                   print('WebView is loading (progress : $progress%)');

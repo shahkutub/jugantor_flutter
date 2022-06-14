@@ -836,12 +836,7 @@ class HomeFragment extends GetView<HomeController> {
                                       margin: EdgeInsets.only(top: 10),
                                       child:   GestureDetector(
                                         onTap: (){
-                                          //Get.back();
-                                          // if(homeController.showNewsList[index].cat_name == "প্রচ্ছদ"){
-                                          //   //homeController.selectedIndex.value = 0;
-                                          // }else{
-                                          //   // homeController.selectedIndex.value = 1;
-                                          // }
+                                          homeController.selectedPageIndex.value = 11;
                                         },
 
                                         child: Obx(() =>

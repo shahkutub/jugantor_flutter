@@ -125,7 +125,7 @@ class HomePage extends GetView<HomeController> {
                       alignment: Alignment.centerRight,
                       child: IconButton(
                         icon: const Icon(Icons.search),
-                        tooltip: 'Increase volume by 10',
+                        //tooltip: 'Increase volume by 10',
                         onPressed: () {
                           homeController.isSearch.value = true;
                         },
@@ -140,6 +140,7 @@ class HomePage extends GetView<HomeController> {
                     borderRadius:  BorderRadius.circular(32),
                   ),
                   child: TextField(
+                    controller: homeController.searchController.value,
                     decoration: InputDecoration(
                       hintStyle: TextStyle(fontSize: 17),
                       hintText: 'Search ...',
@@ -148,11 +149,19 @@ class HomePage extends GetView<HomeController> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           IconButton(
-                            onPressed: () => homeController.isSearch.value = false,
+                            onPressed: (){
+                              //homeController.isSearch.value = false;
+                              homeController.searchQuery.value = homeController.searchController.value.text.toString();
+                              homeController.selectedPageIndex.value = 10;
+                            },
                             icon: Icon(Icons.search,color: Colors.green,),
                           ),
                           IconButton(
-                            onPressed: () => homeController.isSearch.value = false,
+                            onPressed: (){
+                              homeController.isSearch.value = false;
+                              homeController.selectedPageIndex.value = 0;
+                             // Get.back();
+                            },
                             icon: Icon(Icons.clear,color: Colors.red,),
                           ),
                         ],

@@ -20,6 +20,7 @@ import 'package:jugantor.com/fragments/search_frgment.dart';
 import 'package:jugantor.com/fragments/sob_khobor_cat_wise_fragment.dart';
 import 'package:jugantor.com/fragments/sob_khobor_fragment.dart';
 import 'package:jugantor.com/fragments/sub_cat_fragment.dart';
+import 'package:jugantor.com/fragments/video_frgment.dart';
 import 'package:jugantor.com/model/CatExtraLinkResponse.dart';
 import 'package:jugantor.com/model/CategoryResponse.dart';
 import 'package:http/http.dart' as http;
@@ -119,6 +120,10 @@ class HomeController extends GetxController {
   var homecatApiCall = false.obs;
 
   var isSearch = false.obs;
+
+  var searchQuery = ''.obs;
+
+  var searchController = TextEditingController().obs;
   @override
   void onInit() {
 
@@ -1092,6 +1097,9 @@ class HomeController extends GetxController {
         return new SaraDeshThanaFragment();
         case 10:
         return new SearchFragment();
+        case 11:
+        return new VideoFragment();
+
 
 
 
