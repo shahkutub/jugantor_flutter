@@ -296,20 +296,26 @@ class HomeFragment extends GetView<HomeController> {
                         ),
                     ),
 
-                    // Container(
-                    //   margin: EdgeInsets.only(left: 20,right: 20),
-                    //   //alignment: Alignment.center,
-                    //   child: Row(
-                    //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //     crossAxisAlignment: CrossAxisAlignment.center,
-                    //     children: [
-                    //       Flexible(child: homeController.CustomRadioButton("সর্বশেষ", 1,context),flex: 1,),
-                    //       SizedBox(width: 20,),
-                    //       Flexible(child: homeController.CustomRadioButton("সর্বাধিক পঠিত", 2,context),flex: 1,),
-                    //
-                    //     ],
-                    //   )
-                    // ),
+                    Obx(() =>
+                        Container(
+                            margin: EdgeInsets.only(left: 0,right: 0),
+                            //alignment: Alignment.center,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                //Flexible(child:
+                                homeController.CustomRadioButton("সর্বশেষ", 1,context),
+                                //flex: 1,),
+                                SizedBox(width: 20,),
+                                //Flexible(child:
+                                homeController.CustomRadioButton("সর্বাধিক পঠিত", 2,context),
+                                // flex: 1,),
+
+                              ],
+                            )
+                        ),
+                    ),
 
                     Obx(() =>
                         Container(
@@ -319,6 +325,7 @@ class HomeFragment extends GetView<HomeController> {
                             ListView.builder(
                                  primary: false,
                                  shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
                               // Let the ListView know how many items it needs to build.
                               itemCount: homeController.last_entry_newsList.length,
                               // Provide a builder function. This is where the magic happens.
@@ -367,14 +374,13 @@ class HomeFragment extends GetView<HomeController> {
                                                     ],
                                                   ),
                                                 ),
-                                                //Flexible(
-                                                  //child:
-                                                  Text(homeController.last_entry_newsList[index].title!,
-                                                  style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
-                                                  textAlign: TextAlign.justify,
-                                                ),
+                                                Flexible(
+                                                    child:Text(homeController.last_entry_newsList[index].title!,
+                                                      style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                                      textAlign: TextAlign.justify,
+                                                    ),
 
-                                               // ),
+                                                ),
 
                                               ],
                                             )

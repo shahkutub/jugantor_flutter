@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-
+import 'package:group_button/group_button.dart';
 class VideoFragment extends StatelessWidget{
 
   final HomeController homeController = Get.put(HomeController());
@@ -232,24 +232,26 @@ class VideoFragment extends StatelessWidget{
                   ),
               ),
 
-              Container(
-                  margin: EdgeInsets.only(left: 0,right: 0),
-                  //alignment: Alignment.center,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      //Flexible(child:
-                      homeController.CustomRadioButton("সর্বশেষ", 1,context),
+            Obx(() =>
+                Container(
+                    margin: EdgeInsets.only(left: 0,right: 0),
+                    //alignment: Alignment.center,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        //Flexible(child:
+                        homeController.CustomRadioButton("সর্বশেষ", 1,context),
                         //flex: 1,),
-                      SizedBox(width: 20,),
-                      //Flexible(child:
-                      homeController.CustomRadioButton("সর্বাধিক পঠিত", 2,context),
-                       // flex: 1,),
+                        SizedBox(width: 20,),
+                        //Flexible(child:
+                        homeController.CustomRadioButton("সর্বাধিক পঠিত", 2,context),
+                        // flex: 1,),
 
-                    ],
-                  )
-              ),
+                      ],
+                    )
+                ),
+            ),
 
               Obx(() =>
                   Container(

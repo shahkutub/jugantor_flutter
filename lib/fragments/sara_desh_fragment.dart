@@ -546,23 +546,25 @@ class SaraDeshFragment extends StatelessWidget {
 
 
                       //last entry mostview
-                      Container(
-                          margin: EdgeInsets.only(left: 0,right: 0),
-                          //alignment: Alignment.center,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              //Flexible(child:
-                              homeController.CustomRadioButton("সর্বশেষ", 1,context),
-                                //flex: 1,),
-                              SizedBox(width: 20,),
-                              //Flexible(child:
-                              homeController.CustomRadioButton("সর্বাধিক পঠিত", 2,context),
-                                //flex: 1,),
+                      Obx(() =>
+                          Container(
+                              margin: EdgeInsets.only(left: 0,right: 0),
+                              //alignment: Alignment.center,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  //Flexible(child:
+                                  homeController.CustomRadioButton("সর্বশেষ", 1,context),
+                                  //flex: 1,),
+                                  SizedBox(width: 20,),
+                                  //Flexible(child:
+                                  homeController.CustomRadioButton("সর্বাধিক পঠিত", 2,context),
+                                  // flex: 1,),
 
-                            ],
-                          )
+                                ],
+                              )
+                          ),
                       ),
                       Obx(() =>
                           Container(
