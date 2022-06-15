@@ -1089,7 +1089,7 @@ class HomeController extends GetxController {
           //Navigator.of(context).pop();
         }
       },
-      child: Expanded(
+     // child: Expanded(
           child:Container(
 
               color: (button.value == index) ? Colors.black : Colors.white,
@@ -1100,10 +1100,10 @@ class HomeController extends GetxController {
                 ),
               ),)
                )
-          ),
+         //),
 
 
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+     // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       //borderSide: BorderSide(color: (button.value == index) ? Colors.green : Colors.black),
 
     );

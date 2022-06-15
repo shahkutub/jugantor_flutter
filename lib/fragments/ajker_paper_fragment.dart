@@ -221,12 +221,13 @@ class AjkerPaperFragment extends StatelessWidget {
                                                     ),
                                                   ),
 
-                                                  Flexible(child: Text(homeController.category_wise_newsList[index2].title!,
+                                                  //Flexible(child:
+                                                  Text(homeController.category_wise_newsList[index2].title!,
                                                     style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                     textAlign: TextAlign.justify,
                                                   ),
 
-                                                  ),
+                                                  //),
 
                                                 ],
                                               )
@@ -304,10 +305,11 @@ class AjkerPaperFragment extends StatelessWidget {
                                                         Container(
                                                           //height: 80,
                                                           alignment: Alignment.centerLeft,
-                                                          child: Flexible(child: Text(homeController.ajker_paper_subcategory_list_with_newsList[index].cat_name!,
+                                                          //child: Flexible(
+                                                            child: Text(homeController.ajker_paper_subcategory_list_with_newsList[index].cat_name!,
                                                               style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)
                                                           )
-                                                          ),
+                                                          //),
                                                         ),
                                                         Container(
                                                           alignment: Alignment.centerRight,
@@ -438,12 +440,13 @@ class AjkerPaperFragment extends StatelessWidget {
                                                                                       ),
                                                                                     ),
 
-                                                                                    Flexible(child: Text(homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].title!,
+                                                                                    //Flexible(child:
+                                                                                    Text(homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].title!,
                                                                                       style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                                                       textAlign: TextAlign.justify,
                                                                                     ),
 
-                                                                                    ),
+                                                                                   // ),
 
                                                                                   ],
                                                                                 )
@@ -499,9 +502,13 @@ class AjkerPaperFragment extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Flexible(child: homeController.CustomRadioButton("সর্বশেষ", 1,context),flex: 1,),
+                             // Flexible(child:
+                              homeController.CustomRadioButton("সর্বশেষ", 1,context),
+                                //flex: 1,),
                               SizedBox(width: 10,),
-                              Flexible(child: homeController.CustomRadioButton("সর্বাধিক পঠিত", 2,context),flex: 1,),
+                              //Flexible(child:
+                              homeController.CustomRadioButton("সর্বাধিক পঠিত", 2,context),
+                               // flex: 1,),
 
                             ],
                           )
@@ -563,12 +570,13 @@ class AjkerPaperFragment extends StatelessWidget {
                                                     ],
                                                   ),
                                                 ),
-                                                Flexible(child: Text(homeController.last_entry_newsList[index].title!,
+                                                //Flexible(child:
+                                                Text(homeController.last_entry_newsList[index].title!,
                                                   style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                   textAlign: TextAlign.justify,
                                                 ),
 
-                                                ),
+                                                //),
 
                                               ],
                                             )

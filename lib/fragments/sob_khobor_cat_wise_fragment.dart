@@ -115,12 +115,13 @@ class SobKhoborCatWiseFragment extends StatelessWidget {
                                                 ],
                                               ),
                                             ),
-                                            Flexible(child: Text(homeController.all_cat_wise_newsList[index]["title"],
+                                            //Flexible(child:
+                                            Text(homeController.all_cat_wise_newsList[index]["title"],
                                               style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                               textAlign: TextAlign.justify,
                                             ),
 
-                                            ),
+                                            //),
 
                                           ],
                                         )
@@ -177,9 +178,13 @@ class SobKhoborCatWiseFragment extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Flexible(child: homeController.CustomRadioButton("সর্বশেষ", 1,context),flex: 1,),
+                              //Flexible(child:
+                              homeController.CustomRadioButton("সর্বশেষ", 1,context),
+                                //flex: 1,),
                               SizedBox(width: 20,),
-                              Flexible(child: homeController.CustomRadioButton("সর্বাধিক পঠিত", 2,context),flex: 1,),
+                              //Flexible(child:
+                              homeController.CustomRadioButton("সর্বাধিক পঠিত", 2,context),
+                                //flex: 1,),
 
                             ],
                           )
@@ -241,12 +246,13 @@ class SobKhoborCatWiseFragment extends StatelessWidget {
                                                     ],
                                                   ),
                                                 ),
-                                                Flexible(child: Text(homeController.last_entry_newsList[index].title!,
+                                                //Flexible(child:
+                                                Text(homeController.last_entry_newsList[index].title!,
                                                   style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                   textAlign: TextAlign.justify,
                                                 ),
 
-                                                ),
+                                                //),
 
                                               ],
                                             )
