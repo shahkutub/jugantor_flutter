@@ -30,8 +30,8 @@ class HomeFragment extends GetView<HomeController> {
         // homeController.category_list_with_news_newsList.clear();
         if(homeController.homecatApiCall.value == false){
           if(homeController.home_categoryList.length == 0){
-            homeController.homecatApiCall.value = true;
-            homeController.get_home_category();
+            // homeController.homecatApiCall.value = true;
+            // homeController.get_home_category();
           }
         }
 
@@ -284,6 +284,7 @@ class HomeFragment extends GetView<HomeController> {
                                         Text(homeController.showNewsList[index].title!,
                                           style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                           textAlign: TextAlign.justify,
+                                          maxLines: 2,
                                         ),
                                       ],
                                     )
@@ -295,20 +296,20 @@ class HomeFragment extends GetView<HomeController> {
                         ),
                     ),
 
-                    Container(
-                      margin: EdgeInsets.only(left: 20,right: 20),
-                      //alignment: Alignment.center,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Flexible(child: homeController.CustomRadioButton("সর্বশেষ", 1,context),flex: 1,),
-                          SizedBox(width: 20,),
-                          Flexible(child: homeController.CustomRadioButton("সর্বাধিক পঠিত", 2,context),flex: 1,),
-
-                        ],
-                      )
-                    ),
+                    // Container(
+                    //   margin: EdgeInsets.only(left: 20,right: 20),
+                    //   //alignment: Alignment.center,
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //     crossAxisAlignment: CrossAxisAlignment.center,
+                    //     children: [
+                    //       Flexible(child: homeController.CustomRadioButton("সর্বশেষ", 1,context),flex: 1,),
+                    //       SizedBox(width: 20,),
+                    //       Flexible(child: homeController.CustomRadioButton("সর্বাধিক পঠিত", 2,context),flex: 1,),
+                    //
+                    //     ],
+                    //   )
+                    // ),
 
                     Obx(() =>
                         Container(
@@ -366,12 +367,14 @@ class HomeFragment extends GetView<HomeController> {
                                                     ],
                                                   ),
                                                 ),
-                                                Flexible(child: Text(homeController.last_entry_newsList[index].title!,
+                                                //Flexible(
+                                                  //child:
+                                                  Text(homeController.last_entry_newsList[index].title!,
                                                   style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                   textAlign: TextAlign.justify,
                                                 ),
 
-                                                ),
+                                               // ),
 
                                               ],
                                             )
@@ -385,7 +388,7 @@ class HomeFragment extends GetView<HomeController> {
                         ),
                     ),
 
-                    //body cat news
+                   // body cat news
                     Obx(() =>
                         Container(
                             margin: EdgeInsets.only(top: 15,bottom: 0,right: 20,left: 20),
@@ -432,7 +435,7 @@ class HomeFragment extends GetView<HomeController> {
                                                   homeController.selectedSubCategoryName.value = '';
                                                   homeController.selectedCategoryName.value = homeController.category_list_with_news_newsList[index].cat_name.toString();
                                                   homeController.dataLoaded.value = false;
-                                                  homeController.get_sub_category(homeController.category_list_with_news_newsList![index].id!);
+                                                  homeController.get_sub_category(homeController.category_list_with_news_newsList[index].id!);
                                                   //sub_category page index 2
                                                   homeController.selectedPageIndex.value = 2;
                                                 }
@@ -442,11 +445,13 @@ class HomeFragment extends GetView<HomeController> {
                                                   Container(
                                                     //height: 80,
                                                     alignment: Alignment.centerLeft,
-                                                    child: Flexible(child: Text(homeController.category_list_with_news_newsList[index].cat_name!,
+                                                    //child:
+                                                    //Flexible(
+                                                        child: Text(homeController.category_list_with_news_newsList[index].cat_name!,
                                                         style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)
                                                     )
                                                     ),
-                                                  ),
+                                                  //),
                                                   Container(
                                                     alignment: Alignment.centerRight,
                                                     child: Column(
@@ -585,12 +590,13 @@ class HomeFragment extends GetView<HomeController> {
                                                                               ),
                                                                             ),
 
-                                                                            Flexible(child: Text(homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].title!,
+                                                                           // Flexible(child:
+                                                                            Text(homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].title!,
                                                                               style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                                               textAlign: TextAlign.justify,
                                                                             ),
 
-                                                                            ),
+                                                                            //),
 
                                                                           ],
                                                                         )
@@ -649,10 +655,11 @@ class HomeFragment extends GetView<HomeController> {
                               Container(
                                 //height: 80,
                                 alignment: Alignment.centerLeft,
-                                child: Flexible(child: Text('ফটো গ্যালারি',
+                               // child: Flexible(
+                                    child: Text('ফটো গ্যালারি',
                                     style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)
                                 )
-                                ),
+                               // ),
                               ),
                               Container(
                                 alignment: Alignment.centerRight,
@@ -712,7 +719,7 @@ class HomeFragment extends GetView<HomeController> {
                                                       clipBehavior: Clip.antiAliasWithSaveLayer,
                                                       type: MaterialType.transparency,
                                                       child: CachedNetworkImage(
-                                                        imageUrl: bannerData!,
+                                                        imageUrl: bannerData,
                                                         fit: BoxFit.fill,
                                                         //height: height * 0.12,
                                                         width: width*0.92,
@@ -748,10 +755,11 @@ class HomeFragment extends GetView<HomeController> {
                               Container(
                                 //height: 80,
                                 alignment: Alignment.centerLeft,
-                                child: Flexible(child: Text('ভিডিও গ্যালারি',
+                                //child: Flexible(
+                                    child: Text('ভিডিও গ্যালারি',
                                     style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)
                                 )
-                                ),
+                                //),
                               ),
                               Container(
                                 alignment: Alignment.centerRight,
@@ -776,12 +784,12 @@ class HomeFragment extends GetView<HomeController> {
                         Container(
                           margin: EdgeInsets.only(top: 0,bottom: 5,right: 15,left: 15),
                           alignment: Alignment.center,
-                            child:homeController.last_VidListList!.length > 0?
+                            child:homeController.last_VidListList.length > 0?
                             ListView.builder(
                               primary: false,
                               shrinkWrap: true,
                               // Let the ListView know how many items it needs to build.
-                              itemCount: homeController.last_VidListList!.length,
+                              itemCount: homeController.last_VidListList.length,
                               // Provide a builder function. This is where the magic happens.
                               // Convert each item into a widget based on the type of item it is.
                               itemBuilder: (context, index2) {
@@ -790,48 +798,57 @@ class HomeFragment extends GetView<HomeController> {
 
                                 print('Embed:'+homeController.last_VidListList[index2].embed_code.toString().replaceAll('300px', '600px'));
                                 if(index2 == 0){
-                                  return Container(
-                                    margin: EdgeInsets.only(top: 0,bottom: 5,right: 0,left: 0),
-                                    height: width*.6,
-                                    width: width,
-                                    child: Stack(
-                                      fit: StackFit.expand,
-                                      children: [
-                                        FadeInImage.assetNetwork(
-                                            fit: BoxFit.fill,
-                                            image:homeController.last_VidListList[index2].cover_photo!,
-                                            placeholder:"assets/images/jugantordefault.jpg" // your assets image path
-                                        ),
-                                        Positioned(
-                                          bottom: width*.2,
-                                          left:width/2.5 ,
-                                          child:Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
-
-                                        ),
-                                        Positioned(
-                                          bottom: 0,
-                                          left: 0,
-                                          child: Column(
-                                            children: <Widget>[
-                                              Container(
-                                                width: width,
-                                                child:Text(
-                                                  homeController.last_VidListList[index2].video_title!,
-                                                  style: TextStyle(
-                                                      fontSize: 17,
-                                                      fontWeight: FontWeight.bold,
-                                                      color: Colors.white),
-                                                ),
-                                                padding: EdgeInsets.all(10),
-                                                color: Colors.black54,
-                                              )
-
-                                            ],
+                                  return
+                                  GestureDetector(
+                                    onTap: (){
+                                      homeController.selectedPageIndex.value = 11;
+                                      homeController.vidDataInfo.value = homeController.last_VidListList[index2];
+                                      homeController.get_cat_wise_video(1,context);
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.only(top: 0,bottom: 5,right: 0,left: 0),
+                                      height: width*.6,
+                                      width: width,
+                                      child: Stack(
+                                        fit: StackFit.expand,
+                                        children: [
+                                          FadeInImage.assetNetwork(
+                                              fit: BoxFit.fill,
+                                              image:homeController.last_VidListList[index2].cover_photo!,
+                                              placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                                           ),
-                                        )
-                                      ],
+                                          Positioned(
+                                            bottom: width*.2,
+                                            left:width/2.5 ,
+                                            child:Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
+
+                                          ),
+                                          Positioned(
+                                            bottom: 0,
+                                            left: 0,
+                                            child: Column(
+                                              children: <Widget>[
+                                                Container(
+                                                  width: width,
+                                                  child:Text(
+                                                    homeController.last_VidListList[index2].video_title!,
+                                                    style: TextStyle(
+                                                        fontSize: 17,
+                                                        fontWeight: FontWeight.bold,
+                                                        color: Colors.white),
+                                                  ),
+                                                  padding: EdgeInsets.all(10),
+                                                  color: Colors.black54,
+                                                )
+
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   );
+
                                 }else{
                                   return Container(
                                       margin: EdgeInsets.only(top: 10),
@@ -884,12 +901,13 @@ class HomeFragment extends GetView<HomeController> {
                                                       ),
                                                     ),
 
-                                                    Flexible(child: Text(homeController.last_VidListList[index2].video_title!,
+                                                    //Flexible(child:
+                                                    Text(homeController.last_VidListList[index2].video_title!,
                                                       style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                       textAlign: TextAlign.justify,
                                                     ),
 
-                                                    ),
+                                                    //),
 
                                                   ],
                                                 )

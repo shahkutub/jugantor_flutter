@@ -112,7 +112,7 @@ class SaraDeshDistrictFragment extends StatelessWidget {
                             primary: false,
                             shrinkWrap: true,
                             // Let the ListView know how many items it needs to build.
-                            itemCount: homeController.saradesh_division_newsList!.length,
+                            itemCount: homeController.saradesh_division_newsList.length,
                             // Provide a builder function. This is where the magic happens.
                             // Convert each item into a widget based on the type of item it is.
                             itemBuilder: (context, index2) {
@@ -136,13 +136,13 @@ class SaraDeshDistrictFragment extends StatelessWidget {
                                       children: [
                                         FadeInImage.assetNetwork(
                                             fit: BoxFit.fill,
-                                            image:homeController.saradesh_division_newsList![index2].img_url!,
+                                            image:homeController.saradesh_division_newsList[index2].img_url!,
                                             placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                                         ),
                                         Positioned(
                                           bottom: width*.2,
                                           left:width/2.5 ,
-                                          child: homeController.saradesh_division_newsList![index2].video_dis  == 1 ?
+                                          child: homeController.saradesh_division_newsList[index2].video_dis  == 1 ?
                                           Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
 
                                         ),
@@ -154,7 +154,7 @@ class SaraDeshDistrictFragment extends StatelessWidget {
                                               Container(
                                                 width: width,
                                                 child:Text(
-                                                  homeController.saradesh_division_newsList![index2].title!,
+                                                  homeController.saradesh_division_newsList[index2].title!,
                                                   style: TextStyle(
                                                       fontSize: 17,
                                                       fontWeight: FontWeight.bold,
@@ -212,13 +212,13 @@ class SaraDeshDistrictFragment extends StatelessWidget {
                                                             height: 70,
                                                             width: 100,
                                                             fit: BoxFit.fill,
-                                                            image:homeController.saradesh_division_newsList![index2].img_url!,
+                                                            image:homeController.saradesh_division_newsList[index2].img_url!,
                                                             placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                                                         ),
                                                         Positioned(
                                                           bottom: 20,
                                                           left:35,
-                                                          child: homeController.saradesh_division_newsList![index2].video_dis  == 1 ?
+                                                          child: homeController.saradesh_division_newsList[index2].video_dis  == 1 ?
                                                           Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
 
                                                         ),
@@ -226,7 +226,7 @@ class SaraDeshDistrictFragment extends StatelessWidget {
                                                     ),
                                                   ),
 
-                                                  Flexible(child: Text(homeController.saradesh_division_newsList![index2].title!,
+                                                  Flexible(child: Text(homeController.saradesh_division_newsList[index2].title!,
                                                     style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                     textAlign: TextAlign.justify,
                                                   ),

@@ -129,7 +129,7 @@ class SubCatFragment extends StatelessWidget {
                             primary: false,
                             shrinkWrap: true,
                             // Let the ListView know how many items it needs to build.
-                            itemCount: homeController.category_wise_newsList!.length,
+                            itemCount: homeController.category_wise_newsList.length,
                             // Provide a builder function. This is where the magic happens.
                             // Convert each item into a widget based on the type of item it is.
                             itemBuilder: (context, index2) {
@@ -140,7 +140,7 @@ class SubCatFragment extends StatelessWidget {
                                 return GestureDetector(
                                   onTap: (){
                                     homeController.dataLoaded.value = false;
-                                    homeController.newsId.value = homeController.category_wise_newsList![index2].id.toString();
+                                    homeController.newsId.value = homeController.category_wise_newsList[index2].id.toString();
                                     homeController.selectedPageIndex.value = 1;
                                     homeController.get_news_details();
                                   },
@@ -153,13 +153,13 @@ class SubCatFragment extends StatelessWidget {
                                       children: [
                                         FadeInImage.assetNetwork(
                                             fit: BoxFit.fill,
-                                            image:homeController.category_wise_newsList![index2].img_url!,
+                                            image:homeController.category_wise_newsList[index2].img_url!,
                                             placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                                         ),
                                         Positioned(
                                           bottom: width*.2,
                                           left:width/2.5 ,
-                                          child: homeController.category_wise_newsList![index2].video_dis  == 1 ?
+                                          child: homeController.category_wise_newsList[index2].video_dis  == 1 ?
                                           Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
 
                                         ),
@@ -171,7 +171,7 @@ class SubCatFragment extends StatelessWidget {
                                               Container(
                                                 width: width,
                                                 child:Text(
-                                                  homeController.category_wise_newsList![index2].title!,
+                                                  homeController.category_wise_newsList[index2].title!,
                                                   style: TextStyle(
                                                       fontSize: 17,
                                                       fontWeight: FontWeight.bold,
@@ -195,7 +195,7 @@ class SubCatFragment extends StatelessWidget {
                                     child:   GestureDetector(
                                       onTap: (){
                                          homeController.dataLoaded.value = false;
-                                         homeController.newsId.value = homeController.category_wise_newsList![index2].id.toString();
+                                         homeController.newsId.value = homeController.category_wise_newsList[index2].id.toString();
                                          homeController.selectedPageIndex.value = 1;
                                          homeController.get_news_details();
                                       },
@@ -230,13 +230,13 @@ class SubCatFragment extends StatelessWidget {
                                                             height: 70,
                                                             width: 100,
                                                             fit: BoxFit.fill,
-                                                            image:homeController.category_wise_newsList![index2].img_url!,
+                                                            image:homeController.category_wise_newsList[index2].img_url!,
                                                             placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                                                         ),
                                                         Positioned(
                                                           bottom: 20,
                                                           left:35,
-                                                          child: homeController.category_wise_newsList![index2].video_dis  == 1 ?
+                                                          child: homeController.category_wise_newsList[index2].video_dis  == 1 ?
                                                           Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
 
                                                         ),
@@ -244,7 +244,7 @@ class SubCatFragment extends StatelessWidget {
                                                     ),
                                                   ),
 
-                                                  Flexible(child: Text(homeController.category_wise_newsList![index2].title!,
+                                                  Flexible(child: Text(homeController.category_wise_newsList[index2].title!,
                                                     style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                     textAlign: TextAlign.justify,
                                                   ),

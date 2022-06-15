@@ -27,7 +27,12 @@ class HomePage extends GetView<HomeController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Obx(() => Text(""+Utils.currentDateBengali()+' ,   '+homeController.banglaDate.value,
+
+                  // Obx(() =>
+                  //
+                  // ),
+                  Obx(() =>
+                      Text(""+Utils.currentDateBengali()+' ,   '+homeController.banglaDate.value,
                       style: TextStyle(color: Colors.white,fontSize: 15),
                       textAlign:TextAlign.center,
                     ),
@@ -213,7 +218,7 @@ class HomePage extends GetView<HomeController> {
                                           homeController.selectedSubCategoryName.value = "";
                                           homeController.selectedCategoryName.value = homeController.categoryList[index].cat_name.toString();
                                           homeController.dataLoaded.value = false;
-                                          homeController.get_sub_category(homeController.categoryList![index].id!);
+                                          homeController.get_sub_category(homeController.categoryList[index].id!);
                                           //sub_category page index 2
                                           homeController.selectedPageIndex.value = 2;
                                         }

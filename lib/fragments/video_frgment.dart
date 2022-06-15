@@ -220,6 +220,7 @@ class VideoFragment extends StatelessWidget{
                                     Text(homeController.cat_wise_vidList[index]["video_title"]!,
                                       style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                       textAlign: TextAlign.justify,
+                                      maxLines: 2,
                                     ),
                                   ],
                                 )
@@ -228,6 +229,96 @@ class VideoFragment extends StatelessWidget{
                           );
                         },
                       ):SizedBox()
+                  ),
+              ),
+
+              Container(
+                  margin: EdgeInsets.only(left: 0,right: 0),
+                  //alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Flexible(child: homeController.CustomRadioButton("সর্বশেষ", 1,context),flex: 1,),
+                      SizedBox(width: 20,),
+                      Flexible(child: homeController.CustomRadioButton("সর্বাধিক পঠিত", 2,context),flex: 1,),
+
+                    ],
+                  )
+              ),
+
+              Obx(() =>
+                  Container(
+                      margin: EdgeInsets.only(top: 10,bottom: 5,right: 0,left: 0),
+                      alignment: Alignment.center,
+                      child:homeController.last_entry_newsList.length >0 ?
+                      ListView.builder(
+                        primary: false,
+                        shrinkWrap: true,
+                        // Let the ListView know how many items it needs to build.
+                        itemCount: homeController.last_entry_newsList.length,
+                        // Provide a builder function. This is where the magic happens.
+                        // Convert each item into a widget based on the type of item it is.
+                        itemBuilder: (context, index) {
+                          //final item = homeController.last_entry_newsList[index];
+
+                          return Container(
+                              margin: EdgeInsets.only(top: 10),
+                              child:   GestureDetector(
+                                onTap: (){
+                                  homeController.dataLoaded.value = false;
+                                  homeController.newsId.value = homeController.last_entry_newsList[index].id.toString();
+                                  homeController.selectedPageIndex.value = 1;
+                                  homeController.get_news_details();
+                                },
+
+                                child: Obx(() => Container(
+                                  //height: ,
+                                  //alignment: Alignment.center,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.only(right: 10),
+                                          height: 70,
+                                          width: 100,
+                                          child: Stack(
+                                            fit: StackFit.expand,
+                                            children: [
+                                              FadeInImage.assetNetwork(
+                                                  height: 70,
+                                                  width: 100,
+                                                  fit: BoxFit.fill,
+                                                  image:homeController.last_entry_newsList[index].img_url!,
+                                                  placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                              ),
+                                              Positioned(
+                                                bottom: 20,
+                                                left:35,
+                                                child: homeController.last_entry_newsList[index].video_dis  == 1 ?
+                                                Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Flexible(child: Text(homeController.last_entry_newsList[index].title!,
+                                          style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                          textAlign: TextAlign.justify,
+                                        ),
+
+                                        ),
+
+                                      ],
+                                    )
+                                )
+                                ),
+                              )
+                          );
+                        },
+                      ):SizedBox()
+
                   ),
               ),
 

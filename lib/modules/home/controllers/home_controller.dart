@@ -157,6 +157,7 @@ class HomeController extends GetxController {
     last_online_poll();
     get_last_photo_album();
     get_last_three_videos();
+    get_home_category();
     Timer(Duration(seconds: 20), () {
       //get_home_category();
     });
