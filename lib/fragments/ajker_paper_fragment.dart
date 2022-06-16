@@ -333,6 +333,7 @@ class AjkerPaperFragment extends StatelessWidget {
                                                             child:ListView.builder(
                                                               primary: false,
                                                               shrinkWrap: true,
+                                                              physics: NeverScrollableScrollPhysics(),
                                                               // Let the ListView know how many items it needs to build.
                                                               itemCount: homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList!.length,
                                                               // Provide a builder function. This is where the magic happens.
@@ -440,13 +441,12 @@ class AjkerPaperFragment extends StatelessWidget {
                                                                                       ),
                                                                                     ),
 
-                                                                                    //Flexible(child:
+                                                                                    Flexible(child:
                                                                                     Text(homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].title!,
                                                                                       style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                                                       textAlign: TextAlign.justify,
                                                                                     ),
-
-                                                                                   // ),
+                                                                                    ),
 
                                                                                   ],
                                                                                 )

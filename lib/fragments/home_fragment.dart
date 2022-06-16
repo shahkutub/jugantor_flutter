@@ -82,73 +82,43 @@ class HomeFragment extends GetView<HomeController> {
                       width: width,
                       child: homeController.leadnews.value != null?
                       Stack(
-                        fit: StackFit.expand,
+                        //fit: StackFit.expand,
                         children: [
-                          FadeInImage.assetNetwork(
-                              fit: BoxFit.fill,
-                              image:homeController.leadnews.value.img_url!,
-                              placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+
+                          Align(
+                            alignment: Alignment.center,
+                            child: FadeInImage.assetNetwork(
+                                fit: BoxFit.fill,
+                                height: width*.6,
+                                image:homeController.leadnews.value.img_url!,
+                                placeholder:"assets/images/jugantordefault.jpg"
+                            ),
                           ),
 
-
-                          Positioned(
-                            bottom: width*.3,
-                            left:width/2.5 ,
+                          Align(
+                            alignment: Alignment.center,
                             child: homeController.leadnews.value.video_dis  == 0 ?
                             Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
-
                           ),
 
-                          Positioned(
-                            bottom: 0,
-                            left: 0,
-                            child: Column(
-                              children: <Widget>[
-                                Container(
-                                  width: width,
-                                  child:Text(
-                                    homeController.leadnews.value.title!,
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white),
-                                    textAlign: TextAlign.justify,
-                                  ),
-                                  padding: EdgeInsets.all(10),
-                                  color: Colors.black54,
-                                )
-
-                              ],
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Container(
+                              width: width,
+                              padding: EdgeInsets.all(15),
+                              color: Colors.black54,
+                              child: Flexible(
+                                child:Text(
+                                  homeController.leadnews.value.title!,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                ),
+                              ),
                             ),
-                          )
-                      // Positioned(
-                      //   bottom: 0,
-                      //   left: 0,
-                      //   child: Image.asset("name"),
-                      // ),
-                      // Positioned(
-                      //   bottom: 0,
-                      //   left: 0,
-                      //   child: Column(
-                      //     children: <Widget>[
-                      //       Container(
-                      //           padding: EdgeInsets.all(10),
-                      //           color: Colors.black54,
-                      //         width: width,
-                      //         child:Flexible(
-                      //           child:Text(
-                      //             homeController.leadnews.value.title,
-                      //             style: TextStyle(
-                      //                 fontSize: 17,
-                      //                 fontWeight: FontWeight.bold,
-                      //                 color: Colors.white),
-                      //           ),
-                      //         )
-                      //       )
-                      //
-                      //     ],
-                      //   ),
-                      // )
+                          ),
+
                         ],
                       ):SizedBox()
 
@@ -379,7 +349,6 @@ class HomeFragment extends GetView<HomeController> {
                                                       style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                       textAlign: TextAlign.justify,
                                                     ),
-
                                                 ),
 
                                               ],
@@ -481,6 +450,7 @@ class HomeFragment extends GetView<HomeController> {
                                                     child:ListView.builder(
                                                       primary: false,
                                                       shrinkWrap: true,
+                                                      physics: NeverScrollableScrollPhysics(),
                                                       // Let the ListView know how many items it needs to build.
                                                       itemCount: homeController.category_list_with_news_newsList[index].category_wise_newsList!.length,
                                                       // Provide a builder function. This is where the magic happens.
@@ -502,41 +472,41 @@ class HomeFragment extends GetView<HomeController> {
                                                               height: width*.6,
                                                               width: width,
                                                               child: Stack(
-                                                                fit: StackFit.expand,
                                                                 children: [
-                                                                  FadeInImage.assetNetwork(
-                                                                      fit: BoxFit.fill,
-                                                                      image:homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].img_url!,
-                                                                      placeholder:"assets/images/jugantordefault.jpg" // your assets image path
-                                                                  ),
-                                                                  Positioned(
-                                                                    bottom: width*.2,
-                                                                    left:width/2.5 ,
-                                                                    child: homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].video_dis  == 1 ?
-                                                                    Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
-
-                                                                  ),
-                                                                  Positioned(
-                                                                    bottom: 0,
-                                                                    left: 0,
-                                                                    child: Column(
-                                                                      children: <Widget>[
-                                                                        Container(
-                                                                          width: width,
-                                                                          child:Text(
-                                                                            homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].title!,
-                                                                            style: TextStyle(
-                                                                                fontSize: 17,
-                                                                                fontWeight: FontWeight.bold,
-                                                                                color: Colors.white),
-                                                                          ),
-                                                                          padding: EdgeInsets.all(10),
-                                                                          color: Colors.black54,
-                                                                        )
-
-                                                                      ],
+                                                                  Align(
+                                                                    alignment: Alignment.center,
+                                                                    child: FadeInImage.assetNetwork(
+                                                                        fit: BoxFit.fill,
+                                                                        height: width*.6,
+                                                                        image:homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].img_url!,
+                                                                        placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                                                                     ),
-                                                                  )
+                                                                  ),
+
+                                                                  Align(
+                                                                    alignment: Alignment.center,
+                                                                    child: homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].video_dis  == 1 ?
+                                                                      Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
+                                                                  ),
+
+                                                                  Align(
+                                                                    alignment: Alignment.bottomCenter,
+                                                                    child: Container(
+                                                                      width: width,
+                                                                      padding: EdgeInsets.all(15),
+                                                                      color: Colors.black54,
+                                                                      child: Flexible(
+                                                                                child:Text(
+                                                                                  homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].title!+'  ',
+                                                                                  style: TextStyle(
+                                                                                      fontSize: 16,
+                                                                                      fontWeight: FontWeight.bold,
+                                                                                      color: Colors.white),
+                                                                                ),
+                                                                              ),
+                                                                    ),
+                                                                  ),
+
                                                                 ],
                                                               ),
                                                             ),
@@ -560,16 +530,6 @@ class HomeFragment extends GetView<HomeController> {
                                                                           mainAxisAlignment: MainAxisAlignment.start,
                                                                           crossAxisAlignment: CrossAxisAlignment.center,
                                                                           children: [
-                                                                            // Container(
-                                                                            //   margin: EdgeInsets.only(right: 10),
-                                                                            //   height: 70,
-                                                                            //   width: 100,
-                                                                            //   child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
-                                                                            //     fit: BoxFit.fill,
-                                                                            //   ),
-                                                                            //   //height: 80,
-                                                                            //   // width: 60,
-                                                                            // ),
 
                                                                             Container(
                                                                               margin: EdgeInsets.only(right: 10),
@@ -596,13 +556,13 @@ class HomeFragment extends GetView<HomeController> {
                                                                               ),
                                                                             ),
 
-                                                                           // Flexible(child:
+                                                                            Flexible(child:
                                                                             Text(homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].title!,
                                                                               style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                                               textAlign: TextAlign.justify,
                                                                             ),
 
-                                                                            //),
+                                                                            ),
 
                                                                           ],
                                                                         )
