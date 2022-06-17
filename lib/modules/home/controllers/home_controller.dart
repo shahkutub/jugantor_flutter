@@ -128,6 +128,8 @@ class HomeController extends GetxController {
 
   var vidDataInfo = LsatThreeVideo().obs;
   var vidEmbed = ''.obs;
+
+  var last_most_text =''.obs;
   @override
   void onInit() {
 
@@ -896,11 +898,22 @@ class HomeController extends GetxController {
   }
 
   get_all_latest_news(int page) async {
+    all_latest_newsList.clear();
+    dataLoaded.value = false;
+    selectedPageIndex.value = 5;
+    if(button.value == 1){
+      last_most_text.value = 'সর্বশেষ সব খবর';
+      //get_all_latest_news(1);
+    }else{
+      last_most_text.value = 'সর্বাধিক পঠিত';
+      //get_all_most_view_news(1);
+    }
     print("API: "+ApiClient.all_latest_news+page.toString());
     try {
       final response = await http.get(Uri.parse(ApiClient.all_latest_news+page.toString()));
       print(response.body);
 
+      dataLoaded.value = true;
       //var jsonData = json.decode(response.body);
       //var jsonData = json.decode(response.body) as Map<String, dynamic>;
 
@@ -915,6 +928,44 @@ class HomeController extends GetxController {
       newsdata.forEach((k, v) =>
           //print("Key : $k, Value : $v")
           all_latest_newsList.add(v)
+      );
+      print('newslenth: ${all_latest_newsList.length}');
+
+    } on SocketException {
+
+    }
+  }
+
+  get_all_most_view_news(int page) async {
+    all_latest_newsList.clear();
+    dataLoaded.value = false;
+    selectedPageIndex.value = 5;
+    if(button.value == 1){
+      last_most_text.value = 'সর্বশেষ সব খবর';
+      //get_all_latest_news(1);
+    }else{
+      last_most_text.value = 'সর্বাধিক পঠিত';
+      //get_all_most_view_news(1);
+    }
+    print("API: "+ApiClient.all_most_viewed_news+page.toString());
+    try {
+      final response = await http.get(Uri.parse(ApiClient.all_most_viewed_news+page.toString()));
+      print(response.body);
+      dataLoaded.value = true;
+      //var jsonData = json.decode(response.body);
+      //var jsonData = json.decode(response.body) as Map<String, dynamic>;
+
+
+      Map<String, dynamic> user = jsonDecode(response.body);
+      var datanews = jsonEncode(user['data']);
+      // print('datanews: ${datanews}');
+      print('datanews: ${datanews}');
+
+
+      Map<String, dynamic> newsdata = jsonDecode(datanews);
+      newsdata.forEach((k, v) =>
+      //print("Key : $k, Value : $v")
+      all_latest_newsList.add(v)
       );
       print('newslenth: ${all_latest_newsList.length}');
 

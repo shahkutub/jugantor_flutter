@@ -48,7 +48,7 @@ class SobKhoborFragment extends StatelessWidget {
                                       child:Text("প্রচ্ছদ",style: TextStyle(color: Colors.black,fontSize: 15),)
                                     ),
 
-                                    Text("          সর্বশেষ সব খবর",style: TextStyle(color: Colors.black,fontSize: 15),)
+                                    Text("          "+homeController.last_most_text.value,style: TextStyle(color: Colors.black,fontSize: 15),)
 
 
                                   ],
@@ -116,13 +116,13 @@ class SobKhoborFragment extends StatelessWidget {
                                                 ],
                                               ),
                                             ),
-                                            //Flexible(child:
+                                            Flexible(child:
                                             Text(homeController.all_latest_newsList[index]["title"],
                                               style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                               textAlign: TextAlign.justify,
                                             ),
 
-                                            //),
+                                            ),
 
                                           ],
                                         )
@@ -204,7 +204,7 @@ class SobKhoborFragment extends StatelessWidget {
                                 // Provide a builder function. This is where the magic happens.
                                 // Convert each item into a widget based on the type of item it is.
                                 itemBuilder: (context, index) {
-                                  final item = homeController.last_entry_newsList[index];
+                                  //final item = homeController.last_entry_newsList[index];
 
                                   return Container(
                                       margin: EdgeInsets.only(top: 10),
@@ -249,13 +249,13 @@ class SobKhoborFragment extends StatelessWidget {
                                                     ],
                                                   ),
                                                 ),
-                                                //Flexible(child:
+                                                Flexible(child:
                                                 Text(homeController.last_entry_newsList[index].title!,
                                                   style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                   textAlign: TextAlign.justify,
                                                 ),
 
-                                                //),
+                                                ),
 
                                               ],
                                             )

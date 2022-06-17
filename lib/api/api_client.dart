@@ -33,6 +33,7 @@ class ApiClient {
 
 
   static String all_latest_news = '${baseUrl}api/ver1/all_latest_news?page=';
+  static String all_most_viewed_news = '${baseUrl}api/ver1/all_most_viewed_news?page=';
   static String all_cat_wise_news = '${baseUrl}api/ver1/all_cat_wise_news';
 
 

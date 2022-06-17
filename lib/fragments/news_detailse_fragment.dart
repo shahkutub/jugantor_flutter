@@ -230,6 +230,7 @@ class NewsDetailseFragment extends StatelessWidget {
                                     child:ListView.builder(
                                       primary: false,
                                       shrinkWrap: true,
+                                      physics: NeverScrollableScrollPhysics(),
                                       // Let the ListView know how many items it needs to build.
                                       itemCount: homeController.detail_page_aro_button_newsList.length,
                                       // Provide a builder function. This is where the magic happens.
@@ -276,13 +277,13 @@ class NewsDetailseFragment extends StatelessWidget {
                                                               ],
                                                             ),
                                                           ),
-                                                          //Flexible(child:
+                                                          Flexible(child:
                                                           Text(homeController.detail_page_aro_button_newsList[index]["title"],
                                                             style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                             textAlign: TextAlign.justify,
                                                           ),
 
-                                                          //),
+                                                          ),
 
                                                         ],
                                                       )
@@ -423,6 +424,7 @@ class NewsDetailseFragment extends StatelessWidget {
                               child:ListView.builder(
                                 primary: false,
                                 shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
                                 // Let the ListView know how many items it needs to build.
                                 itemCount: homeController.last_entry_newsList.length,
                                 // Provide a builder function. This is where the magic happens.
@@ -468,13 +470,12 @@ class NewsDetailseFragment extends StatelessWidget {
                                                     ],
                                                   ),
                                                 ),
-                                                //Flexible(child:
+                                                Flexible(child:
                                                 Text(homeController.last_entry_newsList[index].title!,
                                                   style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                   textAlign: TextAlign.justify,
                                                 ),
-
-                                                //),
+                                                ),
 
                                               ],
                                             )
@@ -488,6 +489,37 @@ class NewsDetailseFragment extends StatelessWidget {
                           ),
                       ),
 
+                      SizedBox(
+                        height: 10,
+                      ),
+
+                      GestureDetector(
+                        onTap: (){
+                          homeController.all_latest_newsList.clear();
+                          homeController.dataLoaded.value = false;
+                          homeController.selectedPageIndex.value = 5;
+                          if(homeController.button.value == 1){
+                            homeController.last_most_text.value = 'সর্বশেষ সব খবর';
+                            homeController.get_all_latest_news(1);
+                          }else{
+                            homeController.last_most_text.value = 'সর্বাধিক পঠিত';
+                            homeController.get_all_most_view_news(1);
+                          }
+
+                        },
+                        child:Container(
+                          alignment: Alignment.centerLeft,
+                          color: Color(0xff3A495E),
+                          padding: EdgeInsets.all(7),
+                          child:Text("সব খবর",
+                            style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          ),
+
+                        ),
+
+                      ),
 
                       SizedBox(
                         height: 10,
@@ -512,6 +544,7 @@ class NewsDetailseFragment extends StatelessWidget {
                                      child:ListView.builder(
                                        primary: false,
                                        shrinkWrap: true,
+                                       physics: NeverScrollableScrollPhysics(),
                                        // Let the ListView know how many items it needs to build.
                                        itemCount: homeController.tagNewsList.length,
                                        // Provide a builder function. This is where the magic happens.
@@ -557,13 +590,12 @@ class NewsDetailseFragment extends StatelessWidget {
                                                            ],
                                                          ),
                                                        ),
-                                                       //Flexible(child:
+                                                       Flexible(child:
                                                        Text(homeController.tagNewsList[index].title!,
                                                          style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                          textAlign: TextAlign.justify,
                                                        ),
-
-                                                       //),
+                                                       ),
 
                                                      ],
                                                    )

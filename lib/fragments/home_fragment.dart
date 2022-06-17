@@ -687,7 +687,7 @@ class HomeFragment extends GetView<HomeController> {
                                                       child: CachedNetworkImage(
                                                         imageUrl: bannerData,
                                                         fit: BoxFit.fill,
-                                                        //height: height * 0.12,
+                                                        height: 200,
                                                         width: width*0.92,
                                                        // placeholder: (context, url) => SpinKitFadingCircle(color: Palette.blue),
                                                         errorWidget: (context, url, error) => Image.asset("assets/images/jugantordefault.jpg"),
@@ -754,6 +754,7 @@ class HomeFragment extends GetView<HomeController> {
                             ListView.builder(
                               primary: false,
                               shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
                               // Let the ListView know how many items it needs to build.
                               itemCount: homeController.last_VidListList.length,
                               // Provide a builder function. This is where the magic happens.
@@ -867,13 +868,12 @@ class HomeFragment extends GetView<HomeController> {
                                                       ),
                                                     ),
 
-                                                    //Flexible(child:
+                                                    Flexible(child:
                                                     Text(homeController.last_VidListList[index2].video_title!,
                                                       style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                       textAlign: TextAlign.justify,
                                                     ),
-
-                                                    //),
+                                                    ),
 
                                                   ],
                                                 )
