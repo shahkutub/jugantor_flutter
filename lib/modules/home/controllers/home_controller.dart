@@ -898,16 +898,16 @@ class HomeController extends GetxController {
   }
 
   get_all_latest_news(int page) async {
-    all_latest_newsList.clear();
-    dataLoaded.value = false;
-    selectedPageIndex.value = 5;
-    if(button.value == 1){
-      last_most_text.value = 'সর্বশেষ সব খবর';
-      //get_all_latest_news(1);
-    }else{
-      last_most_text.value = 'সর্বাধিক পঠিত';
-      //get_all_most_view_news(1);
-    }
+    // all_latest_newsList.clear();
+    // dataLoaded.value = false;
+    // selectedPageIndex.value = 5;
+    // if(button.value == 1){
+    //   last_most_text.value = 'সর্বশেষ সব খবর';
+    //   //get_all_latest_news(1);
+    // }else{
+    //   last_most_text.value = 'সর্বাধিক পঠিত';
+    //   //get_all_most_view_news(1);
+    // }
     print("API: "+ApiClient.all_latest_news+page.toString());
     try {
       final response = await http.get(Uri.parse(ApiClient.all_latest_news+page.toString()));
@@ -937,16 +937,16 @@ class HomeController extends GetxController {
   }
 
   get_all_most_view_news(int page) async {
-    all_latest_newsList.clear();
-    dataLoaded.value = false;
-    selectedPageIndex.value = 5;
-    if(button.value == 1){
-      last_most_text.value = 'সর্বশেষ সব খবর';
-      //get_all_latest_news(1);
-    }else{
-      last_most_text.value = 'সর্বাধিক পঠিত';
-      //get_all_most_view_news(1);
-    }
+    // all_latest_newsList.clear();
+    // dataLoaded.value = false;
+    // selectedPageIndex.value = 5;
+    // if(button.value == 1){
+    //   last_most_text.value = 'সর্বশেষ সব খবর';
+    //   //get_all_latest_news(1);
+    // }else{
+    //   last_most_text.value = 'সর্বাধিক পঠিত';
+    //   //get_all_most_view_news(1);
+    // }
     print("API: "+ApiClient.all_most_viewed_news+page.toString());
     try {
       final response = await http.get(Uri.parse(ApiClient.all_most_viewed_news+page.toString()));

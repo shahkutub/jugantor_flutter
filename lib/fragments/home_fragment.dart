@@ -24,7 +24,7 @@ class HomeFragment extends GetView<HomeController> {
 
 
     homeController.scrollController.value.addListener(() { //listener
-      print('scroll'+homeController.scrollController.value.offset.toString());
+      //print('scroll'+homeController.scrollController.value.offset.toString());
       if(homeController.scrollController.value.offset > 500){
         // homeController.home_categoryList.clear();
         // homeController.category_list_with_news_newsList.clear();
@@ -125,6 +125,8 @@ class HomeFragment extends GetView<HomeController> {
                     )
                   ),
                     ),
+
+                    //extracat
                     Obx(() =>
                         Container(
                             margin: EdgeInsets.only(top: 15,bottom: 5,right: 20,left: 20),
@@ -287,6 +289,7 @@ class HomeFragment extends GetView<HomeController> {
                         ),
                     ),
 
+                    //last_entry_newsList
                     Obx(() =>
                         Container(
                             margin: EdgeInsets.only(top: 10,bottom: 5,right: 20,left: 20),
@@ -344,10 +347,11 @@ class HomeFragment extends GetView<HomeController> {
                                                     ],
                                                   ),
                                                 ),
-                                                Flexible(
-                                                    child:Text(homeController.last_entry_newsList[index].title!,
+                                                Expanded(child:
+                                                Text(homeController.last_entry_newsList[index].title!,
                                                       style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                       textAlign: TextAlign.justify,
+                                                  //maxLines: 1,
                                                     ),
                                                 ),
 
@@ -364,6 +368,7 @@ class HomeFragment extends GetView<HomeController> {
                     ),
 
                    // body cat news
+
                     Obx(() =>
                         Container(
                             margin: EdgeInsets.only(top: 15,bottom: 0,right: 20,left: 20),
@@ -1128,11 +1133,7 @@ class HomeFragment extends GetView<HomeController> {
                       ):SizedBox()
                     ),
 
-                    //bottom 
-                    // Image.asset('assets/images/jugantorbottom.png',
-                    //   width: width,
-                    //   //height: 200,
-                    // )
+                    //bottom
                     Container(
 
                       child:Text('সম্পাদক : সাইফুল আলম, প্রকাশক : সালমা ইসলাম প্রকাশক কর্তৃক ক-২৪৪ প্রগতি সরণি, কুড়িল (বিশ্বরোড), '
