@@ -107,17 +107,42 @@ class HomeFragment extends GetView<HomeController> {
                               width: width,
                               padding: EdgeInsets.all(15),
                               color: Colors.black54,
-                              child: Flexible(
-                                child:Text(
-                                  homeController.leadnews.value.title!,
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white),
-                                ),
-                              ),
+                              child:Row(
+                                children: [
+                                  Expanded(
+                                    child:Text(
+                                      ''+homeController.leadnews.value.title!,
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ],
+                              )
+
                             ),
                           ),
+                          
+                          // Positioned(
+                          //     top: width*.3,
+                          //     left: 0,
+                          //     right: 0,
+                          //     child: Container(
+                          //       width: width,
+                          //       padding: EdgeInsets.all(15),
+                          //       color: Colors.black54,
+                          //       //child: Flexible(
+                          //         child:Text(
+                          //           homeController.leadnews.value.title!,
+                          //           style: TextStyle(
+                          //               fontSize: 16,
+                          //               fontWeight: FontWeight.bold,
+                          //               color: Colors.white),
+                          //         ),
+                          //       //),
+                          //     ),
+                          // )
 
                         ],
                       ):SizedBox()
