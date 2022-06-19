@@ -5,10 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:group_button/group_button.dart';
 class VideoFragment extends StatelessWidget{
 
   final HomeController homeController = Get.put(HomeController());
@@ -309,13 +307,13 @@ class VideoFragment extends StatelessWidget{
                                             ],
                                           ),
                                         ),
-                                        //Flexible(child:
+                                        Flexible(child:
                                         Text(homeController.last_entry_newsList[index].title!,
                                           style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                           textAlign: TextAlign.justify,
                                         ),
 
-                                        //),
+                                        ),
 
                                       ],
                                     )
