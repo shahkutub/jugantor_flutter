@@ -525,15 +525,20 @@ class HomeFragment extends GetView<HomeController> {
                                                                       width: width,
                                                                       padding: EdgeInsets.all(15),
                                                                       color: Colors.black54,
-                                                                      child: Flexible(
-                                                                                child:Text(
-                                                                                  homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].title!+'  ',
-                                                                                  style: TextStyle(
-                                                                                      fontSize: 16,
-                                                                                      fontWeight: FontWeight.bold,
-                                                                                      color: Colors.white),
-                                                                                ),
-                                                                              ),
+                                                                      child: Row(
+                                                                        children: [
+                                                                          Expanded(
+                                                                            child:Text(
+                                                                              homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].title!+'  ',
+                                                                              style: TextStyle(
+                                                                                  fontSize: 16,
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                  color: Colors.white),
+                                                                            ),
+                                                                          ),
+                                                                        ],
+                                                                      )
+                                                                        
                                                                     ),
                                                                   ),
 
@@ -586,7 +591,8 @@ class HomeFragment extends GetView<HomeController> {
                                                                               ),
                                                                             ),
 
-                                                                            Flexible(child:
+
+                                                                            Expanded(child:
                                                                             Text(homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].title!,
                                                                               style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                                               textAlign: TextAlign.justify,
