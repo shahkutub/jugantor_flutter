@@ -453,7 +453,7 @@ class HomeFragment extends GetView<HomeController> {
                                                     //child:
                                                     //Flexible(
                                                         child: Text(homeController.category_list_with_news_newsList[index].cat_name!,
-                                                        style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)
+                                                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)
                                                     )
                                                     ),
                                                   //),
@@ -463,7 +463,7 @@ class HomeFragment extends GetView<HomeController> {
                                                       mainAxisAlignment: MainAxisAlignment.center,
                                                       crossAxisAlignment: CrossAxisAlignment.center,
                                                       children: [
-                                                        Icon(Icons.arrow_forward_sharp,color: Colors.red,),
+                                                        Icon(Icons.arrow_forward_sharp,color: Colors.red,size: 30,),
                                                       ],
                                                     ),
                                                   )
@@ -471,7 +471,9 @@ class HomeFragment extends GetView<HomeController> {
                                               ),
                                             ),
                                             Divider(
-                                                color: Colors.red
+                                                color: Colors.red,
+                                              thickness: 2,
+
                                             ),
                                             Obx(() =>
                                                 Container(
@@ -498,7 +500,7 @@ class HomeFragment extends GetView<HomeController> {
                                                               homeController.get_news_details();
                                                             },
                                                             child: Container(
-                                                              margin: EdgeInsets.only(top: 15,bottom: 5,right: 0,left: 0),
+                                                              margin: EdgeInsets.only(top: 5,bottom: 5,right: 0,left: 0),
                                                               height: width*.6,
                                                               width: width,
                                                               child: Stack(

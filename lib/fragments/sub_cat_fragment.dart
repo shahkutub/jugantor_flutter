@@ -151,39 +151,47 @@ class SubCatFragment extends StatelessWidget {
                                     child: Stack(
                                       fit: StackFit.expand,
                                       children: [
-                                        FadeInImage.assetNetwork(
-                                            fit: BoxFit.fill,
-                                            image:homeController.category_wise_newsList[index2].img_url!,
-                                            placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+
+                                        Align(
+                                          alignment: Alignment.center,
+                                          child: FadeInImage.assetNetwork(
+                                              fit: BoxFit.fill,
+                                              height: width*.6,
+                                              image:homeController.category_wise_newsList[index2].img_url!,
+                                              placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                          ),
                                         ),
-                                        Positioned(
-                                          bottom: width*.2,
-                                          left:width/2.5 ,
+
+                                        Align(
+                                          alignment: Alignment.center,
                                           child: homeController.category_wise_newsList[index2].video_dis  == 1 ?
                                           Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
-
                                         ),
-                                        Positioned(
-                                          bottom: 0,
-                                          left: 0,
-                                          child: Column(
-                                            children: <Widget>[
-                                              Container(
-                                                width: width,
-                                                child:Text(
-                                                  homeController.category_wise_newsList[index2].title!,
-                                                  style: TextStyle(
-                                                      fontSize: 17,
-                                                      fontWeight: FontWeight.bold,
-                                                      color: Colors.white),
-                                                ),
-                                                padding: EdgeInsets.all(10),
-                                                color: Colors.black54,
+
+                                        Align(
+                                          alignment: Alignment.bottomCenter,
+                                          child: Container(
+                                              width: width,
+                                              padding: EdgeInsets.all(15),
+                                              color: Colors.black54,
+                                              child: Row(
+                                                children: [
+                                                  Expanded(
+                                                    child:Text(
+                                                      homeController.category_wise_newsList[index2].title!,
+                                                      style: TextStyle(
+                                                          fontSize: 17,
+                                                          fontWeight: FontWeight.bold,
+                                                          color: Colors.white),
+                                                    ),
+                                                  ),
+                                                ],
                                               )
 
-                                            ],
                                           ),
-                                        )
+                                        ),
+
+
                                       ],
                                     ),
                                   )
@@ -244,13 +252,13 @@ class SubCatFragment extends StatelessWidget {
                                                     ),
                                                   ),
 
-                                                  //Flexible(child:
+                                                  Flexible(child:
                                                   Text(homeController.category_wise_newsList[index2].title!,
                                                     style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                     textAlign: TextAlign.justify,
                                                   ),
 
-                                                  //),
+                                                  ),
 
                                                 ],
                                               )
