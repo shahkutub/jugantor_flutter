@@ -457,27 +457,27 @@ class SubCatFragment extends StatelessWidget {
                                                                             //   Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
                                                                             //
                                                                             // ),
-                                                                            Positioned(
-                                                                              bottom: 0,
-                                                                              left: 0,
-                                                                              child: Column(
-                                                                                children: <Widget>[
-                                                                                  Container(
-                                                                                    width: width,
-                                                                                    child:Text(
-                                                                                      homeController.subcategory_list_with_news_newsList[index].category_wise_newsList![index2].title!,
-                                                                                      style: TextStyle(
-                                                                                          fontSize: 17,
-                                                                                          fontWeight: FontWeight.bold,
-                                                                                          color: Colors.white),
-                                                                                    ),
-                                                                                    padding: EdgeInsets.all(10),
-                                                                                    color: Colors.black54,
-                                                                                  )
-
-                                                                                ],
-                                                                              ),
-                                                                            )
+                                                                            // Positioned(
+                                                                            //   bottom: 0,
+                                                                            //   left: 0,
+                                                                            //   child: Column(
+                                                                            //     children: <Widget>[
+                                                                            //       Container(
+                                                                            //         width: width,
+                                                                            //         child:Text(
+                                                                            //           homeController.subcategory_list_with_news_newsList[index].category_wise_newsList![index2].title!,
+                                                                            //           style: TextStyle(
+                                                                            //               fontSize: 17,
+                                                                            //               fontWeight: FontWeight.bold,
+                                                                            //               color: Colors.white),
+                                                                            //         ),
+                                                                            //         padding: EdgeInsets.all(10),
+                                                                            //         color: Colors.black54,
+                                                                            //       )
+                                                                            //
+                                                                            //     ],
+                                                                            //   ),
+                                                                            // )
                                                                           ],
                                                                         ),
                                                                       )
