@@ -115,13 +115,13 @@ class SobKhoborCatWiseFragment extends StatelessWidget {
                                                 ],
                                               ),
                                             ),
-                                            //Flexible(child:
+                                            Flexible(child:
                                             Text(homeController.all_cat_wise_newsList[index]["title"],
                                               style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                               textAlign: TextAlign.justify,
                                             ),
 
-                                            //),
+                                            ),
 
                                           ],
                                         )
@@ -248,13 +248,13 @@ class SobKhoborCatWiseFragment extends StatelessWidget {
                                                     ],
                                                   ),
                                                 ),
-                                                //Flexible(child:
+                                                Flexible(child:
                                                 Text(homeController.last_entry_newsList[index].title!,
                                                   style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                   textAlign: TextAlign.justify,
                                                 ),
 
-                                                //),
+                                                ),
 
                                               ],
                                             )

@@ -149,41 +149,79 @@ class SaraDeshFragment extends StatelessWidget {
                                     height: width*.6,
                                     width: width,
                                     child: Stack(
-                                      fit: StackFit.expand,
+                                     // fit: StackFit.expand,
                                       children: [
-                                        FadeInImage.assetNetwork(
-                                            fit: BoxFit.fill,
-                                            image:homeController.saradesh_top_newsList[index2].img_url!,
-                                            placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+
+                                        Align(
+                                          alignment: Alignment.center,
+                                          child: FadeInImage.assetNetwork(
+                                              fit: BoxFit.fill,
+                                              height: width*.6,
+                                              image:homeController.saradesh_top_newsList[index2].img_url!,
+                                              placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                          ),
                                         ),
-                                        Positioned(
-                                          bottom: width*.2,
-                                          left:width/2.5 ,
+
+                                        Align(
+                                          alignment: Alignment.center,
                                           child: homeController.saradesh_top_newsList[index2].video_dis  == 1 ?
                                           Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
-
                                         ),
-                                        Positioned(
-                                          bottom: 0,
-                                          left: 0,
-                                          child: Column(
-                                            children: <Widget>[
-                                              Container(
-                                                width: width,
-                                                child:Text(
+
+                                        Align(
+                                          alignment: Alignment.bottomCenter,
+                                          child: Container(
+                                            width: width,
+                                            padding: EdgeInsets.all(15),
+                                            color: Colors.black54,
+                                            child: Row(
+                                              children: [
+                                                Expanded(child: Text(
                                                   homeController.saradesh_top_newsList[index2].title!,
                                                   style: TextStyle(
-                                                      fontSize: 17,
+                                                      fontSize: 16,
                                                       fontWeight: FontWeight.bold,
                                                       color: Colors.white),
-                                                ),
-                                                padding: EdgeInsets.all(10),
-                                                color: Colors.black54,
-                                              )
+                                                ),)
+                                              ],
 
-                                            ],
+                                            ),
                                           ),
-                                        )
+                                        ),
+
+                                        // FadeInImage.assetNetwork(
+                                        //     fit: BoxFit.fill,
+                                        //     image:homeController.saradesh_top_newsList[index2].img_url!,
+                                        //     placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                        // ),
+                                        // Positioned(
+                                        //   bottom: width*.2,
+                                        //   left:width/2.5 ,
+                                        //   child: homeController.saradesh_top_newsList[index2].video_dis  == 1 ?
+                                        //   Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
+                                        //
+                                        // ),
+                                        // Positioned(
+                                        //   bottom: 0,
+                                        //   left: 0,
+                                        //   child: Column(
+                                        //     children: <Widget>[
+                                        //       Container(
+                                        //         width: width,
+                                        //         child:Text(
+                                        //           homeController.saradesh_top_newsList[index2].title!,
+                                        //           style: TextStyle(
+                                        //               fontSize: 17,
+                                        //               fontWeight: FontWeight.bold,
+                                        //               color: Colors.white),
+                                        //         ),
+                                        //         padding: EdgeInsets.all(10),
+                                        //         color: Colors.black54,
+                                        //       )
+                                        //
+                                        //     ],
+                                        //   ),
+                                        // )
                                       ],
                                     ),
                                   )
@@ -488,13 +526,13 @@ class SaraDeshFragment extends StatelessWidget {
                                                                                         ),
                                                                                       ),
 
-                                                                                      //Flexible(child:
+                                                                                      Flexible(child:
                                                                                       Text(homeController.subcategory_list_with_news_newsList[index].category_wise_newsList![index2].title!,
                                                                                         style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                                                         textAlign: TextAlign.justify,
                                                                                       ),
 
-                                                                                      //),
+                                                                                      ),
 
                                                                                     ],
                                                                                   )
@@ -578,7 +616,6 @@ class SaraDeshFragment extends StatelessWidget {
                                 // Provide a builder function. This is where the magic happens.
                                 // Convert each item into a widget based on the type of item it is.
                                 itemBuilder: (context, index) {
-                                  final item = homeController.last_entry_newsList[index];
 
                                   return Container(
                                       margin: EdgeInsets.only(top: 10),
@@ -623,13 +660,13 @@ class SaraDeshFragment extends StatelessWidget {
                                                     ],
                                                   ),
                                                 ),
-                                                //Flexible(child:
+                                                Flexible(child:
                                                 Text(homeController.last_entry_newsList[index].title!,
                                                   style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                   textAlign: TextAlign.justify,
                                                 ),
 
-                                                //),
+                                                ),
 
                                               ],
                                             )

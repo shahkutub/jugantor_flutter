@@ -373,15 +373,29 @@ class AjkerPaperFragment extends StatelessWidget {
                                                                             width: width,
                                                                             padding: EdgeInsets.all(15),
                                                                             color: Colors.black54,
-                                                                            child: Flexible(
-                                                                              child:Text(
-                                                                                homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].title!,
-                                                                                style: TextStyle(
-                                                                                    fontSize: 16,
-                                                                                    fontWeight: FontWeight.bold,
-                                                                                    color: Colors.white),
-                                                                              ),
-                                                                            ),
+                                                                            child: Row(
+                                                                          children: [
+                                                                          Expanded(
+                                                                          child:Text(
+                                                                          homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].title!+'  ',
+                                                                            style: TextStyle(
+                                                                                fontSize: 16,
+                                                                                fontWeight: FontWeight.bold,
+                                                                                color: Colors.white),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    )
+
+                                                                            // Flexible(
+                                                                            //   child:Text(
+                                                                            //     homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].title!,
+                                                                            //     style: TextStyle(
+                                                                            //         fontSize: 16,
+                                                                            //         fontWeight: FontWeight.bold,
+                                                                            //         color: Colors.white),
+                                                                            //   ),
+                                                                            // ),
                                                                           ),
                                                                         ),
 

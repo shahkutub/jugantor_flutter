@@ -133,7 +133,7 @@ class SaraDeshDistrictFragment extends StatelessWidget {
                                     height: width*.6,
                                     width: width,
                                     child: Stack(
-                                      fit: StackFit.expand,
+                                      //fit: StackFit.expand,
                                       children: [
                                         Align(
                                           alignment: Alignment.center,
@@ -157,14 +157,17 @@ class SaraDeshDistrictFragment extends StatelessWidget {
                                             width: width,
                                             padding: EdgeInsets.all(15),
                                             color: Colors.black54,
-                                            child: Flexible(
-                                              child:Text(
-                                                homeController.saradesh_division_newsList[index2].title!,
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white),
-                                              ),
+                                            child: Row(
+                                              children: [
+                                                Expanded(child: Text(
+                                                  homeController.saradesh_division_newsList[index2].title!,
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight: FontWeight.bold,
+                                                      color: Colors.white),
+                                                ),)
+                                              ],
+
                                             ),
                                           ),
                                         ),
