@@ -1005,6 +1005,7 @@ class HomeFragment extends GetView<HomeController> {
                             ),
                             ),
                           ),
+
                           SizedBox(height: 20,),
                           Container(
                             margin: EdgeInsets.all(10),
@@ -1079,7 +1080,6 @@ class HomeFragment extends GetView<HomeController> {
                               ],
                             ),
                           ),
-
                           SizedBox(height: 20,),
                           Container(
                             alignment: Alignment.center,
@@ -1097,9 +1097,8 @@ class HomeFragment extends GetView<HomeController> {
                             ),
 
                           ),
-
-
                           SizedBox(height: 20,),
+
                           GestureDetector(
                             child: Container(
                               padding: EdgeInsets.all(20),
@@ -1116,6 +1115,7 @@ class HomeFragment extends GetView<HomeController> {
                             ),
                             onTap: (){
                               homeController.selectedPageIndex.value = 12;
+                              homeController.get_all_online_poll(1);
                             },
                           ),
 

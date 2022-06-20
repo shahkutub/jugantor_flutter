@@ -36,6 +36,8 @@ class ApiClient {
   static String all_most_viewed_news = '${baseUrl}api/ver1/all_most_viewed_news?page=';
   static String all_cat_wise_news = '${baseUrl}api/ver1/all_cat_wise_news';
 
+  static String all_online_poll = '${baseUrl}api/ver1/all_online_poll?page=';
+
 
   static String sara_desh_top_news = '${baseUrl}api/ver1/category_wise_news_21/11';
   static String sara_desh_division_news = '${baseUrl}api/ver1/division_news';

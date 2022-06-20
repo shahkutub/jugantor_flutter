@@ -75,6 +75,7 @@ class HomeController extends GetxController {
 
   List<CategoryResponse> ajkert_paper_sub_categoryList = <CategoryResponse>[].obs;
 
+  List<dynamic> all_online_pole = <dynamic>[].obs;
   List<dynamic> all_latest_newsList = <dynamic>[].obs;
   List<dynamic> all_cat_wise_newsList = <dynamic>[].obs;
   List<dynamic> cat_wise_vidList = <dynamic>[].obs;
@@ -893,6 +894,30 @@ class HomeController extends GetxController {
           .map((data) => LastPhotoAlbam.fromJson(data))
           .toList();
       last_photo_albumList.addAll(list);
+
+    } on SocketException {
+
+    }
+  }
+
+  get_all_online_poll(int page) async {
+
+    print("API: "+ApiClient.all_online_poll+page.toString());
+    try {
+      final response = await http.get(Uri.parse(ApiClient.all_online_poll+page.toString()));
+      print(response.body);
+
+      dataLoaded.value = true;
+
+      Map<String, dynamic> user = jsonDecode(response.body);
+      var datanews = jsonEncode(user['data']);
+      print('datanews: ${datanews}');
+      all_online_pole.clear();
+      Map<String, dynamic> newsdata = jsonDecode(datanews);
+      newsdata.forEach((k, v) =>
+      all_online_pole.add(v)
+      );
+      print('newslenth: ${all_online_pole.length}');
 
     } on SocketException {
 
