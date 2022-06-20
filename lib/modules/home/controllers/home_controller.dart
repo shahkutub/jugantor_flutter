@@ -41,6 +41,8 @@ import 'package:jugantor.com/routes/app_pages.dart';
 import 'package:jugantor.com/ui.dart';
 import 'package:jugantor.com/utils/utils.dart';
 
+import '../../../fragments/all_poll_fragment.dart';
+
 
 class HomeController extends GetxController {
   var isLoading=true.obs;
@@ -1190,6 +1192,9 @@ class HomeController extends GetxController {
         return new SearchFragment();
         case 11:
         return new VideoFragment();
+        case 12:
+        return new AllPollFragment();
+
 
 
 

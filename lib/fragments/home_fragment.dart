@@ -1099,6 +1099,26 @@ class HomeFragment extends GetView<HomeController> {
                           ),
 
 
+                          SizedBox(height: 20,),
+                          GestureDetector(
+                            child: Container(
+                              padding: EdgeInsets.all(20),
+                              child: Row(
+                                children: [
+                                  Text('পুরনো ফলাফল',style: TextStyle(color: Colors.grey),),
+                                  Icon(Icons.arrow_forward_ios_sharp,color: Colors.grey,),
+                                  //Icon(Icons.arrow_forward_ios_sharp),
+                                ],
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                              ),
+                              //alignment: Alignment.bottomRight,
+                            ),
+                            onTap: (){
+                              homeController.selectedPageIndex.value = 12;
+                            },
+                          ),
+
                           // GroupButton(
                           //
                           //   onSelected: (value, index, isSelected) {
