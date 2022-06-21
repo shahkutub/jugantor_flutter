@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 
+import '../utils/utils.dart';
 import 'bottom_view.dart';
 
 class AllPollFragment extends StatelessWidget {
@@ -292,7 +293,9 @@ class AllPollFragment extends StatelessWidget {
                                                             child: Container(
                                                               padding: EdgeInsets.all(5),
                                                               color: Colors.green,
-                                                              child: Text(''+yesval.toStringAsFixed(0)+'%',maxLines: 1,),
+                                                              child: Text(''+Utils.replaceEngNumberToBangla(yesval.toStringAsFixed(0))+'%',maxLines: 1,
+                                                                style: TextStyle(color: Colors.white),
+                                                              ),
                                                             ),
                                                           ),
                                                           Expanded(
@@ -300,7 +303,9 @@ class AllPollFragment extends StatelessWidget {
                                                             child: Container(
                                                               padding: EdgeInsets.all(5),
                                                               color: Colors.red,
-                                                              child: Text(''+noval.toStringAsFixed(0)+'%',maxLines: 1,),
+                                                              child: Text(''+Utils.replaceEngNumberToBangla(noval.toStringAsFixed(0))+'%',maxLines: 1,
+                                                                style: TextStyle(color: Colors.white),
+                                                              ),
                                                             ),
                                                           ),
 
@@ -309,8 +314,8 @@ class AllPollFragment extends StatelessWidget {
                                                             child: Container(
                                                               padding: EdgeInsets.all(5),
                                                               color: Colors.blue,
-                                                              child: Text(''+ncVal.toStringAsFixed(0)+'%',
-                                                                maxLines: 1,
+                                                              child: Text(''+Utils.replaceEngNumberToBangla(ncVal.toStringAsFixed(0))+'%', maxLines: 1,
+                                                                style: TextStyle(color: Colors.white),
                                                               ),
                                                             ),
                                                           ),
@@ -324,30 +329,36 @@ class AllPollFragment extends StatelessWidget {
                                                         crossAxisAlignment: CrossAxisAlignment.center,
                                                         children:[
                                                           Container(
-                                                            padding: EdgeInsets.all(5),
+                                                            padding: EdgeInsets.all(7),
                                                             color: Colors.green,
                                                           ),
-                                                          Text('  হ্যাঁ - '+y.toString(),maxLines: 1,),
+                                                          Text('  হ্যাঁ - '+Utils.replaceEngNumberToBangla(y.toString()),maxLines: 1,
+                                                            style: TextStyle(color: Colors.black),
+                                                          ),
 
                                                           SizedBox(
-                                                            width: 20,
+                                                            width: 10,
                                                           ),
 
                                                           Container(
-                                                            padding: EdgeInsets.all(5),
+                                                            padding: EdgeInsets.all(7),
                                                             color: Colors.red,
                                                           ),
-                                                          Text('  না - '+n.toString(),maxLines: 1,),
+                                                          Text('  না - '+Utils.replaceEngNumberToBangla(n.toString()),maxLines: 1,
+                                                            style: TextStyle(color: Colors.black),
+                                                          ),
 
                                                           SizedBox(
-                                                            width: 20,
+                                                            width: 10,
                                                           ),
 
                                                           Container(
-                                                            padding: EdgeInsets.all(5),
+                                                            padding: EdgeInsets.all(7),
                                                             color: Colors.blue,
                                                           ),
-                                                          Text('  মন্তব্য নেই - '+nc.toString(),maxLines: 1,),
+                                                          Text('  মন্তব্য নেই - '+Utils.replaceEngNumberToBangla(nc.toString()),maxLines: 1,
+                                                          style: TextStyle(color: Colors.black),
+                                                          ),
 
                                                         ],
                                                       )
