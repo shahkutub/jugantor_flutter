@@ -228,7 +228,10 @@ class AllPollFragment extends StatelessWidget {
 
                                           var votes = homeController.all_online_pole[index]["votes"];
                                           var regex = RegExp("i:\\d+");
-                                          var nn = regex.allMatches(votes).map((e) => e.input.split(':')[1]);
+
+
+                                          var nn = regex.allMatches(votes).map((e) => e.input.split(':')[5]);
+                                          //var nn2 = regex.allMatches(votes).map((e) => e.input.split(':')[4]);
 
                                           // { o -> o.value.split(':')[1]
                                           // }
@@ -245,9 +248,13 @@ class AllPollFragment extends StatelessWidget {
                                           // }
 
 
-                                          // val y = voteList[1].toFloat()
-                                          // val n = voteList[3].toFloat()
-                                          // val nc = voteList[5].toFloat()
+                                           var y = voteList[5];
+                                          print('y'+y.toString());
+
+
+                                          var n = voteList[3];
+                                          var nc = voteList[5];
+
                                           // val total = y + n + nc
                                           // val yp = y / total * 100
                                           // val np = n / total * 100
