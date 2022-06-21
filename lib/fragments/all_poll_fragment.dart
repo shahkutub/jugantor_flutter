@@ -266,10 +266,9 @@ class AllPollFragment extends StatelessWidget {
                                           return Column(
                                             children: [
 
-                                              // Expanded(
-                                              //   child:
-                                              Container(
-                                                  padding: EdgeInsets.all(10.0),
+                                              Card(
+                                                 child: Container(
+                                                  padding: EdgeInsets.all(20.0),
                                                   // color: Colors.grey,
                                                   child: Column(
                                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -277,7 +276,7 @@ class AllPollFragment extends StatelessWidget {
                                                     children: [
                                                       Text(
                                                         homeController.all_online_pole[index]["ques"],
-                                                        style: TextStyle(fontSize: 17,color: Colors.black,fontWeight: FontWeight.bold),
+                                                        style: TextStyle(fontSize: 16,color: Colors.black,fontWeight: FontWeight.bold),
                                                         textAlign: TextAlign.center,
                                                       ),
 
@@ -285,6 +284,8 @@ class AllPollFragment extends StatelessWidget {
                                                         height: 20,
                                                       ),
                                                       Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        crossAxisAlignment: CrossAxisAlignment.center,
                                                         children:[
                                                           Expanded(
                                                             flex:int.parse(yesval.toStringAsFixed(0)),
@@ -314,6 +315,41 @@ class AllPollFragment extends StatelessWidget {
                                                             ),
                                                           ),
                                                         ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 20,
+                                                      ),
+                                                      Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                                        children:[
+                                                          Container(
+                                                            padding: EdgeInsets.all(5),
+                                                            color: Colors.green,
+                                                          ),
+                                                          Text('  হ্যাঁ - '+y.toString(),maxLines: 1,),
+
+                                                          SizedBox(
+                                                            width: 20,
+                                                          ),
+
+                                                          Container(
+                                                            padding: EdgeInsets.all(5),
+                                                            color: Colors.red,
+                                                          ),
+                                                          Text('  না - '+n.toString(),maxLines: 1,),
+
+                                                          SizedBox(
+                                                            width: 20,
+                                                          ),
+
+                                                          Container(
+                                                            padding: EdgeInsets.all(5),
+                                                            color: Colors.blue,
+                                                          ),
+                                                          Text('  মন্তব্য নেই - '+nc.toString(),maxLines: 1,),
+
+                                                        ],
                                                       )
                                                     ],
 
@@ -321,24 +357,10 @@ class AllPollFragment extends StatelessWidget {
 
 
                                               ),
-                                              //),
+                                              ),
 
 
 
-                                              // Container(
-                                              //     padding: EdgeInsets.all(4.0),
-                                              //     width: 200.0,
-                                              //     child: Text(
-                                              //       "Institution Name",
-                                              //       style: TextStyle(fontSize: 18),
-                                              //     )),
-                                              // Container(
-                                              //     padding: EdgeInsets.all(4.0),
-                                              //     width: 100.0,
-                                              //     child: Text(
-                                              //       "",
-                                              //       style: TextStyle(fontSize: 18),
-                                              //     )),
                                             ],
                                           );
                                         }
