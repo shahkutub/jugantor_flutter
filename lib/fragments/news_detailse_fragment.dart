@@ -6,6 +6,8 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
+
+import 'bottom_view.dart';
 class NewsDetailseFragment extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());
 
@@ -612,6 +614,7 @@ class NewsDetailseFragment extends StatelessWidget {
                          ): Text("")
                       ),
 
+                      BottomView()
 
                     ],
                   ),

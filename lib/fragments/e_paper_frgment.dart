@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:jugantor.com/fragments/bottom_view.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -22,29 +23,34 @@ class EpaperFragment extends StatelessWidget{
     print(formattedDate);
 
     return Container(
-      child:
-      Obx(() =>
-          Stack(
-            children: <Widget>[
-              WebView(
-                initialUrl: 'https://epaper.jugantor.com/'+formattedDate+'/index.php',
-                javascriptMode: JavascriptMode.unrestricted,
-                onProgress: (int progress) {
-                  print('WebView is loading (progress : $progress%)');
-                  if(progress == 100){
-                    homeController.isLoading.value = false;
-                  }
-                },
+      child:Column(
+        children: [
+          Obx(() =>
+              Stack(
+                children: <Widget>[
+                  WebView(
+                    initialUrl: 'https://epaper.jugantor.com/'+formattedDate+'/index.php',
+                    javascriptMode: JavascriptMode.unrestricted,
+                    onProgress: (int progress) {
+                      print('WebView is loading (progress : $progress%)');
+                      if(progress == 100){
+                        homeController.isLoading.value = false;
+                      }
+                    },
 
-                onWebViewCreated: (WebViewController webViewController) {
-              _controller.complete(webViewController);},
+                    onWebViewCreated: (WebViewController webViewController) {
+                      _controller.complete(webViewController);},
 
+                  ),
+                  homeController.isLoading.value ? Center( child: CircularProgressIndicator(),)
+                      : Stack(),
+                ],
               ),
-              homeController.isLoading.value ? Center( child: CircularProgressIndicator(),)
-                  : Stack(),
-            ],
           ),
+
+        ],
       )
+
 
     );
   }

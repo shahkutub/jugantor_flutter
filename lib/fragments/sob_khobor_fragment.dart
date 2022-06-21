@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 
+import 'bottom_view.dart';
+
 class SobKhoborFragment extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());
 
@@ -268,7 +270,8 @@ class SobKhoborFragment extends StatelessWidget {
 
                           ),
                       ),
-
+                      SizedBox(height: 20,),
+                      BottomView()
                     ],
                   ),
 

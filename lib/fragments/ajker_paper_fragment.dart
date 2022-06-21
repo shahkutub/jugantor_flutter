@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 
+import 'bottom_view.dart';
+
 class AjkerPaperFragment extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());
 
@@ -14,7 +16,7 @@ class AjkerPaperFragment extends StatelessWidget {
 
 
     return new Container(
-        margin: EdgeInsets.only(left: 20,right: 20,top: 10),
+        margin: EdgeInsets.only(left: 0,right: 0,top: 10),
         child: Obx(() {
           if(homeController.dataLoaded.isTrue){
             return new SingleChildScrollView(
@@ -23,6 +25,7 @@ class AjkerPaperFragment extends StatelessWidget {
                   child:Column(
                     children: [
                       Container(
+                        margin: EdgeInsets.only(left: 20,right: 20,top: 10),
                         padding: EdgeInsets.all(5),
                         decoration: BoxDecoration(color: Colors.grey),
                         child: Stack(
@@ -74,6 +77,7 @@ class AjkerPaperFragment extends StatelessWidget {
                       ),
 
                       Container(
+                          margin: EdgeInsets.only(left: 20,right: 20,top: 10),
                           padding: EdgeInsets.all(0),
                           alignment: Alignment.center,
                           child:homeController.catListShow.value?
@@ -109,7 +113,7 @@ class AjkerPaperFragment extends StatelessWidget {
                       ),
 
                       Container(
-                          margin: EdgeInsets.only(top: 10,bottom: 5),
+                          margin: EdgeInsets.only(left: 20,right: 20,top: 10),
                           alignment: Alignment.center,
                           child:ListView.builder(
                             primary: false,
@@ -267,7 +271,7 @@ class AjkerPaperFragment extends StatelessWidget {
                       //body cat news
                       Obx(() =>
                           Container(
-                              margin: EdgeInsets.only(top: 15,bottom: 0,right: 0,left: 0),
+                              margin: EdgeInsets.only(top: 15,bottom: 0,right: 20,left: 20),
                               alignment: Alignment.center,
                               child:ListView.builder(
                                 primary: false,
@@ -546,7 +550,7 @@ class AjkerPaperFragment extends StatelessWidget {
 
                       Obx(() =>
                           Container(
-                              margin: EdgeInsets.only(left: 0,right: 0),
+                              margin: EdgeInsets.only(left: 20,right: 20,top: 10),
                               //alignment: Alignment.center,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -566,7 +570,7 @@ class AjkerPaperFragment extends StatelessWidget {
                       ),
                       Obx(() =>
                           Container(
-                              margin: EdgeInsets.only(top: 10,bottom: 5,right: 0,left: 0),
+                              margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 20),
                               alignment: Alignment.center,
                               child:ListView.builder(
                                 primary: false,
@@ -640,6 +644,9 @@ class AjkerPaperFragment extends StatelessWidget {
 
                           ),
                       ),
+
+                      //bottom
+                      BottomView()
 
 
                     ],

@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 
+import 'bottom_view.dart';
+
 class AllPollFragment extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());
+
+  var yesval;
+  var noval;
+  var ncVal;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +19,7 @@ class AllPollFragment extends StatelessWidget {
 
 
     return new Container(
-        margin: EdgeInsets.only(left: 20,right: 20,top: 10),
+
         child: Obx(() {
           if(homeController.dataLoaded.isTrue){
             return new SingleChildScrollView(
@@ -24,6 +30,7 @@ class AllPollFragment extends StatelessWidget {
                     children: [
                       //top
                       Container(
+                        margin: EdgeInsets.only(left: 20,right: 20,top: 10),
                         padding: EdgeInsets.all(5),
                         //decoration: BoxDecoration(color: Colors.grey),
                         child: Stack(
@@ -59,166 +66,170 @@ class AllPollFragment extends StatelessWidget {
                        height: 20,
                      ),
 
-                     Stack(
-                       children: [
+                     Container(
+                       margin: EdgeInsets.only(left: 20,right: 20,top: 10),
+                       child: Stack(
+                         children: [
 
-                         Align(
-                           child: Container(
-                             decoration: BoxDecoration(
-                                 borderRadius: BorderRadius.all(Radius.circular(5)),
-                                 border: Border.all(color: Color(0xffD37D2A))
-                               //color: Colors.amber,
-                             ),
-                             padding: EdgeInsets.all(15),
-                             //height: Get.height,
-                             width: Get.width,
-                             margin: EdgeInsets.only(top: 17),
-                             child: Column(
-                               mainAxisAlignment: MainAxisAlignment.center,
-                               crossAxisAlignment: CrossAxisAlignment.center,
+                           Align(
+                             child: Container(
+                               decoration: BoxDecoration(
+                                   borderRadius: BorderRadius.all(Radius.circular(5)),
+                                   border: Border.all(color: Color(0xffD37D2A))
+                                 //color: Colors.amber,
+                               ),
+                               padding: EdgeInsets.all(15),
+                               //height: Get.height,
+                               width: Get.width,
+                               margin: EdgeInsets.only(top: 17),
+                               child: Column(
+                                 mainAxisAlignment: MainAxisAlignment.center,
+                                 crossAxisAlignment: CrossAxisAlignment.center,
 
-                               children: [
-                                 SizedBox(height: 20,),
-                                 Container(
-                                   margin: EdgeInsets.all(10),
-                                   child: Column(
-                                     children: [
-                                       Text(
-                                         homeController.last_online_pollResponse.value.ques!
-                                         ,style: TextStyle(
-                                           color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold
-                                       ),
-                                         textAlign: TextAlign.justify,
-                                       ),
-                                       SizedBox(height: 20,),
-                                       Row(
-                                         mainAxisAlignment: MainAxisAlignment.center,
-                                         children: <Widget>[
-                                           Transform.scale(
-                                             scale: 1.5,
-                                             child:  Radio(
-                                               value: 1,
-                                               groupValue: homeController.id.value,
-                                               onChanged: (val) {
-                                                 homeController.radioButtonItem.value = 'হ্যাঁ';
-                                                 homeController.id.value = 1;
-                                               },
-                                               toggleable: true,
+                                 children: [
+                                   SizedBox(height: 20,),
+                                   Container(
+                                     margin: EdgeInsets.all(10),
+                                     child: Column(
+                                       children: [
+                                         Text(
+                                           homeController.last_online_pollResponse.value.ques!
+                                           ,style: TextStyle(
+                                             color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold
+                                         ),
+                                           textAlign: TextAlign.justify,
+                                         ),
+                                         SizedBox(height: 20,),
+                                         Row(
+                                           mainAxisAlignment: MainAxisAlignment.center,
+                                           children: <Widget>[
+                                             Transform.scale(
+                                               scale: 1.5,
+                                               child:  Radio(
+                                                 value: 1,
+                                                 groupValue: homeController.id.value,
+                                                 onChanged: (val) {
+                                                   homeController.radioButtonItem.value = 'হ্যাঁ';
+                                                   homeController.id.value = 1;
+                                                 },
+                                                 toggleable: true,
+                                               ),
                                              ),
-                                           ),
 
-                                           Text(
-                                             'হ্যাঁ',
-                                             style: new TextStyle(fontSize: 17.0),
-                                           ),
-
-                                           Transform.scale(
-                                             scale: 1.5,
-                                             child:Radio(
-                                               value: 2,
-                                               groupValue: homeController.id.value,
-                                               onChanged: (val) {
-                                                 homeController.radioButtonItem.value = 'না';
-                                                 homeController.id.value = 2;
-                                               },
+                                             Text(
+                                               'হ্যাঁ',
+                                               style: new TextStyle(fontSize: 17.0),
                                              ),
-                                           ),
 
-                                           Text(
-                                             'না',
-                                             style: new TextStyle(
-                                               fontSize: 17.0,
+                                             Transform.scale(
+                                               scale: 1.5,
+                                               child:Radio(
+                                                 value: 2,
+                                                 groupValue: homeController.id.value,
+                                                 onChanged: (val) {
+                                                   homeController.radioButtonItem.value = 'না';
+                                                   homeController.id.value = 2;
+                                                 },
+                                               ),
                                              ),
-                                           ),
 
-                                           Transform.scale(
-                                             scale: 1.5,
-                                             child: Radio(
-                                               value: 3,
-                                               groupValue: homeController.id.value,
-                                               onChanged: (val) {
-                                                 homeController.radioButtonItem.value = 'মন্তব্য নেই';
-                                                 homeController.id.value = 3;
-                                               },
+                                             Text(
+                                               'না',
+                                               style: new TextStyle(
+                                                 fontSize: 17.0,
+                                               ),
                                              ),
-                                           ),
 
-                                           Text(
-                                             'মন্তব্য নেই',
-                                             style: new TextStyle(fontSize: 17.0),
-                                           ),
-                                         ],
-                                       ),
-                                     ],
-                                   ),
-                                 ),
-                                 SizedBox(height: 20,),
-                                 Container(
-                                   alignment: Alignment.center,
-                                   child: GestureDetector(
-                                     child:Container(
-                                       padding: EdgeInsets.all(10),
-                                       margin: EdgeInsets.only(left: 100,right: 100),
-                                       alignment: Alignment.center,
-                                       decoration: BoxDecoration(
-                                           borderRadius: BorderRadius.circular(10),
-                                           color: Colors.green
-                                       ),
-                                       child: Text('মতামত দিন',style: TextStyle(color: Colors.white),),
+                                             Transform.scale(
+                                               scale: 1.5,
+                                               child: Radio(
+                                                 value: 3,
+                                                 groupValue: homeController.id.value,
+                                                 onChanged: (val) {
+                                                   homeController.radioButtonItem.value = 'মন্তব্য নেই';
+                                                   homeController.id.value = 3;
+                                                 },
+                                               ),
+                                             ),
+
+                                             Text(
+                                               'মন্তব্য নেই',
+                                               style: new TextStyle(fontSize: 17.0),
+                                             ),
+                                           ],
+                                         ),
+                                       ],
                                      ),
                                    ),
+                                   SizedBox(height: 20,),
+                                   Container(
+                                     alignment: Alignment.center,
+                                     child: GestureDetector(
+                                       child:Container(
+                                         padding: EdgeInsets.all(10),
+                                         margin: EdgeInsets.only(left: 100,right: 100),
+                                         alignment: Alignment.center,
+                                         decoration: BoxDecoration(
+                                             borderRadius: BorderRadius.circular(10),
+                                             color: Colors.green
+                                         ),
+                                         child: Text('মতামত দিন',style: TextStyle(color: Colors.white),),
+                                       ),
+                                     ),
 
-                                 ),
-                                 SizedBox(height: 20,),
-                               ],
+                                   ),
+                                   SizedBox(height: 20,),
+                                 ],
 
+                               ),
                              ),
+                             alignment: Alignment.topCenter,
+
                            ),
-                           alignment: Alignment.topCenter,
+                           Align(
+                             child: Container(
 
-                         ),
-                         Align(
-                           child: Container(
-
-                             decoration: BoxDecoration(
-                               borderRadius: BorderRadius.all(Radius.circular(10)),
-                               color: Color(0xffD37D2A),
+                               decoration: BoxDecoration(
+                                 borderRadius: BorderRadius.all(Radius.circular(10)),
+                                 color: Color(0xffD37D2A),
+                               ),
+                               child: Text('অনলাইন জরিপ',style: TextStyle(color: Colors.white),),
+                               padding: EdgeInsets.all(10),
                              ),
-                             child: Text('অনলাইন জরিপ',style: TextStyle(color: Colors.white),),
-                             padding: EdgeInsets.all(10),
+                             alignment: Alignment.topCenter,
                            ),
-                           alignment: Alignment.topCenter,
-                         ),
 
 
 
-                       ],
+                         ],
+                       ),
                      ),
 
                       SizedBox(
                         height: 20,
                       ),
 
+                      Container(
+                        margin: EdgeInsets.only(left: 20,right: 20,top: 10),
+                        child: Stack(
+                          children: [
 
-                      Stack(
-                        children: [
-
-                          Align(
-                            child:Expanded(
-                              child: Container(
-                                decoration: BoxDecoration(
-
-                                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                                    border: Border.all(color: Color(0xffD37D2A)),
-                                  color: Color(0xffF0F0ED)
-                                  //color: Colors.amber,
-                                ),
-                                //padding: EdgeInsets.all(15),
-                                //height: Get.height,
-
-                                width: Get.width,
-                                margin: EdgeInsets.only(top: 17),
+                            Align(
+                              child:Expanded(
                                 child: Container(
+                                  decoration: BoxDecoration(
+
+                                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                                      border: Border.all(color: Color(0xffD37D2A)),
+                                      color: Color(0xffF0F0ED)
+                                    //color: Colors.amber,
+                                  ),
+                                  //padding: EdgeInsets.all(15),
+                                  //height: Get.height,
+
+                                  width: Get.width,
+                                  margin: EdgeInsets.only(top: 17),
+                                  child: Container(
 
                                     child: Obx(() => ListView.builder(
                                         shrinkWrap: true,
@@ -227,38 +238,30 @@ class AllPollFragment extends StatelessWidget {
                                         itemBuilder: (BuildContext context, int index) {
 
                                           var votes = homeController.all_online_pole[index]["votes"];
-                                          var regex = RegExp("i:\\d+");
 
 
-                                          var nn = regex.allMatches(votes).map((e) => e.input.split(':')[5]);
-                                          //var nn2 = regex.allMatches(votes).map((e) => e.input.split(':')[4]);
+                                          List<String> result = votes.split(';');
+                                          // print('split'+result[1]);
+                                          // print('split'+result[3]);
+                                          // print('split'+result[5]);
 
-                                          // { o -> o.value.split(':')[1]
-                                          // }
+                                          List<String> resultA = result[1].split(':');
+                                          int y = int.parse(resultA[1]);
+                                          print('y: '+y.toString());
 
-                                           List<String> voteList = [];
-                                          nn.forEach((element) {
-                                            voteList.add(element);
-                                            print(''+element.toString());
-                                          });
+                                          List<String> resultB = result[3].split(':');
+                                          int n = int.parse(resultB[1]);
+                                          print('n: '+n.toString());
 
-                                          // nn.forEach{
-                                          // voteList.add(it)
-                                          // //println(it)
-                                          // }
-
-
-                                           var y = voteList[5];
-                                          print('y'+y.toString());
+                                          List<String> resultC = result[5].split(':');
+                                          int nc = int.parse(resultC[1]);
+                                          print('nc: '+nc.toString());
 
 
-                                          var n = voteList[3];
-                                          var nc = voteList[5];
-
-                                          // val total = y + n + nc
-                                          // val yp = y / total * 100
-                                          // val np = n / total * 100
-                                          // val ncp = nc / total * 100
+                                          int total = y + n + nc;
+                                          yesval = y / total * 100;
+                                          noval = n / total * 100;
+                                          ncVal = nc / total * 100;
 
                                           return Column(
                                             children: [
@@ -267,7 +270,7 @@ class AllPollFragment extends StatelessWidget {
                                               //   child:
                                               Container(
                                                   padding: EdgeInsets.all(10.0),
-                                                 // color: Colors.grey,
+                                                  // color: Colors.grey,
                                                   child: Column(
                                                     mainAxisAlignment: MainAxisAlignment.center,
                                                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -284,25 +287,30 @@ class AllPollFragment extends StatelessWidget {
                                                       Row(
                                                         children:[
                                                           Expanded(
-                                                            flex:65,
+                                                            flex:int.parse(yesval.toStringAsFixed(0)),
                                                             child: Container(
+                                                              padding: EdgeInsets.all(5),
                                                               color: Colors.green,
-                                                              child: Text('box1'),
+                                                              child: Text(''+yesval.toStringAsFixed(0)+'%',maxLines: 1,),
                                                             ),
                                                           ),
                                                           Expanded(
-                                                            flex:34,
+                                                            flex:int.parse(noval.toStringAsFixed(0)),
                                                             child: Container(
+                                                              padding: EdgeInsets.all(5),
                                                               color: Colors.red,
-                                                              child: Text('box2'),
+                                                              child: Text(''+noval.toStringAsFixed(0)+'%',maxLines: 1,),
                                                             ),
                                                           ),
 
                                                           Expanded(
-                                                            flex:1,
+                                                            flex:int.parse(ncVal.toStringAsFixed(0)),
                                                             child: Container(
+                                                              padding: EdgeInsets.all(5),
                                                               color: Colors.blue,
-                                                              child: Text(''),
+                                                              child: Text(''+ncVal.toStringAsFixed(0)+'%',
+                                                                maxLines: 1,
+                                                              ),
                                                             ),
                                                           ),
                                                         ],
@@ -310,7 +318,6 @@ class AllPollFragment extends StatelessWidget {
                                                     ],
 
                                                   )
-
 
 
                                               ),
@@ -336,37 +343,39 @@ class AllPollFragment extends StatelessWidget {
                                           );
                                         }
                                     ),),
-                                  padding: EdgeInsets.only(top: 20),
+                                    padding: EdgeInsets.only(top: 20),
 
 
+                                  ),
                                 ),
                               ),
+                              alignment: Alignment.topCenter,
+
                             ),
-                            alignment: Alignment.topCenter,
+                            Align(
+                              child: Container(
 
-                          ),
-                          Align(
-                            child: Container(
-
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(10)),
-                                color: Color(0xffD37D2A),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  color: Color(0xffD37D2A),
+                                ),
+                                child: Text('পুরনো ফলাফল',style: TextStyle(color: Colors.white),),
+                                padding: EdgeInsets.all(10),
                               ),
-                              child: Text('পুরনো ফলাফল',style: TextStyle(color: Colors.white),),
-                              padding: EdgeInsets.all(10),
+                              alignment: Alignment.topCenter,
                             ),
-                            alignment: Alignment.topCenter,
-                          ),
 
 
 
-                        ],
+                          ],
+                        ),
                       ),
+
 
                       //last entry, mostview
                       Obx(() =>
                           Container(
-                              margin: EdgeInsets.only(left: 0,right: 0),
+                              margin: EdgeInsets.only(left: 20,right: 20,top: 10),
                               //alignment: Alignment.center,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -386,7 +395,7 @@ class AllPollFragment extends StatelessWidget {
                       ),
                       Obx(() =>
                           Container(
-                              margin: EdgeInsets.only(top: 10,bottom: 5,right: 0,left: 0),
+                              margin: EdgeInsets.only(left: 20,right: 20,top: 10),
                               alignment: Alignment.center,
                               child:ListView.builder(
                                 primary: false,
@@ -460,6 +469,9 @@ class AllPollFragment extends StatelessWidget {
 
                           ),
                       ),
+
+                      //bottom
+                      BottomView()
 
                     ],
                   ),

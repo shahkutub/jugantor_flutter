@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 import 'package:jugantor.com/ui.dart';
 
+import 'bottom_view.dart';
+
 class SaraDeshDistrictFragment extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());
 
@@ -447,9 +449,9 @@ class SaraDeshDistrictFragment extends StatelessWidget {
                         ),
 
                       ),
-                      SizedBox(height: 20,)
+                      SizedBox(height: 20,),
 
-
+                      BottomView()
 
                     ],
                   ),

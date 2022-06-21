@@ -15,8 +15,27 @@ main(List<String> args) async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+
+
   @override
   Widget build(BuildContext context) {
+    // var  text = "a:3:{i:0;i:210;i:1;i:46;i:2;i:12;}";
+    // List<String> result = text.split(';');
+    // print('split'+result[1]);
+    // print('split'+result[3]);
+    // print('split'+result[5]);
+    //
+    // List<String> resultA = result[1].split(':');
+    // print('a: '+resultA[1]);
+    //
+    // List<String> resultB = result[3].split(':');
+    // print('b: '+resultB[1]);
+    //
+    // List<String> resultC = result[5].split(':');
+    // print('c: '+resultC[1]);
+
+
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Application",

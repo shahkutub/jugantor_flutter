@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:group_button/group_button.dart';
+import 'package:jugantor.com/fragments/bottom_view.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 import 'package:jugantor.com/utils/loaders/color_loader_5.dart';
 import 'package:jugantor.com/utils/loaders/dot_type.dart';
@@ -479,7 +480,8 @@ class HomeFragment extends GetView<HomeController> {
                                                 Container(
                                                     margin: EdgeInsets.only(top: 0,bottom: 5),
                                                     alignment: Alignment.center,
-                                                    child:ListView.builder(
+                                                    child: homeController.category_list_with_news_newsList[index].category_wise_newsList!.length >0?
+                                                    ListView.builder(
                                                       primary: false,
                                                       shrinkWrap: true,
                                                       physics: NeverScrollableScrollPhysics(),
@@ -633,7 +635,7 @@ class HomeFragment extends GetView<HomeController> {
                                                         }
 
                                                       },
-                                                    )
+                                                    ):Text('')
 
                                                 ),
                                             ),
@@ -1187,19 +1189,7 @@ class HomeFragment extends GetView<HomeController> {
                     ),
 
                     //bottom
-                    Container(
-
-                      child:Text('সম্পাদক : সাইফুল আলম, প্রকাশক : সালমা ইসলাম প্রকাশক কর্তৃক ক-২৪৪ প্রগতি সরণি, কুড়িল (বিশ্বরোড), '
-                          'বারিধারা, ঢাকা-১২২৯ থেকে প্রকাশিত এবং যমুনা প্রিন্টিং এন্ড পাবলিশিং লিঃ থেকে মুদ্রিত। ''পিএবিএক্স : ৯৮২৪০৫৪-৬১, '
-                          'রিপোর্টিং : ৯৮২৩০৭৩, বিজ্ঞাপন : ৯৮২৪০৬২, ফ্যাক্স : ৯৮২৪০৬৩, '
-                          'সার্কুলেশন : ৯৮২৪০৭২। ফ্যাক্স : ৯৮২৪০৬৬'
-                          'E-mail: jugantor.mail@gmail.com',style: TextStyle(fontSize: 13,color: Colors.white),
-                        textAlign: TextAlign.justify,),
-                      width: width,
-                      padding: EdgeInsets.all(10),
-                      color: Colors.black,
-                      alignment: Alignment.center,
-                    ),
+                    BottomView()
 
 
                   ],
