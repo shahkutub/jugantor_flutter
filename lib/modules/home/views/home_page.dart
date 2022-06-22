@@ -32,10 +32,11 @@ class HomePage extends GetView<HomeController> {
                   //
                   // ),
                   Obx(() =>
+                    homeController.banglaDate.value != null?
                       Text(""+Utils.currentDateBengali()+' ,   '+homeController.banglaDate.value,
                       style: TextStyle(color: Colors.white,fontSize: 15),
                       textAlign:TextAlign.center,
-                    ),
+                    ):Text('')
                   ),
 
 
@@ -188,6 +189,7 @@ class HomePage extends GetView<HomeController> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         Obx(() =>
+                           homeController.categoryList.length > 0?
                             Container(
                                 padding: EdgeInsets.all(20),
                                 alignment: Alignment.center,
@@ -231,7 +233,7 @@ class HomePage extends GetView<HomeController> {
                                     );
                                   },
                                 )
-                            ),
+                            ):SizedBox()
                         ),
 
                         Divider(

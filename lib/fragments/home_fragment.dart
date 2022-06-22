@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,6 +14,8 @@ import 'package:jugantor.com/utils/loaders/color_loader_5.dart';
 import 'package:jugantor.com/utils/loaders/dot_type.dart';
 import 'package:group_radio_button/group_radio_button.dart';
 
+import '../ui.dart';
+
 class HomeFragment extends GetView<HomeController> {
   final HomeController homeController = Get.put(HomeController());
 
@@ -25,30 +29,21 @@ class HomeFragment extends GetView<HomeController> {
 
 
     homeController.scrollController.value.addListener(() { //listener
-      //print('scroll'+homeController.scrollController.value.offset.toString());
-      if(homeController.scrollController.value.offset > 500){
-        // homeController.home_categoryList.clear();
-        // homeController.category_list_with_news_newsList.clear();
+      print('scroll'+homeController.scrollController.value.offset.toString());
+      if(homeController.scrollController.value.offset > 1000){
+         // homeController.home_categoryList.clear();
+         // homeController.category_list_with_news_newsList.clear();
         if(homeController.homecatApiCall.value == false){
           if(homeController.home_categoryList.length == 0){
-            // homeController.homecatApiCall.value = true;
-            // homeController.get_home_category();
+            Ui.showLoaderDialog(context);
+            Timer(Duration(seconds: 10), () {
+              Navigator.of(context).pop();
+            });
+             homeController.homecatApiCall.value = true;
+             homeController.get_home_category();
           }
         }
 
-
-        //homeController.get_last_entry_news1();
-      }
-      if(homeController.scrollController.value.offset > 1000){
-        // homeController.home_categoryList.clear();
-        // homeController.category_list_with_news_newsList.clear();
-        if(homeController.last_photo_albumList.length == 0){
-          // homeController.last_online_poll();
-          // homeController.get_last_photo_album();
-          // homeController.get_last_three_videos();
-        }
-
-        //homeController.get_last_entry_news1();
       }
 
 
@@ -989,24 +984,32 @@ class HomeFragment extends GetView<HomeController> {
                       child: homeController.last_online_pollResponse.value != null?
                       Column(
                         children: [
-                          Container(
-                            padding: EdgeInsets.all(15),
-                            alignment: Alignment.center,
+                          GestureDetector(
+                            onTap: (){
+                              homeController.isOldPoll.value = false;
+                              homeController.selectedPageIndex.value = 12;
+                              homeController.get_all_online_poll(1);
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(15),
+                              alignment: Alignment.center,
 
-                            decoration: BoxDecoration(
-                              color: Colors.orange,
-                              //border: Border.all(color: Colors.orange),
-                              borderRadius:BorderRadius.only(
-                                topLeft: Radius.circular(10.0),
-                                topRight: Radius.circular(10.0),
+                              decoration: BoxDecoration(
+                                color: Colors.orange,
+                                //border: Border.all(color: Colors.orange),
+                                borderRadius:BorderRadius.only(
+                                  topLeft: Radius.circular(10.0),
+                                  topRight: Radius.circular(10.0),
+                                ),
+                              ),
+                              child: Text(
+                                'অনলাইন জরিপ',style: TextStyle(
+                                  color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold
+                              ),
                               ),
                             ),
-                            child: Text(
-                              'অনলাইন জরিপ',style: TextStyle(
-                              color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold
-                            ),
-                            ),
                           ),
+
 
                           SizedBox(height: 20,),
                           Container(
@@ -1116,6 +1119,7 @@ class HomeFragment extends GetView<HomeController> {
                               //alignment: Alignment.bottomRight,
                             ),
                             onTap: (){
+                              homeController.isOldPoll.value = true;
                               homeController.selectedPageIndex.value = 12;
                               homeController.get_all_online_poll(1);
                             },

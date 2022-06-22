@@ -133,6 +133,8 @@ class HomeController extends GetxController {
   var vidEmbed = ''.obs;
 
   var last_most_text =''.obs;
+
+  var isOldPoll  = false.obs;
   @override
   void onInit() {
 
@@ -146,9 +148,9 @@ class HomeController extends GetxController {
     banglaDate.value = Get.find<SplashscreenController>().banglaDate.value;
     categoryList = Get.find<SplashscreenController>().categoryList;
     catExtraLinkList = Get.find<SplashscreenController>().catExtraLinkList;
-    last_entry_newsList = Get.find<SplashscreenController>().last_entry_newsList;
-    home_categoryList = Get.find<SplashscreenController>().home_categoryList;
-    category_list_with_news_newsList = Get.find<SplashscreenController>().category_list_with_news_newsList;
+    // last_entry_newsList = Get.find<SplashscreenController>().last_entry_newsList;
+    // home_categoryList = Get.find<SplashscreenController>().home_categoryList;
+    // category_list_with_news_newsList = Get.find<SplashscreenController>().category_list_with_news_newsList;
 
     // get_bn_date();
     // get_category();
@@ -157,12 +159,11 @@ class HomeController extends GetxController {
     //get_extracat();
     get_lead_news();
     get_show_news();
-    get_last_entry_news1();
-
     last_online_poll();
     get_last_photo_album();
     get_last_three_videos();
-    get_home_category();
+    get_last_entry_news1();
+    //get_home_category();
     Timer(Duration(seconds: 20), () {
       //get_home_category();
     });
@@ -334,7 +335,7 @@ class HomeController extends GetxController {
       print('last_online_poll: ${response}');
       //if(response != null){
       last_online_pollResponse.value = LastOnlinePoll.fromJson(response);
-      dataLoaded.value =true;
+      //dataLoaded.value =true;
       //Utils.dateBengaliNewsDetailse(Utils.dateTimeFormat(newsDetails.value.news_date_time));
     } catch (e) {
 
@@ -402,7 +403,7 @@ class HomeController extends GetxController {
 
       last_entry_newsList.clear();
       last_entry_newsList.addAll(list);
-      //dataLoaded.value = true;
+      dataLoaded.value = true;
       //Navigator.of(context).pop();
       //get_home_category();
       print('last_entry_newsList: ${last_entry_newsList[0].title.toString()}');

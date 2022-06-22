@@ -63,12 +63,10 @@ class AllPollFragment extends StatelessWidget {
                         ),
                       ),
 
-                     SizedBox(
-                       height: 20,
-                     ),
 
-                     Container(
-                       margin: EdgeInsets.only(left: 20,right: 20,top: 10),
+                      homeController.isOldPoll.value == true?
+                      Container(
+                       margin: EdgeInsets.only(left: 20,right: 20,top: 20),
                        child: Stack(
                          children: [
 
@@ -204,11 +202,9 @@ class AllPollFragment extends StatelessWidget {
 
                          ],
                        ),
-                     ),
+                     ): Text(""),
 
-                      SizedBox(
-                        height: 20,
-                      ),
+
 
                       Container(
                         margin: EdgeInsets.only(left: 20,right: 20,top: 10),
@@ -377,6 +373,7 @@ class AllPollFragment extends StatelessWidget {
                                         }
                                     ),),
                                     padding: EdgeInsets.only(top: 20),
+                                    margin: EdgeInsets.only(top: 20),
 
 
                                   ),
