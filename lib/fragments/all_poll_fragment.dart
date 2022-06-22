@@ -211,8 +211,12 @@ class AllPollFragment extends StatelessWidget {
                                    ),
                                    SizedBox(height: 20,),
                                    Container(
+                                     margin: EdgeInsets.only(right: 20),
                                      alignment: Alignment.centerRight,
-                                     child: Text('ভোটদাতা '+ Utils.replaceEngNumberToBangla(totalCurrent.toString())+' জন'),
+                                     child: Text('ভোটদাতা '+ Utils.replaceEngNumberToBangla(totalCurrent.toString())+' জন',
+                                     style: TextStyle(fontSize: 17),
+                                     ),
+
                                    ),
                                    SizedBox(height: 20,),
                                    Container(
