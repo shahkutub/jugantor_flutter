@@ -18,6 +18,32 @@ class AllPollFragment extends StatelessWidget {
     double height = Get.height;
     double width = Get.width;
 
+    var votes = homeController.last_online_pollResponse.value.votes;
+
+
+    List<String> result = votes!.split(';');
+    // print('split'+result[1]);
+    // print('split'+result[3]);
+    // print('split'+result[5]);
+
+    List<String> resultA = result[1].split(':');
+    int y = int.parse(resultA[1]);
+    print('y: '+y.toString());
+
+    List<String> resultB = result[3].split(':');
+    int n = int.parse(resultB[1]);
+    print('n: '+n.toString());
+
+    List<String> resultC = result[5].split(':');
+    int nc = int.parse(resultC[1]);
+    print('nc: '+nc.toString());
+
+
+    int totalCurrent = y + n + nc;
+    var valyes = y / totalCurrent * 100;
+    var valno = n / totalCurrent * 100;
+    var valnc = nc / totalCurrent * 100;
+
 
     return new Container(
 
@@ -64,7 +90,7 @@ class AllPollFragment extends StatelessWidget {
                       ),
 
 
-                      homeController.isOldPoll.value == true?
+                      homeController.isOldPoll.value == false?
                       Container(
                        margin: EdgeInsets.only(left: 20,right: 20,top: 20),
                        child: Stack(
@@ -77,7 +103,7 @@ class AllPollFragment extends StatelessWidget {
                                    border: Border.all(color: Color(0xffD37D2A))
                                  //color: Colors.amber,
                                ),
-                               padding: EdgeInsets.all(15),
+                               padding: EdgeInsets.all(5),
                                //height: Get.height,
                                width: Get.width,
                                margin: EdgeInsets.only(top: 17),
@@ -102,9 +128,12 @@ class AllPollFragment extends StatelessWidget {
                                          Row(
                                            mainAxisAlignment: MainAxisAlignment.center,
                                            children: <Widget>[
-                                             Transform.scale(
-                                               scale: 1.5,
-                                               child:  Radio(
+                                             // Transform.scale(
+                                             //   scale: 1,
+                                             //   child:
+                                             Container(
+
+                                               child: Radio(
                                                  value: 1,
                                                  groupValue: homeController.id.value,
                                                  onChanged: (val) {
@@ -113,16 +142,24 @@ class AllPollFragment extends StatelessWidget {
                                                  },
                                                  toggleable: true,
                                                ),
+                                               height: 30,
+                                               width: 30,
                                              ),
+
+                                             //),
 
                                              Text(
-                                               'হ্যাঁ',
-                                               style: new TextStyle(fontSize: 17.0),
+                                               'হ্যাঁ'+'('+Utils.replaceEngNumberToBangla(valyes.toStringAsFixed(0))+'%)',
+                                               style: new TextStyle(fontSize: 15.0),
                                              ),
 
-                                             Transform.scale(
-                                               scale: 1.5,
-                                               child:Radio(
+                                             // Transform.scale(
+                                             //   scale: 1,
+                                             //   child:
+
+                                             Container(
+
+                                               child: Radio(
                                                  value: 2,
                                                  groupValue: homeController.id.value,
                                                  onChanged: (val) {
@@ -130,17 +167,25 @@ class AllPollFragment extends StatelessWidget {
                                                    homeController.id.value = 2;
                                                  },
                                                ),
+                                               height: 30,
+                                               width: 30,
                                              ),
 
+
+                                             //),
+
                                              Text(
-                                               'না',
+                                               'না'+'('+Utils.replaceEngNumberToBangla(valno.toStringAsFixed(0))+'%)',
                                                style: new TextStyle(
-                                                 fontSize: 17.0,
+                                                 fontSize: 15.0,
                                                ),
                                              ),
 
-                                             Transform.scale(
-                                               scale: 1.5,
+                                             // Transform.scale(
+                                             //   scale: 1,
+                                             //   child:
+                                             Container(
+
                                                child: Radio(
                                                  value: 3,
                                                  groupValue: homeController.id.value,
@@ -149,16 +194,25 @@ class AllPollFragment extends StatelessWidget {
                                                    homeController.id.value = 3;
                                                  },
                                                ),
+                                               height: 30,
+                                               width: 30,
                                              ),
 
+                                             //),
+
                                              Text(
-                                               'মন্তব্য নেই',
-                                               style: new TextStyle(fontSize: 17.0),
+                                               'মন্তব্য নেই'+'('+Utils.replaceEngNumberToBangla(valnc.toStringAsFixed(0))+'%)',
+                                               style: new TextStyle(fontSize: 15.0),
                                              ),
                                            ],
                                          ),
                                        ],
                                      ),
+                                   ),
+                                   SizedBox(height: 20,),
+                                   Container(
+                                     alignment: Alignment.centerRight,
+                                     child: Text('ভোটদাতা '+ Utils.replaceEngNumberToBangla(totalCurrent.toString())+' জন'),
                                    ),
                                    SizedBox(height: 20,),
                                    Container(
