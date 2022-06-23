@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 
+import '../model/BoxListModel.dart';
 import 'bottom_view.dart';
 
 class SobKhoborCatWiseFragment extends StatelessWidget {
@@ -12,7 +13,16 @@ class SobKhoborCatWiseFragment extends StatelessWidget {
     Get.find<HomeController>();
     double height = Get.height;
     double width = Get.width;
+    homeController.boxlist.clear();
+    for (var i = 0; i < 50; i++) {
+      if(i == 0){
+        homeController.boxlist.add(BoxListModel(i, true));
+      }else{
+        homeController.boxlist.add(BoxListModel(i, false));
+      }
 
+      // print('dd'+boxlist[i].count.toString());
+    }
 
     return new Container(
         margin: EdgeInsets.only(left: 20,right: 20,top: 10),
@@ -136,9 +146,8 @@ class SobKhoborCatWiseFragment extends StatelessWidget {
 
                       ),
 
-
                       Container(
-                        height: 30,
+                          height: 30,
                           margin: EdgeInsets.only(top: 10,bottom: 5,right: 0,left: 0),
                           alignment: Alignment.center,
                           child:ListView.builder(
@@ -146,7 +155,7 @@ class SobKhoborCatWiseFragment extends StatelessWidget {
                             primary: false,
                             shrinkWrap: true,
                             // Let the ListView know how many items it needs to build.
-                            itemCount: 50,
+                            itemCount: homeController.boxlist.length,
                             // Provide a builder function. This is where the magic happens.
                             // Convert each item into a widget based on the type of item it is.
                             itemBuilder: (context, index) {
@@ -154,16 +163,26 @@ class SobKhoborCatWiseFragment extends StatelessWidget {
                               int num = index+1;
                               return GestureDetector(
                                 onTap: (){
+                                  for (var i = 0; i < homeController.boxlist.length; i++) {
+                                    if(i == index){
+                                      homeController.boxlist[i].isSelect = true;
+                                    }else{
+                                      homeController.boxlist[i].isSelect = false;
+                                    }
+                                  }
                                   homeController.get_all_cat_wise_news(num,context);
                                 },
+
                                 child: Container(
-                                  height: 40,
-                                  width: 40,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.grey)
-                                  ),
-                                  child: Text(num.toString()),
+                                    height: 40,
+                                    width: 40,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.grey)
+                                    ),
+                                    child: homeController.boxlist[index].isSelect == true ?
+                                    Text(num.toString(),style: TextStyle(color: Colors.red),):
+                                    Text(num.toString(),style: TextStyle(color: Colors.black),)
                                 ),
 
                               );
@@ -171,6 +190,8 @@ class SobKhoborCatWiseFragment extends StatelessWidget {
                           )
 
                       ),
+
+
 
                       //last entry, mostview
                       Obx(() =>

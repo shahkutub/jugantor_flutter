@@ -42,6 +42,7 @@ import 'package:jugantor.com/ui.dart';
 import 'package:jugantor.com/utils/utils.dart';
 
 import '../../../fragments/all_poll_fragment.dart';
+import '../../../model/BoxListModel.dart';
 
 
 class HomeController extends GetxController {
@@ -80,6 +81,9 @@ class HomeController extends GetxController {
   List<dynamic> all_cat_wise_newsList = <dynamic>[].obs;
   List<dynamic> cat_wise_vidList = <dynamic>[].obs;
   List<dynamic> detail_page_aro_button_newsList = <dynamic>[].obs;
+
+  List<BoxListModel> boxlist = <BoxListModel>[].obs;
+
   var eventPage = 1.obs;
 
   var leadnews = LeadNewsResponse().obs;
@@ -137,6 +141,7 @@ class HomeController extends GetxController {
   var isOldPoll  = false.obs;
   @override
   void onInit() {
+
 
     homecatApiCall.value = false;
 
@@ -926,16 +931,8 @@ class HomeController extends GetxController {
   }
 
   get_all_latest_news(int page) async {
-    // all_latest_newsList.clear();
-    // dataLoaded.value = false;
-    // selectedPageIndex.value = 5;
-    // if(button.value == 1){
-    //   last_most_text.value = 'সর্বশেষ সব খবর';
-    //   //get_all_latest_news(1);
-    // }else{
-    //   last_most_text.value = 'সর্বাধিক পঠিত';
-    //   //get_all_most_view_news(1);
-    // }
+    all_latest_newsList.clear();
+
     print("API: "+ApiClient.all_latest_news+page.toString());
     try {
       final response = await http.get(Uri.parse(ApiClient.all_latest_news+page.toString()));

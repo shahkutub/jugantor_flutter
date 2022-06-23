@@ -460,6 +460,8 @@ class AllPollFragment extends StatelessWidget {
                       ),
 
 
+
+
                       //last entry, mostview
                       Obx(() =>
                           Container(

@@ -1125,72 +1125,97 @@ class HomeFragment extends GetView<HomeController> {
                             },
                           ),
 
-                          // GroupButton(
-                          //
-                          //   onSelected: (value, index, isSelected) {
-                          //
-                          //   },
-                          //   buttons: ['হ্যাঁ','না','মন্তব্য নেই'],
-                          //   isRadio: true,
-                          //
-                          //   buttonBuilder: (selected, date, context) {
-                          //     return Text('${date}');
-                          //   },
-                          // ),
-
-                            //onSelected: (index, isSelected) => print('$index button is selected'),
-                           // buttons: ["12:00", "13:00", "14:30"],
-
-
-                          // RadioGroup<String>.builder(
-                          //   direction: Axis.horizontal,
-                          //   groupValue: homeController.verticalGroupValue.value,
-                          //   horizontalAlignment: MainAxisAlignment.spaceAround,
-                          //   onChanged: (value){
-                          //     homeController.verticalGroupValue.value = value!;
-                          //   } ,
-                          //   items: ["1", "2", "3"],
-                          //   textStyle: TextStyle(
-                          //       fontSize: 15,
-                          //       color: Colors.blue
-                          //   ),
-                          //   itemBuilder: (item) => RadioButtonBuilder(
-                          //     item,
-                          //
-                          //   ),
-                          // ),
 
                           SizedBox(height: 20,),
-                          // Row(children: <Widget>[
-                          //   Expanded(
-                          //     child: ListTile(
-                          //       title: const Text('Lafayette'),
-                          //       leading: Radio<SingingCharacter>(
-                          //         value: SingingCharacter.lafayette,
-                          //         groupValue: homeController.character.value,
-                          //         onChanged: (SingingCharacter? value) {
-                          //           homeController.character.value = value!;
-                          //         },
-                          //       ),),
-                          //   ),
-                          //   Expanded(
-                          //     child: ListTile(
-                          //       title: const Text('Thomas Jefferson'),
-                          //       leading: Radio<SingingCharacter>(
-                          //         value: SingingCharacter.jefferson,
-                          //         groupValue: homeController.character.value,
-                          //         onChanged: (SingingCharacter? value) {
-                          //           homeController.character.value = value!;
-                          //         },
-                          //       ),
-                          //     ),
-                          //   ),
-                          //
-                          // ],
-                          // )
+
                         ],
                       ):SizedBox()
                     ),
+
+                    //বিজ্ঞাপন
+                    Container(
+
+                        margin: const EdgeInsets.all(20.0),
+                        //padding: const EdgeInsets.all(3.0),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.orange),
+                          borderRadius:BorderRadius.circular(10),
+                        ),
+                        width: width,
+                        child:Column(
+                          children: [
+                            GestureDetector(
+                              onTap: (){
+
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(15),
+                                alignment: Alignment.center,
+
+                                decoration: BoxDecoration(
+                                  color: Colors.orange,
+                                  //border: Border.all(color: Colors.orange),
+                                  borderRadius:BorderRadius.only(
+                                    topLeft: Radius.circular(10.0),
+                                    topRight: Radius.circular(10.0),
+                                  ),
+                                ),
+                                child: Text(
+                                  'বিজ্ঞাপন',style: TextStyle(
+                                    color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold
+                                ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 20,),
+                            GestureDetector(
+                              onTap: (){
+
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(10),
+                                child: Image(image: AssetImage('assets/images/print.png'),
+                                width: width-10,
+                                  height: 50,
+                                ),
+
+                              ),
+                            ),
+                            SizedBox(height: 20,),
+                            GestureDetector(
+                              onTap: (){
+
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(10),
+                                child: Image(image: AssetImage('assets/images/online.png'),
+                                  width: width-10,
+                                  height: 50,
+                                ),
+
+                              ),
+                            ),
+                            SizedBox(height: 20,),
+                            GestureDetector(
+                              onTap: (){
+
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(10),
+                                child: Image(image: AssetImage('assets/images/jogajog.png'),
+                                  width: width-10,
+                                  height: 50,
+                                ),
+
+                              ),
+                            ),
+                            SizedBox(height: 20,),
+                          ],
+                        ),
+
+                    ),
+
+
 
                     //bottom
                     BottomView()
