@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 
+import '../model/BoxListModel.dart';
 import '../utils/utils.dart';
 import 'bottom_view.dart';
 
@@ -19,6 +20,16 @@ class AllPollFragment extends StatelessWidget {
     double width = Get.width;
 
     var votes = homeController.last_online_pollResponse.value.votes;
+    homeController.boxlist.clear();
+    for (var i = 0; i < 50; i++) {
+      if(i == 0){
+        homeController.boxlist.add(BoxListModel(i, true));
+      }else{
+        homeController.boxlist.add(BoxListModel(i, false));
+      }
+
+      // print('dd'+boxlist[i].count.toString());
+    }
 
 
     List<String> result = votes!.split(';');
@@ -243,6 +254,7 @@ class AllPollFragment extends StatelessWidget {
                              alignment: Alignment.topCenter,
 
                            ),
+
                            Align(
                              child: Container(
 
@@ -270,7 +282,7 @@ class AllPollFragment extends StatelessWidget {
                           children: [
 
                             Align(
-                              child:Expanded(
+                              //child:Expanded(
                                 child: Container(
                                   decoration: BoxDecoration(
 
@@ -284,162 +296,221 @@ class AllPollFragment extends StatelessWidget {
 
                                   width: Get.width,
                                   margin: EdgeInsets.only(top: 17),
-                                  child: Container(
-
-                                    child: Obx(() => ListView.builder(
-                                        shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(),
-                                        itemCount: homeController.all_online_pole.length,
-                                        itemBuilder: (BuildContext context, int index) {
-
-                                          var votes = homeController.all_online_pole[index]["votes"];
-
-
-                                          List<String> result = votes.split(';');
-                                          // print('split'+result[1]);
-                                          // print('split'+result[3]);
-                                          // print('split'+result[5]);
-
-                                          List<String> resultA = result[1].split(':');
-                                          int y = int.parse(resultA[1]);
-                                          print('y: '+y.toString());
-
-                                          List<String> resultB = result[3].split(':');
-                                          int n = int.parse(resultB[1]);
-                                          print('n: '+n.toString());
-
-                                          List<String> resultC = result[5].split(':');
-                                          int nc = int.parse(resultC[1]);
-                                          print('nc: '+nc.toString());
-
-
-                                          int total = y + n + nc;
-                                          yesval = y / total * 100;
-                                          noval = n / total * 100;
-                                          ncVal = nc / total * 100;
-
-                                          return Column(
-                                            children: [
-
-                                              Card(
-                                                 child: Container(
-                                                  padding: EdgeInsets.all(20.0),
-                                                  // color: Colors.grey,
-                                                  child: Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                                    children: [
-                                                      Text(
-                                                        homeController.all_online_pole[index]["ques"],
-                                                        style: TextStyle(fontSize: 16,color: Colors.black,fontWeight: FontWeight.bold),
-                                                        textAlign: TextAlign.center,
-                                                      ),
-
-                                                      SizedBox(
-                                                        height: 20,
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment: MainAxisAlignment.center,
-                                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                                        children:[
-                                                          Expanded(
-                                                            flex:int.parse(yesval.toStringAsFixed(0)),
-                                                            child: Container(
-                                                              padding: EdgeInsets.all(5),
-                                                              color: Colors.green,
-                                                              child: Text(''+Utils.replaceEngNumberToBangla(yesval.toStringAsFixed(0))+'%',maxLines: 1,
-                                                                style: TextStyle(color: Colors.white),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          Expanded(
-                                                            flex:int.parse(noval.toStringAsFixed(0)),
-                                                            child: Container(
-                                                              padding: EdgeInsets.all(5),
-                                                              color: Colors.red,
-                                                              child: Text(''+Utils.replaceEngNumberToBangla(noval.toStringAsFixed(0))+'%',maxLines: 1,
-                                                                style: TextStyle(color: Colors.white),
-                                                              ),
-                                                            ),
-                                                          ),
-
-                                                          Expanded(
-                                                            flex:int.parse(ncVal.toStringAsFixed(0)),
-                                                            child: Container(
-                                                              padding: EdgeInsets.all(5),
-                                                              color: Colors.blue,
-                                                              child: Text(''+Utils.replaceEngNumberToBangla(ncVal.toStringAsFixed(0))+'%', maxLines: 1,
-                                                                style: TextStyle(color: Colors.white),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      SizedBox(
-                                                        height: 20,
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment: MainAxisAlignment.center,
-                                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                                        children:[
-                                                          Container(
-                                                            padding: EdgeInsets.all(7),
-                                                            color: Colors.green,
-                                                          ),
-                                                          Text('  হ্যাঁ - '+Utils.replaceEngNumberToBangla(y.toString()),maxLines: 1,
-                                                            style: TextStyle(color: Colors.black),
-                                                          ),
-
-                                                          SizedBox(
-                                                            width: 10,
-                                                          ),
-
-                                                          Container(
-                                                            padding: EdgeInsets.all(7),
-                                                            color: Colors.red,
-                                                          ),
-                                                          Text('  না - '+Utils.replaceEngNumberToBangla(n.toString()),maxLines: 1,
-                                                            style: TextStyle(color: Colors.black),
-                                                          ),
-
-                                                          SizedBox(
-                                                            width: 10,
-                                                          ),
-
-                                                          Container(
-                                                            padding: EdgeInsets.all(7),
-                                                            color: Colors.blue,
-                                                          ),
-                                                          Text('  মন্তব্য নেই - '+Utils.replaceEngNumberToBangla(nc.toString()),maxLines: 1,
-                                                          style: TextStyle(color: Colors.black),
-                                                          ),
-
-                                                        ],
-                                                      )
-                                                    ],
-
-                                                  )
-
-
-                                              ),
-                                              ),
-
-
-
-                                            ],
-                                          );
-                                        }
-                                    ),),
+                                  child:
+                                  Container(
                                     padding: EdgeInsets.only(top: 20),
                                     margin: EdgeInsets.only(top: 20),
 
 
+                                    child: Column(
+                                      children: [
+                                        Obx(() => ListView.builder(
+                                            primary: false,
+                                            shrinkWrap: true,
+                                            itemCount: homeController.all_online_pole.length,
+                                            itemBuilder: (BuildContext context, int index) {
+
+                                              var votes = homeController.all_online_pole[index]["votes"];
+
+
+                                              List<String> result = votes.split(';');
+                                              // print('split'+result[1]);
+                                              // print('split'+result[3]);
+                                              // print('split'+result[5]);
+
+                                              List<String> resultA = result[1].split(':');
+                                              int y = int.parse(resultA[1]);
+                                              print('y: '+y.toString());
+
+                                              List<String> resultB = result[3].split(':');
+                                              int n = int.parse(resultB[1]);
+                                              print('n: '+n.toString());
+
+                                              List<String> resultC = result[5].split(':');
+                                              int nc = int.parse(resultC[1]);
+                                              print('nc: '+nc.toString());
+
+
+                                              int total = y + n + nc;
+                                              yesval = y / total * 100;
+                                              noval = n / total * 100;
+                                              ncVal = nc / total * 100;
+
+                                              return Column(
+                                                children: [
+
+                                                  Card(
+                                                    child: Container(
+                                                        padding: EdgeInsets.all(20.0),
+                                                        // color: Colors.grey,
+                                                        child: Column(
+                                                          mainAxisAlignment: MainAxisAlignment.center,
+                                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                                          children: [
+                                                            Text(
+                                                              homeController.all_online_pole[index]["ques"],
+                                                              style: TextStyle(fontSize: 16,color: Colors.black,fontWeight: FontWeight.bold),
+                                                              textAlign: TextAlign.center,
+                                                            ),
+
+                                                            SizedBox(
+                                                              height: 20,
+                                                            ),
+                                                            Row(
+                                                              mainAxisAlignment: MainAxisAlignment.center,
+                                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                                              children:[
+                                                                Expanded(
+                                                                  flex:int.parse(yesval.toStringAsFixed(0)),
+                                                                  child: Container(
+                                                                    padding: EdgeInsets.all(5),
+                                                                    color: Colors.green,
+                                                                    child: Text(''+Utils.replaceEngNumberToBangla(yesval.toStringAsFixed(0))+'%',maxLines: 1,
+                                                                      style: TextStyle(color: Colors.white),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                Expanded(
+                                                                  flex:int.parse(noval.toStringAsFixed(0)),
+                                                                  child: Container(
+                                                                    padding: EdgeInsets.all(5),
+                                                                    color: Colors.red,
+                                                                    child: Text(''+Utils.replaceEngNumberToBangla(noval.toStringAsFixed(0))+'%',maxLines: 1,
+                                                                      style: TextStyle(color: Colors.white),
+                                                                    ),
+                                                                  ),
+                                                                ),
+
+                                                                Expanded(
+                                                                  flex:int.parse(ncVal.toStringAsFixed(0)),
+                                                                  child: Container(
+                                                                    padding: EdgeInsets.all(5),
+                                                                    color: Colors.blue,
+                                                                    child: Text(''+Utils.replaceEngNumberToBangla(ncVal.toStringAsFixed(0))+'%', maxLines: 1,
+                                                                      style: TextStyle(color: Colors.white),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            SizedBox(
+                                                              height: 20,
+                                                            ),
+                                                            Row(
+                                                              mainAxisAlignment: MainAxisAlignment.center,
+                                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                                              children:[
+                                                                Container(
+                                                                  padding: EdgeInsets.all(7),
+                                                                  color: Colors.green,
+                                                                ),
+                                                                Text('  হ্যাঁ - '+Utils.replaceEngNumberToBangla(y.toString()),maxLines: 1,
+                                                                  style: TextStyle(color: Colors.black),
+                                                                ),
+
+                                                                SizedBox(
+                                                                  width: 10,
+                                                                ),
+
+                                                                Container(
+                                                                  padding: EdgeInsets.all(7),
+                                                                  color: Colors.red,
+                                                                ),
+                                                                Text('  না - '+Utils.replaceEngNumberToBangla(n.toString()),maxLines: 1,
+                                                                  style: TextStyle(color: Colors.black),
+                                                                ),
+
+                                                                SizedBox(
+                                                                  width: 10,
+                                                                ),
+
+                                                                Container(
+                                                                  padding: EdgeInsets.all(7),
+                                                                  color: Colors.blue,
+                                                                ),
+                                                                Text('  মন্তব্য নেই - '+Utils.replaceEngNumberToBangla(nc.toString()),maxLines: 1,
+                                                                  style: TextStyle(color: Colors.black),
+                                                                ),
+
+                                                              ],
+                                                            )
+                                                          ],
+
+                                                        )
+
+
+                                                    ),
+                                                  ),
+
+
+
+                                                ],
+                                              );
+                                            }
+                                        ),),
+
+                                        Obx(() => Container(
+
+                                            height: 30,
+                                            margin: EdgeInsets.only(top: 10,bottom: 5,right: 5,left: 5),
+                                            alignment: Alignment.center,
+                                            child:ListView.builder(
+                                              scrollDirection: Axis.horizontal,
+                                              primary: false,
+                                              shrinkWrap: true,
+                                              // Let the ListView know how many items it needs to build.
+                                              itemCount: homeController.boxlist.length,
+                                              // Provide a builder function. This is where the magic happens.
+                                              // Convert each item into a widget based on the type of item it is.
+                                              itemBuilder: (context, index) {
+
+                                                int num = index+1;
+                                                return GestureDetector(
+                                                  onTap: (){
+                                                    for (var i = 0; i < homeController.boxlist.length; i++) {
+                                                      if(i == index){
+                                                        homeController.boxlist[i].isSelect = true;
+                                                      }else{
+                                                        homeController.boxlist[i].isSelect = false;
+                                                      }
+                                                    }
+                                                    homeController.get_all_online_poll(num);
+                                                  },
+
+                                                  child: Container(
+                                                      height: 40,
+                                                      width: 40,
+                                                      alignment: Alignment.center,
+                                                      decoration: BoxDecoration(
+                                                          border: Border.all(color: Colors.grey)
+                                                      ),
+                                                      child: homeController.boxlist[index].isSelect == true ?
+                                                      Text(num.toString(),style: TextStyle(color: Colors.red),):
+                                                      Text(num.toString(),style: TextStyle(color: Colors.black),)
+                                                  ),
+
+                                                );
+                                              },
+                                            )
+
+                                        ),),
+
+
+                                      ],
+                                    )
+
+
+
+
                                   ),
                                 ),
-                              ),
+                              //),
                               alignment: Alignment.topCenter,
 
                             ),
+
+
+
                             Align(
                               child: Container(
 
@@ -458,8 +529,6 @@ class AllPollFragment extends StatelessWidget {
                           ],
                         ),
                       ),
-
-
 
 
                       //last entry, mostview

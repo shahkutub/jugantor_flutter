@@ -27,7 +27,7 @@ class SobKhoborFragment extends StatelessWidget {
 
 
     return new Container(
-        margin: EdgeInsets.only(left: 20,right: 20,top: 10),
+        margin: EdgeInsets.only(left: 0,right: 0,top: 10),
         child: Obx(() {
           if(homeController.dataLoaded.isTrue){
             return new SingleChildScrollView(
@@ -38,6 +38,7 @@ class SobKhoborFragment extends StatelessWidget {
                     children: [
                       //top
                       Container(
+                        margin: EdgeInsets.only(left: 20,right: 20,top: 0),
                         padding: EdgeInsets.all(5),
                         decoration: BoxDecoration(color: Colors.grey),
                         child: Stack(
@@ -75,7 +76,7 @@ class SobKhoborFragment extends StatelessWidget {
 
                       //all news
                       Container(
-                          margin: EdgeInsets.only(top: 10,bottom: 10,right: 0,left: 0),
+                          margin: EdgeInsets.only(top: 10,bottom: 10,right: 20,left: 20),
                           alignment: Alignment.center,
                           child:ListView.builder(
                             primary: false,
@@ -151,8 +152,9 @@ class SobKhoborFragment extends StatelessWidget {
 
 
                       Container(
+
                         height: 30,
-                          margin: EdgeInsets.only(top: 10,bottom: 5,right: 0,left: 0),
+                          margin: EdgeInsets.only(top: 10,bottom: 5,right: 20,left: 20),
                           alignment: Alignment.center,
                           child:ListView.builder(
                             scrollDirection: Axis.horizontal,
@@ -198,7 +200,7 @@ class SobKhoborFragment extends StatelessWidget {
                       //last entry, mostview
                       Obx(() =>
                           Container(
-                              margin: EdgeInsets.only(left: 0,right: 0),
+                              margin: EdgeInsets.only(left: 20,right: 20),
                               //alignment: Alignment.center,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -218,7 +220,7 @@ class SobKhoborFragment extends StatelessWidget {
                       ),
                       Obx(() =>
                           Container(
-                              margin: EdgeInsets.only(top: 10,bottom: 5,right: 0,left: 0),
+                              margin: EdgeInsets.only(top: 10,bottom: 5,right: 20,left: 20),
                               alignment: Alignment.center,
                               child:ListView.builder(
                                 primary: false,
