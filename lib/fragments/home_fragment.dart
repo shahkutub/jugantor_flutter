@@ -947,29 +947,35 @@ class HomeFragment extends GetView<HomeController> {
                     ),
 
                     //e paper
-                    Container(
-                      margin: const EdgeInsets.all(20.0),
-                      //padding: const EdgeInsets.all(3.0),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey)
-                      ),
-                      child:Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(height: 20,),
-                          Image.asset("assets/images/img_epaper.png"),
-                          SizedBox(height: 20,),
-                          FadeInImage.assetNetwork(
-                            width: width,
-                              fit: BoxFit.fill,
-                              image:'https://epaper.jugantor.com/'+homeController.currentDateEng.value+'/1.jpg',
-                              placeholder:"assets/images/jugantordefault.jpg" // your assets image path
-                          ),
-                        ],
-                      ),
-                      width: width,
+                    GestureDetector(
 
+                      child: Container(
+                        margin: const EdgeInsets.all(20.0),
+                        //padding: const EdgeInsets.all(3.0),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey)
+                        ),
+                        child:Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(height: 20,),
+                            Image.asset("assets/images/img_epaper.png"),
+                            SizedBox(height: 20,),
+                            FadeInImage.assetNetwork(
+                                width: width,
+                                fit: BoxFit.fill,
+                                image:'https://epaper.jugantor.com/'+homeController.currentDateEng.value+'/1.jpg',
+                                placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                            ),
+                          ],
+                        ),
+                        width: width,
+
+                      ),
+                      onTap: (){
+                        homeController.selectedPageIndex.value = 4;
+                      },
                     ),
 
                     //online poll

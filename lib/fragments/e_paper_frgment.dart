@@ -23,33 +23,34 @@ class EpaperFragment extends StatelessWidget{
     print(formattedDate);
 
     return Container(
-      child:Column(
-        children: [
-          Obx(() =>
-              Stack(
-                children: <Widget>[
-                  WebView(
-                    initialUrl: 'https://epaper.jugantor.com/'+formattedDate+'/index.php',
-                    javascriptMode: JavascriptMode.unrestricted,
-                    onProgress: (int progress) {
-                      print('WebView is loading (progress : $progress%)');
-                      if(progress == 100){
-                        homeController.isLoading.value = false;
-                      }
-                    },
+        child:Column(
+          children: [
+            Obx(() =>
+                Stack(
+                  children: <Widget>[
+                    WebView(
+                      initialUrl: 'https://epaper.jugantor.com/'+homeController.e_paper_date.value+'/index.php',
+                      javascriptMode: JavascriptMode.unrestricted,
+                      onProgress: (int progress) {
+                        print('WebView is loading (progress : $progress%)');
+                        if(progress == 100){
+                          homeController.isLoading.value = false;
+                        }
+                      },
 
-                    onWebViewCreated: (WebViewController webViewController) {
-                      _controller.complete(webViewController);},
+                      onWebViewCreated: (WebViewController webViewController) {
+                        _controller.complete(webViewController);},
 
-                  ),
-                  homeController.isLoading.value ? Center( child: CircularProgressIndicator(),)
-                      : Stack(),
-                ],
-              ),
-          ),
+                    ),
+                    homeController.isLoading.value == true ?
+                    Center( child: CircularProgressIndicator(),)
+                        : Stack(),
+                  ],
+                ),
+            ),
 
-        ],
-      )
+          ],
+        )
 
 
     );

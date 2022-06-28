@@ -49,7 +49,7 @@ import '../../../model/BoxListModel.dart';
 
 
 class HomeController extends GetxController {
-  var isLoading=true.obs;
+  var isLoading= true.obs;
   var selectedPageIndex = 0.obs;
   var catId = 0.obs;
   var banglaDate = "".obs;
@@ -147,9 +147,17 @@ class HomeController extends GetxController {
 
   var last_most_text =''.obs;
 
+
   var isOldPoll  = false.obs;
+
+  var e_paper_date =''.obs;
+
   @override
   void onInit() {
+    var now = new DateTime.now();
+    var formatter = new DateFormat('yyyy/MM/dd');
+    e_paper_date.value = formatter.format(now);
+    //print(formattedDate);
 
     prayerTime();
 
