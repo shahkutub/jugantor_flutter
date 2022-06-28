@@ -15,6 +15,7 @@ import 'package:jugantor.com/utils/loaders/dot_type.dart';
 import 'package:group_radio_button/group_radio_button.dart';
 
 import '../ui.dart';
+import '../utils/utils.dart';
 
 class HomeFragment extends GetView<HomeController> {
   final HomeController homeController = Get.put(HomeController());
@@ -1216,7 +1217,198 @@ class HomeFragment extends GetView<HomeController> {
                     ),
 
 
+                    //namaj time
+                    Container(
+                      //padding: EdgeInsets.all(10),
 
+                      child: Column(
+                        children: [
+                          Image(image: AssetImage('assets/images/namaj.png'),
+                            width: width,
+                            //height: 50,
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(5),
+                            alignment: Alignment.centerRight,
+                            child: Text(''+Utils.currentDateBengali(),style: TextStyle(color: Colors.blue,fontSize: 20),),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                flex:1,
+                                child: FittedBox(
+                                  child: Image(image: AssetImage('assets/images/mosq.png'),
+                                    //width: width,
+                                    //height: 183,
+                                  ),
+                                  fit: BoxFit.fitHeight,
+                                )
+                              ),
+                              Expanded(
+                                flex:1,
+                                child: Container(
+
+                                  child:Column(
+
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              height: 35,
+                                              alignment: Alignment.center,
+                                              color: Color(0xff6B8E23),
+                                              child: Text('ফজর',style: TextStyle(color: Colors.white,fontSize: 15),),
+                                            ),
+                                            // child: Container(
+                                            //   color: Color(0xff6B8E23),
+                                            // ),
+                                          ),
+                                          SizedBox(width: 2,),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              height: 35,
+                                              alignment: Alignment.center,
+                                              color: Color(0xff808000),
+                                              child: Text(''+homeController.timeFojor.value,style: TextStyle(color: Colors.white,fontSize: 15),),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 2,),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              height: 35,
+                                              alignment: Alignment.center,
+                                              color: Color(0xff6B8E23),
+                                              child: Text('জোহর',style: TextStyle(color: Colors.white,fontSize: 15),),
+                                            ),
+                                            // child: Container(
+                                            //   color: Color(0xff6B8E23),
+                                            // ),
+                                          ),
+                                          SizedBox(width: 2,),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              height: 35,
+                                              alignment: Alignment.center,
+                                              color: Color(0xff808000),
+                                              child: Text(''+homeController.timeZuhor.value,style: TextStyle(color: Colors.white,fontSize: 15),),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 2,),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              height: 35,                                              alignment: Alignment.center,
+                                              color: Color(0xff6B8E23),
+                                              child: Text('আসর',style: TextStyle(color: Colors.white,fontSize: 15),),
+                                            ),
+                                            // child: Container(
+                                            //   color: Color(0xff6B8E23),
+                                            // ),
+                                          ),
+                                          SizedBox(width: 2,),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              height: 35,                                              alignment: Alignment.center,
+                                              color: Color(0xff808000),
+                                              child: Text(''+homeController.timeAsor.value,style: TextStyle(color: Colors.white,fontSize: 15),),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 2,),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              height: 35,                                              alignment: Alignment.center,
+                                              color: Color(0xff6B8E23),
+                                              child: Text('মাগরিব',style: TextStyle(color: Colors.white,fontSize: 15),),
+                                            ),
+                                            // child: Container(
+                                            //   color: Color(0xff6B8E23),
+                                            // ),
+                                          ),
+                                          SizedBox(width: 2,),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              height: 35,                                              alignment: Alignment.center,
+                                              color: Color(0xff808000),
+                                              child: Text(''+homeController.timeMagrib.value,style: TextStyle(color: Colors.white,fontSize: 15),),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 2,),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              height: 35,                                              alignment: Alignment.center,
+                                              color: Color(0xff6B8E23),
+                                              child: Text('ইশা',style: TextStyle(color: Colors.white,fontSize: 15),),
+                                            ),
+                                            // child: Container(
+                                            //   color: Color(0xff6B8E23),
+                                            // ),
+                                          ),
+                                          SizedBox(width: 2,),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              height: 35,                                              alignment: Alignment.center,
+                                              color: Color(0xff808000),
+                                              child: Text(''+homeController.timeIsha.value,style: TextStyle(color: Colors.white,fontSize: 15),),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+
+                                    ],
+                                  ),
+                                  alignment: Alignment.bottomRight,
+                                  margin: EdgeInsets.only(left: 1,top: 13),
+                                )
+
+
+                              ),
+
+                            ],
+                          ),
+                          SizedBox(height: 8,),
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            alignment: Alignment.center,
+                            color: Color(0xff455960),
+                            child: Text('সূর্যাস্ত : '+homeController.timeMagrib.value +'        '+'সূর্যোদয় : '+homeController.timeSunrise.value,style: TextStyle(color: Colors.white,fontSize: 18),),
+                          ),
+
+                        ],
+                      ),
+                      margin: EdgeInsets.only(left: 20,right: 20),
+                      alignment: Alignment.bottomRight,
+
+                    ),
+
+                    SizedBox(
+                      height: 20,
+                    ),
                     //bottom
                     BottomView()
 

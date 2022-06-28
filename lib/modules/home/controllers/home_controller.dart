@@ -2,7 +2,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-
+import 'package:intl/intl.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:adhan_dart/adhan_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -93,6 +96,12 @@ class HomeController extends GetxController {
   var categoryName = ''.obs;
   var newsDate = ''.obs;
   var newsEdition = ''.obs;
+  var timeSunrise = ''.obs;
+  var timeFojor = ''.obs;
+  var timeZuhor = ''.obs;
+  var timeAsor = ''.obs;
+  var timeMagrib = ''.obs;
+  var timeIsha = ''.obs;
 
   var scrollController = ScrollController().obs;
 
@@ -142,6 +151,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
 
+    prayerTime();
 
     homecatApiCall.value = false;
 
@@ -1234,6 +1244,115 @@ class HomeController extends GetxController {
     //get_lead_news();
     //get_category();
 
+  }
+
+  void prayerTime() {
+
+
+
+    tz.initializeTimeZones();
+    //final location = tz.getLocation('America/New_York');
+    final location = tz.getLocation('Asia/Dhaka');
+
+    // Definitions
+    DateTime date = tz.TZDateTime.from(DateTime.now(), location);
+    Coordinates coordinates = Coordinates(23.8103, 90.4125);
+
+    // Parameters
+    CalculationParameters params = CalculationMethod.MuslimWorldLeague();
+    params.madhab = Madhab.Hanafi;
+    PrayerTimes prayerTimes =
+    PrayerTimes(coordinates, date, params, precision: true);
+
+    // Prayer times
+    DateTime fajrTime = tz.TZDateTime.from(prayerTimes.fajr!, location);
+    DateTime sunriseTime = tz.TZDateTime.from(prayerTimes.sunrise!, location);
+    DateTime dhuhrTime = tz.TZDateTime.from(prayerTimes.dhuhr!, location);
+    DateTime asrTime = tz.TZDateTime.from(prayerTimes.asr!, location);
+    DateTime maghribTime = tz.TZDateTime.from(prayerTimes.maghrib!, location);
+    DateTime ishaTime = tz.TZDateTime.from(prayerTimes.isha!, location);
+
+    DateTime ishabeforeTime =
+    tz.TZDateTime.from(prayerTimes.ishabefore!, location);
+    DateTime fajrafterTime = tz.TZDateTime.from(prayerTimes.fajrafter!, location);
+
+    // Convenience Utilities
+    String current =
+    prayerTimes.currentPrayer(date: DateTime.now()); // date: date
+    DateTime? currentPrayerTime = prayerTimes.timeForPrayer(current);
+    String next = prayerTimes.nextPrayer();
+    DateTime? nextPrayerTime = prayerTimes.timeForPrayer(next);
+
+    // Sunnah Times
+    SunnahTimes sunnahTimes = SunnahTimes(prayerTimes);
+    DateTime middleOfTheNight =
+    tz.TZDateTime.from(sunnahTimes.middleOfTheNight, location);
+    DateTime lastThirdOfTheNight =
+    tz.TZDateTime.from(sunnahTimes.lastThirdOfTheNight, location);
+
+    List<String> sunriseStr = sunriseTime.toString().split('.');
+    print('sunriseTime formatted'+DateFormat('hh:mm a').format(DateTime.parse(sunriseStr[0])));
+    var sunrise = DateFormat('hh:mm a').format(DateTime.parse(sunriseStr[0])).toString();
+
+    List<String> sunriseStrFinal = sunrise.split(' ');
+    print('sunriseTime final'+sunriseStrFinal[0]);
+    timeSunrise.value = Utils.replaceEngNumberToBangla(sunriseStrFinal[0]);
+
+    List<String> fozorStr = fajrTime.toString().split('.');
+    var fozor = DateFormat('hh:mm a').format(DateTime.parse(fozorStr[0])).toString();
+    List<String> FozorStrFinal = fozor.split(' ');
+    timeFojor.value = Utils.replaceEngNumberToBangla(FozorStrFinal[0]);
+
+    List<String> zohorrStr = dhuhrTime.toString().split('.');
+    var zohor = DateFormat('hh:mm a').format(DateTime.parse(zohorrStr[0])).toString();
+    List<String> zohorStrFinal = zohor.split(' ');
+    timeZuhor.value = Utils.replaceEngNumberToBangla(zohorStrFinal[0]);
+
+
+    List<String> asorStr = asrTime.toString().split('.');
+    var asor = DateFormat('hh:mm a').format(DateTime.parse(asorStr[0])).toString();
+    List<String> asorStrFinal = asor.split(' ');
+    timeAsor.value = Utils.replaceEngNumberToBangla(asorStrFinal[0]);
+
+    List<String> magribStr = maghribTime.toString().split('.');
+    var magrib = DateFormat('hh:mm a').format(DateTime.parse(magribStr[0])).toString();
+    List<String> magribStrFinal = magrib.split(' ');
+    timeMagrib.value = Utils.replaceEngNumberToBangla(magribStrFinal[0]);
+
+    List<String> isahStr = ishaTime.toString().split('.');
+    var isah = DateFormat('hh:mm a').format(DateTime.parse(isahStr[0])).toString();
+    List<String> isahStrStrFinal = isah.split(' ');
+    timeIsha.value = Utils.replaceEngNumberToBangla(isahStrStrFinal[0]);
+
+
+   //  // Qibla Direction
+   //  var qiblaDirection = Qibla.qibla(coordinates);
+   //
+   //  print('***** Current Time');
+   // // print('fajrTime formatted'+DateFormat('hh:mm a').format(DateTime.parse('2022-06-28 20:11:43')));
+   //  print('local time:\t$date');
+   //
+   //  print('\n***** Prayer Times');
+   //  print('fajrTime:\t$fajrTime');
+   //  print('sunriseTime:\t$sunriseTime');
+   //  print('dhuhrTime:\t$dhuhrTime');
+   //  print('asrTime:\t$asrTime');
+   //  print('maghribTime:\t$maghribTime');
+   //  print('ishaTime:\t$ishaTime');
+   //
+   //  print('ishabeforeTime:\t$ishabeforeTime');
+   //  print('fajrafterTime:\t$fajrafterTime');
+   //
+   //  print('\n***** Convenience Utilities');
+   //  print('current:\t$current\t$currentPrayerTime');
+   //  print('next:   \t$next\t$nextPrayerTime');
+   //
+   //  print('\n***** Sunnah Times');
+   //  print('middleOfTheNight:  \t$middleOfTheNight');
+   //  print('lastThirdOfTheNight:  \t$lastThirdOfTheNight');
+   //
+   //  print('\n***** Qibla Direction');
+   //  print('qibla:  \t$qiblaDirection');
   }
 
 
