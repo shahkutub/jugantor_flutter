@@ -47,6 +47,7 @@ dependencies:
   group_radio_button: ^1.2.0
   adhan_dart: ^1.0.8
   timezone: ^0.8.0
+  city_picker_from_map: ^0.0.1
 #  flutter_svg: ^1.0.3
 #  flutter_html: ^0.11.1
 #  flutter_html: ^2.2.1

@@ -1,5 +1,6 @@
 
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,32 +22,42 @@ class EpaperFragment extends StatelessWidget{
     var formatter = new DateFormat('yyyy/MM/dd');
     String formattedDate = formatter.format(now);
     print(formattedDate);
-
+    if (Platform.isAndroid) WebView.platform = AndroidWebView();
     return Container(
         child:Column(
           children: [
             Obx(() =>
-                Stack(
-                  children: <Widget>[
-                    WebView(
-                      initialUrl: 'https://epaper.jugantor.com/'+homeController.e_paper_date.value+'/index.php',
-                      javascriptMode: JavascriptMode.unrestricted,
-                      onProgress: (int progress) {
-                        print('WebView is loading (progress : $progress%)');
-                        if(progress == 100){
-                          homeController.isLoading.value = false;
-                        }
-                      },
 
-                      onWebViewCreated: (WebViewController webViewController) {
-                        _controller.complete(webViewController);},
+               // Column(children: [
+                  Expanded(
+                      child: WebView(
+                          initialUrl: 'https://epaper.jugantor.com/'+homeController.e_paper_date.value+'/index.php',
+                          javascriptMode: JavascriptMode.unrestricted
+                      )
+                  )
+                //])
 
-                    ),
-                    homeController.isLoading.value == true ?
-                    Center( child: CircularProgressIndicator(),)
-                        : Stack(),
-                  ],
-                ),
+                // Stack(
+                //   children: <Widget>[
+                //     WebView(
+                //       initialUrl: 'https://epaper.jugantor.com/'+homeController.e_paper_date.value+'/index.php',
+                //       javascriptMode: JavascriptMode.unrestricted,
+                //       onProgress: (int progress) {
+                //         print('WebView is loading (progress : $progress%)');
+                //         if(progress == 100){
+                //           homeController.isLoading.value = false;
+                //         }
+                //       },
+                //
+                //       onWebViewCreated: (WebViewController webViewController) {
+                //         _controller.complete(webViewController);},
+                //
+                //     ),
+                //     homeController.isLoading.value == true ?
+                //     Center( child: CircularProgressIndicator(),)
+                //         : Stack(),
+                //   ],
+                // ),
             ),
 
           ],

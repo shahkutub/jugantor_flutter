@@ -13,7 +13,7 @@ import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 import 'package:jugantor.com/utils/loaders/color_loader_5.dart';
 import 'package:jugantor.com/utils/loaders/dot_type.dart';
 import 'package:group_radio_button/group_radio_button.dart';
-
+import 'package:city_picker_from_map/city_picker_from_map.dart';
 import '../ui.dart';
 import '../utils/utils.dart';
 
@@ -37,7 +37,7 @@ class HomeFragment extends GetView<HomeController> {
         if(homeController.homecatApiCall.value == false){
           if(homeController.home_categoryList.length == 0){
             Ui.showLoaderDialog(context);
-            Timer(Duration(seconds: 10), () {
+            Timer(Duration(seconds: 5), () {
               Navigator.of(context).pop();
             });
              homeController.homecatApiCall.value = true;
@@ -1415,6 +1415,36 @@ class HomeFragment extends GetView<HomeController> {
                     SizedBox(
                       height: 20,
                     ),
+
+                      Container(
+
+
+                        child: CityPickerMap(
+                          width: width,
+                          height: height,
+                          map: Maps.BANGLADESH,
+                          onChanged: (city) {
+                            // setState(() {
+                            //   selectedCity = city;
+                            // });
+                          },
+                          actAsToggle: true,
+                          dotColor: Colors.red,
+                          selectedColor: Colors.red,
+                          strokeColor: Color(0xff80C2EB),
+                        ),
+                        color: Color(0xff007E3D),
+                        margin: EdgeInsets.only(left: 20,right: 20),
+                        padding: EdgeInsets.all(10),
+
+                      ),
+
+
+                     SizedBox(
+                      height: 20,
+                    ),
+
+
                     //bottom
                     BottomView()
 

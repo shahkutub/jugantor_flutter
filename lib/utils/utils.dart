@@ -157,4 +157,40 @@ class Utils{
    }
 
 
+   static String allNewsDateConvert(String datedta){
+
+      print('date: '+datedta);
+
+      List<String> mainDataList = datedta.split(' ');
+      print('date: '+mainDataList[0]);
+      List<String> dateDataList = mainDataList[0].split('-');
+
+      var year = dateDataList[0];
+      var month = int.parse(dateDataList[1]);
+      var day = dateDataList[2];
+
+
+
+      const bangMonths = ["জানুয়ারী","ফেব্রুয়ারি","মার্চ","এপ্রিল","মে","জুন","জুলাই","অগাস্ট","সেপ্টেম্বর","অক্টবর","নভেম্বর","ডিসেম্বর"];
+      const bangDayNames = ['সোমবার' ,'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার','শনিবার','রোববার'];
+      var date_str = "";
+      var monthBngStr = "";
+      var dayNameBngStr = "";
+      var dayBngStr = "";
+
+
+      dayBngStr = replaceEngNumberToBangla(day.toString());
+      print(dayBngStr);
+
+
+
+      monthBngStr = bangMonths[month-1];
+      print(monthBngStr);
+      //input = months[mon-1];
+      date_str = dayBngStr+' '+monthBngStr+' '+replaceEngNumberToBangla(year.toString());
+      print(date_str);
+      return date_str;
+   }
+
+
 }

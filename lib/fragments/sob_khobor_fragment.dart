@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 
 import '../model/BoxListModel.dart';
+import '../utils/utils.dart';
 import 'bottom_view.dart';
 
 class SobKhoborFragment extends StatelessWidget {
@@ -101,46 +102,63 @@ class SobKhoborFragment extends StatelessWidget {
                                     },
 
                                     child: Obx(() => Container(
+
                                       //height: ,
                                       //alignment: Alignment.center,
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                        child: Column(
                                           children: [
-                                            Container(
-                                              margin: EdgeInsets.only(right: 10),
-                                              height: 70,
-                                              width: 100,
-                                              child: Stack(
-                                                fit: StackFit.expand,
-                                                children: [
-                                                  FadeInImage.assetNetwork(
-                                                      height: 70,
-                                                      width: 100,
-                                                      fit: BoxFit.fill,
-                                                      image:homeController.all_latest_newsList[index]["img_url"],
-                                                      placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                  margin: EdgeInsets.only(right: 10),
+                                                  height: 70,
+                                                  width: 100,
+                                                  child: Stack(
+                                                    fit: StackFit.expand,
+                                                    children: [
+                                                      FadeInImage.assetNetwork(
+                                                          height: 70,
+                                                          width: 100,
+                                                          fit: BoxFit.fill,
+                                                          image:homeController.all_latest_newsList[index]["img_url"],
+                                                          placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                      ),
+                                                      Positioned(
+                                                        bottom: 20,
+                                                        left:35,
+                                                        child: homeController.all_latest_newsList[index]["video_dis"]  == 1 ?
+                                                        Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+
+                                                      ),
+                                                    ],
                                                   ),
-                                                  Positioned(
-                                                    bottom: 20,
-                                                    left:35,
-                                                    child: homeController.all_latest_newsList[index]["video_dis"]  == 1 ?
-                                                    Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+                                                ),
+                                                Flexible(child:
+                                                Text(homeController.all_latest_newsList[index]["title"],
+                                                  style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                                  textAlign: TextAlign.justify,
+                                                ),
 
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Flexible(child:
-                                            Text(homeController.all_latest_newsList[index]["title"],
-                                              style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
-                                              textAlign: TextAlign.justify,
+                                                ),
+
+                                              ],
                                             ),
 
+                                            Row(
+                                              children: [
+                                                Icon(Icons.access_time),
+                                                Text(""+Utils.allNewsDateConvert(homeController.all_latest_newsList[index]["news_date"]),
+                                                  style: TextStyle(color: Colors.black,fontSize: 15),
+                                                  textAlign:TextAlign.center,
+                                                )
+                                              ],
                                             ),
-
                                           ],
-                                        )
+                                        ),
+
+
                                     )
                                     ),
                                   )
