@@ -93,12 +93,10 @@ class SobKhoborFragment extends StatelessWidget {
                                   margin: EdgeInsets.only(top: 10),
                                   child:   GestureDetector(
                                     onTap: (){
-                                      //Get.back();
-                                      // if(homeController.showNewsList[index].cat_name == "প্রচ্ছদ"){
-                                      //   //homeController.selectedIndex.value = 0;
-                                      // }else{
-                                      //   // homeController.selectedIndex.value = 1;
-                                      // }
+                                      homeController.dataLoaded.value = false;
+                                      homeController.newsId.value = homeController.all_latest_newsList[index]['id'];
+                                      homeController.selectedPageIndex.value = 1;
+                                      homeController.get_news_details();
                                     },
 
                                     child: Obx(() => Container(
@@ -148,7 +146,7 @@ class SobKhoborFragment extends StatelessWidget {
 
                                             Row(
                                               children: [
-                                                Icon(Icons.access_time),
+                                                Icon(Icons.access_time,size: 20,),
                                                 Text(""+Utils.allNewsDateConvert(homeController.all_latest_newsList[index]["news_date"]),
                                                   style: TextStyle(color: Colors.black,fontSize: 15),
                                                   textAlign:TextAlign.center,

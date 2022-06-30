@@ -152,6 +152,8 @@ class HomeController extends GetxController {
 
   var e_paper_date =''.obs;
 
+  var mapSelectedDivisionName = ''.obs;
+
   @override
   void onInit() {
     var now = new DateTime.now();
