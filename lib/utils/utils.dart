@@ -115,6 +115,19 @@ class Utils{
 
    }
 
+   static String dateTimeFormatymd (String datedata){
+
+      var inputFormat = DateFormat('yyyy-MM-dd HH:mm:ss');
+      var inputDate = inputFormat.parse(datedata); // <-- dd/MM 24H format
+
+      var outputFormat = DateFormat('yyyy-MM-dd hh:mm a');
+      var outputDate = outputFormat.format(inputDate);
+      print(outputDate);
+      return outputDate;
+
+
+   }
+
    static String dateBengaliNewsDetailse(String datedta){
       var parts = datedta.split(' ');
       //print(parts[0]);

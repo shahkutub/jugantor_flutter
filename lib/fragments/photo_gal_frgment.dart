@@ -9,7 +9,7 @@ import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'bottom_view.dart';
-class VideoFragment extends StatelessWidget{
+class PhotoGalFragment extends StatelessWidget{
 
   final HomeController homeController = Get.put(HomeController());
   @override
@@ -19,18 +19,17 @@ class VideoFragment extends StatelessWidget{
     Get.find<HomeController>();
     double height = Get.height;
     double width = Get.width;
-    double webViewWidth = width*3;
-    double webViewheight = width*2.2;
-    print('width: '+webViewWidth.toString());
+    // double webViewWidth = width*3;
+    // double webViewheight = width*2.2;
+    // print('width: '+webViewWidth.toString());
     // var now = new DateTime.now();
     // var formatter = new DateFormat('yyyy/MM/dd');
     // String formattedDate = formatter.format(now);
     // print(formattedDate);
 
-    // homeController.vidEmbed.value = homeController.vidDataInfo.value.embed_code.toString().replaceAll('300', webViewWidth.round().toString());
-    // homeController.vidEmbed.value = homeController.vidEmbed.value.toString().replaceAll('216', webViewheight.round().toString());
+    // homeController.vidEmbed.value = homeController.vidDataInfo.value.embed_code.toString().replaceAll('300', webViewWidth.toString());
+    // homeController.vidEmbed.value = homeController.vidEmbed.value.toString().replaceAll('216', webViewheight.toString());
 
-    homeController.vidEmbed.value = homeController.vidEmbed.value.toString();
 
     return Container(
         margin: EdgeInsets.all(20),
@@ -38,30 +37,30 @@ class VideoFragment extends StatelessWidget{
         child: Container(
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    //margin: EdgeInsets.only(top: 20),
-                    height: width-125,
-                    width: width-40,
-                    color: Colors.red,
-                    child: WebView(
-                      initialUrl: Uri.dataFromString('<html><body>'+homeController.vidEmbed.value+'</body></html>', mimeType: 'text/html').toString(),
-
-                      // initialUrl: Uri.dataFromString('<html><body><iframe width= '+webViewWidth.toString()+'px height='+webViewheight.toString()+' '
-                      //     'src=\"https:\/\/www.youtube.com\/embed\/00m4gj2lp6A\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe></body></html>', mimeType: 'text/html').toString(),
-
-                      javascriptMode: JavascriptMode.unrestricted,
-                      onWebViewCreated: (WebViewController webViewController) {
-                        _controller.complete(webViewController);},
-                    ),
-
-                  )
-                ],
-              ),
-              SizedBox(height: 20,),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   children: [
+              //     Container(
+              //       //margin: EdgeInsets.only(top: 20),
+              //       height: width-125,
+              //       width: width-40,
+              //       color: Colors.red,
+              //       child: WebView(
+              //         initialUrl: Uri.dataFromString('<html><body>'+homeController.vidEmbed.value+'</body></html>', mimeType: 'text/html').toString(),
+              //
+              //         // initialUrl: Uri.dataFromString('<html><body><iframe width= '+webViewWidth.toString()+'px height='+webViewheight.toString()+' '
+              //         //     'src=\"https:\/\/www.youtube.com\/embed\/00m4gj2lp6A\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe></body></html>', mimeType: 'text/html').toString(),
+              //
+              //         javascriptMode: JavascriptMode.unrestricted,
+              //         onWebViewCreated: (WebViewController webViewController) {
+              //           _controller.complete(webViewController);},
+              //       ),
+              //
+              //     )
+              //   ],
+              // ),
+              // SizedBox(height: 20,),
               // share icons
               Row(
                 children: <Widget>[

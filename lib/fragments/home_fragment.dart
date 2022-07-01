@@ -362,7 +362,7 @@ class HomeFragment extends GetView<HomeController> {
                                                       Positioned(
                                                         bottom: 20,
                                                         left:35,
-                                                        child: homeController.last_entry_newsList[index].video_dis  == 1 ?
+                                                        child: homeController.last_entry_newsList[index].video_dis  == 0 ?
                                                         Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
 
                                                       ),
@@ -515,7 +515,7 @@ class HomeFragment extends GetView<HomeController> {
 
                                                                   Align(
                                                                     alignment: Alignment.center,
-                                                                    child: homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].video_dis  == 1 ?
+                                                                    child: homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].video_dis  == 0 ?
                                                                       Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
                                                                   ),
 
@@ -692,11 +692,10 @@ class HomeFragment extends GetView<HomeController> {
                                 viewportFraction: 1.0,
                                 autoPlay: true,
                                 onPageChanged: (index, index1) {
-                                  // setState(
-                                  //       () {
-                                  //     _current = index;
-                                  //   },
-                                  // );
+
+                                  // homeController.selectedPageIndex.value = 13;
+                                  // homeController.photoDataInfo.value = homeController.last_photo_albumList[index];
+                                  // homeController.get_cat_wise_photo(1,context);
                                 },
                               ),
                               items: homeController.last_photo_albumList[0].images!.map((bannerData) {
@@ -704,7 +703,9 @@ class HomeFragment extends GetView<HomeController> {
                                   builder: (BuildContext context) {
                                     return InkWell(
                                       onTap: () async {
-                                        //await launch(bannerData.link!);
+                                        homeController.selectedPageIndex.value = 13;
+                                        homeController.photoDataInfo.value = homeController.last_photo_albumList[0];
+                                        homeController.get_cat_wise_photo(1,context);
                                       },
                                       child: Column(
                                         children: [
@@ -804,6 +805,7 @@ class HomeFragment extends GetView<HomeController> {
                                   return
                                   GestureDetector(
                                     onTap: (){
+
                                       homeController.selectedPageIndex.value = 11;
                                       homeController.vidDataInfo.value = homeController.last_VidListList[index2];
                                       homeController.get_cat_wise_video(1,context);

@@ -45,6 +45,7 @@ import 'package:jugantor.com/ui.dart';
 import 'package:jugantor.com/utils/utils.dart';
 
 import '../../../fragments/all_poll_fragment.dart';
+import '../../../fragments/photo_gal_frgment.dart';
 import '../../../model/BoxListModel.dart';
 
 
@@ -83,6 +84,7 @@ class HomeController extends GetxController {
   List<dynamic> all_latest_newsList = <dynamic>[].obs;
   List<dynamic> all_cat_wise_newsList = <dynamic>[].obs;
   List<dynamic> cat_wise_vidList = <dynamic>[].obs;
+  List<dynamic> cat_wise_photoList = <dynamic>[].obs;
   List<dynamic> detail_page_aro_button_newsList = <dynamic>[].obs;
 
   List<BoxListModel> boxlist = <BoxListModel>[].obs;
@@ -143,6 +145,7 @@ class HomeController extends GetxController {
   var searchController = TextEditingController().obs;
 
   var vidDataInfo = LsatThreeVideo().obs;
+  var photoDataInfo = LastPhotoAlbam().obs;
   var vidEmbed = ''.obs;
 
   var last_most_text =''.obs;
@@ -285,10 +288,19 @@ class HomeController extends GetxController {
         categoryName.value = newsDetails.value.bread_parent_cat_name!;
         dataLoaded.value = true;
         print('newsdetailstitle: ${newsDetails.value.title}');
+        print('newsddate: ${Utils.dateTimeFormat(newsDetails.value.news_date_time!)}');
         //Navigator.of(Get.context).pop();
      // }
       newsDate.value = '';
-      newsDate.value = Utils.dateTimeFormat(newsDetails.value.news_date_time!);
+      List<String> mainDataList  = Utils.dateTimeFormatymd(newsDetails.value.news_date_time!).split(' ');
+
+      var amPm = '';
+      if(mainDataList[2] == 'am'){
+        amPm = 'এএম';
+      }else{
+        amPm = 'পিএম';
+      }
+      newsDate.value = Utils.allNewsDateConvert(mainDataList[0])+" "+ Utils.replaceEngNumberToBangla(mainDataList[1])+' '+amPm;
       if(newsDetails.value.news_edition == 1){
         newsEdition.value = "অনলাইন সংস্করণ";
       }else{
@@ -1020,6 +1032,36 @@ class HomeController extends GetxController {
   }
 
 
+  get_cat_wise_photo(int page,BuildContext context) async {
+    var url = ApiClient.photo_album_cat+"/"+photoDataInfo.value.parent_url_dis.toString()+'?page='+page.toString();
+    print("API: "+url);
+    try {
+      final response = await http.get(Uri.parse(url));
+      print(response.body);
+
+      //var jsonData = json.decode(response.body);
+      //var jsonData = json.decode(response.body) as Map<String, dynamic>;
+
+
+      Map<String, dynamic> user = jsonDecode(response.body);
+      var datanews = jsonEncode(user['data']);
+      // print('datanews: ${datanews}');
+      print('cat_wise_photoList: ${datanews}');
+
+
+      Map<String, dynamic> newsdata = jsonDecode(datanews);
+      newsdata.forEach((k, v) =>
+      //print("Key : $k, Value : $v")
+      cat_wise_photoList.add(v)
+      );
+      dataLoaded.value = true;
+      print('cat_wise_photoList: ${cat_wise_photoList.length}');
+
+    } on SocketException {
+
+    }
+  }
+
   get_cat_wise_video(int page,BuildContext context) async {
     var url = ApiClient.cat_wise_videos+"/"+vidDataInfo.value.video_cat_id.toString()+'?page='+page.toString();
     print("API: "+url);
@@ -1237,6 +1279,9 @@ class HomeController extends GetxController {
         return new VideoFragment();
         case 12:
         return new AllPollFragment();
+        case 13:
+        return new PhotoGalFragment();
+
 
 
 
