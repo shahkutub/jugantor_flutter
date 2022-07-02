@@ -251,6 +251,8 @@ class NewsDetailseFragment extends StatelessWidget {
                                                       onTap: (){
                                                         homeController.newsId.value = homeController.detail_page_aro_button_newsList[index]["id"];
                                                         homeController.get_news_details();
+                                                        homeController.scrollController.value.animateTo(0,
+                                                            duration: const Duration(seconds: 3), curve: Curves.linear);
                                                       },
                                                       child: Container(
                                                         //height: ,
@@ -347,8 +349,11 @@ class NewsDetailseFragment extends StatelessWidget {
                                           itemBuilder: (context, index) {
                                             return  GestureDetector(
                                               onTap: (){
+
                                                 homeController.newsId.value = homeController.moreCatNewsList[index].id.toString();
                                                 homeController.get_news_details();
+                                                homeController.scrollController.value.animateTo(0,
+                                                    duration: const Duration(seconds: 3), curve: Curves.linear);
                                               },
 
                                               child: Obx(() => Container(
@@ -443,6 +448,8 @@ class NewsDetailseFragment extends StatelessWidget {
                                               onTap: (){
                                                 homeController.newsId.value = homeController.last_entry_newsList[index].id.toString();
                                                 homeController.get_news_details();
+                                                homeController.scrollController.value.animateTo(0,
+                                                    duration: const Duration(seconds: 3), curve: Curves.linear);
                                               },
 
                                               child: Obx(() => Container(
@@ -563,6 +570,9 @@ class NewsDetailseFragment extends StatelessWidget {
                                                       onTap: (){
                                                         homeController.newsId.value = homeController.tagNewsList[index].id.toString();
                                                         homeController.get_news_details();
+
+                                                        homeController.scrollController.value.animateTo(0,
+                                                            duration: const Duration(seconds: 3), curve: Curves.linear);
                                                       },
 
                                                       child: Obx(() => Container(
