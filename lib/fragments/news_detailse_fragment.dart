@@ -40,7 +40,11 @@ class NewsDetailseFragment extends StatelessWidget {
                                   },
                                   child:Text("প্রচ্ছদ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
                                 ),
-                                Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
+
+                                homeController.categoryName.value.isNotEmpty?
+                                Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),)
+                                    :Text(''),
+
                                 Obx(() =>
                                     Visibility(visible: true,child:Text(""+homeController.categoryName.value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
                                 ),
@@ -51,7 +55,7 @@ class NewsDetailseFragment extends StatelessWidget {
 
                             //news title
                             Text(homeController.newsDetails.value.title!,
-                              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,color: Colors.black),
+                              style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold,color: Colors.black),
                               textAlign: TextAlign.justify,
 
                             ),
