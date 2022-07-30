@@ -246,6 +246,8 @@ class NewsDetailseFragment extends StatelessWidget {
                                           // Provide a builder function. This is where the magic happens.
                                           // Convert each item into a widget based on the type of item it is.
                                           itemBuilder: (context, index) {
+
+                                            homeController.check_two_times_is_before(homeController.detail_page_aro_button_newsList[index]["news_date"]);
                                             //final item = homeController.last_entry_newsList[index];
 
                                             return Container(

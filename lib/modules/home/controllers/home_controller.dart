@@ -1127,7 +1127,7 @@ class HomeController extends GetxController {
     print("API: "+url);
     try {
       final response = await http.get(Uri.parse(url));
-      print(response.body);
+      print('Arobuttonnews: '+response.body);
 
       //var jsonData = json.decode(response.body);
       //var jsonData = json.decode(response.body) as Map<String, dynamic>;
@@ -1410,6 +1410,64 @@ class HomeController extends GetxController {
    //  print('qibla:  \t$qiblaDirection');
   }
 
+
+  String check_two_times_is_before(String end_time){
+    // var format = DateFormat("HH:mm");
+    // var start = format.parse(start_time);
+    // var end = format.parse(end_time);
+    //
+    // if(start.isAfter(end)) {
+    //   end = end.add(Duration(days: 1));
+    //   Duration diff = end.difference(start);
+    //   final hours = diff.inHours;
+    //   final minutes = diff.inMinutes % 60;
+    //   print('$hours hours $minutes minutes');
+    // }
+
+    String str = '';
+    final f = new DateFormat('yyyy-MM-dd hh:mm:ss');
+
+    print('CurrentTime: '+f.format(new DateTime.now()));
+
+    //DateTime dt1 = DateTime.parse("2021-12-23 11:47:00");
+    DateTime dt1 = DateTime.parse(f.format(new DateTime.now()));
+    DateTime dt2 = DateTime.parse(end_time);
+
+    Duration diff = dt1.difference(dt2);
+    print("diff:" + diff.toString());
+    print("DT1:" + dt1.toString());
+    print("DT2:" + dt2.toString());
+
+
+
+    int days = diff.inDays;
+    int hours = diff.inHours % 24;
+    int minutes = diff.inMinutes % 60;
+    int seconds = diff.inSeconds % 60;
+    print("Difference in Days: " + days.toString());
+    print("Difference in Hours: " + hours.toString());
+    print("Difference in Minutes: " + minutes.toString());
+    print("Difference in Seconds: " + seconds.toString());
+    if(diff.inDays > 0){
+      str = diff.inDays.toString();
+    }
+    if(diff.inHours > 0){
+      str = diff.inHours.toString();
+    }
+
+    if(diff.inMinutes >= 60){
+      if(diff.inHours > 0){
+        str = diff.inHours.toString();
+      }
+    }else{
+      str = diff.inMinutes.toString();
+    }
+
+    print("returnTimeDiff: " + str);
+
+    return str;
+
+  }
 
 }
 
