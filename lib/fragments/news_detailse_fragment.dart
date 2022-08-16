@@ -53,8 +53,22 @@ class NewsDetailseFragment extends StatelessWidget {
                             ),
                             SizedBox(height: 20,),
 
+                            //news shoulder
+                            Text(homeController.newsDetails.value.shoulder!,
+                              style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold,color: Colors.black),
+                              textAlign: TextAlign.justify,
+
+                            ),
+
                             //news title
                             Text(homeController.newsDetails.value.title!,
+                              style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold,color: Colors.black),
+                              textAlign: TextAlign.justify,
+
+                            ),
+
+                            //news hanger
+                            Text(homeController.newsDetails.value.hanger!,
                               style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold,color: Colors.black),
                               textAlign: TextAlign.justify,
 
