@@ -55,7 +55,7 @@ class NewsDetailseFragment extends StatelessWidget {
 
                             //news shoulder
                             Text(homeController.newsDetails.value.shoulder!,
-                              style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold,color: Colors.black),
+                              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold,color: Colors.black),
                               textAlign: TextAlign.justify,
 
                             ),
@@ -69,7 +69,7 @@ class NewsDetailseFragment extends StatelessWidget {
 
                             //news hanger
                             Text(homeController.newsDetails.value.hanger!,
-                              style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold,color: Colors.black),
+                              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold,color: Colors.black),
                               textAlign: TextAlign.justify,
 
                             ),
