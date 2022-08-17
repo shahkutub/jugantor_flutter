@@ -37,6 +37,7 @@ class NewsDetailseFragment extends StatelessWidget {
                                   onTap: (){
                                     homeController.selectedPageIndex.value = 0;
                                     Get.back();
+                                    //Navigator.pop(context);
                                   },
                                   child:Text("প্রচ্ছদ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
                                 ),
@@ -54,11 +55,11 @@ class NewsDetailseFragment extends StatelessWidget {
                             SizedBox(height: 20,),
 
                             //news shoulder
-                            Text(homeController.newsDetails.value.shoulder!,
-                              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold,color: Colors.black),
-                              textAlign: TextAlign.justify,
-
-                            ),
+                            // Text(homeController.newsDetails.value.shoulder!,
+                            //   style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold,color: Colors.black),
+                            //   textAlign: TextAlign.justify,
+                            //
+                            // ),
 
                             //news title
                             Text(homeController.newsDetails.value.title!,
@@ -68,11 +69,11 @@ class NewsDetailseFragment extends StatelessWidget {
                             ),
 
                             //news hanger
-                            Text(homeController.newsDetails.value.hanger!,
-                              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold,color: Colors.black),
-                              textAlign: TextAlign.justify,
-
-                            ),
+                            // Text(homeController.newsDetails.value.hanger!,
+                            //   style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold,color: Colors.black),
+                            //   textAlign: TextAlign.justify,
+                            //
+                            // ),
 
                             //news reporter name
                             Row(
