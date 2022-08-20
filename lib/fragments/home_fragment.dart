@@ -1025,13 +1025,14 @@ class HomeFragment extends GetView<HomeController> {
                                                     margin: EdgeInsets.all(10),
                                                     child: Column(
                                                         children: [
+                                                            homeController.last_online_pollResponse.value.ques != null?
                                                             Text(
                                                                 homeController.last_online_pollResponse.value.ques!
                                                                 ,style: TextStyle(
                                                                 color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold
                                                             ),
                                                                 textAlign: TextAlign.justify,
-                                                            ),
+                                                            ):Text(""),
                                                             SizedBox(height: 20,),
                                                             Row(
                                                                 mainAxisAlignment: MainAxisAlignment.center,

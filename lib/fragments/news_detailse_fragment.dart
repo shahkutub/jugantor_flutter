@@ -55,25 +55,28 @@ class NewsDetailseFragment extends StatelessWidget {
                             SizedBox(height: 20,),
 
                             //news shoulder
-                            // Text(homeController.newsDetails.value.shoulder!,
-                            //   style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold,color: Colors.black),
-                            //   textAlign: TextAlign.justify,
-                            //
-                            // ),
+
+                            homeController.newsDetails.value.shoulder != null?
+                            Text(homeController.newsDetails.value.shoulder!,
+                              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold,color: Colors.black),
+                              textAlign: TextAlign.justify,
+                            ): Text(""),
 
                             //news title
+                            homeController.newsDetails.value.title != null?
                             Text(homeController.newsDetails.value.title!,
                               style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold,color: Colors.black),
                               textAlign: TextAlign.justify,
 
-                            ),
+                            ):Text(""),
 
                             //news hanger
-                            // Text(homeController.newsDetails.value.hanger!,
-                            //   style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold,color: Colors.black),
-                            //   textAlign: TextAlign.justify,
-                            //
-                            // ),
+                            homeController.newsDetails.value.hanger != null?
+                            Text(homeController.newsDetails.value.hanger!,
+                              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold,color: Colors.black),
+                              textAlign: TextAlign.justify,
+
+                            ):Text(""),
 
                             //news reporter name
                             Row(
