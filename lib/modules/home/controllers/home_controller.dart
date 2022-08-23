@@ -47,6 +47,7 @@ import 'package:jugantor.com/utils/utils.dart';
 import '../../../fragments/all_poll_fragment.dart';
 import '../../../fragments/photo_gal_frgment.dart';
 import '../../../model/BoxListModel.dart';
+import '../../../model/CtwisePhotoRersponse.dart';
 import '../../../model/PhotoCts.dart';
 
 
@@ -86,7 +87,7 @@ class HomeController extends GetxController {
   List<dynamic> all_cat_wise_newsList = <dynamic>[].obs;
   List<dynamic> cat_wise_vidList = <dynamic>[].obs;
   List<PhotoCts> photo_cts = <PhotoCts>[].obs;
-  List<dynamic> cat_wise_photoList = <dynamic>[].obs;
+  //List<Data> cat_wise_photoList = <Data>[].obs;
   List<dynamic> detail_page_aro_button_newsList = <dynamic>[].obs;
 
   List<BoxListModel> boxlist = <BoxListModel>[].obs;
@@ -94,6 +95,7 @@ class HomeController extends GetxController {
   var eventPage = 1.obs;
 
   var leadnews = LeadNewsResponse().obs;
+  var cat_wise_photoListResponse = CtwisePhotoRersponse().obs;
   var newsDetails = NewsDetailseResponse().obs;
   var tagNameResponse = TagNameResponse().obs;
   var last_online_pollResponse = LastOnlinePoll().obs;
@@ -1053,40 +1055,34 @@ class HomeController extends GetxController {
       // );
       dataLoaded.value = true;
       print('photo_catslenth: ${photo_cts[0].cat_name}');
-
+      selectedPageIndex.value = 13;
     } on SocketException {
 
     }
   }
 
-  get_cat_wise_photo(int page,BuildContext context) async {
-    var url = ApiClient.photo_album_cat+"/"+photoDataInfo.value.parent_url_dis.toString()+'?page='+page.toString();
+  get_cat_wise_photo(String ct,BuildContext context) async {
+    var url = ApiClient.photo_album_cat+"/"+ct;
     print("API: "+url);
+
+    //Ui.showLoaderDialog(Get.context);
+    APIManager _manager = APIManager();
+    var response;
     try {
-      final response = await http.get(Uri.parse(url));
-      print(response.body);
+      response = await _manager.get(url);
+      print('cat_wise_photoListResponse: ${response}');
 
-      //var jsonData = json.decode(response.body);
-      //var jsonData = json.decode(response.body) as Map<String, dynamic>;
+      if(response != null){
+        cat_wise_photoListResponse.value = CtwisePhotoRersponse.fromJson(response);
+        print('cat_wise_photoListResponse: ${cat_wise_photoListResponse.value.data!.length}');
+        //Navigator.of(Get.context).pop();
+      }
 
-
-      Map<String, dynamic> user = jsonDecode(response.body);
-      var datanews = jsonEncode(user['data']);
-      // print('datanews: ${datanews}');
-      print('cat_wise_photoList: ${datanews}');
-
-
-      Map<String, dynamic> newsdata = jsonDecode(datanews);
-      newsdata.forEach((k, v) =>
-      //print("Key : $k, Value : $v")
-      cat_wise_photoList.add(v)
-      );
-      dataLoaded.value = true;
-      //print('cat_wise_photoList: ${cat_wise_photoList.[0].}');
-
-    } on SocketException {
+    } catch (e) {
 
     }
+
+
   }
 
   get_cat_wise_video(int page,BuildContext context) async {

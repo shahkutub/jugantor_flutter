@@ -703,10 +703,10 @@ class HomeFragment extends GetView<HomeController> {
                                                         builder: (BuildContext context) {
                                                             return InkWell(
                                                                 onTap: () async {
-                                                                    homeController.selectedPageIndex.value = 13;
+                                                                    //homeController.selectedPageIndex.value = 13;
                                                                     homeController.photoDataInfo.value = homeController.last_photo_albumList[0];
                                                                     homeController.getPhotoCats();
-                                                                    homeController.get_cat_wise_photo(1,context);
+
                                                                 },
                                                                 child: Column(
                                                                     children: [
