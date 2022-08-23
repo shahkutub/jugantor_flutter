@@ -1,6 +1,8 @@
 
 import 'dart:async';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -32,36 +34,104 @@ class PhotoGalFragment extends StatelessWidget{
 
 
     return Container(
-        margin: EdgeInsets.all(20),
+        margin: EdgeInsets.all(10),
       child:SingleChildScrollView(
         child: Container(
           child: Column(
             children: [
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   crossAxisAlignment: CrossAxisAlignment.center,
-              //   children: [
-              //     Container(
-              //       //margin: EdgeInsets.only(top: 20),
-              //       height: width-125,
-              //       width: width-40,
-              //       color: Colors.red,
-              //       child: WebView(
-              //         initialUrl: Uri.dataFromString('<html><body>'+homeController.vidEmbed.value+'</body></html>', mimeType: 'text/html').toString(),
-              //
-              //         // initialUrl: Uri.dataFromString('<html><body><iframe width= '+webViewWidth.toString()+'px height='+webViewheight.toString()+' '
-              //         //     'src=\"https:\/\/www.youtube.com\/embed\/00m4gj2lp6A\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe></body></html>', mimeType: 'text/html').toString(),
-              //
-              //         javascriptMode: JavascriptMode.unrestricted,
-              //         onWebViewCreated: (WebViewController webViewController) {
-              //           _controller.complete(webViewController);},
-              //       ),
-              //
-              //     )
-              //   ],
-              // ),
-              // SizedBox(height: 20,),
-              // share icons
+
+              Row(
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: (){
+                      homeController.selectedPageIndex.value = 0;
+                      Get.back();
+                      //Navigator.pop(context);
+                    },
+                    child:Text("প্রচ্ছদ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
+                  ),
+
+                  //homeController.categoryName.value.isNotEmpty?
+                  Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
+                     // :Text(''),
+
+                  //Obx(() =>
+                      Visibility(visible: true,child:Text("  ছবি ",style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
+                  //),
+
+                ],
+              ),
+              SizedBox(height: 20,),
+
+              Obx(() =>
+                  Container(
+                      margin: EdgeInsets.only(top: 5,bottom: 5,right: 0,left: 0),
+                      alignment: Alignment.center,
+                      child:homeController.last_photo_albumList.length > 0 ?
+                      CarouselSlider(
+                        options: CarouselOptions(
+                          height: 200,
+                          viewportFraction: 1.0,
+                          autoPlay: true,
+                          onPageChanged: (index, index1) {
+
+                            // homeController.selectedPageIndex.value = 13;
+                            // homeController.photoDataInfo.value = homeController.last_photo_albumList[index];
+                            // homeController.get_cat_wise_photo(1,context);
+                          },
+                        ),
+                        items: homeController.last_photo_albumList[0].images!.map((bannerData) {
+                          return Builder(
+                            builder: (BuildContext context) {
+                              return InkWell(
+                                onTap: () async {
+                                  homeController.selectedPageIndex.value = 13;
+                                  homeController.photoDataInfo.value = homeController.last_photo_albumList[0];
+                                  homeController.get_cat_wise_photo(1,context);
+                                },
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          alignment: Alignment.topLeft,
+                                          child: Stack(
+                                            children: <Widget>[
+                                              Material(
+                                                color: Colors.white,
+                                                borderRadius: BorderRadius.circular(0),
+                                                elevation: 0,
+                                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                                type: MaterialType.transparency,
+                                                child: CachedNetworkImage(
+                                                  imageUrl: bannerData,
+                                                  fit: BoxFit.fill,
+                                                  height: 200,
+                                                  width: width*0.92,
+                                                  // placeholder: (context, url) => SpinKitFadingCircle(color: Palette.blue),
+                                                  errorWidget: (context, url, error) => Image.asset("assets/images/jugantordefault.jpg"),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+
+                                      ],
+                                    ),
+
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        }).toList(),
+                      ):SizedBox()
+
+                  ),
+              ),
+
+
+
               Row(
                 children: <Widget>[
 

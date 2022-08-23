@@ -705,6 +705,7 @@ class HomeFragment extends GetView<HomeController> {
                                                                 onTap: () async {
                                                                     homeController.selectedPageIndex.value = 13;
                                                                     homeController.photoDataInfo.value = homeController.last_photo_albumList[0];
+                                                                    homeController.getPhotoCats();
                                                                     homeController.get_cat_wise_photo(1,context);
                                                                 },
                                                                 child: Column(

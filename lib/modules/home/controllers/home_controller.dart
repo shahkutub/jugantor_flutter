@@ -47,6 +47,7 @@ import 'package:jugantor.com/utils/utils.dart';
 import '../../../fragments/all_poll_fragment.dart';
 import '../../../fragments/photo_gal_frgment.dart';
 import '../../../model/BoxListModel.dart';
+import '../../../model/PhotoCts.dart';
 
 
 class HomeController extends GetxController {
@@ -84,6 +85,7 @@ class HomeController extends GetxController {
   List<dynamic> all_latest_newsList = <dynamic>[].obs;
   List<dynamic> all_cat_wise_newsList = <dynamic>[].obs;
   List<dynamic> cat_wise_vidList = <dynamic>[].obs;
+  List<PhotoCts> photo_cts = <PhotoCts>[].obs;
   List<dynamic> cat_wise_photoList = <dynamic>[].obs;
   List<dynamic> detail_page_aro_button_newsList = <dynamic>[].obs;
 
@@ -1031,6 +1033,31 @@ class HomeController extends GetxController {
     }
   }
 
+  getPhotoCats() async {
+    var url = ApiClient.photo_cats;
+    print("API photo_cats: "+url);
+    try {
+      final response = await http.get(Uri.parse(url));
+      print('photo_cats: '+response.body);
+
+      List jsonResponse = json.decode(response.body);
+      photo_cts = jsonResponse.map((job) => new PhotoCts.fromJson(job)).toList();
+
+
+      // Map<List, dynamic> user = jsonDecode(response.body);
+      //
+      //
+      // user.forEach((k, v) =>
+      // //print("Key : $k, Value : $v")
+      // photo_cts.add(v)
+      // );
+      dataLoaded.value = true;
+      print('photo_catslenth: ${photo_cts[0].cat_name}');
+
+    } on SocketException {
+
+    }
+  }
 
   get_cat_wise_photo(int page,BuildContext context) async {
     var url = ApiClient.photo_album_cat+"/"+photoDataInfo.value.parent_url_dis.toString()+'?page='+page.toString();
@@ -1055,7 +1082,7 @@ class HomeController extends GetxController {
       cat_wise_photoList.add(v)
       );
       dataLoaded.value = true;
-      print('cat_wise_photoList: ${cat_wise_photoList.length}');
+      //print('cat_wise_photoList: ${cat_wise_photoList.[0].}');
 
     } on SocketException {
 
