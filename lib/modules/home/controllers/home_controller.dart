@@ -1040,6 +1040,7 @@ class HomeController extends GetxController {
 
   getPhotoCats() async {
     photo_cts.clear();
+    photo_cts_with_photo_list.clear();
     //cat_wise_photoList.clear();
     var url = ApiClient.photo_cats;
     print("API photo_cats: "+url);
