@@ -185,35 +185,47 @@ class PhotoGalFragment extends StatelessWidget{
                                               itemBuilder: (context, index2) {
                                                 List<String> photos = <String>[];
                                                 List<String> title = <String>[];
+                                                String photoUrl = "";
 
-                                                 var str= homeController.photo_cts_with_photo_list[index].photoData![index2].album_photos;
-                                                 print("album_photoList"+str!);
-                                                 var regex=RegExp("http.*?\"");
-                                                 var matches=regex.allMatches(str);
-
-                                                matches.forEach((element) {
-                                                  print('photourl'+element.input);
-                                                  photos.add(removeLastChar(element.input));
+                                                 //var str= homeController.photo_cts_with_photo_list[index].photoData![index2].album_photos;
+                                                 var text = homeController.photo_cts_with_photo_list[index].photoData![index2].album_photos.toString();
+                                                RegExp exp = new RegExp(r'(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
+                                                Iterable<RegExpMatch> matches = exp.allMatches(text);
+                                                photos.clear();
+                                                matches.forEach((match) {
+                                                  photoUrl = text.substring(match.start, match.end);
+                                                  photos.add(photoUrl);
+                                                  print("album_photo: "+text.substring(match.start, match.end));
                                                 });
 
-                                                // var strTitle= users[position].album_photos_title
-                                                // var regexTitle=Regex("\".*?\"")
-                                                // var matchesTitle=regexTitle.findAll(strTitle)
-                                                // matchesTitle.forEach { o->
-                                                // Log.e("valuetitle","title: "+removeLastChar(o.value).toString())
-                                                // AppConstant.titleList.add(removeLastChar(o.value).toString())
-                                                // }
 
-                                                print('photos[0]'+photos[0].toString());
-
-                                               var strph = photos[0];
-                                                final start = '"';
-                                                final end = '"';
-
-                                                final startIndex = strph.indexOf(start);
-                                                final endIndex = strph.indexOf(end);
-                                                final result = strph.substring(startIndex + start.length, endIndex).trim();
-                                                print('photourlresult'+result);
+                                               //   print("album_photoList"+str!);
+                                               //   var regex=RegExp("http.*?\"");
+                                               //   var matches=regex.allMatches(str);
+                                               //
+                                               //  matches.forEach((element) {
+                                               //    print('urlphoto: '+removeLastChar(element.input));
+                                               //    photos.add(removeLastChar(element.input));
+                                               //  });
+                                               //
+                                               //  // var strTitle= users[position].album_photos_title
+                                               //  // var regexTitle=Regex("\".*?\"")
+                                               //  // var matchesTitle=regexTitle.findAll(strTitle)
+                                               //  // matchesTitle.forEach { o->
+                                               //  // Log.e("valuetitle","title: "+removeLastChar(o.value).toString())
+                                               //  // AppConstant.titleList.add(removeLastChar(o.value).toString())
+                                               //  // }
+                                               //
+                                               //  print('photos[0]'+photos[0].toString());
+                                               //
+                                               // var strph = photos[0];
+                                               //  final start = '"';
+                                               //  final end = '"';
+                                               //
+                                               //  final startIndex = strph.indexOf(start);
+                                               //  final endIndex = strph.indexOf(end);
+                                               //  final result = strph.substring(startIndex + start.length, endIndex).trim();
+                                               //  print('photourlresult'+result);
 
                                                  // matches.forEach((element) {
                                                  //   print(''+element.toString());
