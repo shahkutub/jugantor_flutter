@@ -87,7 +87,7 @@ class HomeController extends GetxController {
   List<dynamic> all_cat_wise_newsList = <dynamic>[].obs;
   List<dynamic> cat_wise_vidList = <dynamic>[].obs;
   List<PhotoCts> photo_cts = <PhotoCts>[].obs;
-  //List<Data> cat_wise_photoList = <Data>[].obs;
+  List<Data> cat_wise_photoList = <Data>[].obs;
   List<dynamic> detail_page_aro_button_newsList = <dynamic>[].obs;
 
   List<BoxListModel> boxlist = <BoxListModel>[].obs;
@@ -95,7 +95,7 @@ class HomeController extends GetxController {
   var eventPage = 1.obs;
 
   var leadnews = LeadNewsResponse().obs;
-  var cat_wise_photoListResponse = CtwisePhotoRersponse().obs;
+  //var cat_wise_photoListResponse = CtwisePhotoRersponse();
   var newsDetails = NewsDetailseResponse().obs;
   var tagNameResponse = TagNameResponse().obs;
   var last_online_pollResponse = LastOnlinePoll().obs;
@@ -1036,6 +1036,8 @@ class HomeController extends GetxController {
   }
 
   getPhotoCats() async {
+    photo_cts.clear();
+    cat_wise_photoList.clear();
     var url = ApiClient.photo_cats;
     print("API photo_cats: "+url);
     try {
@@ -1045,14 +1047,12 @@ class HomeController extends GetxController {
       List jsonResponse = json.decode(response.body);
       photo_cts = jsonResponse.map((job) => new PhotoCts.fromJson(job)).toList();
 
+      photo_cts.forEach((element) {
 
-      // Map<List, dynamic> user = jsonDecode(response.body);
-      //
-      //
-      // user.forEach((k, v) =>
-      // //print("Key : $k, Value : $v")
-      // photo_cts.add(v)
-      // );
+        get_cat_wise_photo(element.url_dis_title.toString());
+      });
+
+
       dataLoaded.value = true;
       print('photo_catslenth: ${photo_cts[0].cat_name}');
       selectedPageIndex.value = 13;
@@ -1061,7 +1061,8 @@ class HomeController extends GetxController {
     }
   }
 
-  get_cat_wise_photo(String ct,BuildContext context) async {
+  get_cat_wise_photo(String ct) async {
+
     var url = ApiClient.photo_album_cat+"/"+ct;
     print("API: "+url);
 
@@ -1073,8 +1074,10 @@ class HomeController extends GetxController {
       print('cat_wise_photoListResponse: ${response}');
 
       if(response != null){
-        cat_wise_photoListResponse.value = CtwisePhotoRersponse.fromJson(response);
-        print('cat_wise_photoListResponse: ${cat_wise_photoListResponse.value.data!.length}');
+        //cat_wise_photoListResponse = CtwisePhotoRersponse.fromJson(response);
+        print('cat_wise_photoListResponse: ${CtwisePhotoRersponse.fromJson(response).data!.length}');
+        cat_wise_photoList.clear();
+        cat_wise_photoList.addAll(CtwisePhotoRersponse.fromJson(response).data!);
         //Navigator.of(Get.context).pop();
       }
 

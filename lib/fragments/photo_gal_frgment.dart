@@ -142,10 +142,9 @@ class PhotoGalFragment extends StatelessWidget{
                         shrinkWrap: true,
                         itemCount: homeController.photo_cts.length,
                         itemBuilder: (context, index) {
-                          homeController.get_cat_wise_photo(homeController.photo_cts[index].url_dis_title.toString(),context);
                           return Container(
                             child:
-                            //Obx(() =>
+                            Obx(() =>
                                 Container(
                                     margin: EdgeInsets.only(top: 20),
                                     //height: ,
@@ -191,7 +190,7 @@ class PhotoGalFragment extends StatelessWidget{
                                         Container(
                                             margin: EdgeInsets.only(top: 5,bottom: 5,right: 0,left: 0),
                                             alignment: Alignment.center,
-                                            child:homeController.cat_wise_photoListResponse.value.data!.length >0 ?
+                                            child:homeController.cat_wise_photoList.length >0 ?
                                             GridView.builder(
                                               physics: NeverScrollableScrollPhysics(),
                                               shrinkWrap: true,
@@ -202,11 +201,11 @@ class PhotoGalFragment extends StatelessWidget{
                                                 //childAspectRatio: width / (height / 1.9)
                                                 //childAspectRatio: 1
                                               ),
-                                              itemCount: homeController.cat_wise_photoListResponse.value.data!.length,
+                                              itemCount: homeController.cat_wise_photoList.length,
                                               itemBuilder: (context, index) {
 
                                                 // var str= users[position].album_photos
-                                                 var str= homeController.cat_wise_photoListResponse.value.data![index].album_photos;
+                                                 var str= homeController.cat_wise_photoList[index].album_photos;
                                                  print("album_photoList"+str!);
                                                 // var regex=Regex("http.*?\"")
                                                 // var matches=regex.findAll(str)
@@ -233,7 +232,9 @@ class PhotoGalFragment extends StatelessWidget{
 
                                                   },
 
-                                                  child: Obx(() => Container(
+                                                  child:
+                                                  Obx(() =>
+                                                      Container(
 
                                                     //height: ,
                                                     //alignment: Alignment.center,
@@ -249,7 +250,7 @@ class PhotoGalFragment extends StatelessWidget{
                                                                     height: height * 0.12,
                                                                     width: width*0.92,
                                                                     fit: BoxFit.fill,
-                                                                    image:homeController.cat_wise_photoListResponse.value.data![index].album_photos.toString(),
+                                                                    image:homeController.cat_wise_photoList[index].album_photos.toString(),
                                                                     placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                                                                 ),
 
@@ -266,7 +267,7 @@ class PhotoGalFragment extends StatelessWidget{
 
                                                           ),
 
-                                                          Text(homeController.cat_wise_photoListResponse.value.data![index].album_name.toString(),
+                                                          Text(homeController.cat_wise_photoList[index].album_name.toString(),
                                                             style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                             textAlign: TextAlign.justify,
                                                             maxLines: 2,
@@ -282,14 +283,14 @@ class PhotoGalFragment extends StatelessWidget{
                                       ],
                                     )
                                 )
-                            //),
+                            ),
 
                           );
                         },
                       ):SizedBox()
 
                   ),
-             // ),
+              //),
 
               // Row(
               //   children: <Widget>[
