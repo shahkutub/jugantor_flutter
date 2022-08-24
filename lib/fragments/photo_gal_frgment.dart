@@ -132,15 +132,15 @@ class PhotoGalFragment extends StatelessWidget{
 
 
               //photo ct list
-              //Obx(() =>
+              Obx(() =>
                   Container(
                       margin: EdgeInsets.only(top: 15,bottom: 0,right: 0,left: 0),
                       alignment: Alignment.center,
-                      child:homeController.photo_cts.length > 0 ?
+                      child:homeController.photo_cts_with_photo_list.length > 0 ?
                       ListView.builder(
                         primary: false,
                         shrinkWrap: true,
-                        itemCount: homeController.photo_cts.length,
+                        itemCount: homeController.photo_cts_with_photo_list.length,
                         itemBuilder: (context, index) {
                           return Container(
                             child:
@@ -153,6 +153,8 @@ class PhotoGalFragment extends StatelessWidget{
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
+
+                                       // Image.asset('assets/images/binodonlist.png'),
                                         GestureDetector(
                                           onTap: (){
 
@@ -164,7 +166,7 @@ class PhotoGalFragment extends StatelessWidget{
                                                   alignment: Alignment.centerLeft,
                                                   //child:
                                                   //Flexible(
-                                                  child: Text(homeController.photo_cts[index].cat_name!,
+                                                  child: Text(homeController.photo_cts_with_photo_list[index].cat_name!,
                                                       style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)
                                                   )
                                               ),
@@ -190,7 +192,7 @@ class PhotoGalFragment extends StatelessWidget{
                                         Container(
                                             margin: EdgeInsets.only(top: 5,bottom: 5,right: 0,left: 0),
                                             alignment: Alignment.center,
-                                            child:homeController.cat_wise_photoList.length >0 ?
+                                            child:homeController.photo_cts_with_photo_list[index].photoData!.length >0 ?
                                             GridView.builder(
                                               physics: NeverScrollableScrollPhysics(),
                                               shrinkWrap: true,
@@ -201,11 +203,11 @@ class PhotoGalFragment extends StatelessWidget{
                                                 //childAspectRatio: width / (height / 1.9)
                                                 //childAspectRatio: 1
                                               ),
-                                              itemCount: homeController.cat_wise_photoList.length,
-                                              itemBuilder: (context, index) {
+                                              itemCount: homeController.photo_cts_with_photo_list[index].photoData!.length,
+                                              itemBuilder: (context, index2) {
 
                                                 // var str= users[position].album_photos
-                                                 var str= homeController.cat_wise_photoList[index].album_photos;
+                                                 var str= homeController.photo_cts_with_photo_list[index].photoData![index2].album_photos;
                                                  print("album_photoList"+str!);
                                                 // var regex=Regex("http.*?\"")
                                                 // var matches=regex.findAll(str)
@@ -250,7 +252,7 @@ class PhotoGalFragment extends StatelessWidget{
                                                                     height: height * 0.12,
                                                                     width: width*0.92,
                                                                     fit: BoxFit.fill,
-                                                                    image:homeController.cat_wise_photoList[index].album_photos.toString(),
+                                                                    image:homeController.photo_cts_with_photo_list[index].photoData![index2].album_photos.toString(),
                                                                     placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                                                                 ),
 
@@ -267,7 +269,7 @@ class PhotoGalFragment extends StatelessWidget{
 
                                                           ),
 
-                                                          Text(homeController.cat_wise_photoList[index].album_name.toString(),
+                                                          Text(homeController.photo_cts_with_photo_list[index].photoData![index2].album_name.toString(),
                                                             style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                             textAlign: TextAlign.justify,
                                                             maxLines: 2,
@@ -290,7 +292,7 @@ class PhotoGalFragment extends StatelessWidget{
                       ):SizedBox()
 
                   ),
-              //),
+              ),
 
               // Row(
               //   children: <Widget>[

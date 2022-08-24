@@ -48,6 +48,7 @@ import '../../../fragments/all_poll_fragment.dart';
 import '../../../fragments/photo_gal_frgment.dart';
 import '../../../model/BoxListModel.dart';
 import '../../../model/CtwisePhotoRersponse.dart';
+import '../../../model/PhotoCategoryPhotoList.dart';
 import '../../../model/PhotoCts.dart';
 
 
@@ -87,7 +88,9 @@ class HomeController extends GetxController {
   List<dynamic> all_cat_wise_newsList = <dynamic>[].obs;
   List<dynamic> cat_wise_vidList = <dynamic>[].obs;
   List<PhotoCts> photo_cts = <PhotoCts>[].obs;
-  List<Data> cat_wise_photoList = <Data>[].obs;
+  List<PhotoCategoryPhotoList> photo_cts_with_photo_list = <PhotoCategoryPhotoList>[].obs;
+
+  //List<Data> cat_wise_photoList = <Data>[].obs;
   List<dynamic> detail_page_aro_button_newsList = <dynamic>[].obs;
 
   List<BoxListModel> boxlist = <BoxListModel>[].obs;
@@ -1037,7 +1040,7 @@ class HomeController extends GetxController {
 
   getPhotoCats() async {
     photo_cts.clear();
-    cat_wise_photoList.clear();
+    //cat_wise_photoList.clear();
     var url = ApiClient.photo_cats;
     print("API photo_cats: "+url);
     try {
@@ -1046,24 +1049,23 @@ class HomeController extends GetxController {
 
       List jsonResponse = json.decode(response.body);
       photo_cts = jsonResponse.map((job) => new PhotoCts.fromJson(job)).toList();
-
+      print('photo_catslenth: ${photo_cts.length}');
       photo_cts.forEach((element) {
-
-        get_cat_wise_photo(element.url_dis_title.toString());
+        get_cat_wise_photo(element);
       });
 
 
       dataLoaded.value = true;
-      print('photo_catslenth: ${photo_cts[0].cat_name}');
+
       selectedPageIndex.value = 13;
     } on SocketException {
 
     }
   }
 
-  get_cat_wise_photo(String ct) async {
+  get_cat_wise_photo(PhotoCts elment) async {
 
-    var url = ApiClient.photo_album_cat+"/"+ct;
+    var url = ApiClient.photo_album_cat+"/"+elment.url_dis_title.toString();
     print("API: "+url);
 
     //Ui.showLoaderDialog(Get.context);
@@ -1074,10 +1076,15 @@ class HomeController extends GetxController {
       print('cat_wise_photoListResponse: ${response}');
 
       if(response != null){
-        //cat_wise_photoListResponse = CtwisePhotoRersponse.fromJson(response);
-        print('cat_wise_photoListResponse: ${CtwisePhotoRersponse.fromJson(response).data!.length}');
-        cat_wise_photoList.clear();
-        cat_wise_photoList.addAll(CtwisePhotoRersponse.fromJson(response).data!);
+        PhotoCategoryPhotoList ph= PhotoCategoryPhotoList(elment.cat_name,elment.id,CtwisePhotoRersponse.fromJson(response).data!);
+
+        photo_cts_with_photo_list.add(ph);
+        print('photo_cts_with_photo_list: '+photo_cts_with_photo_list.length.toString());
+
+        // //cat_wise_photoListResponse = CtwisePhotoRersponse.fromJson(response);
+        // print('cat_wise_photoListResponse: ${CtwisePhotoRersponse.fromJson(response).data!.length}');
+        // cat_wise_photoList.clear();
+        // cat_wise_photoList.addAll(CtwisePhotoRersponse.fromJson(response).data!);
         //Navigator.of(Get.context).pop();
       }
 
