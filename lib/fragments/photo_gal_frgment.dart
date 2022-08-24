@@ -198,40 +198,6 @@ class PhotoGalFragment extends StatelessWidget{
                                                   print("album_photo: "+text.substring(match.start, match.end));
                                                 });
 
-
-                                               //   print("album_photoList"+str!);
-                                               //   var regex=RegExp("http.*?\"");
-                                               //   var matches=regex.allMatches(str);
-                                               //
-                                               //  matches.forEach((element) {
-                                               //    print('urlphoto: '+removeLastChar(element.input));
-                                               //    photos.add(removeLastChar(element.input));
-                                               //  });
-                                               //
-                                               //  // var strTitle= users[position].album_photos_title
-                                               //  // var regexTitle=Regex("\".*?\"")
-                                               //  // var matchesTitle=regexTitle.findAll(strTitle)
-                                               //  // matchesTitle.forEach { o->
-                                               //  // Log.e("valuetitle","title: "+removeLastChar(o.value).toString())
-                                               //  // AppConstant.titleList.add(removeLastChar(o.value).toString())
-                                               //  // }
-                                               //
-                                               //  print('photos[0]'+photos[0].toString());
-                                               //
-                                               // var strph = photos[0];
-                                               //  final start = '"';
-                                               //  final end = '"';
-                                               //
-                                               //  final startIndex = strph.indexOf(start);
-                                               //  final endIndex = strph.indexOf(end);
-                                               //  final result = strph.substring(startIndex + start.length, endIndex).trim();
-                                               //  print('photourlresult'+result);
-
-                                                 // matches.forEach((element) {
-                                                 //   print(''+element.toString());
-                                                 //
-                                                 // });
-
                                                 return  GestureDetector(
                                                   onTap: (){
                                                     // homeController.dataLoaded.value = false;
@@ -263,24 +229,24 @@ class PhotoGalFragment extends StatelessWidget{
                                                                     placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                                                                 ),
 
-                                                                // Positioned(
-                                                                //   bottom: 10,
-                                                                //   left:10,
-                                                                //   child: homeController.showNewsList[index].video_dis  == 0 ?
-                                                                //   Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
-                                                                //
-                                                                // ),
-
                                                               ],
                                                             ),
 
                                                           ),
 
-                                                          Text(homeController.photo_cts_with_photo_list[index].photoData![index2].album_name.toString(),
-                                                            style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
-                                                            textAlign: TextAlign.justify,
-                                                            maxLines: 2,
-                                                          ),
+                                                          Container(
+                                                            width: width*0.92,
+                                                            padding: EdgeInsets.all(10),
+                                                            decoration: BoxDecoration(
+                                                              border: Border.all(color: Colors.grey)
+                                                            ),
+                                                            child: Text(homeController.photo_cts_with_photo_list[index].photoData![index2].album_name.toString(),
+                                                              style: TextStyle(color: Colors.black,fontSize: 10,fontWeight:FontWeight.bold ),
+                                                              textAlign: TextAlign.justify,
+                                                              maxLines: 2,
+                                                            ),
+                                                          )
+
                                                         ],
                                                       )
                                                   )

@@ -193,46 +193,51 @@ class HomePage extends GetView<HomeController> {
                       Container(
                           padding: EdgeInsets.all(20),
                           alignment: Alignment.center,
-                          child:GridView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                crossAxisSpacing: 5.0,
-                                mainAxisSpacing: 5.0,
-                                childAspectRatio: 3
+
+                          child:Expanded(
+                            child: GridView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 5.0,
+                                  mainAxisSpacing: 5.0,
+                                  childAspectRatio: 3
+                              ),
+                              itemCount: homeController.categoryList.length,
+                              itemBuilder: (context, index) {
+                                return  GestureDetector(
+                                  onTap: (){
+                                    Get.back();
+                                    if(homeController.categoryList[index].cat_name == "প্রচ্ছদ"){
+                                      homeController.selectedPageIndex.value = 0;
+                                    }else if(homeController.categoryList[index].cat_name == "সারাদেশ"){
+                                      homeController.selectedCategoryName.value = "সারাদেশ";
+                                      homeController.dataLoaded.value = false;
+                                      homeController.get_saradesh_top_news();
+                                      homeController.get_division();
+                                    }else{
+                                      homeController.subcategory_list_with_news_newsList.clear();
+                                      homeController.catId.value = homeController.categoryList[index].id!;
+                                      homeController.selectedSubCategoryName.value = "";
+                                      homeController.selectedCategoryName.value = homeController.categoryList[index].cat_name.toString();
+                                      homeController.dataLoaded.value = false;
+                                      homeController.get_sub_category(homeController.categoryList[index].id!);
+                                      //sub_category page index 2
+                                      homeController.selectedPageIndex.value = 2;
+                                    }
+                                  },
+
+
+                                  child: Obx(() => Text(homeController.categoryList[index].cat_name!,
+                                    style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold ),),
+                                  ),
+                                );
+                              },
                             ),
-                            itemCount: homeController.categoryList.length,
-                            itemBuilder: (context, index) {
-                              return  GestureDetector(
-                                onTap: (){
-                                  Get.back();
-                                  if(homeController.categoryList[index].cat_name == "প্রচ্ছদ"){
-                                    homeController.selectedPageIndex.value = 0;
-                                  }else if(homeController.categoryList[index].cat_name == "সারাদেশ"){
-                                    homeController.selectedCategoryName.value = "সারাদেশ";
-                                    homeController.dataLoaded.value = false;
-                                    homeController.get_saradesh_top_news();
-                                    homeController.get_division();
-                                  }else{
-                                    homeController.subcategory_list_with_news_newsList.clear();
-                                    homeController.catId.value = homeController.categoryList[index].id!;
-                                    homeController.selectedSubCategoryName.value = "";
-                                    homeController.selectedCategoryName.value = homeController.categoryList[index].cat_name.toString();
-                                    homeController.dataLoaded.value = false;
-                                    homeController.get_sub_category(homeController.categoryList[index].id!);
-                                    //sub_category page index 2
-                                    homeController.selectedPageIndex.value = 2;
-                                  }
-                                },
+                          ),
 
 
-                                child: Obx(() => Text(homeController.categoryList[index].cat_name!,
-                                  style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold ),),
-                                ),
-                              );
-                            },
-                          )
                       ):SizedBox()
                       ),
 
