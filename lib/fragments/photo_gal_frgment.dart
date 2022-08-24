@@ -146,49 +146,27 @@ class PhotoGalFragment extends StatelessWidget{
                             child:
                             Obx(() =>
                                 Container(
-                                    margin: EdgeInsets.only(top: 20),
-                                    //height: ,
-                                    //alignment: Alignment.center,
+
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
 
-                                       // Image.asset('assets/images/binodonlist.png'),
-                                        GestureDetector(
-                                          onTap: (){
-
-                                          },
-                                          child:Stack(alignment: Alignment.centerLeft,
-                                            children: <Widget>[
-                                              Container(
-                                                //height: 80,
-                                                  alignment: Alignment.centerLeft,
-                                                  //child:
-                                                  //Flexible(
-                                                  child: Text(homeController.photo_cts_with_photo_list[index].cat_name!,
-                                                      style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)
-                                                  )
-                                              ),
-                                              //),
-                                              Container(
-                                                alignment: Alignment.centerRight,
-                                                child: Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                                  children: [
-                                                    Icon(Icons.arrow_forward_sharp,color: Colors.red,size: 30,),
-                                                  ],
-                                                ),
-                                              )
-                                            ],
-                                          ),
+                                        Container(
+                                          width: width,
+                                          height: 2,
+                                          color: Colors.deepPurple,
+                                          //thickness: 2,
                                         ),
-                                        Divider(
-                                          color: Colors.red,
-                                          thickness: 2,
-
+                                        Container(
+                                            margin: const EdgeInsets.only(left: 15.0),
+                                            padding: const EdgeInsets.only(left: 30.0,right: 30.0,top: 5.0,bottom: 5.0),
+                                            color: Colors.deepPurple,
+                                            child: Text(homeController.photo_cts_with_photo_list[index].cat_name!,
+                                                style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,color: Colors.white)
+                                            )
                                         ),
+
                                         Container(
                                             margin: EdgeInsets.only(top: 5,bottom: 5,right: 0,left: 0),
                                             alignment: Alignment.center,
@@ -209,8 +187,9 @@ class PhotoGalFragment extends StatelessWidget{
                                                 // var str= users[position].album_photos
                                                  var str= homeController.photo_cts_with_photo_list[index].photoData![index2].album_photos;
                                                  print("album_photoList"+str!);
-                                                // var regex=Regex("http.*?\"")
+                                                 var regex=RegExp("http.*?\"");
                                                 // var matches=regex.findAll(str)
+                                                 var matches=regex.allMatches(str);
                                                 // matches.forEach { o->
                                                 // Log.e("value","url: "+removeLastChar(o.value).toString())
                                                 // AppConstant.photoList.add(PhotoModel(removeLastChar(o.value).toString(),""))
@@ -224,6 +203,11 @@ class PhotoGalFragment extends StatelessWidget{
                                                 // Log.e("valuetitle","title: "+removeLastChar(o.value).toString())
                                                 // AppConstant.titleList.add(removeLastChar(o.value).toString())
                                                 // }
+
+                                                 matches.forEach((element) {
+                                                   print(''+element.toString());
+
+                                                 });
 
                                                 return  GestureDetector(
                                                   onTap: (){
