@@ -183,19 +183,19 @@ class PhotoGalFragment extends StatelessWidget{
                                               ),
                                               itemCount: homeController.photo_cts_with_photo_list[index].photoData!.length,
                                               itemBuilder: (context, index2) {
+                                                List<String> photos = <String>[];
+                                                List<String> title = <String>[];
 
-                                                // var str= users[position].album_photos
                                                  var str= homeController.photo_cts_with_photo_list[index].photoData![index2].album_photos;
                                                  print("album_photoList"+str!);
                                                  var regex=RegExp("http.*?\"");
-                                                // var matches=regex.findAll(str)
                                                  var matches=regex.allMatches(str);
-                                                // matches.forEach { o->
-                                                // Log.e("value","url: "+removeLastChar(o.value).toString())
-                                                // AppConstant.photoList.add(PhotoModel(removeLastChar(o.value).toString(),""))
-                                                // }
-                                                //
-                                                //
+
+                                                matches.forEach((element) {
+                                                  print('photourl'+element.input);
+                                                  photos.add(removeLastChar(element.input));
+                                                });
+
                                                 // var strTitle= users[position].album_photos_title
                                                 // var regexTitle=Regex("\".*?\"")
                                                 // var matchesTitle=regexTitle.findAll(strTitle)
@@ -204,10 +204,21 @@ class PhotoGalFragment extends StatelessWidget{
                                                 // AppConstant.titleList.add(removeLastChar(o.value).toString())
                                                 // }
 
-                                                 matches.forEach((element) {
-                                                   print(''+element.toString());
+                                                print('photos[0]'+photos[0].toString());
 
-                                                 });
+                                               var strph = photos[0];
+                                                final start = '"';
+                                                final end = '"';
+
+                                                final startIndex = strph.indexOf(start);
+                                                final endIndex = strph.indexOf(end);
+                                                final result = strph.substring(startIndex + start.length, endIndex).trim();
+                                                print('photourlresult'+result);
+
+                                                 // matches.forEach((element) {
+                                                 //   print(''+element.toString());
+                                                 //
+                                                 // });
 
                                                 return  GestureDetector(
                                                   onTap: (){
@@ -236,7 +247,7 @@ class PhotoGalFragment extends StatelessWidget{
                                                                     height: height * 0.12,
                                                                     width: width*0.92,
                                                                     fit: BoxFit.fill,
-                                                                    image:homeController.photo_cts_with_photo_list[index].photoData![index2].album_photos.toString(),
+                                                                    image:photos[0].toString(),
                                                                     placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                                                                 ),
 
@@ -278,90 +289,6 @@ class PhotoGalFragment extends StatelessWidget{
                   ),
               ),
 
-              // Row(
-              //   children: <Widget>[
-              //
-              //     GestureDetector(
-              //       child:Container(
-              //         //height: 80,
-              //         alignment: Alignment.center,
-              //         child: SvgPicture.asset(
-              //           'assets/images/facebook.svg',
-              //           height: 35, width: 35,
-              //         ),
-              //         decoration: BoxDecoration(
-              //           color: Color(0xff4469B3),
-              //           borderRadius: BorderRadius.all(Radius.circular(20)),
-              //         ),
-              //       ),
-              //     ),
-              //     SizedBox(width: 10,),
-              //     GestureDetector(
-              //       child:Container(
-              //         //height: 80,
-              //         padding: EdgeInsets.all(5),
-              //         alignment: Alignment.center,
-              //         child: SvgPicture.asset(
-              //           'assets/images/messenger.svg',
-              //           height: 30, width: 30,
-              //         ),
-              //         decoration: BoxDecoration(
-              //           color: Color(0xff00B0ED),
-              //           borderRadius: BorderRadius.all(Radius.circular(20)),
-              //         ),
-              //       ),
-              //     ),
-              //
-              //     SizedBox(width: 10,),
-              //     GestureDetector(
-              //       child:Container(
-              //         //height: 80,
-              //         padding: EdgeInsets.all(5),
-              //         alignment: Alignment.center,
-              //         child: SvgPicture.asset(
-              //           'assets/images/twitter.svg',
-              //           height: 30, width: 30,
-              //         ),
-              //         decoration: BoxDecoration(
-              //           color: Color(0xff00B0ED),
-              //           borderRadius: BorderRadius.all(Radius.circular(20)),
-              //         ),
-              //       ),
-              //     ),
-              //     SizedBox(width: 10,),
-              //     GestureDetector(
-              //       child:Container(
-              //         padding: EdgeInsets.all(3),
-              //         alignment: Alignment.center,
-              //         child: SvgPicture.asset(
-              //           'assets/images/whatsapp.svg',
-              //           height: 35, width: 35,
-              //         ),
-              //         decoration: BoxDecoration(
-              //           color: Color(0xff35B94A),
-              //           borderRadius: BorderRadius.all(Radius.circular(20)),
-              //         ),
-              //       ),
-              //     ),
-              //
-              //     SizedBox(width: 10,),
-              //     GestureDetector(
-              //       child:Container(
-              //         //height: 80,
-              //         alignment: Alignment.center,
-              //         child: SvgPicture.asset(
-              //           'assets/images/linkedin.svg',
-              //           height: 40, width: 40,
-              //         ),
-              //         decoration: BoxDecoration(
-              //           color: Color(0xff007AB9),
-              //           borderRadius: BorderRadius.all(Radius.circular(20)),
-              //         ),
-              //       ),
-              //     ),
-              //
-              //   ],
-              // ),
 
 
             Obx(() =>
@@ -474,15 +401,11 @@ class PhotoGalFragment extends StatelessWidget{
   }
 
 }
+ removeLastChar <String>(String str){
+return removeLastChars(str, 1);
+}
 
-// WebView(
-//   initialUrl: 'https://epaper.jugantor.com/2022/06/06/index.php',
-//   javascriptMode: JavascriptMode.unrestricted,
-//   onProgress: (int progress) {
-//     print('WebView is loading (progress : $progress%)');
-//   },
-//
-//   onWebViewCreated: (WebViewController webViewController) {
-// _controller.complete(webViewController);},
-//
-// ),
+ removeLastChars <String> ( String str,  int chars) {
+//return str.substring(0, str.length - chars)
+return str.toString().substring(0, str.toString().length - chars);
+}
