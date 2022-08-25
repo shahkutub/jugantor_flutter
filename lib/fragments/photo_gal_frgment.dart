@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import 'FullScreenPhotoModal.dart';
 import 'bottom_view.dart';
 class PhotoGalFragment extends StatelessWidget{
 
@@ -198,13 +199,17 @@ class PhotoGalFragment extends StatelessWidget{
                                                   print("album_photo: "+text.substring(match.start, match.end));
                                                 });
 
+
+
+
                                                 return  GestureDetector(
                                                   onTap: (){
-                                                    // homeController.dataLoaded.value = false;
-                                                    // homeController.newsId.value = homeController.showNewsList[index].id.toString();
-                                                    // homeController.selectedPageIndex.value = 1;
-                                                    // homeController.get_news_details();
 
+                                                    homeController.photosAll.value.addAll(photos);
+                                                    homeController.photoDetailData.value = homeController.photo_cts_with_photo_list[index];
+                                                    homeController.selectedPageIndex.value = 14;
+
+                                                    //Navigator.of(context).push(FullScreenModal());
                                                   },
 
                                                   child:

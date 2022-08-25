@@ -45,6 +45,7 @@ import 'package:jugantor.com/ui.dart';
 import 'package:jugantor.com/utils/utils.dart';
 
 import '../../../fragments/all_poll_fragment.dart';
+import '../../../fragments/photo_gal_details_frgment.dart';
 import '../../../fragments/photo_gal_frgment.dart';
 import '../../../model/BoxListModel.dart';
 import '../../../model/CtwisePhotoRersponse.dart';
@@ -55,6 +56,7 @@ import '../../../model/PhotoCts.dart';
 class HomeController extends GetxController {
   var isLoading= true.obs;
   var selectedPageIndex = 0.obs;
+  var photoCatName = ''.obs;
   var catId = 0.obs;
   var banglaDate = "".obs;
 
@@ -163,6 +165,9 @@ class HomeController extends GetxController {
   var e_paper_date =''.obs;
 
   var mapSelectedDivisionName = ''.obs;
+  var photosAll = <String>[].obs;
+
+  var photoDetailData = PhotoCategoryPhotoList().obs;
 
   @override
   void onInit() {
@@ -1077,7 +1082,7 @@ class HomeController extends GetxController {
       print('cat_wise_photoListResponse: ${response}');
 
       if(response != null){
-        PhotoCategoryPhotoList ph= PhotoCategoryPhotoList(elment.cat_name,elment.id,CtwisePhotoRersponse.fromJson(response).data!);
+        PhotoCategoryPhotoList ph= PhotoCategoryPhotoList(cat_name: elment.cat_name,id: elment.id,photoData: CtwisePhotoRersponse.fromJson(response).data!);
 
         photo_cts_with_photo_list.add(ph);
         print('photo_cts_with_photo_list: '+photo_cts_with_photo_list.length.toString());
@@ -1315,6 +1320,9 @@ class HomeController extends GetxController {
         return new AllPollFragment();
         case 13:
         return new PhotoGalFragment();
+        case 14:
+        return new PhotoGalDetailsFragment();
+
 
 
 

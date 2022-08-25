@@ -8,7 +8,7 @@ class PhotoCategoryPhotoList{
   int? id;
   List<Data>? photoData;
 
-  PhotoCategoryPhotoList(this.cat_name, this.id, this.photoData);
+  PhotoCategoryPhotoList({this.cat_name, this.id, this.photoData});
 
 
 }
