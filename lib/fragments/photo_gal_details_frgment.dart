@@ -82,20 +82,39 @@ class PhotoGalDetailsFragment extends StatelessWidget{
                           shrinkWrap: true,
                           itemCount: homeController.photosAll.value.length,
                           itemBuilder: (context, index) {
-                            return  Material(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(0),
-                              elevation: 0,
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              type: MaterialType.transparency,
-                              child: CachedNetworkImage(
-                                imageUrl: homeController.photosAll.value[index],
-                                fit: BoxFit.fill,
-                                height: 200,
-                                width: width*0.92,
-                                // placeholder: (context, url) => SpinKitFadingCircle(color: Palette.blue),
-                                errorWidget: (context, url, error) => Image.asset("assets/images/jugantordefault.jpg"),
-                              ),
+                            return Column(
+                              children: [
+                                SizedBox(height: 10,),
+                                Material(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(0),
+                                  elevation: 0,
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                  type: MaterialType.transparency,
+                                  child: CachedNetworkImage(
+                                    imageUrl: homeController.photosAll.value[index],
+                                    fit: BoxFit.fill,
+                                    height: 200,
+                                    width: width*0.92,
+                                    // placeholder: (context, url) => SpinKitFadingCircle(color: Palette.blue),
+                                    errorWidget: (context, url, error) => Image.asset("assets/images/jugantordefault.jpg"),
+                                  ),
+                                ),
+
+                                Container(
+                                  width: width,
+                                  padding: EdgeInsets.only(top: 0,bottom: 10,left: 10,right: 10),
+                                  // decoration: BoxDecoration(
+                                  //     border: Border.all(color: Colors.grey)
+                                  // ),
+                                  child: Text(homeController.photoDetailData.value.cat_name.toString(),
+                                    style: TextStyle(color: Colors.black,fontSize: 10,fontWeight:FontWeight.bold ),
+                                    textAlign: TextAlign.justify,
+                                    maxLines: 2,
+                                  ),
+                                )
+
+                              ],
                             );
                           })
                      // )
