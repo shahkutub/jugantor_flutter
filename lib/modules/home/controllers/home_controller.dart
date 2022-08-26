@@ -169,6 +169,8 @@ class HomeController extends GetxController {
 
   var photoDetailData = PhotoCategoryPhotoList().obs;
 
+  var album_name = ''.obs;
+
   @override
   void onInit() {
     var now = new DateTime.now();

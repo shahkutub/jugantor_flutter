@@ -187,6 +187,7 @@ class PhotoGalFragment extends StatelessWidget{
                                                 List<String> photos = <String>[];
                                                 List<String> title = <String>[];
                                                 String photoUrl = "";
+                                                String lbm = homeController.photo_cts_with_photo_list[index].photoData![index2].album_name.toString();
 
                                                  //var str= homeController.photo_cts_with_photo_list[index].photoData![index2].album_photos;
                                                  var text = homeController.photo_cts_with_photo_list[index].photoData![index2].album_photos.toString();
@@ -204,8 +205,9 @@ class PhotoGalFragment extends StatelessWidget{
 
                                                 return  GestureDetector(
                                                   onTap: (){
-
+                                                    homeController.photosAll.clear();
                                                     homeController.photosAll.value.addAll(photos);
+                                                    homeController.album_name.value = lbm;
                                                     homeController.photoDetailData.value = homeController.photo_cts_with_photo_list[index];
                                                     homeController.selectedPageIndex.value = 14;
 

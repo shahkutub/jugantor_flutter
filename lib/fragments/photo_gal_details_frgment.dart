@@ -66,8 +66,14 @@ class PhotoGalDetailsFragment extends StatelessWidget{
                   Visibility(visible: true,child:Text(homeController.photoDetailData.value.cat_name.toString(),style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
                   ),
 
+
                 ],
               ),
+
+              // Obx(() =>
+              //     Visibility(visible: true,child:Text(homeController.album_name.value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
+              // ),
+
               SizedBox(height: 20,),
 
               Obx(() =>
@@ -107,7 +113,7 @@ class PhotoGalDetailsFragment extends StatelessWidget{
                                   // decoration: BoxDecoration(
                                   //     border: Border.all(color: Colors.grey)
                                   // ),
-                                  child: Text(homeController.photoDetailData.value.cat_name.toString(),
+                                  child: Text(homeController.album_name.value,
                                     style: TextStyle(color: Colors.black,fontSize: 10,fontWeight:FontWeight.bold ),
                                     textAlign: TextAlign.justify,
                                     maxLines: 2,
