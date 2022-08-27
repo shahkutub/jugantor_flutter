@@ -46,6 +46,7 @@ import 'package:jugantor.com/utils/utils.dart';
 
 import '../../../fragments/all_poll_fragment.dart';
 import '../../../fragments/photo_gal_details_frgment.dart';
+import '../../../fragments/photo_gal_details_from_home_frgment.dart';
 import '../../../fragments/photo_gal_frgment.dart';
 import '../../../model/BoxListModel.dart';
 import '../../../model/CtwisePhotoRersponse.dart';
@@ -93,7 +94,7 @@ class HomeController extends GetxController {
   List<PhotoCts> photo_cts = <PhotoCts>[].obs;
   List<PhotoCategoryPhotoList> photo_cts_with_photo_list = <PhotoCategoryPhotoList>[].obs;
 
-  //List<Data> cat_wise_photoList = <Data>[].obs;
+  List<Data> cat_wise_photoList = <Data>[].obs;
   List<dynamic> detail_page_aro_button_newsList = <dynamic>[].obs;
 
   List<BoxListModel> boxlist = <BoxListModel>[].obs;
@@ -167,10 +168,13 @@ class HomeController extends GetxController {
 
   var mapSelectedDivisionName = ''.obs;
   var photosAll = <String>[].obs;
+  var photosAllHome = <String>[].obs;
 
   var photoDetailData = PhotoCategoryPhotoList().obs;
 
   var album_name = ''.obs;
+
+  var fromhomectnme = ''.obs;
 
   @override
   void onInit() {
@@ -1063,10 +1067,35 @@ class HomeController extends GetxController {
         get_cat_wise_photo(element);
       });
 
-
       dataLoaded.value = true;
 
       selectedPageIndex.value = 13;
+    } on SocketException {
+
+    }
+  }
+
+  getPhotoCatsHome() async {
+    photo_cts.clear();
+
+    //cat_wise_photoList.clear();
+    var url = ApiClient.photo_cats;
+    print("API photo_cats: "+url);
+    try {
+      final response = await http.get(Uri.parse(url));
+      print('photo_cats: '+response.body);
+
+      List jsonResponse = json.decode(response.body);
+      photo_cts = jsonResponse.map((job) => new PhotoCts.fromJson(job)).toList();
+      print('photo_catslenth: ${photo_cts.length}');
+
+      photo_cts.forEach((element) {
+        if(last_photo_albumList[0].parent_url_dis == element.url_dis_title){
+          fromhomectnme.value = element.cat_name.toString();
+        }
+      });
+      dataLoaded.value = true;
+
     } on SocketException {
 
     }
@@ -1117,16 +1146,7 @@ class HomeController extends GetxController {
       print('cat_wise_photoListResponse: ${response}');
 
       if(response != null){
-        PhotoCategoryPhotoList ph= PhotoCategoryPhotoList(cat_name: dt.album_name,id: dt.id,photoData: CtwisePhotoRersponse.fromJson(response).data!);
-
-        photo_cts_with_photo_list.add(ph);
-        print('photo_cts_with_photo_list: '+photo_cts_with_photo_list.length.toString());
-
-        // //cat_wise_photoListResponse = CtwisePhotoRersponse.fromJson(response);
-        // print('cat_wise_photoListResponse: ${CtwisePhotoRersponse.fromJson(response).data!.length}');
-        // cat_wise_photoList.clear();
-        // cat_wise_photoList.addAll(CtwisePhotoRersponse.fromJson(response).data!);
-        //Navigator.of(Get.context).pop();
+        cat_wise_photoList.addAll(CtwisePhotoRersponse.fromJson(response).data!) ;
       }
 
     } catch (e) {
@@ -1357,9 +1377,8 @@ class HomeController extends GetxController {
         return new PhotoGalFragment();
         case 14:
         return new PhotoGalDetailsFragment();
-
-
-
+        case 15:
+        return new PhotoGalDetailsFromHomeFragment();
 
 
 
