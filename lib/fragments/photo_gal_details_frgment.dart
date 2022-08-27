@@ -91,25 +91,60 @@ class PhotoGalDetailsFragment extends StatelessWidget{
                             return Column(
                               children: [
                                 SizedBox(height: 10,),
-                                Material(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(0),
-                                  elevation: 0,
-                                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  type: MaterialType.transparency,
-                                  child: CachedNetworkImage(
-                                    imageUrl: homeController.photosAll.value[index],
-                                    fit: BoxFit.fill,
-                                    height: 200,
-                                    width: width*0.92,
-                                    // placeholder: (context, url) => SpinKitFadingCircle(color: Palette.blue),
-                                    errorWidget: (context, url, error) => Image.asset("assets/images/jugantordefault.jpg"),
+                                GestureDetector(
+                                  onTap: (){
+                                    // homeController.bigphoto.value = homeController.photosAll.value[index];
+                                     Navigator.of(context).push(FullScreenModal());
+
+                                    // showDialog(
+                                    //   context: context,
+                                    //   builder: (context) {
+                                    //     return Dialog(
+                                    //       backgroundColor: Colors.white,
+                                    //       insetAnimationDuration: const Duration(milliseconds: 100),
+                                    //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                                    //       child: Container( // use container to change width and height
+                                    //         height: 200,
+                                    //         width: width,
+                                    //         child: Column(
+                                    //           children: <Widget>[
+                                    //             Text('hello'),
+                                    //             FlatButton(
+                                    //               onPressed: () {
+                                    //                 Navigator.of(context).pop();
+                                    //               },
+                                    //               child: new Text("OK"),
+                                    //             ),
+                                    //           ],
+                                    //         ),
+                                    //       ),
+                                    //     );
+                                    //   },
+                                    // );
+                                  },
+                                  child:
+                                  Material(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(0),
+                                    elevation: 0,
+                                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                                    type: MaterialType.transparency,
+                                    child: CachedNetworkImage(
+                                      imageUrl: homeController.photosAll.value[index],
+                                      fit: BoxFit.fill,
+                                      height: 200,
+                                      width: width*0.92,
+                                      // placeholder: (context, url) => SpinKitFadingCircle(color: Palette.blue),
+                                      errorWidget: (context, url, error) => Image.asset("assets/images/jugantordefault.jpg"),
+                                    ),
                                   ),
+
                                 ),
+
 
                                 Container(
                                   width: width,
-                                  padding: EdgeInsets.only(top: 0,bottom: 10,left: 10,right: 10),
+                                  padding: EdgeInsets.only(top: 5,bottom: 10,left: 10,right: 10),
                                   // decoration: BoxDecoration(
                                   //     border: Border.all(color: Colors.grey)
                                   // ),

@@ -583,7 +583,7 @@ class HomeFragment extends GetView<HomeController> {
                                                                                                                                 Positioned(
                                                                                                                                     bottom: 20,
                                                                                                                                     left:35,
-                                                                                                                                    child: homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].video_dis  == 1 ?
+                                                                                                                                    child: homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].video_dis  == 0 ?
                                                                                                                                     Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
 
                                                                                                                                 ),
@@ -652,29 +652,36 @@ class HomeFragment extends GetView<HomeController> {
                                         margin: EdgeInsets.only(top: 10,left: 20,right: 20),
                                         child: Column(
                                             children: [
-                                                Stack(alignment: Alignment.centerLeft,
-                                                    children: <Widget>[
-                                                        Container(
-                                                            //height: 80,
-                                                            alignment: Alignment.centerLeft,
-                                                            // child: Flexible(
-                                                            child: Text('ফটো গ্যালারি',
-                                                                style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)
-                                                            )
-                                                            // ),
-                                                        ),
-                                                        Container(
-                                                            alignment: Alignment.centerRight,
-                                                            child: Column(
-                                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                                children: [
-                                                                    Icon(Icons.arrow_forward_sharp,color: Colors.red,),
-                                                                ],
+                                                GestureDetector(
+                                                    child: Stack(alignment: Alignment.centerLeft,
+                                                        children: <Widget>[
+                                                            Container(
+                                                                //height: 80,
+                                                                alignment: Alignment.centerLeft,
+                                                                // child: Flexible(
+                                                                child: Text('ফটো গ্যালারি',
+                                                                    style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)
+                                                                )
+                                                                // ),
                                                             ),
-                                                        )
-                                                    ],
+                                                            Container(
+                                                                alignment: Alignment.centerRight,
+                                                                child: Column(
+                                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                                    children: [
+                                                                        Icon(Icons.arrow_forward_sharp,color: Colors.red,),
+                                                                    ],
+                                                                ),
+                                                            )
+                                                        ],
+                                                    ),
+                                                    onTap: (){
+                                                        homeController.photoDataInfo.value = homeController.last_photo_albumList[0];
+                                                        homeController.getPhotoCats();
+                                                    },
                                                 ),
+
                                                 Divider(
                                                     color: Colors.red
                                                 ),
@@ -703,10 +710,10 @@ class HomeFragment extends GetView<HomeController> {
                                                         builder: (BuildContext context) {
                                                             return InkWell(
                                                                 onTap: () async {
-                                                                    //homeController.selectedPageIndex.value = 13;
-                                                                    homeController.photoDataInfo.value = homeController.last_photo_albumList[0];
+                                                                    homeController.selectedPageIndex.value = 13;
+                                                                    // homeController.photoDataInfo.value = homeController.last_photo_albumList[0];
+                                                                    // homeController.get_cat_wise_photoFromHome(homeController.last_photo_albumList[0]);
                                                                     homeController.getPhotoCats();
-
                                                                 },
                                                                 child: Column(
                                                                     children: [

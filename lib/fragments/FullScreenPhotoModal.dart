@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../modules/home/controllers/home_controller.dart';
 
 class FullScreenModal extends ModalRoute {
   @override
@@ -19,7 +22,7 @@ class FullScreenModal extends ModalRoute {
 
   @override
   bool get maintainState => true;
-
+  final HomeController homeController = Get.put(HomeController());
   @override
   Widget buildPage(
       BuildContext context,
@@ -27,33 +30,19 @@ class FullScreenModal extends ModalRoute {
       Animation<double> secondaryAnimation,
       ) {
     return Scaffold(
-      body: SafeArea(
+      body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // implement the search field
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    child: TextField(
-                      autofocus: true,
-                      decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 0, horizontal: 20),
-                        filled: true,
-                        fillColor: Colors.grey.shade300,
-                        suffixIcon: const Icon(Icons.close),
-                        hintText: 'Search KindaCode.com',
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(30)),
-                      ),
-                    ),
-                  ),
+
                   const SizedBox(
                     width: 10,
                   ),
@@ -64,41 +53,22 @@ class FullScreenModal extends ModalRoute {
                 ],
               ),
 
-              // display other things like search history, suggestions, search results, etc.
-              const SizedBox(
-                height: 20,
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 5),
-                child: Text('Recently Searched',
-                    style:
-                    TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              ),
-              const ListTile(
-                title: Text('Flutter tutorials'),
-                leading: Icon(Icons.search),
-                trailing: Icon(Icons.close),
-              ),
-              const ListTile(
-                title: Text('How to fry a chicken'),
-                leading: Icon(Icons.search),
-                trailing: Icon(Icons.close),
-              ),
-              const ListTile(
-                title: Text('KindaCode.com'),
-                leading: Icon(Icons.search),
-                trailing: Icon(Icons.close),
-              ),
-              const ListTile(
-                title: Text('Goodbye World'),
-                leading: Icon(Icons.search),
-                trailing: Icon(Icons.close),
-              ),
-              const ListTile(
-                title: Text('Cute Puppies'),
-                leading: Icon(Icons.search),
-                trailing: Icon(Icons.close),
+              Center(
+                child: InteractiveViewer(
+                  panEnabled: true, // Set it to false
+                 // boundaryMargin: EdgeInsets.all(100),
+                  minScale: 0.5,
+                  maxScale: 2,
+                  child: FadeInImage.assetNetwork(
+                      height: 250,
+                      width: Get.width,
+                      fit: BoxFit.fill,
+                      image:homeController.bigphoto.value,
+                      placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                  ),
+                ),
               )
+
             ],
           ),
         ),

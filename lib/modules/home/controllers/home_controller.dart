@@ -59,6 +59,7 @@ class HomeController extends GetxController {
   var photoCatName = ''.obs;
   var catId = 0.obs;
   var banglaDate = "".obs;
+  var bigphoto = "".obs;
 
   List<CategoryResponse> categoryList = <CategoryResponse>[].obs;
   List<CatExtraLinkResponse> catExtraLinkList = <CatExtraLinkResponse>[].obs;
@@ -1085,6 +1086,38 @@ class HomeController extends GetxController {
 
       if(response != null){
         PhotoCategoryPhotoList ph= PhotoCategoryPhotoList(cat_name: elment.cat_name,id: elment.id,photoData: CtwisePhotoRersponse.fromJson(response).data!);
+
+        photo_cts_with_photo_list.add(ph);
+        print('photo_cts_with_photo_list: '+photo_cts_with_photo_list.length.toString());
+
+        // //cat_wise_photoListResponse = CtwisePhotoRersponse.fromJson(response);
+        // print('cat_wise_photoListResponse: ${CtwisePhotoRersponse.fromJson(response).data!.length}');
+        // cat_wise_photoList.clear();
+        // cat_wise_photoList.addAll(CtwisePhotoRersponse.fromJson(response).data!);
+        //Navigator.of(Get.context).pop();
+      }
+
+    } catch (e) {
+
+    }
+
+
+  }
+
+  get_cat_wise_photoFromHome(LastPhotoAlbam dt) async {
+
+    var url = ApiClient.photo_album_cat+"/"+dt.parent_url_dis.toString();
+    print("API: "+url);
+
+    //Ui.showLoaderDialog(Get.context);
+    APIManager _manager = APIManager();
+    var response;
+    try {
+      response = await _manager.get(url);
+      print('cat_wise_photoListResponse: ${response}');
+
+      if(response != null){
+        PhotoCategoryPhotoList ph= PhotoCategoryPhotoList(cat_name: dt.album_name,id: dt.id,photoData: CtwisePhotoRersponse.fromJson(response).data!);
 
         photo_cts_with_photo_list.add(ph);
         print('photo_cts_with_photo_list: '+photo_cts_with_photo_list.length.toString());
