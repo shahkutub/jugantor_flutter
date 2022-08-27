@@ -63,7 +63,7 @@ class PhotoGalDetailsFromHomeFragment extends StatelessWidget{
                   Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
 
                   Obx(() =>
-                  Visibility(visible: true,child:Text(homeController.photoDetailData.value.cat_name.toString(),style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
+                  Visibility(visible: true,child:Text(homeController.fromhomectnme.value.toString(),style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
                   ),
 
 
@@ -148,7 +148,7 @@ class PhotoGalDetailsFromHomeFragment extends StatelessWidget{
                                   // decoration: BoxDecoration(
                                   //     border: Border.all(color: Colors.grey)
                                   // ),
-                                  child: Text(homeController.album_name.value,
+                                  child: Text(homeController.last_photo_albumList[0].common_photo_title.toString(),
                                     style: TextStyle(color: Colors.black,fontSize: 10,fontWeight:FontWeight.bold ),
                                     textAlign: TextAlign.justify,
                                     maxLines: 2,

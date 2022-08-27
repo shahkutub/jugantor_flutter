@@ -187,7 +187,7 @@ class PhotoGalDetailsFragment extends StatelessWidget{
                               margin: const EdgeInsets.only(left: 15.0),
                               padding: const EdgeInsets.only(left: 30.0,right: 30.0,top: 5.0,bottom: 5.0),
                               color: Colors.deepPurple,
-                              child: Text(homeController.photoDetailData.value.cat_name.toString(),
+                              child: Text(homeController.photoDetailData.value.cat_name.toString()+' -এর আরো ছবির অ্যালবাম',
                                   style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,color: Colors.white)
                               )
                           ),
