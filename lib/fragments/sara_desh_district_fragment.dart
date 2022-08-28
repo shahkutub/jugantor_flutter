@@ -149,7 +149,7 @@ class SaraDeshDistrictFragment extends StatelessWidget {
 
                                         Align(
                                           alignment: Alignment.center,
-                                          child: homeController.saradesh_division_newsList[index2].video_dis  == 1 ?
+                                          child: homeController.saradesh_division_newsList[index2].video_dis  == 0 ?
                                           Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
                                         ),
 
@@ -258,7 +258,7 @@ class SaraDeshDistrictFragment extends StatelessWidget {
                                                         Positioned(
                                                           bottom: 20,
                                                           left:35,
-                                                          child: homeController.saradesh_division_newsList[index2].video_dis  == 1 ?
+                                                          child: homeController.saradesh_division_newsList[index2].video_dis  == 0 ?
                                                           Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
 
                                                         ),
@@ -404,7 +404,7 @@ class SaraDeshDistrictFragment extends StatelessWidget {
                                                       Positioned(
                                                         bottom: 20,
                                                         left:35,
-                                                        child: homeController.last_entry_newsList[index].video_dis  == 1 ?
+                                                        child: homeController.last_entry_newsList[index].video_dis  == 0 ?
                                                         Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
 
                                                       ),

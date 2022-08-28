@@ -166,7 +166,7 @@ class SubCatFragment extends StatelessWidget {
 
                                         Align(
                                           alignment: Alignment.center,
-                                          child: homeController.category_wise_newsList[index2].video_dis  == 1 ?
+                                          child: homeController.category_wise_newsList[index2].video_dis  == 0 ?
                                           Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
                                         ),
 
@@ -246,7 +246,7 @@ class SubCatFragment extends StatelessWidget {
                                                         Positioned(
                                                           bottom: 20,
                                                           left:35,
-                                                          child: homeController.category_wise_newsList[index2].video_dis  == 1 ?
+                                                          child: homeController.category_wise_newsList[index2].video_dis  == 0 ?
                                                           Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
 
                                                         ),
@@ -428,7 +428,7 @@ class SubCatFragment extends StatelessWidget {
 
                                                                             Align(
                                                                               alignment: Alignment.center,
-                                                                              child: homeController.subcategory_list_with_news_newsList[index].category_wise_newsList![index2].video_dis  == 1 ?
+                                                                              child: homeController.subcategory_list_with_news_newsList[index].category_wise_newsList![index2].video_dis  == 0 ?
                                                                               Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
                                                                             ),
 
@@ -539,7 +539,7 @@ class SubCatFragment extends StatelessWidget {
                                                                                             Positioned(
                                                                                               bottom: 20,
                                                                                               left:35,
-                                                                                              child: homeController.subcategory_list_with_news_newsList[index].category_wise_newsList![index2].video_dis  == 1 ?
+                                                                                              child: homeController.subcategory_list_with_news_newsList[index].category_wise_newsList![index2].video_dis  == 0 ?
                                                                                               Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
 
                                                                                             ),
@@ -672,7 +672,7 @@ class SubCatFragment extends StatelessWidget {
                                                       Positioned(
                                                         bottom: 20,
                                                         left:35,
-                                                        child: homeController.last_entry_newsList[index].video_dis  == 1 ?
+                                                        child: homeController.last_entry_newsList[index].video_dis  == 0 ?
                                                         Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
 
                                                       ),

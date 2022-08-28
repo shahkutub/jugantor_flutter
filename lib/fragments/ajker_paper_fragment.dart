@@ -142,7 +142,7 @@ class AjkerPaperFragment extends StatelessWidget {
                                       Positioned(
                                         bottom: width*.2,
                                         left:width/2.5 ,
-                                        child: homeController.category_wise_newsList[index2].video_dis  == 1 ?
+                                        child: homeController.category_wise_newsList[index2].video_dis  == 0 ?
                                         Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
 
                                       ),
@@ -217,7 +217,7 @@ class AjkerPaperFragment extends StatelessWidget {
                                                         Positioned(
                                                           bottom: 20,
                                                           left:35,
-                                                          child: homeController.category_wise_newsList[index2].video_dis  == 1 ?
+                                                          child: homeController.category_wise_newsList[index2].video_dis  == 0 ?
                                                           Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
 
                                                         ),
@@ -367,7 +367,7 @@ class AjkerPaperFragment extends StatelessWidget {
 
                                                                         Align(
                                                                           alignment: Alignment.center,
-                                                                          child: homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].video_dis  == 1 ?
+                                                                          child: homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].video_dis  == 0 ?
                                                                           Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
                                                                         ),
 
@@ -486,7 +486,7 @@ class AjkerPaperFragment extends StatelessWidget {
                                                                                           Positioned(
                                                                                             bottom: 20,
                                                                                             left:35,
-                                                                                            child: homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].video_dis  == 1 ?
+                                                                                            child: homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].video_dis  == 0 ?
                                                                                             Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
 
                                                                                           ),
@@ -619,7 +619,7 @@ class AjkerPaperFragment extends StatelessWidget {
                                                       Positioned(
                                                         bottom: 20,
                                                         left:35,
-                                                        child: homeController.last_entry_newsList[index].video_dis  == 1 ?
+                                                        child: homeController.last_entry_newsList[index].video_dis  == 0 ?
                                                         Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
 
                                                       ),
