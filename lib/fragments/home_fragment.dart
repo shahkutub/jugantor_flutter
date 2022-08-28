@@ -817,7 +817,7 @@ class HomeFragment extends GetView<HomeController> {
 
                                                                     homeController.selectedPageIndex.value = 11;
                                                                     homeController.vidDataInfo.value = homeController.last_VidListList[index2];
-                                                                    homeController.get_cat_wise_video(1,context);
+                                                                    homeController.get_cat_wise_video(homeController.last_VidListList[index2].video_cat_id!,context);
                                                                 },
                                                                 child: Container(
                                                                     margin: EdgeInsets.only(top: 0,bottom: 5,right: 0,left: 0),
@@ -870,7 +870,7 @@ class HomeFragment extends GetView<HomeController> {
                                                                 onTap: (){
                                                                     homeController.selectedPageIndex.value = 11;
                                                                     homeController.vidDataInfo.value = homeController.last_VidListList[index2];
-                                                                    homeController.get_cat_wise_video(1,context);
+                                                                    homeController.get_cat_wise_video(homeController.last_VidListList[index2].video_cat_id!,context);
                                                                 },
 
                                                                 child: Obx(() =>
