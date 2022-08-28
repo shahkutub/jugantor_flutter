@@ -22,13 +22,20 @@ class VideoFragment extends StatelessWidget{
     double webViewWidth = width*3;
     double webViewheight = width*2.2;
     print('width: '+webViewWidth.toString());
-    // var now = new DateTime.now();
-    // var formatter = new DateFormat('yyyy/MM/dd');
-    // String formattedDate = formatter.format(now);
-    // print(formattedDate);
 
-    // homeController.vidEmbed.value = homeController.vidDataInfo.value.embed_code.toString().replaceAll('300', webViewWidth.round().toString());
-    // homeController.vidEmbed.value = homeController.vidEmbed.value.toString().replaceAll('216', webViewheight.round().toString());
+    List<String> photos = <String>[];
+    List<String> title = <String>[];
+    String photoUrl = "";
+
+    var text = homeController.vidDataInfo.value.embed_code.toString();
+    RegExp exp = new RegExp(r'(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
+    Iterable<RegExpMatch> matches = exp.allMatches(text);
+    photos.clear();
+    matches.forEach((match) {
+      photoUrl = text.substring(match.start, match.end);
+      photos.add(photoUrl);
+      print("album_photo: "+text.substring(match.start, match.end));
+    });
 
 
     return Container(
@@ -42,23 +49,26 @@ class VideoFragment extends StatelessWidget{
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Container(
-                  //   //margin: EdgeInsets.only(top: 20),
-                  //   height: width-125,
-                  //   width: width-40,
-                  //   color: Colors.red,
-                  //   child: WebView(
-                  //     initialUrl: Uri.dataFromString('<html><body>'+homeController.vidDataInfo.value.embed_code.toString()+'</body></html>', mimeType: 'text/html').toString(),
-                  //
-                  //     // initialUrl: Uri.dataFromString('<html><body><iframe width= '+webViewWidth.toString()+'px height='+webViewheight.toString()+' '
-                  //     //     'src=\"https:\/\/www.youtube.com\/embed\/00m4gj2lp6A\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe></body></html>', mimeType: 'text/html').toString(),
-                  //
-                  //     javascriptMode: JavascriptMode.unrestricted,
-                  //     onWebViewCreated: (WebViewController webViewController) {
-                  //       _controller.complete(webViewController);},
-                  //   ),
-                  //
-                  // )
+                  //Obx(() =>
+                      Container(
+                        //margin: EdgeInsets.only(top: 20),
+                        height: width-125,
+                        width: width-40,
+                        color: Colors.red,
+                        child: WebView(
+                          //initialUrl: Uri.dataFromString('<html><body>'+homeController.vidDataInfo.value.embed_code.toString()+'</body></html>', mimeType: 'text/html').toString(),
+
+                          initialUrl: Uri.dataFromString('<html><body><iframe width= '+webViewWidth.toString()+'px height='+webViewheight.toString()+' '
+                              'src='+photoUrl.toString()+' title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe></body></html>', mimeType: 'text/html').toString(),
+
+                          javascriptMode: JavascriptMode.unrestricted,
+                          onWebViewCreated: (WebViewController webViewController) {
+                            _controller.complete(webViewController);},
+                        ),
+
+                      )
+                  //)
+
                 ],
               ),
               SizedBox(height: 20,),
