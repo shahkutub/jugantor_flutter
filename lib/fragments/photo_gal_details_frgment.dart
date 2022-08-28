@@ -225,7 +225,10 @@ class PhotoGalDetailsFragment extends StatelessWidget{
 
                                   return  GestureDetector(
                                     onTap: (){
-                                      // Navigator.of(context).push(FullScreenModal());
+                                      homeController.photosAll.clear();
+                                      homeController.photosAll.value.addAll(photos);
+                                      homeController.album_name.value = homeController.photoDetailData.value.photoData![index2].album_name.toString();
+                                      homeController.selectedPageIndex.value = 14;
                                     },
 
                                     child:
