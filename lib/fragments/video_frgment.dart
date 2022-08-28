@@ -36,6 +36,7 @@ class VideoFragment extends StatelessWidget{
       child:SingleChildScrollView(
         child: Container(
           child: Column(
+
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -155,12 +156,12 @@ class VideoFragment extends StatelessWidget{
                 //thickness: 2,
               ),
               Container(
-                alignment: Alignment.centerLeft,
                   margin: const EdgeInsets.only(left: 15.0),
                   padding: const EdgeInsets.only(left: 30.0,right: 30.0,top: 5.0,bottom: 5.0),
                   color: Colors.deepPurple,
-                child: Text(homeController.vidDataInfo.value.video_cat_name.toString()+'-এর আরো ভিডিও',),
-
+                  child: Text(homeController.vidDataInfo.value.video_cat_name.toString()+' -এর আরো ছবির অ্যালবাম',
+                      style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,color: Colors.white)
+                  )
               ),
 
               Obx(() =>
