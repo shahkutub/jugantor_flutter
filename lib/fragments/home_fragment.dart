@@ -762,29 +762,36 @@ class HomeFragment extends GetView<HomeController> {
                                         margin: EdgeInsets.only(top: 10,left: 20,right: 20),
                                         child: Column(
                                             children: [
-                                                Stack(alignment: Alignment.centerLeft,
-                                                    children: <Widget>[
-                                                        Container(
-                                                            //height: 80,
-                                                            alignment: Alignment.centerLeft,
-                                                            //child: Flexible(
-                                                            child: Text('ভিডিও গ্যালারি',
-                                                                style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)
-                                                            )
-                                                            //),
-                                                        ),
-                                                        Container(
-                                                            alignment: Alignment.centerRight,
-                                                            child: Column(
-                                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                                children: [
-                                                                    Icon(Icons.arrow_forward_sharp,color: Colors.red,),
-                                                                ],
+                                                GestureDetector(
+                                                    child: Stack(alignment: Alignment.centerLeft,
+                                                        children: <Widget>[
+                                                            Container(
+                                                                //height: 80,
+                                                                alignment: Alignment.centerLeft,
+                                                                //child: Flexible(
+                                                                child: Text('ভিডিও গ্যালারি',
+                                                                    style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)
+                                                                )
+                                                                //),
                                                             ),
-                                                        )
-                                                    ],
+                                                            Container(
+                                                                alignment: Alignment.centerRight,
+                                                                child: Column(
+                                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                                    children: [
+                                                                        Icon(Icons.arrow_forward_sharp,color: Colors.red,),
+                                                                    ],
+                                                                ),
+                                                            )
+                                                        ],
+                                                    ),
+                                                    onTap: (){
+                                                        homeController.selectedPageIndex.value = 11;
+                                                        homeController.getVidCats();
+                                                    },
                                                 ),
+
                                                 Divider(
                                                     color: Colors.red
                                                 ),

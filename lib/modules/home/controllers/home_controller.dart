@@ -1154,14 +1154,19 @@ class HomeController extends GetxController {
       // print('datanews: ${datanews}');
       print('datanews: ${datanews}');
 
-
+      cat_wise_vidList.clear();
       Map<String, dynamic> newsdata = jsonDecode(datanews);
       newsdata.forEach((k, v) =>
       //print("Key : $k, Value : $v")
       cat_wise_vidList.add(v)
       );
+      VidCategoryVidList data = VidCategoryVidList();
+      data.cat_name = elment.cat_name;
+      data.id = elment.id;
+      data.photoData = cat_wise_vidList;
+      vid_cts_with_vid_list.add(data);
       dataLoaded.value = true;
-      print('newslenth: ${all_cat_wise_newsList.length}');
+      print('newslenth: ${vid_cts_with_vid_list.length}');
 
     } on SocketException {
 
