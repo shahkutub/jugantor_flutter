@@ -52,6 +52,7 @@ import '../../../model/BoxListModel.dart';
 import '../../../model/CtwisePhotoRersponse.dart';
 import '../../../model/PhotoCategoryPhotoList.dart';
 import '../../../model/PhotoCts.dart';
+import '../../../model/VidCategoryVidList.dart';
 
 
 class HomeController extends GetxController {
@@ -92,6 +93,9 @@ class HomeController extends GetxController {
   List<dynamic> all_cat_wise_newsList = <dynamic>[].obs;
   List<dynamic> cat_wise_vidList = <dynamic>[].obs;
   List<PhotoCts> photo_cts = <PhotoCts>[].obs;
+  List<PhotoCts> vid_cts = <PhotoCts>[].obs;
+  List<VidCategoryVidList> vid_cts_with_vid_list = <VidCategoryVidList>[].obs;
+
   List<PhotoCategoryPhotoList> photo_cts_with_photo_list = <PhotoCategoryPhotoList>[].obs;
 
   List<Data> cat_wise_photoList = <Data>[].obs;
@@ -1133,6 +1137,38 @@ class HomeController extends GetxController {
 
   }
 
+  get_cat_wise_vid(PhotoCts elment) async {
+
+    var url = ApiClient.cat_wise_videos+"/"+elment.url_dis_title.toString();
+    print("API: "+url);
+    try {
+      final response = await http.get(Uri.parse(url));
+      print(response.body);
+
+      //var jsonData = json.decode(response.body);
+      //var jsonData = json.decode(response.body) as Map<String, dynamic>;
+
+
+      Map<String, dynamic> user = jsonDecode(response.body);
+      var datanews = jsonEncode(user['data']);
+      // print('datanews: ${datanews}');
+      print('datanews: ${datanews}');
+
+
+      Map<String, dynamic> newsdata = jsonDecode(datanews);
+      newsdata.forEach((k, v) =>
+      //print("Key : $k, Value : $v")
+      cat_wise_vidList.add(v)
+      );
+      dataLoaded.value = true;
+      print('newslenth: ${all_cat_wise_newsList.length}');
+
+    } on SocketException {
+
+    }
+
+  }
+
   get_cat_wise_photoFromHome(LastPhotoAlbam dt) async {
 
     var url = ApiClient.photo_album_cat+"/"+dt.parent_url_dis.toString();
@@ -1185,6 +1221,32 @@ class HomeController extends GetxController {
 
     }
   }
+
+  getVidCats() async {
+    vid_cts.clear();
+    vid_cts_with_vid_list.clear();
+    //cat_wise_photoList.clear();
+    var url = ApiClient.vid_cats;
+    print("API photo_cats: "+url);
+    try {
+      final response = await http.get(Uri.parse(url));
+      print('photo_cats: '+response.body);
+
+      List jsonResponse = json.decode(response.body);
+      vid_cts = jsonResponse.map((job) => new PhotoCts.fromJson(job)).toList();
+      print('vid_ctslenth: ${vid_cts.length}');
+      vid_cts.forEach((element) {
+        get_cat_wise_vid(element);
+      });
+
+      dataLoaded.value = true;
+
+      //selectedPageIndex.value = 13;
+    } on SocketException {
+
+    }
+  }
+
 
   get_all_cat_wise_news(int page,BuildContext context) async {
     var url = ApiClient.all_cat_wise_news+"/"+catId.value.toString()+'?page='+page.toString();
