@@ -23,18 +23,14 @@ class VideoFragment extends StatelessWidget{
     double webViewheight = width*2.2;
     print('width: '+webViewWidth.toString());
 
-    List<String> photos = <String>[];
-    List<String> title = <String>[];
+
     String photoUrl = "";
 
     var text = homeController.vidDataInfo.value.embed_code.toString();
     RegExp exp = new RegExp(r'(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
     Iterable<RegExpMatch> matches = exp.allMatches(text);
-    photos.clear();
     matches.forEach((match) {
       photoUrl = text.substring(match.start, match.end);
-      photos.add(photoUrl);
-      print("album_photo: "+text.substring(match.start, match.end));
     });
 
 
@@ -159,94 +155,211 @@ class VideoFragment extends StatelessWidget{
               ),
               SizedBox(height: 20,),
 
-              Container(
-                width: width,
-                height: 2,
-                color: Colors.deepPurple,
-                //thickness: 2,
-              ),
-              Container(
-                  margin: const EdgeInsets.only(left: 15.0),
-                  padding: const EdgeInsets.only(left: 30.0,right: 30.0,top: 5.0,bottom: 5.0),
-                  color: Colors.deepPurple,
-                  child: Text(homeController.vidDataInfo.value.video_cat_name.toString()+' -এর আরো ছবির অ্যালবাম',
-                      style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,color: Colors.white)
-                  )
-              ),
-
               Obx(() =>
                   Container(
-                      margin: EdgeInsets.only(top: 5,bottom: 5,right: 0,left: 0),
+                      margin: EdgeInsets.only(top: 15,bottom: 0,right: 0,left: 0),
                       alignment: Alignment.center,
-                      child:homeController.cat_wise_vidList.length >0 ?
-                      GridView.builder(
-                        physics: NeverScrollableScrollPhysics(),
+                      child:homeController.vid_cts_with_vid_list.length > 0 ?
+                      ListView.builder(
+                        primary: false,
                         shrinkWrap: true,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 15.0,
-                          mainAxisSpacing: 10.0,
-                          //childAspectRatio: width / (height / 1.9)
-                          //childAspectRatio: 1
-                        ),
-                        itemCount: homeController.cat_wise_vidList.length,
+                        itemCount: homeController.vid_cts_with_vid_list.length,
                         itemBuilder: (context, index) {
-                          return  GestureDetector(
-                            onTap: (){
-                              // homeController.dataLoaded.value = false;
-                              // homeController.newsId.value = homeController.showNewsList[index].id.toString();
-                              // homeController.selectedPageIndex.value = 1;
-                              // homeController.get_news_details();
+                          return Container(
+                            child:
+                            Obx(() =>
+                                Container(
 
-                            },
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
 
-                            child: Obx(() => Container(
+                                        Container(
+                                          width: width,
+                                          height: 2,
+                                          color: Colors.deepPurple,
+                                          //thickness: 2,
+                                        ),
+                                        Container(
+                                            margin: const EdgeInsets.only(left: 15.0),
+                                            padding: const EdgeInsets.only(left: 30.0,right: 30.0,top: 5.0,bottom: 5.0),
+                                            color: Colors.deepPurple,
+                                            child: Text(homeController.vid_cts_with_vid_list[index].cat_name!,
+                                                style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,color: Colors.white)
+                                            )
+                                        ),
 
-                              //height: ,
-                              //alignment: Alignment.center,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      child: Stack(
-                                        // fit: StackFit.expand,
-                                        children: [
-                                          FadeInImage.assetNetwork(
-                                              height: height * 0.12,
-                                              width: width*0.92,
-                                              fit: BoxFit.fill,
-                                              image:homeController.cat_wise_vidList[index]["cover_photo"],
-                                              placeholder:"assets/images/jugantordefault.jpg" // your assets image path
-                                          ),
+                                        Container(
+                                            margin: EdgeInsets.only(top: 5,bottom: 5,right: 0,left: 0),
+                                            alignment: Alignment.center,
+                                            child:homeController.vid_cts_with_vid_list[index].photoData!.length >0 ?
+                                            GridView.builder(
+                                              physics: NeverScrollableScrollPhysics(),
+                                              shrinkWrap: true,
+                                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 2,
+                                                crossAxisSpacing: 15.0,
+                                                mainAxisSpacing: 10.0,
+                                                //childAspectRatio: width / (height / 1.9)
+                                                //childAspectRatio: 1
+                                              ),
+                                              itemCount: homeController.vid_cts_with_vid_list[index].photoData!.length,
+                                              itemBuilder: (context, index2) {
 
-                                          // Positioned(
-                                          //   bottom: 10,
-                                          //   left:10,
-                                          //   child: homeController.showNewsList[index].video_dis  == 0 ?
-                                          //   Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
-                                          //
-                                          // ),
+                                                return  GestureDetector(
+                                                  onTap: (){
 
-                                        ],
-                                      ),
+                                                  },
 
-                                    ),
+                                                  child:
+                                                  Obx(() =>
+                                                      Container(
 
-                                    Text(homeController.cat_wise_vidList[index]["video_title"]!,
-                                      style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
-                                      textAlign: TextAlign.justify,
-                                      maxLines: 2,
-                                    ),
-                                  ],
+                                                        //height: ,
+                                                        //alignment: Alignment.center,
+                                                          child: Column(
+                                                            mainAxisAlignment: MainAxisAlignment.center,
+                                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                                            children: [
+                                                              Container(
+                                                                child: Stack(
+                                                                  // fit: StackFit.expand,
+                                                                  children: [
+                                                                    FadeInImage.assetNetwork(
+                                                                        height: height * 0.12,
+                                                                        width: width*0.92,
+                                                                        fit: BoxFit.fill,
+                                                                        image:homeController.vid_cts_with_vid_list[index].photoData![index2]["cover_photo"].toString(),
+                                                                        placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                                    ),
+
+                                                                  ],
+                                                                ),
+
+                                                              ),
+
+                                                              Container(
+                                                                width: width*0.92,
+                                                                padding: EdgeInsets.all(10),
+                                                                decoration: BoxDecoration(
+                                                                    border: Border.all(color: Colors.grey)
+                                                                ),
+                                                                child: Text(homeController.vid_cts_with_vid_list[index].photoData![index2]["video_title"].toString(),
+                                                                  style: TextStyle(color: Colors.black,fontSize: 10,fontWeight:FontWeight.bold ),
+                                                                  textAlign: TextAlign.justify,
+                                                                  maxLines: 2,
+                                                                ),
+                                                              )
+
+                                                            ],
+                                                          )
+                                                      )
+                                                  ),
+                                                );
+                                              },
+                                            ):SizedBox()
+                                        ),
+                                      ],
+                                    )
                                 )
-                            )
                             ),
+
                           );
                         },
                       ):SizedBox()
+
                   ),
               ),
+
+              // Container(
+              //   width: width,
+              //   height: 2,
+              //   color: Colors.deepPurple,
+              //   //thickness: 2,
+              // ),
+              // Container(
+              //     margin: const EdgeInsets.only(left: 15.0),
+              //     padding: const EdgeInsets.only(left: 30.0,right: 30.0,top: 5.0,bottom: 5.0),
+              //     color: Colors.deepPurple,
+              //     child: Text(homeController.vidDataInfo.value.video_cat_name.toString()+' -এর আরো ছবির অ্যালবাম',
+              //         style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,color: Colors.white)
+              //     )
+              // ),
+              //
+              // Obx(() =>
+              //     Container(
+              //         margin: EdgeInsets.only(top: 5,bottom: 5,right: 0,left: 0),
+              //         alignment: Alignment.center,
+              //         child:homeController.cat_wise_vidList.length >0 ?
+              //         GridView.builder(
+              //           physics: NeverScrollableScrollPhysics(),
+              //           shrinkWrap: true,
+              //           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              //             crossAxisCount: 2,
+              //             crossAxisSpacing: 15.0,
+              //             mainAxisSpacing: 10.0,
+              //             //childAspectRatio: width / (height / 1.9)
+              //             //childAspectRatio: 1
+              //           ),
+              //           itemCount: homeController.cat_wise_vidList.length,
+              //           itemBuilder: (context, index) {
+              //             return  GestureDetector(
+              //               onTap: (){
+              //                 // homeController.dataLoaded.value = false;
+              //                 // homeController.newsId.value = homeController.showNewsList[index].id.toString();
+              //                 // homeController.selectedPageIndex.value = 1;
+              //                 // homeController.get_news_details();
+              //
+              //               },
+              //
+              //               child: Obx(() => Container(
+              //
+              //                 //height: ,
+              //                 //alignment: Alignment.center,
+              //                   child: Column(
+              //                     mainAxisAlignment: MainAxisAlignment.center,
+              //                     crossAxisAlignment: CrossAxisAlignment.center,
+              //                     children: [
+              //                       Container(
+              //                         child: Stack(
+              //                           // fit: StackFit.expand,
+              //                           children: [
+              //                             FadeInImage.assetNetwork(
+              //                                 height: height * 0.12,
+              //                                 width: width*0.92,
+              //                                 fit: BoxFit.fill,
+              //                                 image:homeController.cat_wise_vidList[index]["cover_photo"],
+              //                                 placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+              //                             ),
+              //
+              //                             // Positioned(
+              //                             //   bottom: 10,
+              //                             //   left:10,
+              //                             //   child: homeController.showNewsList[index].video_dis  == 0 ?
+              //                             //   Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+              //                             //
+              //                             // ),
+              //
+              //                           ],
+              //                         ),
+              //
+              //                       ),
+              //
+              //                       Text(homeController.cat_wise_vidList[index]["video_title"]!,
+              //                         style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+              //                         textAlign: TextAlign.justify,
+              //                         maxLines: 2,
+              //                       ),
+              //                     ],
+              //                   )
+              //               )
+              //               ),
+              //             );
+              //           },
+              //         ):SizedBox()
+              //     ),
+              // ),
 
             Obx(() =>
                 Container(

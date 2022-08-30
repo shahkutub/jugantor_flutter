@@ -1139,7 +1139,7 @@ class HomeController extends GetxController {
 
   get_cat_wise_vid(PhotoCts elment) async {
 
-    var url = ApiClient.cat_wise_videos+"/"+elment.url_dis_title.toString();
+    var url = ApiClient.cat_wise_videos+"/"+elment.id.toString();
     print("API: "+url);
     try {
       final response = await http.get(Uri.parse(url));
@@ -1156,17 +1156,21 @@ class HomeController extends GetxController {
 
       cat_wise_vidList.clear();
       Map<String, dynamic> newsdata = jsonDecode(datanews);
-      newsdata.forEach((k, v) =>
-      //print("Key : $k, Value : $v")
-      cat_wise_vidList.add(v)
-      );
-      VidCategoryVidList data = VidCategoryVidList();
-      data.cat_name = elment.cat_name;
-      data.id = elment.id;
-      data.photoData = cat_wise_vidList;
+
+      List<dynamic> val = <dynamic>[];
+
+      newsdata.forEach((key, value) {
+        val.add(value);
+      });
+      VidCategoryVidList data = VidCategoryVidList(cat_name: elment.cat_name,id: elment.id,photoData: val );
       vid_cts_with_vid_list.add(data);
+      // data.cat_name = elment.cat_name;
+      // data.id = elment.id;
+      // data.photoData = cat_wise_vidList;
+
+      //
       dataLoaded.value = true;
-      print('newslenth: ${vid_cts_with_vid_list.length}');
+      print('vid_cts_with_vid_list: ${vid_cts_with_vid_list.length}');
 
     } on SocketException {
 
