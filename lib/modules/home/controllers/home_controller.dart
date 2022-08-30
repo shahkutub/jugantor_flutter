@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:intl/intl.dart';
+import 'package:jugantor.com/fragments/video_frgment_details.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:adhan_dart/adhan_dart.dart';
@@ -1202,7 +1203,8 @@ class HomeController extends GetxController {
   }
 
   get_cat_wise_video(int page,BuildContext context) async {
-    var url = ApiClient.cat_wise_videos+"/"+vidDataInfo.value.video_cat_id.toString()+'?page='+page.toString();
+    //var url = ApiClient.cat_wise_videos+"/"+vidDataInfo.value.video_cat_id.toString()+'?page='+page.toString();
+    var url = ApiClient.cat_wise_videos+"/"+page.toString();
     print("API: "+url);
     try {
       final response = await http.get(Uri.parse(url));
@@ -1450,7 +1452,8 @@ class HomeController extends GetxController {
         return new PhotoGalDetailsFragment();
         case 15:
         return new PhotoGalDetailsFromHomeFragment();
-
+      case 16:
+        return new VideoFragmentDetailse();
 
 
 

@@ -822,7 +822,7 @@ class HomeFragment extends GetView<HomeController> {
                                                             GestureDetector(
                                                                 onTap: (){
 
-                                                                    homeController.selectedPageIndex.value = 11;
+                                                                    homeController.selectedPageIndex.value = 16;
                                                                     homeController.vidDataInfo.value = homeController.last_VidListList[index2];
                                                                     homeController.get_cat_wise_video(homeController.last_VidListList[index2].video_cat_id!,context);
                                                                 },
@@ -875,7 +875,7 @@ class HomeFragment extends GetView<HomeController> {
                                                             margin: EdgeInsets.only(top: 10),
                                                             child:   GestureDetector(
                                                                 onTap: (){
-                                                                    homeController.selectedPageIndex.value = 11;
+                                                                    homeController.selectedPageIndex.value = 16;
                                                                     homeController.vidDataInfo.value = homeController.last_VidListList[index2];
                                                                     homeController.get_cat_wise_video(homeController.last_VidListList[index2].video_cat_id!,context);
                                                                 },
