@@ -347,7 +347,12 @@ class VideoFragment extends StatelessWidget{
                                                                         image:homeController.vid_cts_with_vid_list[index].photoData![index2]["cover_photo"].toString(),
                                                                         placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                                                                     ),
+                                                                    Positioned(
+                                                                      bottom: 30,
+                                                                      left:50,
+                                                                      child: Image.asset("assets/images/video_icon.png", height: 50, width: 50,),
 
+                                                                    ),
                                                                   ],
                                                                 ),
 
