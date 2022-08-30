@@ -69,90 +69,90 @@ class VideoFragment extends StatelessWidget{
               ),
               SizedBox(height: 20,),
               // share icons
-              Row(
-                children: <Widget>[
-
-                  GestureDetector(
-                    child:Container(
-                      //height: 80,
-                      alignment: Alignment.center,
-                      child: SvgPicture.asset(
-                        'assets/images/facebook.svg',
-                        height: 35, width: 35,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Color(0xff4469B3),
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 10,),
-                  GestureDetector(
-                    child:Container(
-                      //height: 80,
-                      padding: EdgeInsets.all(5),
-                      alignment: Alignment.center,
-                      child: SvgPicture.asset(
-                        'assets/images/messenger.svg',
-                        height: 30, width: 30,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Color(0xff00B0ED),
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(width: 10,),
-                  GestureDetector(
-                    child:Container(
-                      //height: 80,
-                      padding: EdgeInsets.all(5),
-                      alignment: Alignment.center,
-                      child: SvgPicture.asset(
-                        'assets/images/twitter.svg',
-                        height: 30, width: 30,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Color(0xff00B0ED),
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 10,),
-                  GestureDetector(
-                    child:Container(
-                      padding: EdgeInsets.all(3),
-                      alignment: Alignment.center,
-                      child: SvgPicture.asset(
-                        'assets/images/whatsapp.svg',
-                        height: 35, width: 35,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Color(0xff35B94A),
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(width: 10,),
-                  GestureDetector(
-                    child:Container(
-                      //height: 80,
-                      alignment: Alignment.center,
-                      child: SvgPicture.asset(
-                        'assets/images/linkedin.svg',
-                        height: 40, width: 40,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Color(0xff007AB9),
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                      ),
-                    ),
-                  ),
-
-                ],
-              ),
+              // Row(
+              //   children: <Widget>[
+              //
+              //     GestureDetector(
+              //       child:Container(
+              //         //height: 80,
+              //         alignment: Alignment.center,
+              //         child: SvgPicture.asset(
+              //           'assets/images/facebook.svg',
+              //           height: 35, width: 35,
+              //         ),
+              //         decoration: BoxDecoration(
+              //           color: Color(0xff4469B3),
+              //           borderRadius: BorderRadius.all(Radius.circular(20)),
+              //         ),
+              //       ),
+              //     ),
+              //     SizedBox(width: 10,),
+              //     GestureDetector(
+              //       child:Container(
+              //         //height: 80,
+              //         padding: EdgeInsets.all(5),
+              //         alignment: Alignment.center,
+              //         child: SvgPicture.asset(
+              //           'assets/images/messenger.svg',
+              //           height: 30, width: 30,
+              //         ),
+              //         decoration: BoxDecoration(
+              //           color: Color(0xff00B0ED),
+              //           borderRadius: BorderRadius.all(Radius.circular(20)),
+              //         ),
+              //       ),
+              //     ),
+              //
+              //     SizedBox(width: 10,),
+              //     GestureDetector(
+              //       child:Container(
+              //         //height: 80,
+              //         padding: EdgeInsets.all(5),
+              //         alignment: Alignment.center,
+              //         child: SvgPicture.asset(
+              //           'assets/images/twitter.svg',
+              //           height: 30, width: 30,
+              //         ),
+              //         decoration: BoxDecoration(
+              //           color: Color(0xff00B0ED),
+              //           borderRadius: BorderRadius.all(Radius.circular(20)),
+              //         ),
+              //       ),
+              //     ),
+              //     SizedBox(width: 10,),
+              //     GestureDetector(
+              //       child:Container(
+              //         padding: EdgeInsets.all(3),
+              //         alignment: Alignment.center,
+              //         child: SvgPicture.asset(
+              //           'assets/images/whatsapp.svg',
+              //           height: 35, width: 35,
+              //         ),
+              //         decoration: BoxDecoration(
+              //           color: Color(0xff35B94A),
+              //           borderRadius: BorderRadius.all(Radius.circular(20)),
+              //         ),
+              //       ),
+              //     ),
+              //
+              //     SizedBox(width: 10,),
+              //     GestureDetector(
+              //       child:Container(
+              //         //height: 80,
+              //         alignment: Alignment.center,
+              //         child: SvgPicture.asset(
+              //           'assets/images/linkedin.svg',
+              //           height: 40, width: 40,
+              //         ),
+              //         decoration: BoxDecoration(
+              //           color: Color(0xff007AB9),
+              //           borderRadius: BorderRadius.all(Radius.circular(20)),
+              //         ),
+              //       ),
+              //     ),
+              //
+              //   ],
+              // ),
               SizedBox(height: 20,),
 
 
@@ -216,13 +216,27 @@ class VideoFragment extends StatelessWidget{
                                       child: Stack(
                                         // fit: StackFit.expand,
                                         children: [
-                                          FadeInImage.assetNetwork(
+                                        Align(
+                                        alignment: Alignment.center,
+                                          child: FadeInImage.assetNetwork(
                                               height: height * 0.12,
                                               width: width*0.92,
                                               fit: BoxFit.fill,
                                               image:homeController.latest_VidListList![index2].cover_photo.toString(),
                                               placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                          ),),
+
+
+                                          Positioned(
+                                            bottom: 30,
+                                            left:50,
+                                            child: Image.asset("assets/images/video_icon.png", height: 50, width: 50,),
+
                                           ),
+                                          // Align(
+                                          //   alignment: Alignment.center,
+                                          //   child: Image.asset("assets/images/video_icon.png", height: 40, width: 40,),
+                                          // ),
 
                                         ],
                                       ),
