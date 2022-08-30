@@ -46,23 +46,23 @@ class VideoFragment extends StatelessWidget{
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //Obx(() =>
-                      Container(
-                        //margin: EdgeInsets.only(top: 20),
-                        height: width-125,
-                        width: width-40,
-                        color: Colors.red,
-                        child: WebView(
-                          //initialUrl: Uri.dataFromString('<html><body>'+homeController.vidDataInfo.value.embed_code.toString()+'</body></html>', mimeType: 'text/html').toString(),
-
-                          initialUrl: Uri.dataFromString('<html><body><iframe width= '+webViewWidth.toString()+'px height='+webViewheight.toString()+' '
-                              'src='+photoUrl.toString()+' title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe></body></html>', mimeType: 'text/html').toString(),
-
-                          javascriptMode: JavascriptMode.unrestricted,
-                          onWebViewCreated: (WebViewController webViewController) {
-                            _controller.complete(webViewController);},
-                        ),
-
-                      )
+                  //     Container(
+                  //       //margin: EdgeInsets.only(top: 20),
+                  //       height: width-125,
+                  //       width: width-40,
+                  //       color: Colors.red,
+                  //       child: WebView(
+                  //         //initialUrl: Uri.dataFromString('<html><body>'+homeController.vidDataInfo.value.embed_code.toString()+'</body></html>', mimeType: 'text/html').toString(),
+                  //
+                  //         initialUrl: Uri.dataFromString('<html><body><iframe width= '+webViewWidth.toString()+'px height='+webViewheight.toString()+' '
+                  //             'src='+photoUrl.toString()+' title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe></body></html>', mimeType: 'text/html').toString(),
+                  //
+                  //         javascriptMode: JavascriptMode.unrestricted,
+                  //         onWebViewCreated: (WebViewController webViewController) {
+                  //           _controller.complete(webViewController);},
+                  //       ),
+                  //
+                  //     )
                   //)
 
                 ],
