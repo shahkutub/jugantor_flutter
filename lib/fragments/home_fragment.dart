@@ -788,6 +788,7 @@ class HomeFragment extends GetView<HomeController> {
                                                     ),
                                                     onTap: (){
                                                         homeController.selectedPageIndex.value = 11;
+                                                        homeController.get_latest_videos();
                                                         homeController.getVidCats();
                                                     },
                                                 ),
@@ -877,7 +878,9 @@ class HomeFragment extends GetView<HomeController> {
                                                                 onTap: (){
                                                                     homeController.selectedPageIndex.value = 16;
                                                                     homeController.vidDataInfo.value = homeController.last_VidListList[index2];
+
                                                                     homeController.get_cat_wise_video(homeController.last_VidListList[index2].video_cat_id!,context);
+
                                                                 },
 
                                                                 child: Obx(() =>

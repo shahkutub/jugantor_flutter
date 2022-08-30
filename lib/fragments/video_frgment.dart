@@ -155,6 +155,106 @@ class VideoFragment extends StatelessWidget{
               ),
               SizedBox(height: 20,),
 
+
+              Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: width,
+                      height: 2,
+                      color: Colors.deepPurple,
+                      //thickness: 2,
+                    ),
+                    Container(
+                        margin: const EdgeInsets.only(left: 15.0),
+                        padding: const EdgeInsets.only(left: 30.0,right: 30.0,top: 5.0,bottom: 5.0),
+                        color: Colors.deepPurple,
+                        child: Text('সর্বশেষ ভিডিও',
+                            style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,color: Colors.white)
+                        )
+                    ),
+                  ],
+                ),
+              ),
+
+            Obx(() =>
+              Container(
+                  margin: EdgeInsets.only(top: 5,bottom: 5,right: 0,left: 0),
+                  alignment: Alignment.center,
+                  child:homeController.latest_VidListList.length >0 ?
+                  GridView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 15.0,
+                      mainAxisSpacing: 10.0,
+                      //childAspectRatio: width / (height / 1.9)
+                      //childAspectRatio: 1
+                    ),
+                    itemCount: homeController.latest_VidListList.length,
+                    itemBuilder: (context, index2) {
+
+                      return  GestureDetector(
+                        onTap: (){
+
+                        },
+
+                        child:
+                        Obx(() =>
+                            Container(
+
+                              //height: ,
+                              //alignment: Alignment.center,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      child: Stack(
+                                        // fit: StackFit.expand,
+                                        children: [
+                                          FadeInImage.assetNetwork(
+                                              height: height * 0.12,
+                                              width: width*0.92,
+                                              fit: BoxFit.fill,
+                                              image:homeController.latest_VidListList![index2].cover_photo.toString(),
+                                              placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                          ),
+
+                                        ],
+                                      ),
+
+                                    ),
+
+                                    Container(
+                                      width: width*0.92,
+                                      padding: EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                          border: Border.all(color: Colors.grey)
+                                      ),
+                                      child: Text(homeController.latest_VidListList![index2].video_title.toString(),
+                                        style: TextStyle(color: Colors.black,fontSize: 10,fontWeight:FontWeight.bold ),
+                                        textAlign: TextAlign.justify,
+                                        maxLines: 2,
+                                      ),
+                                    )
+
+                                  ],
+                                )
+                            )
+                        ),
+                      );
+                    },
+                  ):SizedBox()
+              ),
+            ),
+
+
+              SizedBox(height: 20,),
+
               Obx(() =>
                   Container(
                       margin: EdgeInsets.only(top: 15,bottom: 0,right: 0,left: 0),

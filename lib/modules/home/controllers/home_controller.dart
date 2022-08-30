@@ -127,6 +127,7 @@ class HomeController extends GetxController {
   var button = 1.obs;
 
   List<LsatThreeVideo> last_VidListList = <LsatThreeVideo>[].obs;
+  List<LsatThreeVideo> latest_VidListList = <LsatThreeVideo>[].obs;
   List<LastPhotoAlbam> last_photo_albumList = <LastPhotoAlbam>[].obs;
 
   var myIndex = 0.obs;
@@ -940,6 +941,22 @@ class HomeController extends GetxController {
           .map((data) => LsatThreeVideo.fromJson(data))
           .toList();
       last_VidListList.addAll(list);
+
+    } on SocketException {
+
+    }
+  }
+
+  get_latest_videos() async {
+    latest_VidListList.clear();
+    print("Calling API: "+ApiClient.latest_video_list);
+    try {
+      final response = await http.get(Uri.parse(ApiClient.latest_video_list));
+      print(response.body);
+      List<LsatThreeVideo> list = (json.decode(response.body) as List)
+          .map((data) => LsatThreeVideo.fromJson(data))
+          .toList();
+      latest_VidListList.addAll(list);
 
     } on SocketException {
 
