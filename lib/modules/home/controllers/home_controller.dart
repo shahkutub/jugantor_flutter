@@ -363,7 +363,8 @@ class HomeController extends GetxController {
       if(newsDetails.value.spc_event_tag_id!.isNotEmpty){
         get_tag_name(newsDetails.value.spc_event_tag_id.toString());
       }
-      Get.to(NewsDetailsPage());
+
+      //Get.to(NewsDetailsPage());
 
       //Utils.dateBengaliNewsDetailse(Utils.dateTimeFormat(newsDetails.value.news_date_time));
     } catch (e) {

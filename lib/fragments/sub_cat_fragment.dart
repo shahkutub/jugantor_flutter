@@ -624,6 +624,7 @@ class SubCatFragment extends StatelessWidget {
                               )
                           ),
                       ),
+
                       Obx(() =>
                           Container(
                               margin: EdgeInsets.only(top: 10,bottom: 5,right: 0,left: 0),
@@ -631,21 +632,24 @@ class SubCatFragment extends StatelessWidget {
                               child:ListView.builder(
                                 primary: false,
                                 shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
                                 // Let the ListView know how many items it needs to build.
                                 itemCount: homeController.last_entry_newsList.length,
                                 // Provide a builder function. This is where the magic happens.
                                 // Convert each item into a widget based on the type of item it is.
                                 itemBuilder: (context, index) {
-                                  //final item = homeController.last_entry_newsList[index];
 
                                   return Container(
                                       margin: EdgeInsets.only(top: 10),
                                       child:   GestureDetector(
                                         onTap: (){
-                                          homeController.dataLoaded.value = false;
+
                                           homeController.newsId.value = homeController.last_entry_newsList[index].id.toString();
-                                          homeController.selectedPageIndex.value = 1;
                                           homeController.get_news_details();
+                                          homeController.selectedPageIndex.value = 1;
+
+                                          // homeController.scrollController.value.animateTo(0,
+                                          //     duration: const Duration(seconds: 3), curve: Curves.linear);
                                         },
 
                                         child: Obx(() => Container(
@@ -679,13 +683,12 @@ class SubCatFragment extends StatelessWidget {
                                                     ],
                                                   ),
                                                 ),
-                                                //Flexible(child:
+                                                Flexible(child:
                                                 Text(homeController.last_entry_newsList[index].title!,
                                                   style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                   textAlign: TextAlign.justify,
                                                 ),
-
-                                                //),
+                                                ),
 
                                               ],
                                             )
