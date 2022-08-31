@@ -46,7 +46,7 @@ class PhotoGalFragment extends StatelessWidget{
                   GestureDetector(
                     onTap: (){
                       homeController.selectedPageIndex.value = 0;
-                      Get.back();
+                     // Get.back();
                       //Navigator.pop(context);
                     },
                     child:Text("প্রচ্ছদ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),

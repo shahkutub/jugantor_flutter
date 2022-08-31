@@ -153,6 +153,29 @@ class VideoFragment extends StatelessWidget{
               //
               //   ],
               // ),
+              Row(
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: (){
+                      homeController.selectedPageIndex.value = 0;
+                     // Get.back();
+                      //Navigator.pop(context);
+                    },
+                    child:Text("প্রচ্ছদ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
+                  ),
+
+                  //homeController.categoryName.value.isNotEmpty?
+                  Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
+                  // :Text(''),
+
+                  //Obx(() =>
+                  Visibility(visible: true,child:Text("  ভিডিও ",style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
+                  //),
+
+
+                ],
+              ),
+
               SizedBox(height: 20,),
 
 
