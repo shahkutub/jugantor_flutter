@@ -304,6 +304,7 @@ class HomePage extends GetView<HomeController> {
                                     ],
                                   ),
                                   onTap: (){
+                                    Get.back();
                                     homeController.photoDataInfo.value = homeController.last_photo_albumList[0];
                                     homeController.getPhotoCats();
 
@@ -317,6 +318,7 @@ class HomePage extends GetView<HomeController> {
                                     ],
                                   ),
                                   onTap: (){
+                                    Get.back();
                                     homeController.selectedPageIndex.value = 11;
                                     homeController.get_latest_videos();
                                     homeController.getVidCats();
