@@ -48,7 +48,7 @@ class HomePage extends GetView<HomeController> {
                         GestureDetector(
                           onTap: (){
                             // ajker paper page index 3
-                            Get.back();
+                            //Get.back();
                             homeController.selectedPageIndex.value = 3;
                             homeController.selectedCategoryName.value = "আজকের পত্রিকা";
                             homeController.selectedSubCategoryName.value = "";

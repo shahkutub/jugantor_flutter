@@ -30,6 +30,8 @@ class NewsDetailseFragment extends StatelessWidget {
                       Container(
                         margin: EdgeInsets.only(left: 20,right: 20),
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               children: <Widget>[
@@ -47,7 +49,19 @@ class NewsDetailseFragment extends StatelessWidget {
                                     :Text(''),
 
                                 Obx(() =>
-                                    Visibility(visible: true,child:Text(""+homeController.categoryName.value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
+                                GestureDetector(
+                                  onTap: (){
+                                    //homeController.categoryName.value = "আজকের পত্রিকা";
+                                    if(homeController.categoryName.value == "আজকের পত্রিকা"){
+                                      homeController.selectedPageIndex.value = 3;
+                                      homeController.selectedCategoryName.value = "আজকের পত্রিকা";
+                                      homeController.selectedSubCategoryName.value = "";
+                                      homeController.catListShow.value = false;
+                                      homeController.ajker_paper_sub_category();
+                                    }
+                                  },
+                                  child:Visibility(visible: true,child:Text(""+homeController.categoryName.value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
+                                )
                                 ),
 
                               ],
@@ -58,23 +72,23 @@ class NewsDetailseFragment extends StatelessWidget {
 
                             homeController.newsDetails.value.shoulder != null?
                             Text(homeController.newsDetails.value.shoulder!,
-                              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold,color: Colors.black),
-                              textAlign: TextAlign.justify,
+                              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold,color: Color(0xffDE7A19)),
+                              textAlign: TextAlign.left,
                             ): Text(""),
 
                             //news title
                             homeController.newsDetails.value.title != null?
                             Text(homeController.newsDetails.value.title!,
-                              style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold,color: Colors.black),
-                              textAlign: TextAlign.justify,
+                              style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold,color: Color(0xff000000)),
+                              textAlign: TextAlign.left,
 
                             ):Text(""),
 
                             //news hanger
                             homeController.newsDetails.value.hanger != null?
                             Text(homeController.newsDetails.value.hanger!,
-                              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold,color: Colors.black),
-                              textAlign: TextAlign.justify,
+                              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold,color: Color(0xffDE7A19)),
+                              textAlign: TextAlign.left,
 
                             ):Text(""),
 
