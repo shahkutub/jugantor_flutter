@@ -1835,6 +1835,7 @@ class HomeController extends GetxController {
                 // Uri _url = Uri.parse('https://play.google.com/store/search?q=jugantor+newspaper&c=apps');
                 // _launchUrl(_url);
 
+                // YOUR_IOS_APP_ID = 1642842464
                 if (Platform.isAndroid || Platform.isIOS) {
                   final appId = Platform.isAndroid ? 'com.jugantor' : 'YOUR_IOS_APP_ID';
                   final url = Uri.parse(
