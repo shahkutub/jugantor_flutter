@@ -2,8 +2,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:jugantor.com/fragments/video_frgment_details.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:adhan_dart/adhan_dart.dart';
@@ -183,9 +185,28 @@ class HomeController extends GetxController {
   var album_name = ''.obs;
 
   var fromhomectnme = ''.obs;
+  PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+    buildSignature: 'Unknown',
+  );
+
+  Future<void> _initPackageInfo() async {
+    final info = await PackageInfo.fromPlatform();
+    //setState(() {
+      _packageInfo = info;
+    print('App name'+_packageInfo.appName);
+    print('version'+_packageInfo.version);
+   // });
+  }
 
   @override
   void onInit() {
+
+    _initPackageInfo();
+
     var now = new DateTime.now();
     var formatter = new DateFormat('yyyy/MM/dd');
     e_paper_date.value = formatter.format(now);
@@ -222,7 +243,15 @@ class HomeController extends GetxController {
     Timer(Duration(seconds: 20), () {
       //get_home_category();
     });
+
+
+
+
+
+
     super.onInit();
+
+
   }
 
 
@@ -1780,6 +1809,48 @@ class HomeController extends GetxController {
 
     return str;
 
+  }
+
+  showCompulsoryUpdateDialog(context, String message) async {
+    await showDialog<String>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        String title = "App Update Available";
+        String btnLabel = "Update Now";
+        return Platform.isIOS
+            ? new CupertinoAlertDialog(
+          title: Text(title),
+          content: Text(message),
+          actions: <Widget>[
+            CupertinoDialogAction(
+              child: Text(
+                btnLabel,
+              ),
+              isDefaultAction: true,
+              onPressed: _onUpdateNowClicked,
+            ),
+          ],
+        )
+            : new AlertDialog(
+          title: Text(
+            title,
+            style: TextStyle(fontSize: 22),
+          ),
+          content: Text(message),
+          actions: <Widget>[
+            FlatButton(
+              child: Text(btnLabel),
+              onPressed: _onUpdateNowClicked,
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  _onUpdateNowClicked() {
+    print('On update app clicked');
   }
 
 }

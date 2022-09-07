@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/model/BoxListModel.dart';
 import 'package:jugantor.com/settings_service.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import 'routes/app_pages.dart';
 initServices() async {
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
     Widget build(BuildContext context) {
 
 
+
         return GetMaterialApp(
             debugShowCheckedModeBanner: false,
             title: "Application",
@@ -33,6 +35,9 @@ class MyApp extends StatelessWidget {
             //  darkTheme: Get.find<SettingsService>().getDarkTheme(),
 
         );
+
+
+
 
         //   MaterialApp(
         //   debugShowCheckedModeBanner: false,

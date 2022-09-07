@@ -11,6 +11,7 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     Get.find<HomeController>();
     //homeController.get_bn_date(context);
+    homeController.showCompulsoryUpdateDialog(context, "Update");
     return Scaffold(
         backgroundColor: Colors.white,
         appBar:AppBar(
