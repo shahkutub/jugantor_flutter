@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:jugantor.com/fragments/video_frgment_details.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:store_redirect/store_redirect.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:adhan_dart/adhan_dart.dart';
@@ -1828,6 +1829,11 @@ class HomeController extends GetxController {
           children: [
 
             SizedBox(
+              height: 20.0,
+            ),
+
+
+            SizedBox(
               height: 30.0,
             ),
             RaisedButton(
@@ -1836,23 +1842,26 @@ class HomeController extends GetxController {
                 // _launchUrl(_url);
 
                 // YOUR_IOS_APP_ID = 1642842464
-                if (Platform.isAndroid || Platform.isIOS) {
-                  final appId = Platform.isAndroid ? 'com.jugantor' : 'YOUR_IOS_APP_ID';
-                  final url = Uri.parse(
-                    Platform.isAndroid
-                        ? "https://play.google.com/store/apps/details?id=com.jugantor"
-                        : "https://apps.apple.com/app/id1016157944",
-                  );
-                  launchUrl(
-                    url,
-                    mode: LaunchMode.externalApplication,
-                  );
-                }
+                // if (Platform.isAndroid || Platform.isIOS) {
+                //   final appId = Platform.isAndroid ? 'com.jugantor' : 'YOUR_IOS_APP_ID';
+                //   final url = Uri.parse(
+                //     Platform.isAndroid
+                //         ? "https://play.google.com/store/apps/details?id=com.jugantor"
+                //         : "https://apps.apple.com/app/id1016157944",
+                //   );
+                //   launchUrl(
+                //     url,
+                //     mode: LaunchMode.externalApplication,
+                //   );
+                // }
+
+                StoreRedirect.redirect(androidAppId: "com.jugantor",
+                    iOSAppId: "1642842464");
 
                 Get.back();
               },
               child: Text(
-                'ADD CATEGORY',
+                'Update',
                 style: TextStyle(color: Colors.white, fontSize: 16.0),
               ),
               color: Colors.redAccent,
