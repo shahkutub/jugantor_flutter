@@ -1832,8 +1832,22 @@ class HomeController extends GetxController {
             ),
             RaisedButton(
               onPressed: () {
-                Uri _url = Uri.parse('https://play.google.com/store/search?q=jugantor+newspaper&c=apps');
-                _launchUrl(_url);
+                // Uri _url = Uri.parse('https://play.google.com/store/search?q=jugantor+newspaper&c=apps');
+                // _launchUrl(_url);
+
+                if (Platform.isAndroid || Platform.isIOS) {
+                  final appId = Platform.isAndroid ? 'com.jugantor' : 'YOUR_IOS_APP_ID';
+                  final url = Uri.parse(
+                    Platform.isAndroid
+                        ? "https://play.google.com/store/apps/details?id=com.jugantor"
+                        : "https://apps.apple.com/app/id1016157944",
+                  );
+                  launchUrl(
+                    url,
+                    mode: LaunchMode.externalApplication,
+                  );
+                }
+
                 Get.back();
               },
               child: Text(
