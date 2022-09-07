@@ -1859,6 +1859,8 @@ class HomeController extends GetxController {
                 // StoreRedirect.redirect(androidAppId: "com.jugantor",
                 //     iOSAppId: "1642842464");
 
+
+
                 Get.back();
               },
               child: Text(
