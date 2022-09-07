@@ -46,6 +46,7 @@ import 'package:jugantor.com/modules/splashscreen/controllers/splashscreen_contr
 import 'package:jugantor.com/routes/app_pages.dart';
 import 'package:jugantor.com/ui.dart';
 import 'package:jugantor.com/utils/utils.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../fragments/FullNewsDetailsModal.dart';
 import '../../../fragments/all_poll_fragment.dart';
@@ -199,6 +200,8 @@ class HomeController extends GetxController {
       _packageInfo = info;
     print('App name'+_packageInfo.appName);
     print('version'+_packageInfo.version);
+
+    showCompulsoryUpdateDialog();
    // });
   }
 
@@ -1811,46 +1814,79 @@ class HomeController extends GetxController {
 
   }
 
-  showCompulsoryUpdateDialog(context, String message) async {
-    await showDialog<String>(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        String title = "App Update Available";
-        String btnLabel = "Update Now";
-        return Platform.isIOS
-            ? new CupertinoAlertDialog(
-          title: Text(title),
-          content: Text(message),
-          actions: <Widget>[
-            CupertinoDialogAction(
-              child: Text(
-                btnLabel,
-              ),
-              isDefaultAction: true,
-              onPressed: _onUpdateNowClicked,
-            ),
-          ],
-        )
-            : new AlertDialog(
-          title: Text(
-            title,
-            style: TextStyle(fontSize: 22),
-          ),
-          content: Text(message),
-          actions: <Widget>[
-            FlatButton(
-              child: Text(btnLabel),
-              onPressed: _onUpdateNowClicked,
-            ),
-          ],
-        );
-      },
-    );
+  Future<void> _launchUrl(_url) async {
+    if (!await launchUrl(_url)) {
+      throw 'Could not launch $_url';
+    }
   }
 
-  _onUpdateNowClicked() {
+  showCompulsoryUpdateDialog() async {
+    await Get.defaultDialog(
+        title: '',
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+
+            SizedBox(
+              height: 30.0,
+            ),
+            RaisedButton(
+              onPressed: () {
+                Uri _url = Uri.parse('https://play.google.com/store/search?q=jugantor+newspaper&c=apps');
+                _launchUrl(_url);
+                Get.back();
+              },
+              child: Text(
+                'ADD CATEGORY',
+                style: TextStyle(color: Colors.white, fontSize: 16.0),
+              ),
+              color: Colors.redAccent,
+            )
+          ],
+        ),
+        radius: 10.0);
+
+
+    // showDialog<String>(
+    //   context: context,
+    //   barrierDismissible: false,
+    //   builder: (BuildContext context) {
+    //     String title = "App Update Available";
+    //     String btnLabel = "Update Now";
+    //     return Platform.isIOS
+    //         ? new CupertinoAlertDialog(
+    //       title: Text(title),
+    //       content: Text(message),
+    //       actions: <Widget>[
+    //         CupertinoDialogAction(
+    //           child: Text(
+    //             btnLabel,
+    //           ),
+    //           isDefaultAction: true,
+    //           onPressed: _onUpdateNowClicked(context),
+    //         ),
+    //       ],
+    //     )
+    //         : new AlertDialog(
+    //       title: Text(
+    //         title,
+    //         style: TextStyle(fontSize: 22),
+    //       ),
+    //       content: Text(message),
+    //       actions: <Widget>[
+    //         FlatButton(
+    //           child: Text(btnLabel),
+    //           onPressed: _onUpdateNowClicked(context),
+    //         ),
+    //       ],
+    //     );
+    //   },
+    // );
+  }
+
+  _onUpdateNowClicked(context) {
     print('On update app clicked');
+    Navigator.pop(context);
   }
 
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -7,11 +9,23 @@ import 'package:jugantor.com/utils/utils.dart';
 
 class HomePage extends GetView<HomeController> {
   final HomeController homeController = Get.put(HomeController());
+
   @override
   Widget build(BuildContext context) {
     Get.find<HomeController>();
     //homeController.get_bn_date(context);
-    homeController.showCompulsoryUpdateDialog(context, "Update");
+    //homeController.showCompulsoryUpdateDialog(context, "Update");
+   //showCompulsoryUpdateDialog(context, "Update");
+
+    // Future<void> _initPackageInfo() async {
+    //   final info = await PackageInfo.fromPlatform();
+    //  // setState(() {
+    //   _packageInfo = info;
+    //   print('App name'+_packageInfo.appName);
+    //   print('version'+_packageInfo.version);
+    //   // });
+    // }
+
     return Scaffold(
         backgroundColor: Colors.white,
         appBar:AppBar(
