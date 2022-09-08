@@ -36,10 +36,10 @@ class NewsDetailseFragment extends StatelessWidget {
       homeController.newsEdition.value = "প্রিন্ট সংস্করণ";
     }
 
-    if(homeController.newsDetails.value.bread_parent_cat_name!.isNotEmpty){
+    if(homeController.newsDetails.value.bread_parent_cat_name != null){
       bread_cat_name = homeController.newsDetails.value.bread_parent_cat_name!;
       bread_cat_id = homeController.newsDetails.value.bread_parent_cat_id!;
-    }else if(homeController.newsDetails.value.category_name!.isNotEmpty){
+    }else if(homeController.newsDetails.value.category_name != null){
       bread_cat_name = homeController.newsDetails.value.category_name!;
       bread_cat_id = homeController.newsDetails.value.parent_cat_id!;
     }

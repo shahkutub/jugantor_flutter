@@ -69,7 +69,7 @@ class HomeFragment extends GetView<HomeController> {
                                                 homeController.dataLoaded.value = false;
                                                 homeController.newsId.value = homeController.leadnews.value.id.toString();
                                                 homeController.get_news_details();
-                                                homeController.selectedPageIndex.value = 1;
+                                                //homeController.selectedPageIndex.value = 1;
 
                                             },
                                             child: Container(
@@ -237,7 +237,7 @@ class HomeFragment extends GetView<HomeController> {
                                                         onTap: (){
                                                             homeController.dataLoaded.value = false;
                                                             homeController.newsId.value = homeController.showNewsList[index].id.toString();
-                                                            homeController.selectedPageIndex.value = 1;
+                                                            //homeController.selectedPageIndex.value = 1;
                                                             homeController.get_news_details();
 
                                                         },
@@ -334,7 +334,7 @@ class HomeFragment extends GetView<HomeController> {
                                                             onTap: (){
                                                                 homeController.dataLoaded.value = false;
                                                                 homeController.newsId.value = homeController.last_entry_newsList[index].id.toString();
-                                                                homeController.selectedPageIndex.value = 1;
+                                                                //homeController.selectedPageIndex.value = 1;
                                                                 homeController.get_news_details();
                                                             },
 
@@ -494,7 +494,7 @@ class HomeFragment extends GetView<HomeController> {
                                                                                                 onTap: (){
                                                                                                     homeController.dataLoaded.value = false;
                                                                                                     homeController.newsId.value = homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].id.toString();
-                                                                                                    homeController.selectedPageIndex.value = 1;
+                                                                                                    //homeController.selectedPageIndex.value = 1;
                                                                                                     homeController.get_news_details();
                                                                                                 },
                                                                                                 child: Container(
@@ -553,7 +553,7 @@ class HomeFragment extends GetView<HomeController> {
                                                                                                     onTap: (){
                                                                                                         homeController.dataLoaded.value = false;
                                                                                                         homeController.newsId.value = homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].id.toString();
-                                                                                                        homeController.selectedPageIndex.value = 1;
+                                                                                                        //homeController.selectedPageIndex.value = 1;
                                                                                                         homeController.get_news_details();
                                                                                                     },
 

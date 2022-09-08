@@ -293,6 +293,7 @@ class HomeController extends GetxController {
     try {
       //response = await _manager.get(ApiClient.newsDetails+'/'+newsId.value);
       final response = await http.get(Uri.parse(ApiClient.newsDetails+'/'+newsId.value));
+      selectedPageIndex.value = 1;
       print(response.body);
      // print('newsdetails: ${response}');
       dataLoaded.value = true;
@@ -368,6 +369,7 @@ class HomeController extends GetxController {
       }else{
         newsEdition.value = "প্রিন্ট সংস্করণ";
       }
+
 
       get_more_cat_news(newsDetails.value.parent_cat_id.toString(),newsDetails.value.id.toString());
 
