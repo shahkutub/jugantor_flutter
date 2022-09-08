@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 
+import '../utils/utils.dart';
 import 'bottom_view.dart';
 class NewsDetailseFragment extends StatelessWidget {
   final HomeController homeController = Get.put(HomeController());
@@ -16,6 +17,34 @@ class NewsDetailseFragment extends StatelessWidget {
     Get.find<HomeController>();
     double height = Get.height;
     double width = Get.width;
+
+    var bread_cat_name = "";
+    var bread_cat_id = 0;
+
+    List<String> mainDataList  = Utils.dateTimeFormatymd(homeController.newsDetails.value.news_date_time!).split(' ');
+
+    var amPm = '';
+    if(mainDataList[2] == 'am'){
+      amPm = 'এএম';
+    }else{
+      amPm = 'পিএম';
+    }
+    homeController.newsDate.value = Utils.allNewsDateConvert(mainDataList[0])+" "+ Utils.replaceEngNumberToBangla(mainDataList[1])+' '+amPm;
+    if(homeController.newsDetails.value.news_edition == 1){
+      homeController.newsEdition.value = "অনলাইন সংস্করণ";
+    }else{
+      homeController.newsEdition.value = "প্রিন্ট সংস্করণ";
+    }
+
+    if(homeController.newsDetails.value.bread_parent_cat_name!.isNotEmpty){
+      bread_cat_name = homeController.newsDetails.value.bread_parent_cat_name!;
+      bread_cat_id = homeController.newsDetails.value.bread_parent_cat_id!;
+    }else if(homeController.newsDetails.value.category_name!.isNotEmpty){
+      bread_cat_name = homeController.newsDetails.value.category_name!;
+      bread_cat_id = homeController.newsDetails.value.parent_cat_id!;
+    }
+
+
 
     return new Container(
         margin: EdgeInsets.only(left: 0,right: 0,top: 20),
@@ -44,25 +73,63 @@ class NewsDetailseFragment extends StatelessWidget {
                                   child:Text("প্রচ্ছদ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
                                 ),
 
-                                homeController.categoryName.value.isNotEmpty?
+
+                                homeController.newsDetails.value.bread_parent_cat_name!.isNotEmpty?
                                 Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),)
                                     :Text(''),
-
                                 Obx(() =>
                                 GestureDetector(
                                   onTap: (){
-                                    //homeController.categoryName.value = "আজকের পত্রিকা";
+
                                     if(homeController.categoryName.value == "আজকের পত্রিকা"){
                                       homeController.selectedPageIndex.value = 3;
                                       homeController.selectedCategoryName.value = "আজকের পত্রিকা";
                                       homeController.selectedSubCategoryName.value = "";
                                       homeController.catListShow.value = false;
                                       homeController.ajker_paper_sub_category();
+                                    }else if(homeController.categoryName.value == "সারাদেশ"){
+
+                                      homeController.subcategory_list_with_news_newsList.clear();
+                                      homeController.selectedCategoryName.value = "সারাদেশ";
+                                      homeController.selectedSubCategoryName.value = '';
+                                      homeController.dataLoaded.value = false;
+                                      //সারাদেশ page index 7
+                                      homeController.selectedPageIndex.value = 7;
+                                      homeController.get_saradesh_top_news();
+                                      homeController.get_division();
+
+                                    }else{
+
+                                      homeController.subcategory_list_with_news_newsList.clear();
+                                      homeController.catId.value = bread_cat_id;
+                                      homeController.selectedSubCategoryName.value = '';
+                                      homeController.selectedCategoryName.value = bread_cat_name;
+                                      homeController.dataLoaded.value = false;
+                                      homeController.get_sub_category(bread_cat_id);
+                                      //sub_category page index 2
+                                      homeController.selectedPageIndex.value = 2;
                                     }
+
+
                                   },
-                                  child:Visibility(visible: true,child:Text(""+homeController.categoryName.value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
+                                  child:Visibility(visible: true,child:Text(""+homeController.newsDetails.value.bread_parent_cat_name!,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
                                 )
                                 ),
+
+
+                                homeController.newsDetails.value.category_name!.isNotEmpty && homeController.newsDetails.value.category_name! != homeController.newsDetails.value.bread_parent_cat_name!?
+                                Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),)
+                                    :Text(''),
+
+                                homeController.newsDetails.value.category_name!.isNotEmpty && homeController.newsDetails.value.category_name! != homeController.newsDetails.value.bread_parent_cat_name!?
+                                Obx(() =>
+                                    GestureDetector(
+                                      onTap: (){
+
+                                      },
+                                      child:Visibility(visible: true,child:Text(""+homeController.newsDetails.value.category_name!,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
+                                    )
+                                ):Text(''),
 
                               ],
                             ),
