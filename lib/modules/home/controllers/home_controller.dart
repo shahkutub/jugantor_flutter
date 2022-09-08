@@ -209,7 +209,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
 
-    //_initPackageInfo();
+    _initPackageInfo();
 
     var now = new DateTime.now();
     var formatter = new DateFormat('yyyy/MM/dd');
@@ -1827,56 +1827,56 @@ class HomeController extends GetxController {
   }
 
   showCompulsoryUpdateDialog() async {
-    await Get.defaultDialog(
-        title: '',
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-
-            SizedBox(
-              height: 20.0,
-            ),
-
-
-            SizedBox(
-              height: 30.0,
-            ),
-            RaisedButton(
-              onPressed: () {
-                // Uri _url = Uri.parse('https://play.google.com/store/search?q=jugantor+newspaper&c=apps');
-                // _launchUrl(_url);
-
-                //YOUR_IOS_APP_ID = 1642842464
-
-                if (Platform.isAndroid || Platform.isIOS) {
-                  final appId = Platform.isAndroid ? 'com.jugantor' : 'YOUR_IOS_APP_ID';
-                  final url = Uri.parse(
-                    Platform.isAndroid
-                        ? "https://play.google.com/store/apps/details?id=com.jugantor"
-                        : "https://apps.apple.com/app/id1016157944",
-                  );
-                  launchUrl(
-                    url,
-                    mode: LaunchMode.externalApplication,
-                  );
-                }
-
-                // StoreRedirect.redirect(androidAppId: "com.jugantor",
-                //     iOSAppId: "1642842464");
-
-
-
-                Get.back();
-              },
-              child: Text(
-                'Update',
-                style: TextStyle(color: Colors.white, fontSize: 16.0),
-              ),
-              color: Colors.redAccent,
-            )
-          ],
-        ),
-        radius: 10.0);
+    // await Get.defaultDialog(
+    //     title: '',
+    //     content: Column(
+    //       mainAxisSize: MainAxisSize.min,
+    //       children: [
+    //
+    //         SizedBox(
+    //           height: 20.0,
+    //         ),
+    //
+    //
+    //         SizedBox(
+    //           height: 30.0,
+    //         ),
+    //         RaisedButton(
+    //           onPressed: () {
+    //             // Uri _url = Uri.parse('https://play.google.com/store/search?q=jugantor+newspaper&c=apps');
+    //             // _launchUrl(_url);
+    //
+    //             //YOUR_IOS_APP_ID = 1642842464
+    //
+    //             if (Platform.isAndroid || Platform.isIOS) {
+    //               final appId = Platform.isAndroid ? 'com.jugantor' : 'YOUR_IOS_APP_ID';
+    //               final url = Uri.parse(
+    //                 Platform.isAndroid
+    //                     ? "https://play.google.com/store/apps/details?id=com.jugantor"
+    //                     : "https://apps.apple.com/app/id1016157944",
+    //               );
+    //               launchUrl(
+    //                 url,
+    //                 mode: LaunchMode.externalApplication,
+    //               );
+    //             }
+    //
+    //             // StoreRedirect.redirect(androidAppId: "com.jugantor",
+    //             //     iOSAppId: "1642842464");
+    //
+    //
+    //
+    //             Get.back();
+    //           },
+    //           child: Text(
+    //             'Update',
+    //             style: TextStyle(color: Colors.white, fontSize: 16.0),
+    //           ),
+    //           color: Colors.redAccent,
+    //         )
+    //       ],
+    //     ),
+    //     radius: 10.0);
 
 
     // showDialog<String>(
@@ -1914,6 +1914,39 @@ class HomeController extends GetxController {
     //     );
     //   },
     // );
+
+    await Get.defaultDialog(
+      title: "App Update Available",
+      //middleText: "A n",
+      content: getContent(),
+      barrierDismissible: false,
+      radius: 10.0,
+      confirm: confirmBtn(),
+      cancel: cancelBtn(),
+    );
+  }
+
+  Widget getContent() {
+    return Column(
+      children: [
+        SizedBox(height: 20,),
+        Text("A newer version of app is available"),
+        SizedBox(height: 20,)
+      ],
+    );
+  }
+
+  Widget confirmBtn() {
+    return ElevatedButton(onPressed: () {
+      Get.back();
+    }, child: Text("Update"));
+  }
+
+
+  Widget cancelBtn() {
+    return ElevatedButton(onPressed: () {
+      Get.back();
+    }, child: Text("Cancel"));
   }
 
   _onUpdateNowClicked(context) {
