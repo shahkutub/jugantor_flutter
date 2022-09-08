@@ -1938,6 +1938,28 @@ class HomeController extends GetxController {
 
   Widget confirmBtn() {
     return ElevatedButton(onPressed: () {
+
+                  // Uri _url = Uri.parse('https://play.google.com/store/search?q=jugantor+newspaper&c=apps');
+                  // _launchUrl(_url);
+
+                  //YOUR_IOS_APP_ID = 1642842464
+
+                  if (Platform.isAndroid || Platform.isIOS) {
+                    final appId = Platform.isAndroid ? 'com.jugantor' : 'YOUR_IOS_APP_ID';
+                    final url = Uri.parse(
+                      Platform.isAndroid
+                          ? "https://play.google.com/store/apps/details?id=com.jugantor"
+                          : "https://apps.apple.com/app/id1016157944",
+                    );
+                    launchUrl(
+                      url,
+                      mode: LaunchMode.externalApplication,
+                    );
+                  }
+
+                  // StoreRedirect.redirect(androidAppId: "com.jugantor",
+                  //     iOSAppId: "1642842464");
+
       Get.back();
     }, child: Text("Update"));
   }
