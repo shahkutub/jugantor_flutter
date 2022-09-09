@@ -16,7 +16,6 @@ class SubCatFragment extends StatelessWidget {
 
 
     return new Container(
-        margin: EdgeInsets.only(left: 20,right: 20,top: 10),
         child: Obx(() {
           if(homeController.dataLoaded.isTrue){
             return new SingleChildScrollView(
@@ -25,6 +24,7 @@ class SubCatFragment extends StatelessWidget {
                   child:Column(
                     children: [
                       Container(
+                        margin: EdgeInsets.only(left: 15,right: 15,top: 10),
                         padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(color: Colors.grey),
                         child: Stack(
@@ -88,6 +88,8 @@ class SubCatFragment extends StatelessWidget {
                       ),
 
                       Container(
+                          margin: EdgeInsets.only(left: 15,right: 15,top: 10),
+
                           padding: EdgeInsets.all(0),
                           alignment: Alignment.center,
                           child:homeController.catListShow.value?
@@ -125,7 +127,7 @@ class SubCatFragment extends StatelessWidget {
 
                       //cat top news
                       Container(
-                          margin: EdgeInsets.only(top: 10,bottom: 5),
+                          margin: EdgeInsets.only(left: 15,right: 15,top: 10,bottom: 5),
                           alignment: Alignment.center,
                           child:ListView.builder(
                             primary: false,
@@ -297,32 +299,33 @@ class SubCatFragment extends StatelessWidget {
 
                       ),
                       SizedBox(height: 20,),
-                      GestureDetector(
-                        onTap: (){
-                          //Ui.showLoaderDialog(context);
-                          homeController.dataLoaded.value = false;
-                          homeController.all_cat_wise_newsList.clear();
-                          homeController.selectedPageIndex.value = 6;
-                          homeController.get_all_cat_wise_news(1,context);
-
-                        },
-                        child:Container(
-                          alignment: Alignment.center,
-                          color: Color(0xff0069D9),
-                          padding: EdgeInsets.all(7),
-                          child:Text("পরবর্তী >",
-                            style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                            textAlign: TextAlign.center,
-                          ),
-
-                        ),
-
-                      ),
-                      SizedBox(height: 20,),
+                      // GestureDetector(
+                      //   onTap: (){
+                      //     //Ui.showLoaderDialog(context);
+                      //     homeController.dataLoaded.value = false;
+                      //     homeController.all_cat_wise_newsList.clear();
+                      //     homeController.selectedPageIndex.value = 6;
+                      //     homeController.get_all_cat_wise_news(1,context);
+                      //
+                      //   },
+                      //   child:Container(
+                      //     alignment: Alignment.center,
+                      //     color: Color(0xff0069D9),
+                      //     padding: EdgeInsets.all(7),
+                      //     child:Text("পরবর্তী >",
+                      //       style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,
+                      //           color: Colors.white),
+                      //       textAlign: TextAlign.center,
+                      //     ),
+                      //
+                      //   ),
+                      //
+                      // ),
+                      // SizedBox(height: 20,),
 
                       //body cat news
                       Container(
+                        margin: EdgeInsets.only(left: 15,right: 15,top: 10,bottom: 5),
                         child: homeController.subcategory_list_with_news_newsList.length == 0 ?
                         Text("") : Obx(() =>
                             Container(
@@ -627,7 +630,8 @@ class SubCatFragment extends StatelessWidget {
 
                       Obx(() =>
                           Container(
-                              margin: EdgeInsets.only(top: 10,bottom: 5,right: 0,left: 0),
+                              margin: EdgeInsets.only(left: 15,right: 15,top: 10,bottom: 5),
+
                               alignment: Alignment.center,
                               child:ListView.builder(
                                 primary: false,
@@ -708,6 +712,8 @@ class SubCatFragment extends StatelessWidget {
                           homeController.get_all_latest_news(1);
                         },
                         child:Container(
+                          margin: EdgeInsets.only(left: 15,right: 15,top: 10,bottom: 5),
+
                           alignment: Alignment.centerLeft,
                           color: Color(0xff3A495E),
                           padding: EdgeInsets.all(7),

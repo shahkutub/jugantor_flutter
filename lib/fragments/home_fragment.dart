@@ -214,81 +214,541 @@ class HomeFragment extends GetView<HomeController> {
                                     ),
 
 
-
                                     //show news
-                                    Obx(() =>
-                                        Container(
-                                            margin: EdgeInsets.only(top: 15,bottom: 5,right: 20,left: 20),
-                                            alignment: Alignment.center,
-                                            child:homeController.showNewsList.length >0 ?
-                                            GridView.builder(
-                                                physics: NeverScrollableScrollPhysics(),
-                                                shrinkWrap: true,
-                                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                                    crossAxisCount: 2,
-                                                    crossAxisSpacing: 15.0,
-                                                    mainAxisSpacing: 10.0,
-                                                    //childAspectRatio: width / (height / 1.9)
-                                                    //childAspectRatio: 1
-                                                ),
-                                                itemCount: homeController.showNewsList.length,
-                                                itemBuilder: (context, index) {
-                                                    return  GestureDetector(
-                                                        onTap: (){
-                                                            homeController.dataLoaded.value = false;
-                                                            homeController.newsId.value = homeController.showNewsList[index].id.toString();
-                                                            //homeController.selectedPageIndex.value = 1;
-                                                            homeController.get_news_details();
 
-                                                        },
+                                    Container(
 
-                                                        child: Obx(() => Container(
+                                        child: Column(
+                                            children: [
 
-                                                            //height: ,
-                                                            //alignment: Alignment.center,
-                                                            child: Column(
-                                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                                children: [
-                                                                    Container(
-                                                                        child: Stack(
-                                                                            // fit: StackFit.expand,
-                                                                            children: [
-                                                                                FadeInImage.assetNetwork(
-                                                                                    height: height * 0.12,
-                                                                                    width: width*0.92,
-                                                                                    fit: BoxFit.fill,
-                                                                                    image:homeController.showNewsList[index].img_url!,
-                                                                                    placeholder:"assets/images/jugantordefault.jpg" // your assets image path
-                                                                                ),
+                                                Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: <Widget>[
+                                                        Flexible(child: GestureDetector(
+                                                            onTap: (){
+                                                                homeController.dataLoaded.value = false;
+                                                                homeController.newsId.value = homeController.showNewsList[0].id.toString();
+                                                                //homeController.selectedPageIndex.value = 1;
+                                                                homeController.get_news_details();
 
-                                                                                // Positioned(
-                                                                                //   bottom: 10,
-                                                                                //   left:10,
-                                                                                //   child: homeController.showNewsList[index].video_dis  == 0 ?
-                                                                                //   Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
-                                                                                //
-                                                                                // ),
+                                                            },
 
-                                                                            ],
+                                                            child: Obx(() => Container(
+
+                                                                //height: ,
+                                                                //alignment: Alignment.center,
+                                                                child: Column(
+                                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                                    children: [
+                                                                        Container(
+                                                                            child: Stack(
+                                                                                // fit: StackFit.expand,
+                                                                                children: [
+                                                                                    FadeInImage.assetNetwork(
+                                                                                        height: height * 0.12,
+                                                                                        width: width*0.92,
+                                                                                        fit: BoxFit.fill,
+                                                                                        image:homeController.showNewsList[0].img_url!,
+                                                                                        placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                                                    ),
+
+                                                                                    // Positioned(
+                                                                                    //   bottom: 10,
+                                                                                    //   left:10,
+                                                                                    //   child: homeController.showNewsList[index].video_dis  == 0 ?
+                                                                                    //   Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+                                                                                    //
+                                                                                    // ),
+
+                                                                                ],
+                                                                            ),
+
                                                                         ),
 
-                                                                    ),
-
-                                                                    Text(homeController.showNewsList[index].title!,
-                                                                        style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
-                                                                        textAlign: TextAlign.justify,
-                                                                        maxLines: 2,
-                                                                    ),
-                                                                ],
+                                                                        Text(homeController.showNewsList[0].title!,
+                                                                            style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                                                            textAlign: TextAlign.justify,
+                                                                            maxLines: 2,
+                                                                        ),
+                                                                    ],
+                                                                )
                                                             )
-                                                        )
-                                                        ),
-                                                    );
-                                                },
-                                            ):SizedBox()
+                                                            ),
+                                                        ), flex: 1,),
+                                                        SizedBox(width: 15,),
+                                                        Flexible(child:  GestureDetector(
+                                                            onTap: (){
+                                                                homeController.dataLoaded.value = false;
+                                                                homeController.newsId.value = homeController.showNewsList[1].id.toString();
+                                                                //homeController.selectedPageIndex.value = 1;
+                                                                homeController.get_news_details();
+
+                                                            },
+
+                                                            child: Obx(() => Container(
+
+                                                                //height: ,
+                                                                //alignment: Alignment.center,
+                                                                child: Column(
+                                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                                    children: [
+                                                                        Container(
+                                                                            child: Stack(
+                                                                                // fit: StackFit.expand,
+                                                                                children: [
+                                                                                    FadeInImage.assetNetwork(
+                                                                                        height: height * 0.12,
+                                                                                        width: width*0.92,
+                                                                                        fit: BoxFit.fill,
+                                                                                        image:homeController.showNewsList[1].img_url!,
+                                                                                        placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                                                    ),
+
+                                                                                    // Positioned(
+                                                                                    //   bottom: 10,
+                                                                                    //   left:10,
+                                                                                    //   child: homeController.showNewsList[index].video_dis  == 0 ?
+                                                                                    //   Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+                                                                                    //
+                                                                                    // ),
+
+                                                                                ],
+                                                                            ),
+
+                                                                        ),
+
+                                                                        Text(homeController.showNewsList[1].title!,
+                                                                            style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                                                            textAlign: TextAlign.justify,
+                                                                            maxLines: 2,
+                                                                        ),
+                                                                    ],
+                                                                )
+                                                            )
+                                                            ),
+                                                        ), flex: 1,)
+                                                    ],
+
+                                                ),
+                                                SizedBox(height: 10,),
+                                                Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: <Widget>[
+                                                        Flexible(child: GestureDetector(
+                                                            onTap: (){
+                                                                homeController.dataLoaded.value = false;
+                                                                homeController.newsId.value = homeController.showNewsList[2].id.toString();
+                                                                //homeController.selectedPageIndex.value = 1;
+                                                                homeController.get_news_details();
+
+                                                            },
+
+                                                            child: Obx(() => Container(
+
+                                                                //height: ,
+                                                                //alignment: Alignment.center,
+                                                                child: Column(
+                                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                                    children: [
+                                                                        Container(
+                                                                            child: Stack(
+                                                                                // fit: StackFit.expand,
+                                                                                children: [
+                                                                                    FadeInImage.assetNetwork(
+                                                                                        height: height * 0.12,
+                                                                                        width: width*0.92,
+                                                                                        fit: BoxFit.fill,
+                                                                                        image:homeController.showNewsList[2].img_url!,
+                                                                                        placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                                                    ),
+
+                                                                                    // Positioned(
+                                                                                    //   bottom: 10,
+                                                                                    //   left:10,
+                                                                                    //   child: homeController.showNewsList[index].video_dis  == 0 ?
+                                                                                    //   Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+                                                                                    //
+                                                                                    // ),
+
+                                                                                ],
+                                                                            ),
+
+                                                                        ),
+
+                                                                        Text(homeController.showNewsList[2].title!,
+                                                                            style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                                                            textAlign: TextAlign.justify,
+                                                                            maxLines: 2,
+                                                                        ),
+                                                                    ],
+                                                                )
+                                                            )
+                                                            ),
+                                                        ), flex: 1,),
+                                                        SizedBox(width: 15,),
+                                                        Flexible(child:  GestureDetector(
+                                                            onTap: (){
+                                                                homeController.dataLoaded.value = false;
+                                                                homeController.newsId.value = homeController.showNewsList[3].id.toString();
+                                                                //homeController.selectedPageIndex.value = 1;
+                                                                homeController.get_news_details();
+
+                                                            },
+
+                                                            child: Obx(() => Container(
+
+                                                                //height: ,
+                                                                //alignment: Alignment.center,
+                                                                child: Column(
+                                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                                    children: [
+                                                                        Container(
+                                                                            child: Stack(
+                                                                                // fit: StackFit.expand,
+                                                                                children: [
+                                                                                    FadeInImage.assetNetwork(
+                                                                                        height: height * 0.12,
+                                                                                        width: width*0.92,
+                                                                                        fit: BoxFit.fill,
+                                                                                        image:homeController.showNewsList[3].img_url!,
+                                                                                        placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                                                    ),
+
+                                                                                    // Positioned(
+                                                                                    //   bottom: 10,
+                                                                                    //   left:10,
+                                                                                    //   child: homeController.showNewsList[index].video_dis  == 0 ?
+                                                                                    //   Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+                                                                                    //
+                                                                                    // ),
+
+                                                                                ],
+                                                                            ),
+
+                                                                        ),
+
+                                                                        Text(homeController.showNewsList[3].title!,
+                                                                            style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                                                            textAlign: TextAlign.justify,
+                                                                            maxLines: 2,
+                                                                        ),
+                                                                    ],
+                                                                )
+                                                            )
+                                                            ),
+                                                        ), flex: 1,)
+                                                    ],
+                                                ),
+                                                SizedBox(height: 10,),
+                                                Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: <Widget>[
+                                                        Flexible(child: GestureDetector(
+                                                            onTap: (){
+                                                                homeController.dataLoaded.value = false;
+                                                                homeController.newsId.value = homeController.showNewsList[4].id.toString();
+                                                                //homeController.selectedPageIndex.value = 1;
+                                                                homeController.get_news_details();
+
+                                                            },
+
+                                                            child: Obx(() => Container(
+
+                                                                //height: ,
+                                                                //alignment: Alignment.center,
+                                                                child: Column(
+                                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                                    children: [
+                                                                        Container(
+                                                                            child: Stack(
+                                                                                // fit: StackFit.expand,
+                                                                                children: [
+                                                                                    FadeInImage.assetNetwork(
+                                                                                        height: height * 0.12,
+                                                                                        width: width*0.92,
+                                                                                        fit: BoxFit.fill,
+                                                                                        image:homeController.showNewsList[4].img_url!,
+                                                                                        placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                                                    ),
+
+                                                                                    // Positioned(
+                                                                                    //   bottom: 10,
+                                                                                    //   left:10,
+                                                                                    //   child: homeController.showNewsList[index].video_dis  == 0 ?
+                                                                                    //   Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+                                                                                    //
+                                                                                    // ),
+
+                                                                                ],
+                                                                            ),
+
+                                                                        ),
+
+                                                                        Text(homeController.showNewsList[4].title!,
+                                                                            style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                                                            textAlign: TextAlign.justify,
+                                                                            maxLines: 2,
+                                                                        ),
+                                                                    ],
+                                                                )
+                                                            )
+                                                            ),
+                                                        ), flex: 1,),
+                                                        SizedBox(width: 15,),
+                                                        Flexible(child:  GestureDetector(
+                                                            onTap: (){
+                                                                homeController.dataLoaded.value = false;
+                                                                homeController.newsId.value = homeController.showNewsList[5].id.toString();
+                                                                //homeController.selectedPageIndex.value = 1;
+                                                                homeController.get_news_details();
+
+                                                            },
+
+                                                            child: Obx(() => Container(
+
+                                                                //height: ,
+                                                                //alignment: Alignment.center,
+                                                                child: Column(
+                                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                                    children: [
+                                                                        Container(
+                                                                            child: Stack(
+                                                                                // fit: StackFit.expand,
+                                                                                children: [
+                                                                                    FadeInImage.assetNetwork(
+                                                                                        height: height * 0.12,
+                                                                                        width: width*0.92,
+                                                                                        fit: BoxFit.fill,
+                                                                                        image:homeController.showNewsList[5].img_url!,
+                                                                                        placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                                                    ),
+
+                                                                                    // Positioned(
+                                                                                    //   bottom: 10,
+                                                                                    //   left:10,
+                                                                                    //   child: homeController.showNewsList[index].video_dis  == 0 ?
+                                                                                    //   Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+                                                                                    //
+                                                                                    // ),
+
+                                                                                ],
+                                                                            ),
+
+                                                                        ),
+
+                                                                        Text(homeController.showNewsList[5].title!,
+                                                                            style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                                                            textAlign: TextAlign.justify,
+                                                                            maxLines: 2,
+                                                                        ),
+                                                                    ],
+                                                                )
+                                                            )
+                                                            ),
+                                                        ), flex: 1,)
+                                                    ],
+                                                ),
+
+                                                SizedBox(height: 10,),
+                                                Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: <Widget>[
+                                                        Flexible(child: GestureDetector(
+                                                            onTap: (){
+                                                                homeController.dataLoaded.value = false;
+                                                                homeController.newsId.value = homeController.showNewsList[6].id.toString();
+                                                                //homeController.selectedPageIndex.value = 1;
+                                                                homeController.get_news_details();
+
+                                                            },
+
+                                                            child: Obx(() => Container(
+
+                                                                //height: ,
+                                                                //alignment: Alignment.center,
+                                                                child: Column(
+                                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                                    children: [
+                                                                        Container(
+                                                                            child: Stack(
+                                                                                // fit: StackFit.expand,
+                                                                                children: [
+                                                                                    FadeInImage.assetNetwork(
+                                                                                        height: height * 0.12,
+                                                                                        width: width*0.92,
+                                                                                        fit: BoxFit.fill,
+                                                                                        image:homeController.showNewsList[6].img_url!,
+                                                                                        placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                                                    ),
+
+                                                                                    // Positioned(
+                                                                                    //   bottom: 10,
+                                                                                    //   left:10,
+                                                                                    //   child: homeController.showNewsList[index].video_dis  == 0 ?
+                                                                                    //   Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+                                                                                    //
+                                                                                    // ),
+
+                                                                                ],
+                                                                            ),
+
+                                                                        ),
+
+                                                                        Text(homeController.showNewsList[6].title!,
+                                                                            style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                                                            textAlign: TextAlign.justify,
+                                                                            maxLines: 2,
+                                                                        ),
+                                                                    ],
+                                                                )
+                                                            )
+                                                            ),
+                                                        ), flex: 1,),
+                                                        SizedBox(width: 15,),
+                                                        Flexible(child:  GestureDetector(
+                                                            onTap: (){
+                                                                homeController.dataLoaded.value = false;
+                                                                homeController.newsId.value = homeController.showNewsList[7].id.toString();
+                                                                //homeController.selectedPageIndex.value = 1;
+                                                                homeController.get_news_details();
+
+                                                            },
+
+                                                            child: Obx(() => Container(
+
+                                                                //height: ,
+                                                                //alignment: Alignment.center,
+                                                                child: Column(
+                                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                                    children: [
+                                                                        Container(
+                                                                            child: Stack(
+                                                                                // fit: StackFit.expand,
+                                                                                children: [
+                                                                                    FadeInImage.assetNetwork(
+                                                                                        height: height * 0.12,
+                                                                                        width: width*0.92,
+                                                                                        fit: BoxFit.fill,
+                                                                                        image:homeController.showNewsList[7].img_url!,
+                                                                                        placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                                                    ),
+
+                                                                                    // Positioned(
+                                                                                    //   bottom: 10,
+                                                                                    //   left:10,
+                                                                                    //   child: homeController.showNewsList[index].video_dis  == 0 ?
+                                                                                    //   Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+                                                                                    //
+                                                                                    // ),
+
+                                                                                ],
+                                                                            ),
+
+                                                                        ),
+
+                                                                        Text(homeController.showNewsList[7].title!,
+                                                                            style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                                                            textAlign: TextAlign.justify,
+                                                                            maxLines: 2,
+                                                                        ),
+                                                                    ],
+                                                                )
+                                                            )
+                                                            ),
+                                                        ), flex: 1,)
+                                                    ],
+                                                ),
+                                            ],
                                         ),
+                                        margin: EdgeInsets.all(15),
                                     ),
+
+                                    //Obx(() =>
+
+                                        // Container(
+                                        //     margin: EdgeInsets.only(top: 15,bottom: 5,right: 20,left: 20),
+                                        //     alignment: Alignment.center,
+                                        //     child:homeController.showNewsList.length >0 ?
+                                        //     GridView.builder(
+                                        //         physics: NeverScrollableScrollPhysics(),
+                                        //         shrinkWrap: true,
+                                        //         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                        //             crossAxisCount: 2,
+                                        //             crossAxisSpacing: 15.0,
+                                        //             mainAxisSpacing: 10.0,
+                                        //             //childAspectRatio: width / (height / 1.9)
+                                        //             //childAspectRatio: 1
+                                        //         ),
+                                        //         itemCount: homeController.showNewsList.length,
+                                        //         itemBuilder: (context, index) {
+                                        //             return  GestureDetector(
+                                        //                 onTap: (){
+                                        //                     homeController.dataLoaded.value = false;
+                                        //                     homeController.newsId.value = homeController.showNewsList[index].id.toString();
+                                        //                     //homeController.selectedPageIndex.value = 1;
+                                        //                     homeController.get_news_details();
+                                        //
+                                        //                 },
+                                        //
+                                        //                 child: Obx(() => Container(
+                                        //
+                                        //                     //height: ,
+                                        //                     //alignment: Alignment.center,
+                                        //                     child: Column(
+                                        //                         mainAxisAlignment: MainAxisAlignment.center,
+                                        //                         crossAxisAlignment: CrossAxisAlignment.center,
+                                        //                         children: [
+                                        //                             Container(
+                                        //                                 child: Stack(
+                                        //                                     // fit: StackFit.expand,
+                                        //                                     children: [
+                                        //                                         FadeInImage.assetNetwork(
+                                        //                                             height: height * 0.12,
+                                        //                                             width: width*0.92,
+                                        //                                             fit: BoxFit.fill,
+                                        //                                             image:homeController.showNewsList[index].img_url!,
+                                        //                                             placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                        //                                         ),
+                                        //
+                                        //                                         // Positioned(
+                                        //                                         //   bottom: 10,
+                                        //                                         //   left:10,
+                                        //                                         //   child: homeController.showNewsList[index].video_dis  == 0 ?
+                                        //                                         //   Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+                                        //                                         //
+                                        //                                         // ),
+                                        //
+                                        //                                     ],
+                                        //                                 ),
+                                        //
+                                        //                             ),
+                                        //
+                                        //                             Text(homeController.showNewsList[index].title!,
+                                        //                                 style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                        //                                 textAlign: TextAlign.justify,
+                                        //                                 maxLines: 2,
+                                        //                             ),
+                                        //                         ],
+                                        //                     )
+                                        //                 )
+                                        //                 ),
+                                        //             );
+                                        //         },
+                                        //     ):SizedBox()
+                                        // ),
+                                   // ),
 
                                     Obx(() =>
                                         Container(
