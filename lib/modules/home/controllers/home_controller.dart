@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:jugantor.com/fragments/video_frgment_details.dart';
+import 'package:jugantor.com/model/AppversionModel.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:store_redirect/store_redirect.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -65,6 +66,7 @@ import '../views/news_details_page.dart';
 class HomeController extends GetxController {
   var isLoading= true.obs;
   var selectedPageIndex = 0.obs;
+  var preveoiusPageIndex = 0.obs;
   var photoCatName = ''.obs;
   var catId = 0.obs;
   var banglaDate = "".obs;
@@ -113,6 +115,7 @@ class HomeController extends GetxController {
   var eventPage = 1.obs;
 
   var leadnews = LeadNewsResponse().obs;
+  var appversionData = AppversionModel().obs;
   //var cat_wise_photoListResponse = CtwisePhotoRersponse();
   var newsDetails = NewsDetailseResponse().obs;
   var tagNameResponse = TagNameResponse().obs;
@@ -195,21 +198,33 @@ class HomeController extends GetxController {
     buildSignature: 'Unknown',
   );
 
-  Future<void> _initPackageInfo() async {
+  Future<void> initPackageInfo() async {
     final info = await PackageInfo.fromPlatform();
     //setState(() {
       _packageInfo = info;
     print('App name'+_packageInfo.appName);
     print('version'+_packageInfo.version);
 
-    showCompulsoryUpdateDialog();
+    if (Platform.isAndroid){
+      if(appversionData.value.android_current_version != _packageInfo.version){
+        showCompulsoryUpdateDialog();
+      }
+    }
+
+    if (Platform.isIOS){
+      if(appversionData.value.ios_current_version != _packageInfo.version){
+        showCompulsoryUpdateDialog();
+      }
+    }
+
+
    // });
   }
 
   @override
   void onInit() {
 
-    _initPackageInfo();
+
 
     var now = new DateTime.now();
     var formatter = new DateFormat('yyyy/MM/dd');
@@ -249,7 +264,7 @@ class HomeController extends GetxController {
     });
 
 
-
+    get_AppVersion();
 
 
 
@@ -281,6 +296,29 @@ class HomeController extends GetxController {
 
     }
   }
+
+  Future<dynamic> get_AppVersion() async {
+
+    //Ui.showLoaderDialog(Get.context);
+    APIManager _manager = APIManager();
+    var response;
+    try {
+      response = await _manager.get(ApiClient.appversion);
+      print('appversionData: ${response}');
+
+      if(response != null){
+        appversionData.value = AppversionModel.fromJson(response);
+
+        print('appversionData: ${appversionData.value.ios_current_version}');
+        //Navigator.of(Get.context).pop();
+        initPackageInfo();
+      }
+
+    } catch (e) {
+
+    }
+  }
+
 
   Future<dynamic> get_news_details() async {
 
@@ -1942,14 +1980,15 @@ class HomeController extends GetxController {
                   // Uri _url = Uri.parse('https://play.google.com/store/search?q=jugantor+newspaper&c=apps');
                   // _launchUrl(_url);
 
-                  //YOUR_IOS_APP_ID = 1642842464
+                 var YOUR_IOS_APP_ID = "1642842464";
 
                   if (Platform.isAndroid || Platform.isIOS) {
                     final appId = Platform.isAndroid ? 'com.jugantor' : 'YOUR_IOS_APP_ID';
                     final url = Uri.parse(
                       Platform.isAndroid
                           ? "https://play.google.com/store/apps/details?id=com.jugantor"
-                          : "https://apps.apple.com/app/id1016157944",
+                         // : "https://apps.apple.com/app/id"+YOUR_IOS_APP_ID,
+                          : "itms-apps://itunes.apple.com/app/apple-store/id1642842464?mt=8",
                     );
                     launchUrl(
                       url,

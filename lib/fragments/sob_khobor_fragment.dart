@@ -93,7 +93,7 @@ class SobKhoborFragment extends StatelessWidget {
                                                     margin: EdgeInsets.only(top: 10),
                                                     child:   GestureDetector(
                                                         onTap: (){
-
+                                                         // homeController.preveoiusPageIndex.value = 5;
                                                           int id = homeController.all_latest_newsList[index]["id"];
                                                           //print('click :'+ "Clicked  "+homeController.all_latest_newsList[index]["title"]);
                                                           print('click :'+ "Id  "+id.toString());

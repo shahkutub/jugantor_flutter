@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
+//import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -19,16 +19,16 @@ class NewsDetailseFragment extends StatelessWidget {
     double height = Get.height;
     double width = Get.width;
 
-    FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-    analytics.setUserId(id: '123456');
-
-    analytics.logEvent(
-      name: "select_content",
-      parameters: {
-        "content_type": "image",
-        "item_id": 0,
-      },
-    );
+    // FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+    // analytics.setUserId(id: '123456');
+    //
+    // analytics.logEvent(
+    //   name: "select_content",
+    //   parameters: {
+    //     "content_type": "image",
+    //     "item_id": 0,
+    //   },
+    // );
 
     var bread_cat_name = "";
     var bread_cat_id = 0;
@@ -76,6 +76,17 @@ class NewsDetailseFragment extends StatelessWidget {
                           children: [
                             Row(
                               children: <Widget>[
+
+                                // GestureDetector(
+                                //   onTap: (){
+                                //     homeController.selectedPageIndex.value = homeController.preveoiusPageIndex.value;
+                                //     //Get.back();
+                                //     //Navigator.pop(context);
+                                //   },
+                                //   child:Icon(Icons.arrow_back,color: Colors.blue,),
+                                // ),
+
+
                                 GestureDetector(
                                   onTap: (){
                                     homeController.selectedPageIndex.value = 0;
