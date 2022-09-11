@@ -88,10 +88,19 @@ class SobKhoborCatWiseFragment extends StatelessWidget {
                                                     margin: EdgeInsets.only(top: 10),
                                                     child:   GestureDetector(
                                                         onTap: (){
-                                                            homeController.dataLoaded.value = false;
-                                                            homeController.newsId.value = homeController.all_cat_wise_newsList[index]['id'];
-                                                            homeController.selectedPageIndex.value = 1;
-                                                            homeController.get_news_details();
+                                                            // homeController.dataLoaded.value = false;
+                                                            // homeController.newsId.value = homeController.all_cat_wise_newsList[index]["id"];
+                                                            // //homeController.selectedPageIndex.value = 1;
+                                                            // homeController.get_news_details();
+
+                                                          int id = homeController.all_latest_newsList[index]["id"];
+                                                          //print('click :'+ "Clicked  "+homeController.all_latest_newsList[index]["title"]);
+                                                          print('click :'+ "Id  "+id.toString());
+                                                          homeController.dataLoaded.value = false;
+                                                          homeController.newsId.value = id.toString();
+
+                                                          //homeController.selectedPageIndex.value = 1;
+                                                          homeController.get_news_details();
                                                         },
 
                                                         child: Obx(() => Container(

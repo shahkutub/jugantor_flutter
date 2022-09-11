@@ -93,9 +93,14 @@ class SobKhoborFragment extends StatelessWidget {
                                                     margin: EdgeInsets.only(top: 10),
                                                     child:   GestureDetector(
                                                         onTap: (){
+
+                                                          int id = homeController.all_latest_newsList[index]["id"];
+                                                          //print('click :'+ "Clicked  "+homeController.all_latest_newsList[index]["title"]);
+                                                          print('click :'+ "Id  "+id.toString());
                                                             homeController.dataLoaded.value = false;
-                                                            homeController.newsId.value = homeController.all_latest_newsList[index]['id'];
-                                                            homeController.selectedPageIndex.value = 1;
+                                                            homeController.newsId.value = id.toString();
+
+                                                            //homeController.selectedPageIndex.value = 1;
                                                             homeController.get_news_details();
                                                         },
 
@@ -135,6 +140,7 @@ class SobKhoborFragment extends StatelessWidget {
                                                                             ),
                                                                             Flexible(child:
                                                                             Text(homeController.all_latest_newsList[index]["title"],
+                                                                            //Text(homeController.all_latest_newsList[index]["id"],
                                                                                 style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                                                 textAlign: TextAlign.justify,
                                                                             ),
