@@ -209,7 +209,7 @@ class HomePage extends GetView<HomeController> {
                           padding: EdgeInsets.all(20),
                           alignment: Alignment.center,
 
-                          child:Expanded(
+                          //child:Expanded(
                             child: GridView.builder(
                               physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
@@ -250,7 +250,7 @@ class HomePage extends GetView<HomeController> {
                                 );
                               },
                             ),
-                          ),
+                          //),
 
 
                       ):SizedBox()
