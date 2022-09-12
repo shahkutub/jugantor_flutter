@@ -83,7 +83,7 @@ class AllPollFragment extends StatelessWidget {
 
                                     GestureDetector(
                                       onTap: (){
-
+                                        homeController.selectedPageIndex.value = 0;
                                       },
                                       child:Text("প্রচ্ছদ",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)
                                     ),
