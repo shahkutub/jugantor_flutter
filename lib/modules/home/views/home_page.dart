@@ -363,7 +363,7 @@ class HomePage extends GetView<HomeController> {
             floatingActionButton: FloatingActionButton(
               onPressed: () {
                 homeController.scrollController.value.animateTo(0,
-                    duration: const Duration(seconds: 2), curve: Curves.linear);
+                    duration: const Duration(seconds: 1), curve: Curves.linear);
               },
               child: Icon(Icons.arrow_circle_up_sharp,color: Colors.red,),
               backgroundColor: Colors.white,
