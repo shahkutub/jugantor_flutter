@@ -1900,70 +1900,70 @@ class HomeFragment extends GetView<HomeController> {
 
 
 
-                                    Container(
+                                    //map
 
-
-
-                                        child: Column(
-                                            children: [
-                                                Container(
-                                                    padding: EdgeInsets.all(10),
-                                                    child: Text(homeController.mapSelectedDivisionName.value,style: TextStyle(color: Colors.white,fontSize: 20),),
-                                                ),
-                                                CityPickerMap(
-                                                    width: width,
-                                                    height: height,
-                                                    map: Maps.BANGLADESH,
-                                                    onChanged: (city) {
-                                                        print(''+city!.title);
-
-                                                        if(city!.title == 'Dhaka'){
-                                                            homeController.mapSelectedDivisionName.value = 'ঢাকা';
-                                                        }
-
-                                                        if(city!.title == 'Barisal'){
-                                                            homeController.mapSelectedDivisionName.value = 'বরিশাল';
-                                                        }
-
-                                                        if(city!.title == 'Khulna'){
-                                                            homeController.mapSelectedDivisionName.value = 'খুলনা';
-                                                        }
-
-                                                        if(city!.title == 'Rajshahi'){
-                                                            homeController.mapSelectedDivisionName.value = 'রাজশাহী';
-                                                        }
-                                                        if(city!.title == 'Rangpur'){
-                                                            homeController.mapSelectedDivisionName.value = 'রংপুর';
-                                                        }
-                                                        if(city!.title == 'Mymensingh'){
-                                                            homeController.mapSelectedDivisionName.value = 'ময়মনসিংহ';
-                                                        }
-
-                                                        if(city!.title == 'Sylhet'){
-                                                            homeController.mapSelectedDivisionName.value = 'সিলেট';
-                                                        }
-                                                        if(city!.title == 'Chittagong'){
-                                                            homeController.mapSelectedDivisionName.value = 'চট্টগ্রাম';
-                                                        }
-
-
-                                                        // setState(() {
-                                                        //   selectedCity = city;
-                                                        // });
-                                                    },
-                                                    actAsToggle: true,
-                                                    dotColor: Colors.red,
-                                                    selectedColor: Colors.red,
-                                                    strokeColor: Color(0xff80C2EB),
-                                                ),
-                                            ],
-                                        ),
-
-                                        color: Color(0xff007E3D),
-                                        margin: EdgeInsets.only(left: 20,right: 20),
-                                        padding: EdgeInsets.all(10),
-
-                                    ),
+                                    // Container(
+                                    //
+                                    //     child: Column(
+                                    //         children: [
+                                    //             Container(
+                                    //                 padding: EdgeInsets.all(10),
+                                    //                 child: Text(homeController.mapSelectedDivisionName.value,style: TextStyle(color: Colors.white,fontSize: 20),),
+                                    //             ),
+                                    //             CityPickerMap(
+                                    //                 width: width,
+                                    //                 height: height,
+                                    //                 map: Maps.BANGLADESH,
+                                    //                 onChanged: (city) {
+                                    //                     print(''+city!.title);
+                                    //
+                                    //                     if(city!.title == 'Dhaka'){
+                                    //                         homeController.mapSelectedDivisionName.value = 'ঢাকা';
+                                    //                     }
+                                    //
+                                    //                     if(city!.title == 'Barisal'){
+                                    //                         homeController.mapSelectedDivisionName.value = 'বরিশাল';
+                                    //                     }
+                                    //
+                                    //                     if(city!.title == 'Khulna'){
+                                    //                         homeController.mapSelectedDivisionName.value = 'খুলনা';
+                                    //                     }
+                                    //
+                                    //                     if(city!.title == 'Rajshahi'){
+                                    //                         homeController.mapSelectedDivisionName.value = 'রাজশাহী';
+                                    //                     }
+                                    //                     if(city!.title == 'Rangpur'){
+                                    //                         homeController.mapSelectedDivisionName.value = 'রংপুর';
+                                    //                     }
+                                    //                     if(city!.title == 'Mymensingh'){
+                                    //                         homeController.mapSelectedDivisionName.value = 'ময়মনসিংহ';
+                                    //                     }
+                                    //
+                                    //                     if(city!.title == 'Sylhet'){
+                                    //                         homeController.mapSelectedDivisionName.value = 'সিলেট';
+                                    //                     }
+                                    //                     if(city!.title == 'Chittagong'){
+                                    //                         homeController.mapSelectedDivisionName.value = 'চট্টগ্রাম';
+                                    //                     }
+                                    //
+                                    //
+                                    //                     // setState(() {
+                                    //                     //   selectedCity = city;
+                                    //                     // });
+                                    //                 },
+                                    //                 actAsToggle: true,
+                                    //                 dotColor: Colors.red,
+                                    //                 selectedColor: Colors.red,
+                                    //                 strokeColor: Color(0xff80C2EB),
+                                    //             ),
+                                    //         ],
+                                    //     ),
+                                    //
+                                    //     color: Color(0xff007E3D),
+                                    //     margin: EdgeInsets.only(left: 20,right: 20),
+                                    //     padding: EdgeInsets.all(10),
+                                    //
+                                    // ),
 
 
                                     SizedBox(
