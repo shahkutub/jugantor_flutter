@@ -1,6 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-//import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -18,9 +16,9 @@ class NewsDetailseFragment extends StatelessWidget {
     Get.find<HomeController>();
     double height = Get.height;
     double width = Get.width;
-
+    //Firebase.initializeApp();
     // FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-    // analytics.setUserId(id: '123456');
+    // analytics.setUserId(id: 'UA-41755481-1');
     //
     // analytics.logEvent(
     //   name: "select_content",
@@ -28,6 +26,10 @@ class NewsDetailseFragment extends StatelessWidget {
     //     "content_type": "image",
     //     "item_id": 0,
     //   },
+    // );
+    //
+    // analytics.setCurrentScreen(
+    //     screenName: 'Products'
     // );
 
     var bread_cat_name = "";
