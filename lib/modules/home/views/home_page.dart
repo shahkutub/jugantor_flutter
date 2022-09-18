@@ -196,6 +196,7 @@ class HomePage extends GetView<HomeController> {
                 )
 
             ),
+
             drawer: new Drawer(
                 backgroundColor: Colors.white,
                 child:  SingleChildScrollView(
