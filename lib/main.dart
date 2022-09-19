@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/model/BoxListModel.dart';
@@ -10,6 +11,8 @@ initServices() async {
 }
 main(List<String> args) async {
     // WidgetsFlutterBinding.ensureInitialized();
+    // WidgetsFlutterBinding.ensureInitialized();
+    // await Firebase.initializeApp();
     await initServices();
     runApp(MyApp());
 }
