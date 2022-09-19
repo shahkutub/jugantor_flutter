@@ -31,9 +31,11 @@ class SplashscreenController extends GetxController {
     //   //   Get.offAllNamed(Routes.LOGIN);
     //   // }
     // });
+
     get_bn_date();
     get_extracat();
     get_category();
+
     //get_last_entry_news1();
     super.onInit();
   }
