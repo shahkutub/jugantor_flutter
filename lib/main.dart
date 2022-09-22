@@ -1,19 +1,21 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/model/BoxListModel.dart';
 import 'package:jugantor.com/settings_service.dart';
+import 'package:jugantor.com/utils/DefaultFirebaseConfig.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-
 import 'routes/app_pages.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 initServices() async {
     await Get.putAsync<SettingsService>(() async => await SettingsService());
 }
 main(List<String> args) async {
-    // WidgetsFlutterBinding.ensureInitialized();
-    // WidgetsFlutterBinding.ensureInitialized();
-    // await Firebase.initializeApp();
+
     await initServices();
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(options: DefaultFirebaseConfig.platformOptions);
+
     runApp(MyApp());
 }
 

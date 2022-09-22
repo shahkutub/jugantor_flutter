@@ -1,10 +1,12 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../utils/utils.dart';
 import 'bottom_view.dart';
@@ -16,9 +18,9 @@ class NewsDetailseFragment extends StatelessWidget {
     Get.find<HomeController>();
     double height = Get.height;
     double width = Get.width;
-    //Firebase.initializeApp();
-    // FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-    // analytics.setUserId(id: 'UA-41755481-1');
+    Firebase.initializeApp();
+    FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+    //analytics.setUserId(id: 'UA-41755481-1');
     //
     // analytics.logEvent(
     //   name: "select_content",
@@ -28,9 +30,10 @@ class NewsDetailseFragment extends StatelessWidget {
     //   },
     // );
     //
-    // analytics.setCurrentScreen(
-    //     screenName: 'Products'
-    // );
+
+    analytics.setCurrentScreen(
+        screenName: 'IOS'+homeController.newsDetails.value.title.toString()
+    );
 
     var bread_cat_name = "";
     var bread_cat_id = 0;
@@ -777,5 +780,20 @@ class NewsDetailseFragment extends StatelessWidget {
         })
     );
 
+  }
+
+  Future<void> launchFacebook(String fbUrl, String fbWebUrl) async {
+    try {
+      bool launched = await launch(fbUrl, forceSafariVC: false);
+      print("Launched Native app $launched");
+
+      if (!launched) {
+        await launch(fbWebUrl, forceSafariVC: false);
+        print("Launched browser $launched");
+      }
+    } catch (e) {
+      await launch(fbWebUrl, forceSafariVC: false);
+      print("Inside catch");
+    }
   }
 }

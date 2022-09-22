@@ -1598,10 +1598,10 @@ class HomeController extends GetxController {
 
 
   Widget CustomRadioButton(String text, int index,BuildContext  context) {
-    return FlatButton(
+    return TextButton(
 
       //color: (button.value == index) ? Colors.black : Colors.white,
-      color: (button.value == index) ? Colors.black : Colors.white,
+      //color: (button.value == index) ? Colors.black : Colors.white,
       onPressed: () {
         button.value = index;
         if(button.value == 1){
@@ -1631,7 +1631,7 @@ class HomeController extends GetxController {
                ),
          //),
 
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+     // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       //borderSide: BorderSide(color: (button.value == index) ? Colors.green : Colors.black),
 
     );
