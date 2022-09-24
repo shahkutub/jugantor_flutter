@@ -64,15 +64,15 @@ class SaraDeshThanaFragment extends StatelessWidget {
                                 child:Text(""+homeController.selectedDistrictName.value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
                               ),
                           ),
-                          Container(
-                            child: homeController.selectedThanaName.value.isNotEmpty?
-                                Row(
-                                  children: [
-                                    Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
-                                    Text(""+homeController.selectedThanaName.value,style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.grey),),
-                                  ],
-                                ):SizedBox()
-                          ),
+                          // Container(
+                          //   child: homeController.selectedThanaName.value.isNotEmpty?
+                          //       Row(
+                          //         children: [
+                          //           Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
+                          //           Text(""+homeController.selectedThanaName.value,style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.grey),),
+                          //         ],
+                          //       ):SizedBox()
+                          // ),
 
                         ],
                       ),
@@ -195,23 +195,10 @@ class SaraDeshThanaFragment extends StatelessWidget {
 
                                       child: Obx(() =>
                                           Container(
-                                            //height: ,
-                                            //alignment: Alignment.center,
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.start,
                                                 crossAxisAlignment: CrossAxisAlignment.center,
                                                 children: [
-                                                  // Container(
-                                                  //   margin: EdgeInsets.only(right: 10),
-                                                  //   height: 70,
-                                                  //   width: 100,
-                                                  //   child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
-                                                  //     fit: BoxFit.fill,
-                                                  //   ),
-                                                  //   //height: 80,
-                                                  //   // width: 60,
-                                                  // ),
-
                                                   Container(
                                                     margin: EdgeInsets.only(right: 10),
                                                     height: 70,
@@ -229,44 +216,23 @@ class SaraDeshThanaFragment extends StatelessWidget {
                                                         Positioned(
                                                           bottom: 20,
                                                           left:35,
-                                                          child: homeController.saradesh_district_newsList[index2].video_dis  == 0 ?
+                                                          child:homeController.saradesh_district_newsList[index2]  == 0 ?
                                                           Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
 
                                                         ),
                                                       ],
                                                     ),
                                                   ),
-
-                                                  //Flexible(child:
+                                                  Flexible(child:
                                                   Text(homeController.saradesh_district_newsList[index2].title!,
                                                     style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                     textAlign: TextAlign.justify,
                                                   ),
 
-                                                  //),
+                                                  ),
 
                                                 ],
                                               )
-                                            // child: Row(
-                                            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                            //   crossAxisAlignment: CrossAxisAlignment.center,
-                                            //   children: [
-                                            //     Container(
-                                            //       child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
-                                            //         fit: BoxFit.fitWidth,
-                                            //         height: 70,
-                                            //
-                                            //       ),
-                                            //       //height: 80,
-                                            //       // width: 60,
-                                            //     ),
-                                            //
-                                            //     Flexible(child: Text(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].title,
-                                            //       style: TextStyle(color: Colors.black,fontSize: 14, ),),),
-                                            //
-                                            //   ],
-                                            // )
-
 
                                           )
                                       ),
@@ -429,39 +395,6 @@ class SaraDeshThanaFragment extends StatelessWidget {
                                                                             ),
                                                                           ),
 
-                                                                          // FadeInImage.assetNetwork(
-                                                                          //     fit: BoxFit.fill,
-                                                                          //     image:homeController.subcategory_list_with_news_newsList[index].category_wise_newsList![index2].img_url!,
-                                                                          //     placeholder:"assets/images/jugantordefault.jpg" // your assets image path
-                                                                          // ),
-                                                                          // Positioned(
-                                                                          //   bottom: width*.2,
-                                                                          //   left:width/2.5 ,
-                                                                          //   child: homeController.subcategory_list_with_news_newsList[index].category_wise_newsList![index2].video_dis  == 1 ?
-                                                                          //   Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
-                                                                          //
-                                                                          // ),
-                                                                          // Positioned(
-                                                                          //   bottom: 0,
-                                                                          //   left: 0,
-                                                                          //   child: Column(
-                                                                          //     children: <Widget>[
-                                                                          //       Container(
-                                                                          //         width: width,
-                                                                          //         child:Text(
-                                                                          //           homeController.subcategory_list_with_news_newsList[index].category_wise_newsList![index2].title!,
-                                                                          //           style: TextStyle(
-                                                                          //               fontSize: 17,
-                                                                          //               fontWeight: FontWeight.bold,
-                                                                          //               color: Colors.white),
-                                                                          //         ),
-                                                                          //         padding: EdgeInsets.all(10),
-                                                                          //         color: Colors.black54,
-                                                                          //       )
-                                                                          //
-                                                                          //     ],
-                                                                          //   ),
-                                                                          // )
                                                                         ],
                                                                       ),
                                                                     );
@@ -478,23 +411,10 @@ class SaraDeshThanaFragment extends StatelessWidget {
 
                                                                           child: Obx(() =>
                                                                               Container(
-                                                                                //height: ,
-                                                                                //alignment: Alignment.center,
                                                                                   child: Row(
                                                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                                                     crossAxisAlignment: CrossAxisAlignment.center,
                                                                                     children: [
-                                                                                      // Container(
-                                                                                      //   margin: EdgeInsets.only(right: 10),
-                                                                                      //   height: 70,
-                                                                                      //   width: 100,
-                                                                                      //   child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
-                                                                                      //     fit: BoxFit.fill,
-                                                                                      //   ),
-                                                                                      //   //height: 80,
-                                                                                      //   // width: 60,
-                                                                                      // ),
-
                                                                                       Container(
                                                                                         margin: EdgeInsets.only(right: 10),
                                                                                         height: 70,
@@ -512,44 +432,23 @@ class SaraDeshThanaFragment extends StatelessWidget {
                                                                                             Positioned(
                                                                                               bottom: 20,
                                                                                               left:35,
-                                                                                              child: homeController.subcategory_list_with_news_newsList[index].category_wise_newsList![index2].video_dis  == 0 ?
+                                                                                              child:homeController.subcategory_list_with_news_newsList[index].category_wise_newsList![index2].video_dis!  == 0 ?
                                                                                               Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
 
                                                                                             ),
                                                                                           ],
                                                                                         ),
                                                                                       ),
-
-                                                                                      //Flexible(child:
+                                                                                      Flexible(child:
                                                                                       Text(homeController.subcategory_list_with_news_newsList[index].category_wise_newsList![index2].title!,
                                                                                         style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                                                         textAlign: TextAlign.justify,
                                                                                       ),
 
-                                                                                      //),
+                                                                                      ),
 
                                                                                     ],
                                                                                   )
-                                                                                // child: Row(
-                                                                                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                                                //   crossAxisAlignment: CrossAxisAlignment.center,
-                                                                                //   children: [
-                                                                                //     Container(
-                                                                                //       child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
-                                                                                //         fit: BoxFit.fitWidth,
-                                                                                //         height: 70,
-                                                                                //
-                                                                                //       ),
-                                                                                //       //height: 80,
-                                                                                //       // width: 60,
-                                                                                //     ),
-                                                                                //
-                                                                                //     Flexible(child: Text(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].title,
-                                                                                //       style: TextStyle(color: Colors.black,fontSize: 14, ),),),
-                                                                                //
-                                                                                //   ],
-                                                                                // )
-
 
                                                                               )
                                                                           ),
@@ -625,8 +524,6 @@ class SaraDeshThanaFragment extends StatelessWidget {
                                         },
 
                                         child: Obx(() => Container(
-                                          //height: ,
-                                          //alignment: Alignment.center,
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.start,
                                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -648,20 +545,20 @@ class SaraDeshThanaFragment extends StatelessWidget {
                                                       Positioned(
                                                         bottom: 20,
                                                         left:35,
-                                                        child: homeController.last_entry_newsList[index].video_dis  == 0 ?
+                                                        child:homeController.last_entry_newsList[index].video_dis  == 0 ?
                                                         Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
 
                                                       ),
                                                     ],
                                                   ),
                                                 ),
-                                                //Flexible(child:
+                                                Flexible(child:
                                                 Text(homeController.last_entry_newsList[index].title!,
                                                   style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                   textAlign: TextAlign.justify,
                                                 ),
 
-                                                //),
+                                                ),
 
                                               ],
                                             )
@@ -711,46 +608,6 @@ class SaraDeshThanaFragment extends StatelessWidget {
         })
     );
 
-    // return new Container(
-    //     child: Obx(() {
-    //       if (homeController.dataLoaded.isTrue) {
-    //         return new SingleChildScrollView(
-    //             //controller: homeController.scrollController.value,
-    //             child: Container(
-    //               child: Column(
-    //
-    //                 children: <Widget>[
-    //
-    //                   Obx(() =>
-    //                       Container(
-    //                         margin: EdgeInsets.only(top: 15, bottom: 5, right: 20, left: 20),
-    //                         child:Obx(() {
-    //                           return Row(
-    //                             children: [
-    //                               // Text("প্রচ্ছদ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
-    //                               // Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
 
-    //                               Obx(() =>
-    //                                   Visibility(visible: true,child:Text(""+homeController.categoryName.value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
-    //                               ),
-    //                               //Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
-    //                             ],
-    //                           );
-    //                         })
-    //
-    //                       )
-    //                   ),
-    //
-    //
-    //                 ],
-    //               ),
-    //             )
-    //
-    //         );
-    //       } else {
-    //         return Center(child: CircularProgressIndicator());
-    //       }
-    //     })
-    // );
   }
 }

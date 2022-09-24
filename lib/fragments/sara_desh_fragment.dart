@@ -243,76 +243,96 @@ class SaraDeshFragment extends StatelessWidget {
                                           Container(
                                             //height: ,
                                             //alignment: Alignment.center,
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                children: [
-                                                  // Container(
-                                                  //   margin: EdgeInsets.only(right: 10),
-                                                  //   height: 70,
-                                                  //   width: 100,
-                                                  //   child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
-                                                  //     fit: BoxFit.fill,
-                                                  //   ),
-                                                  //   //height: 80,
-                                                  //   // width: 60,
-                                                  // ),
-
-                                                  Container(
-                                                    margin: EdgeInsets.only(right: 10),
-                                                    height: 70,
-                                                    width: 100,
-                                                    child: Stack(
-                                                      fit: StackFit.expand,
-                                                      children: [
-                                                        FadeInImage.assetNetwork(
-                                                            height: 70,
-                                                            width: 100,
-                                                            fit: BoxFit.fill,
-                                                            image:homeController.saradesh_top_newsList[index2].img_url!,
-                                                            placeholder:"assets/images/jugantordefault.jpg" // your assets image path
-                                                        ),
-                                                        Positioned(
-                                                          bottom: 20,
-                                                          left:35,
-                                                          child: homeController.saradesh_top_newsList[index2].video_dis  == 0 ?
-                                                          Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
-
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-
-                                                  //Flexible(child:
-                                                  Text(homeController.saradesh_top_newsList[index2].title!,
-                                                    style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
-                                                    textAlign: TextAlign.justify,
-                                                  ),
-
-                                                  //),
-
-                                                ],
-                                              )
-                                            // child: Row(
-                                            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                            //   crossAxisAlignment: CrossAxisAlignment.center,
-                                            //   children: [
-                                            //     Container(
-                                            //       child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
-                                            //         fit: BoxFit.fitWidth,
+                                            //   child: Row(
+                                            //     mainAxisAlignment: MainAxisAlignment.start,
+                                            //     crossAxisAlignment: CrossAxisAlignment.center,
+                                            //     children: [
+                                            //       // Container(
+                                            //       //   margin: EdgeInsets.only(right: 10),
+                                            //       //   height: 70,
+                                            //       //   width: 100,
+                                            //       //   child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
+                                            //       //     fit: BoxFit.fill,
+                                            //       //   ),
+                                            //       //   //height: 80,
+                                            //       //   // width: 60,
+                                            //       // ),
+                                            //
+                                            //       Container(
+                                            //         margin: EdgeInsets.only(right: 10),
                                             //         height: 70,
+                                            //         width: 100,
+                                            //         child: Stack(
+                                            //           fit: StackFit.expand,
+                                            //           children: [
+                                            //             FadeInImage.assetNetwork(
+                                            //                 height: 70,
+                                            //                 width: 100,
+                                            //                 fit: BoxFit.fill,
+                                            //                 image:homeController.saradesh_top_newsList[index2].img_url!,
+                                            //                 placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                            //             ),
+                                            //             Positioned(
+                                            //               bottom: 20,
+                                            //               left:35,
+                                            //               child: homeController.saradesh_top_newsList[index2].video_dis  == 0 ?
+                                            //               Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
                                             //
+                                            //             ),
+                                            //           ],
+                                            //         ),
                                             //       ),
-                                            //       //height: 80,
-                                            //       // width: 60,
-                                            //     ),
                                             //
-                                            //     Flexible(child: Text(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].title,
-                                            //       style: TextStyle(color: Colors.black,fontSize: 14, ),),),
+                                            //       //Flexible(child:
+                                            //       Text(homeController.saradesh_top_newsList[index2].title!,
+                                            //         style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                            //         textAlign: TextAlign.justify,
+                                            //       ),
                                             //
-                                            //   ],
-                                            // )
+                                            //       //),
+                                            //
+                                            //     ],
+                                            //   )
+                                                //height: ,
+                                                //alignment: Alignment.center,
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.start,
+                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                    children: [
+                                                      Container(
+                                                        margin: EdgeInsets.only(right: 10),
+                                                        height: 70,
+                                                        width: 100,
+                                                        child: Stack(
+                                                          fit: StackFit.expand,
+                                                          children: [
+                                                            FadeInImage.assetNetwork(
+                                                                height: 70,
+                                                                width: 100,
+                                                                fit: BoxFit.fill,
+                                                                image:homeController.saradesh_top_newsList[index2].img_url!,
+                                                                placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                            ),
+                                                            Positioned(
+                                                              bottom: 20,
+                                                              left:35,
+                                                              child: homeController.saradesh_top_newsList[index2].video_dis  == 0 ?
+                                                              Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
 
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Flexible(child:
+                                                      Text(homeController.saradesh_top_newsList[index2].title!,
+                                                        style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                                        textAlign: TextAlign.justify,
+                                                      ),
+
+                                                      ),
+
+                                                    ],
+                                                  )
 
                                           )
                                       ),
@@ -631,7 +651,8 @@ class SaraDeshFragment extends StatelessWidget {
                                           // }
                                         },
 
-                                        child: Obx(() => Container(
+                                        child: Obx(() =>
+                                            Container(
                                           //height: ,
                                           //alignment: Alignment.center,
                                             child: Row(
