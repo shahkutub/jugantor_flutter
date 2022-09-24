@@ -12,8 +12,8 @@ import 'package:jugantor.com/fragments/bottom_view.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 import 'package:jugantor.com/utils/loaders/color_loader_5.dart';
 import 'package:jugantor.com/utils/loaders/dot_type.dart';
-import 'package:group_radio_button/group_radio_button.dart';
-import 'package:city_picker_from_map/city_picker_from_map.dart';
+import 'package:touch_ripple_effect/touch_ripple_effect.dart';
+
 import '../ui.dart';
 import '../utils/utils.dart';
 
@@ -64,88 +64,95 @@ class HomeFragment extends GetView<HomeController> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                     Obx(() =>
-                                        GestureDetector(
-                                            onTap: (){
-                                                homeController.dataLoaded.value = false;
-                                                homeController.newsId.value = homeController.leadnews.value.id.toString();
-                                                homeController.get_news_details();
-                                                //homeController.selectedPageIndex.value = 1;
+                            TouchRippleEffect(
 
-                                            },
-                                            child: Container(
-                                                alignment: Alignment.centerLeft,
-                                                margin: EdgeInsets.only(top: 15,bottom: 5,right: 20,left: 20),
-                                                height: width*.6,
-                                                width: width,
-                                                child: homeController.leadnews.value != null?
-                                                Stack(
-                                                    //fit: StackFit.expand,
-                                                    children: [
+                                rippleColor: Colors.white60,
+                                child: GestureDetector(
 
-                                                        Align(
-                                                            alignment: Alignment.center,
-                                                            child: FadeInImage.assetNetwork(
-                                                                fit: BoxFit.fill,
-                                                                height: width*.6,
-                                                                image:homeController.leadnews.value.img_url!,
-                                                                placeholder:"assets/images/jugantordefault.jpg"
-                                                            ),
-                                                        ),
+                                    onTap: (){
 
-                                                        Align(
-                                                            alignment: Alignment.center,
-                                                            child: homeController.leadnews.value.video_dis  == 0 ?
-                                                            Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
-                                                        ),
+                                        homeController.dataLoaded.value = false;
+                                        homeController.newsId.value = homeController.leadnews.value.id.toString();
+                                        homeController.get_news_details();
+                                        //homeController.selectedPageIndex.value = 1;
 
-                                                        Align(
-                                                            alignment: Alignment.bottomCenter,
-                                                            child: Container(
-                                                                width: width,
-                                                                padding: EdgeInsets.all(15),
-                                                                color: Colors.black54,
-                                                                child:Row(
-                                                                    children: [
-                                                                        Expanded(
-                                                                            child:Text(
-                                                                                ''+homeController.leadnews.value.title!,
-                                                                                style: TextStyle(
-                                                                                    fontSize: 16,
-                                                                                    fontWeight: FontWeight.bold,
-                                                                                    color: Colors.white),
-                                                                            ),
-                                                                        ),
-                                                                    ],
-                                                                )
+                                    },
+                                    child: Container(
+                                        alignment: Alignment.centerLeft,
+                                        margin: EdgeInsets.only(top: 15,bottom: 5,right: 20,left: 20),
+                                        height: width*.6,
+                                        width: width,
+                                        child: homeController.leadnews.value != null?
+                                        Stack(
+                                            //fit: StackFit.expand,
+                                            children: [
 
-                                                            ),
-                                                        ),
+                                                Align(
+                                                    alignment: Alignment.center,
+                                                    child: FadeInImage.assetNetwork(
+                                                        fit: BoxFit.fill,
+                                                        height: width*.6,
+                                                        image:homeController.leadnews.value.img_url!,
+                                                        placeholder:"assets/images/jugantordefault.jpg"
+                                                    ),
+                                                ),
 
-                                                        // Positioned(
-                                                        //     top: width*.3,
-                                                        //     left: 0,
-                                                        //     right: 0,
-                                                        //     child: Container(
-                                                        //       width: width,
-                                                        //       padding: EdgeInsets.all(15),
-                                                        //       color: Colors.black54,
-                                                        //       //child: Flexible(
-                                                        //         child:Text(
-                                                        //           homeController.leadnews.value.title!,
-                                                        //           style: TextStyle(
-                                                        //               fontSize: 16,
-                                                        //               fontWeight: FontWeight.bold,
-                                                        //               color: Colors.white),
-                                                        //         ),
-                                                        //       //),
-                                                        //     ),
-                                                        // )
+                                                Align(
+                                                    alignment: Alignment.center,
+                                                    child: homeController.leadnews.value.video_dis  == 0 ?
+                                                    Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
+                                                ),
 
-                                                    ],
-                                                ):SizedBox()
+                                                Align(
+                                                    alignment: Alignment.bottomCenter,
+                                                    child: Container(
+                                                        width: width,
+                                                        padding: EdgeInsets.all(15),
+                                                        color: Colors.black54,
+                                                        child:Row(
+                                                            children: [
+                                                                Expanded(
+                                                                    child:Text(
+                                                                        ''+homeController.leadnews.value.title!,
+                                                                        style: TextStyle(
+                                                                            fontSize: 16,
+                                                                            fontWeight: FontWeight.bold,
+                                                                            color: Colors.white),
+                                                                    ),
+                                                                ),
+                                                            ],
+                                                        )
 
-                                            )
-                                        ),
+                                                    ),
+                                                ),
+
+                                                // Positioned(
+                                                //     top: width*.3,
+                                                //     left: 0,
+                                                //     right: 0,
+                                                //     child: Container(
+                                                //       width: width,
+                                                //       padding: EdgeInsets.all(15),
+                                                //       color: Colors.black54,
+                                                //       //child: Flexible(
+                                                //         child:Text(
+                                                //           homeController.leadnews.value.title!,
+                                                //           style: TextStyle(
+                                                //               fontSize: 16,
+                                                //               fontWeight: FontWeight.bold,
+                                                //               color: Colors.white),
+                                                //         ),
+                                                //       //),
+                                                //     ),
+                                                // )
+
+                                            ],
+                                        ):SizedBox()
+
+                                    )
+                                ),
+                            ),
+
                                     ),
 
                                     //extracat
