@@ -33,6 +33,14 @@ class VideoFragmentDetailse extends StatelessWidget{
       photoUrl = text.substring(match.start, match.end);
     });
 
+    RegExp regExp = new RegExp(
+      r'.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*',
+      caseSensitive: false,
+      multiLine: false,
+    );
+
+    final match = regExp.firstMatch(photoUrl)!.group(1); // <- This is the fix
+
 
     return Container(
         margin: EdgeInsets.all(20),
@@ -79,8 +87,13 @@ class VideoFragmentDetailse extends StatelessWidget{
                         child: WebView(
                           //initialUrl: Uri.dataFromString('<html><body>'+homeController.vidDataInfo.value.embed_code.toString()+'</body></html>', mimeType: 'text/html').toString(),
 
-                          initialUrl: Uri.dataFromString('<html><body><iframe width= '+webViewWidth.toString()+'px height='+webViewheight.toString()+' '
-                              'src='+photoUrl.toString()+' title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe></body></html>', mimeType: 'text/html').toString(),
+                          // initialUrl: Uri.dataFromString('<html><body><iframe width= '+webViewWidth.toString()+'px height='+webViewheight.toString()+' '
+                          //     'src='+photoUrl.toString()+' title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe></body></html>', mimeType: 'text/html').toString(),
+
+                           initialUrl: Uri.dataFromString("<html><body><iframe width=\"100%\" height=\"100%\" src=\"https://www" +
+                               ".youtube.com/embed/"+match!+"\" frameborder=\"0\" " +
+                               "allowfullscreen></iframe></body></html>", mimeType: 'text/html').toString(),
+
 
                           javascriptMode: JavascriptMode.unrestricted,
                           onWebViewCreated: (WebViewController webViewController) {

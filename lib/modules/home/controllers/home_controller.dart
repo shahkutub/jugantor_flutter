@@ -1600,7 +1600,8 @@ class HomeController extends GetxController {
   Widget CustomRadioButton(String text, int index,BuildContext  context) {
     return TextButton(
    // return FlatButton(
-
+        style: TextButton.styleFrom(
+        padding: EdgeInsets.only(top: 15,bottom: 15),),
       //color: (button.value == index) ? Colors.black : Colors.white,
      // color: (button.value == index) ? Colors.black : Colors.white,
       onPressed: () {
@@ -1617,6 +1618,7 @@ class HomeController extends GetxController {
       },
      // child: Expanded(
           child:Container(
+            padding: EdgeInsets.only(top: 7,bottom: 7),
             width: Get.width/3,
 
               child:Center(child: Text(
