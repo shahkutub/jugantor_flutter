@@ -1,10 +1,15 @@
+import 'dart:io';
+
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_share/flutter_share.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
+import 'package:social_share_plugin/social_share_plugin.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../utils/utils.dart';
 import 'bottom_view.dart';
@@ -208,84 +213,102 @@ class NewsDetailseFragment extends StatelessWidget {
                             Row(
                               children: <Widget>[
 
-                                GestureDetector(
-                                  child:Container(
-                                    //height: 80,
-                                    alignment: Alignment.center,
-                                    child: SvgPicture.asset(
-                                      'assets/images/facebook.svg',
-                                      height: 35, width: 35,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: Color(0xff4469B3),
-                                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 10,),
-                                GestureDetector(
-                                  child:Container(
-                                    //height: 80,
-                                    padding: EdgeInsets.all(5),
-                                    alignment: Alignment.center,
-                                    child: SvgPicture.asset(
-                                      'assets/images/messenger.svg',
-                                      height: 30, width: 30,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: Color(0xff00B0ED),
-                                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                                    ),
-                                  ),
-                                ),
-
-                                SizedBox(width: 10,),
-                                GestureDetector(
-                                  child:Container(
-                                    //height: 80,
-                                    padding: EdgeInsets.all(5),
-                                    alignment: Alignment.center,
-                                    child: SvgPicture.asset(
-                                      'assets/images/twitter.svg',
-                                      height: 30, width: 30,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: Color(0xff00B0ED),
-                                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 10,),
-                                GestureDetector(
-                                  child:Container(
-                                    padding: EdgeInsets.all(3),
-                                    alignment: Alignment.center,
-                                    child: SvgPicture.asset(
-                                      'assets/images/whatsapp.svg',
-                                      height: 35, width: 35,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: Color(0xff35B94A),
-                                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                                    ),
-                                  ),
-                                ),
-
-                                SizedBox(width: 10,),
-                                GestureDetector(
-                                  child:Container(
-                                    //height: 80,
-                                    alignment: Alignment.center,
-                                    child: SvgPicture.asset(
-                                      'assets/images/linkedin.svg',
-                                      height: 40, width: 40,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: Color(0xff007AB9),
-                                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                                    ),
-                                  ),
-                                ),
+                                // GestureDetector(
+                                //
+                                //   child:Container(
+                                //     //height: 80,
+                                //     alignment: Alignment.center,
+                                //     child: Image.asset(
+                                //       'assets/images/socialmedia.png',
+                                //       height: 50, width: 50,
+                                //     ),
+                                //     // decoration: BoxDecoration(
+                                //     //   color: Color(0xff4469B3),
+                                //     //   borderRadius: BorderRadius.all(Radius.circular(20)),
+                                //     // ),
+                                //   ),
+                                //   onTap: () async {
+                                //     FlutterShare.share(
+                                //         title: homeController.newsDetails.value.title!,
+                                //         text: homeController.newsDetails.value.title!,
+                                //         chooserTitle: homeController.newsDetails.value.title!,
+                                //         linkUrl: homeController.newsDetails.value.generate_url
+                                //         //text: 'Please click on attach link to show & download pdf',
+                                //         // filePath: controller.searchPdfPath.value,
+                                //         // fileType: '*/*'
+                                //       //chooserTitle: 'Please click on attach link to show & download pdf'
+                                //     );
+                                //
+                                //
+                                //     //await SocialSharePlugin.shareToFeedFacebookLink(quote: 'quote', url: 'https://flutter.dev');
+                                //   },
+                                // ),
+                                // SizedBox(width: 10,),
+                                // GestureDetector(
+                                //   child:Container(
+                                //     //height: 80,
+                                //     padding: EdgeInsets.all(5),
+                                //     alignment: Alignment.center,
+                                //     child: SvgPicture.asset(
+                                //       'assets/images/messenger.svg',
+                                //       height: 30, width: 30,
+                                //     ),
+                                //     decoration: BoxDecoration(
+                                //       color: Color(0xff00B0ED),
+                                //       borderRadius: BorderRadius.all(Radius.circular(20)),
+                                //     ),
+                                //   ),
+                                // ),
+                                //
+                                // SizedBox(width: 10,),
+                                // GestureDetector(
+                                //   child:Container(
+                                //     //height: 80,
+                                //     padding: EdgeInsets.all(5),
+                                //     alignment: Alignment.center,
+                                //     child: SvgPicture.asset(
+                                //       'assets/images/twitter.svg',
+                                //       height: 30, width: 30,
+                                //     ),
+                                //     decoration: BoxDecoration(
+                                //       color: Color(0xff00B0ED),
+                                //       borderRadius: BorderRadius.all(Radius.circular(20)),
+                                //     ),
+                                //   ),
+                                //   onTap: () async {
+                                //     await SocialSharePlugin.shareToTwitterLink(text: 'text', url: 'https://flutter.dev');                                  },
+                                // ),
+                                // SizedBox(width: 10,),
+                                // GestureDetector(
+                                //   child:Container(
+                                //     padding: EdgeInsets.all(3),
+                                //     alignment: Alignment.center,
+                                //     child: SvgPicture.asset(
+                                //       'assets/images/whatsapp.svg',
+                                //       height: 35, width: 35,
+                                //     ),
+                                //     decoration: BoxDecoration(
+                                //       color: Color(0xff35B94A),
+                                //       borderRadius: BorderRadius.all(Radius.circular(20)),
+                                //     ),
+                                //   ),
+                                // ),
+                                //
+                                // SizedBox(width: 10,),
+                                // GestureDetector(
+                                //   child:Container(
+                                //     //height: 80,
+                                //     alignment: Alignment.center,
+                                //     child: SvgPicture.asset(
+                                //       'assets/images/linkedin.svg',
+                                //       height: 40, width: 40,
+                                //     ),
+                                //     decoration: BoxDecoration(
+                                //       color: Color(0xff007AB9),
+                                //       borderRadius: BorderRadius.all(Radius.circular(20)),
+                                //     ),
+                                //   ),
+                                // ),
 
                               ],
                             ),
