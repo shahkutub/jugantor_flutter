@@ -82,7 +82,7 @@ class VideoFragmentDetailse extends StatelessWidget{
                       Container(
                         //margin: EdgeInsets.only(top: 20),
                         height: width-125,
-                        width: width-40,
+                        width: width,
                         color: Colors.red,
                         child: WebView(
                           //initialUrl: Uri.dataFromString('<html><body>'+homeController.vidDataInfo.value.embed_code.toString()+'</body></html>', mimeType: 'text/html').toString(),
@@ -256,13 +256,12 @@ class VideoFragmentDetailse extends StatelessWidget{
                                               placeholder:"assets/images/jugantordefault.jpg" // your assets image path
                                           ),
 
-                                          // Positioned(
-                                          //   bottom: 10,
-                                          //   left:10,
-                                          //   child: homeController.showNewsList[index].video_dis  == 0 ?
-                                          //   Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
-                                          //
-                                          // ),
+                                          Positioned(
+                                            bottom: 30,
+                                            left:50,
+                                            child: Image.asset("assets/images/video_icon.png", height: 50, width: 50,),
+
+                                          ),
 
                                         ],
                                       ),

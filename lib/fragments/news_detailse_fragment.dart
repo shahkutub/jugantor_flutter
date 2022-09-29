@@ -244,71 +244,155 @@ class NewsDetailseFragment extends StatelessWidget {
                                 //   },
                                 // ),
                                 // SizedBox(width: 10,),
-                                // GestureDetector(
-                                //   child:Container(
-                                //     //height: 80,
-                                //     padding: EdgeInsets.all(5),
-                                //     alignment: Alignment.center,
-                                //     child: SvgPicture.asset(
-                                //       'assets/images/messenger.svg',
-                                //       height: 30, width: 30,
-                                //     ),
-                                //     decoration: BoxDecoration(
-                                //       color: Color(0xff00B0ED),
-                                //       borderRadius: BorderRadius.all(Radius.circular(20)),
-                                //     ),
-                                //   ),
-                                // ),
-                                //
-                                // SizedBox(width: 10,),
-                                // GestureDetector(
-                                //   child:Container(
-                                //     //height: 80,
-                                //     padding: EdgeInsets.all(5),
-                                //     alignment: Alignment.center,
-                                //     child: SvgPicture.asset(
-                                //       'assets/images/twitter.svg',
-                                //       height: 30, width: 30,
-                                //     ),
-                                //     decoration: BoxDecoration(
-                                //       color: Color(0xff00B0ED),
-                                //       borderRadius: BorderRadius.all(Radius.circular(20)),
-                                //     ),
-                                //   ),
-                                //   onTap: () async {
-                                //     await SocialSharePlugin.shareToTwitterLink(text: 'text', url: 'https://flutter.dev');                                  },
-                                // ),
-                                // SizedBox(width: 10,),
-                                // GestureDetector(
-                                //   child:Container(
-                                //     padding: EdgeInsets.all(3),
-                                //     alignment: Alignment.center,
-                                //     child: SvgPicture.asset(
-                                //       'assets/images/whatsapp.svg',
-                                //       height: 35, width: 35,
-                                //     ),
-                                //     decoration: BoxDecoration(
-                                //       color: Color(0xff35B94A),
-                                //       borderRadius: BorderRadius.all(Radius.circular(20)),
-                                //     ),
-                                //   ),
-                                // ),
-                                //
-                                // SizedBox(width: 10,),
-                                // GestureDetector(
-                                //   child:Container(
-                                //     //height: 80,
-                                //     alignment: Alignment.center,
-                                //     child: SvgPicture.asset(
-                                //       'assets/images/linkedin.svg',
-                                //       height: 40, width: 40,
-                                //     ),
-                                //     decoration: BoxDecoration(
-                                //       color: Color(0xff007AB9),
-                                //       borderRadius: BorderRadius.all(Radius.circular(20)),
-                                //     ),
-                                //   ),
-                                // ),
+
+                                GestureDetector(
+                                  child:Container(
+                                    //height: 80,
+                                    padding: EdgeInsets.all(5),
+                                    alignment: Alignment.center,
+                                    child: SvgPicture.asset(
+                                      'assets/images/facebook.svg',
+                                      height: 30, width: 30,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Color(0xff00B0ED),
+                                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    ),
+                                  ),
+                                  // onTap: () async {
+                                  //   await SocialSharePlugin.shareToFeedFacebookLink(quote: 'text', url: 'https://flutter.dev');
+                                  // },
+
+
+                                  onTap: (){
+                                    FlutterShare.share(
+                                        title: homeController.newsDetails.value.title!,
+                                        text: homeController.newsDetails.value.title!,
+                                        chooserTitle: homeController.newsDetails.value.title!,
+                                        linkUrl: homeController.newsDetails.value.generate_url
+                                      //text: 'Please click on attach link to show & download pdf',
+                                      // filePath: controller.searchPdfPath.value,
+                                      // fileType: '*/*'
+                                      //chooserTitle: 'Please click on attach link to show & download pdf'
+                                    );
+                                  },
+                                ),
+                                SizedBox(width: 10,),
+                                GestureDetector(
+                                  child:Container(
+                                    //height: 80,
+                                    padding: EdgeInsets.all(5),
+                                    alignment: Alignment.center,
+                                    child: SvgPicture.asset(
+                                      'assets/images/twitter.svg',
+                                      height: 30, width: 30,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Color(0xff00B0ED),
+                                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    ),
+                                  ),
+                                  // onTap: () async {
+                                  //   await SocialSharePlugin.shareToTwitterLink(text: 'text', url: 'https://flutter.dev');
+                                  //   },
+
+                                  onTap: (){
+                                    FlutterShare.share(
+                                        title: homeController.newsDetails.value.title!,
+                                        text: homeController.newsDetails.value.title!,
+                                        chooserTitle: homeController.newsDetails.value.title!,
+                                        linkUrl: homeController.newsDetails.value.generate_url
+                                      //text: 'Please click on attach link to show & download pdf',
+                                      // filePath: controller.searchPdfPath.value,
+                                      // fileType: '*/*'
+                                      //chooserTitle: 'Please click on attach link to show & download pdf'
+                                    );
+                                  },
+                                ),
+                                SizedBox(width: 10,),
+                                GestureDetector(
+                                  child:Container(
+                                    padding: EdgeInsets.all(3),
+                                    alignment: Alignment.center,
+                                    child: SvgPicture.asset(
+                                      'assets/images/whatsapp.svg',
+                                      height: 35, width: 35,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Color(0xff35B94A),
+                                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    ),
+                                  ),
+                                  onTap: (){
+                                    FlutterShare.share(
+                                        title: homeController.newsDetails.value.title!,
+                                        text: homeController.newsDetails.value.title!,
+                                        chooserTitle: homeController.newsDetails.value.title!,
+                                        linkUrl: homeController.newsDetails.value.generate_url
+                                      //text: 'Please click on attach link to show & download pdf',
+                                      // filePath: controller.searchPdfPath.value,
+                                      // fileType: '*/*'
+                                      //chooserTitle: 'Please click on attach link to show & download pdf'
+                                    );
+                                  },
+                                ),
+
+                                SizedBox(width: 10,),
+                                GestureDetector(
+                                  child:Container(
+                                    //height: 80,
+                                    alignment: Alignment.center,
+                                    child: SvgPicture.asset(
+                                      'assets/images/linkedin.svg',
+                                      height: 40, width: 40,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Color(0xff007AB9),
+                                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    ),
+                                  ),
+                                  onTap: (){
+                                    FlutterShare.share(
+                                        title: homeController.newsDetails.value.title!,
+                                        text: homeController.newsDetails.value.title!,
+                                        chooserTitle: homeController.newsDetails.value.title!,
+                                        linkUrl: homeController.newsDetails.value.generate_url
+                                      //text: 'Please click on attach link to show & download pdf',
+                                      // filePath: controller.searchPdfPath.value,
+                                      // fileType: '*/*'
+                                      //chooserTitle: 'Please click on attach link to show & download pdf'
+                                    );
+                                  },
+                                ),
+
+                                 SizedBox(width: 10,),
+                                GestureDetector(
+                                  child:Container(
+                                    //height: 80,
+                                    padding: EdgeInsets.all(5),
+                                    alignment: Alignment.center,
+                                    child:Icon(Icons.share_sharp,size: 30,color: Colors.white,),
+                                    decoration: BoxDecoration(
+                                      color: Color(0xff00B0ED),
+                                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    ),
+                                  ),
+
+                                  onTap: (){
+                                        FlutterShare.share(
+                                            title: homeController.newsDetails.value.title!,
+                                            text: homeController.newsDetails.value.title!,
+                                            chooserTitle: homeController.newsDetails.value.title!,
+                                            linkUrl: homeController.newsDetails.value.generate_url
+                                            //text: 'Please click on attach link to show & download pdf',
+                                            // filePath: controller.searchPdfPath.value,
+                                            // fileType: '*/*'
+                                          //chooserTitle: 'Please click on attach link to show & download pdf'
+                                        );
+                                  },
+                                ),
+
+
 
                               ],
                             ),
