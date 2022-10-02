@@ -1492,14 +1492,14 @@ class HomeController extends GetxController {
       var datanews = jsonEncode(user['data']);
       // print('datanews: ${datanews}');
       print('datanews: ${datanews}');
-
+      dataLoaded.value = true;
 
       Map<String, dynamic> newsdata = jsonDecode(datanews);
       newsdata.forEach((k, v) =>
       //print("Key : $k, Value : $v")
       all_cat_wise_newsList.add(v)
       );
-      dataLoaded.value = true;
+
       //print('newslenth: ${all_cat_wise_newsList.length}');
 
     } on SocketException {
