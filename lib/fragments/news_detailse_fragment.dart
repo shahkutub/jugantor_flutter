@@ -55,10 +55,10 @@ class NewsDetailseFragment extends StatelessWidget {
       homeController.newsEdition.value = "প্রিন্ট সংস্করণ";
     }
 
-    if(homeController.newsDetails.value.bread_parent_cat_name != null){
+    if(homeController.newsDetails.value.bread_parent_cat_name != null || homeController.newsDetails.value.bread_parent_cat_name != ''){
       bread_cat_name = homeController.newsDetails.value.bread_parent_cat_name!;
       bread_cat_id = homeController.newsDetails.value.bread_parent_cat_id!;
-    }else if(homeController.newsDetails.value.category_name != null){
+    }else if(homeController.newsDetails.value.category_name != null || homeController.newsDetails.value.category_name != ''){
       bread_cat_name = homeController.newsDetails.value.category_name!;
       bread_cat_id = homeController.newsDetails.value.parent_cat_id!;
     }
@@ -129,6 +129,15 @@ class NewsDetailseFragment extends StatelessWidget {
                                       homeController.get_division();
 
                                     }else{
+
+                                      if(homeController.newsDetails.value.bread_parent_cat_name != null || homeController.newsDetails.value.bread_parent_cat_name != ''){
+                                        bread_cat_name = homeController.newsDetails.value.bread_parent_cat_name!;
+                                        bread_cat_id = homeController.newsDetails.value.bread_parent_cat_id!;
+                                      }else if(homeController.newsDetails.value.category_name != null || homeController.newsDetails.value.category_name != ''){
+                                        bread_cat_name = homeController.newsDetails.value.category_name!;
+                                        bread_cat_id = homeController.newsDetails.value.parent_cat_id!;
+                                      }
+
 
                                       homeController.subcategory_list_with_news_newsList.clear();
                                       homeController.catId.value = bread_cat_id;

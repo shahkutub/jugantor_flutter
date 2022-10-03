@@ -198,6 +198,8 @@ class HomeController extends GetxController {
     buildSignature: 'Unknown',
   );
 
+  var vidId = ''.obs;
+
   Future<void> initPackageInfo() async {
     final info = await PackageInfo.fromPlatform();
     //setState(() {
@@ -2018,6 +2020,26 @@ class HomeController extends GetxController {
     Navigator.pop(context);
   }
 
+
+  getVideoId(){
+    String photoUrl = "";
+
+    var text = vidDataInfo.value.embed_code.toString();
+    RegExp exp = new RegExp(r'(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
+    Iterable<RegExpMatch> matches = exp.allMatches(text);
+    matches.forEach((match) {
+      photoUrl = text.substring(match.start, match.end);
+    });
+
+    RegExp regExp = new RegExp(
+      r'.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*',
+      caseSensitive: false,
+      multiLine: false,
+    );
+
+    vidId.value = regExp.firstMatch(photoUrl)!.group(1)!; // <- This is the fix
+
+  }
 
 
 }

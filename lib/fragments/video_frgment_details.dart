@@ -24,22 +24,22 @@ class VideoFragmentDetailse extends StatelessWidget{
         print('width: '+webViewWidth.toString());
 
 
-        String photoUrl = "";
-
-        var text = homeController.vidDataInfo.value.embed_code.toString();
-        RegExp exp = new RegExp(r'(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
-        Iterable<RegExpMatch> matches = exp.allMatches(text);
-        matches.forEach((match) {
-            photoUrl = text.substring(match.start, match.end);
-        });
-
-        RegExp regExp = new RegExp(
-            r'.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*',
-            caseSensitive: false,
-            multiLine: false,
-        );
-
-        final match = regExp.firstMatch(photoUrl)!.group(1); // <- This is the fix
+        // String photoUrl = "";
+        //
+        // var text = homeController.vidDataInfo.value.embed_code.toString();
+        // RegExp exp = new RegExp(r'(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
+        // Iterable<RegExpMatch> matches = exp.allMatches(text);
+        // matches.forEach((match) {
+        //     photoUrl = text.substring(match.start, match.end);
+        // });
+        //
+        // RegExp regExp = new RegExp(
+        //     r'.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*',
+        //     caseSensitive: false,
+        //     multiLine: false,
+        // );
+        //
+        // final match = regExp.firstMatch(photoUrl)!.group(1); // <- This is the fix
 
 
         return Container(
@@ -85,21 +85,22 @@ class VideoFragmentDetailse extends StatelessWidget{
                                         height: width-125,
                                         width: width-40,
                                         color: Colors.red,
-                                        child: WebView(
+                                        child:  Obx(() =>
+                                        WebView(
                                             //initialUrl: Uri.dataFromString('<html><body>'+homeController.vidDataInfo.value.embed_code.toString()+'</body></html>', mimeType: 'text/html').toString(),
 
                                             // initialUrl: Uri.dataFromString('<html><body><iframe width= '+webViewWidth.toString()+'px height='+webViewheight.toString()+' '
                                             //     'src='+photoUrl.toString()+' title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe></body></html>', mimeType: 'text/html').toString(),
 
                                             initialUrl: Uri.dataFromString("<iframe width=\"100%\" height=\"100%\" src=\"https://www" +
-                                                ".youtube.com/embed/"+match!+"\" frameborder=\"0\" " +
+                                                ".youtube.com/embed/"+homeController.vidId.value+"\" frameborder=\"0\" " +
                                                 "allowfullscreen></iframe>", mimeType: 'text/html').toString(),
 
 
                                             javascriptMode: JavascriptMode.unrestricted,
                                             onWebViewCreated: (WebViewController webViewController) {
                                                 _controller.complete(webViewController);},
-                                        ),
+                                        )),
 
                                     )
                                     //)
@@ -231,6 +232,7 @@ class VideoFragmentDetailse extends StatelessWidget{
                                             return  GestureDetector(
                                                 onTap: (){
                                                     homeController.vidDataInfo.value = homeController.cat_wise_vidList![index];
+                                                    homeController.getVideoId();
                                                     // homeController.dataLoaded.value = false;
                                                     // homeController.newsId.value = homeController.showNewsList[index].id.toString();
                                                     // homeController.selectedPageIndex.value = 1;

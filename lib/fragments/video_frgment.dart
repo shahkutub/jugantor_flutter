@@ -223,6 +223,7 @@ class VideoFragment extends StatelessWidget{
                                             return  GestureDetector(
                                                 onTap: (){
                                                     homeController.vidDataInfo.value = homeController.latest_VidListList![index2];
+                                                    homeController.getVideoId();
                                                     homeController.get_cat_wise_video(homeController.latest_VidListList[index2].video_cat_id!,context);
                                                     homeController.selectedPageIndex.value = 16;
                                                 },
@@ -348,7 +349,10 @@ class VideoFragment extends StatelessWidget{
 
                                                                             return  GestureDetector(
                                                                                 onTap: (){
-
+                                                                                    // homeController.vidDataInfo.value = homeController.latest_VidListList![index2];
+                                                                                    // homeController.getVideoId();
+                                                                                    // homeController.get_cat_wise_video(homeController.latest_VidListList[index2].video_cat_id!,context);
+                                                                                    // homeController.selectedPageIndex.value = 16;
                                                                                 },
 
                                                                                 child:
