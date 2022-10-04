@@ -275,42 +275,40 @@ class PhotoGalFragment extends StatelessWidget{
               ),
 
 
+              Obx(() =>
+                  Container(
+                      margin: EdgeInsets.only(left: 0,right: 0),
+                      //alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          //Flexible(child:
+                          homeController.CustomRadioButton("সর্বশেষ", 1,context),
+                          //flex: 1,),
+                          SizedBox(width: 20,),
+                          //Flexible(child:
+                          homeController.CustomRadioButton("সর্বাধিক পঠিত", 2,context),
+                          // flex: 1,),
 
-            Obx(() =>
-                Container(
-                    margin: EdgeInsets.only(left: 0,right: 0),
-                    //alignment: Alignment.center,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        //Flexible(child:
-                        homeController.CustomRadioButton("সর্বশেষ", 1,context),
-                        //flex: 1,),
-                        SizedBox(width: 20,),
-                        //Flexible(child:
-                        homeController.CustomRadioButton("সর্বাধিক পঠিত", 2,context),
-                        // flex: 1,),
-
-                      ],
-                    )
-                ),
-            ),
+                        ],
+                      )
+                  ),
+              ),
 
               Obx(() =>
                   Container(
                       margin: EdgeInsets.only(top: 10,bottom: 5,right: 0,left: 0),
                       alignment: Alignment.center,
-                      child:homeController.last_entry_newsList.length >0 ?
-                      ListView.builder(
+                      child:ListView.builder(
                         primary: false,
                         shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
                         // Let the ListView know how many items it needs to build.
                         itemCount: homeController.last_entry_newsList.length,
                         // Provide a builder function. This is where the magic happens.
                         // Convert each item into a widget based on the type of item it is.
                         itemBuilder: (context, index) {
-                          //final item = homeController.last_entry_newsList[index];
 
                           return Container(
                               margin: EdgeInsets.only(top: 10),
@@ -318,8 +316,9 @@ class PhotoGalFragment extends StatelessWidget{
                                 onTap: (){
                                   homeController.dataLoaded.value = false;
                                   homeController.newsId.value = homeController.last_entry_newsList[index].id.toString();
-                                  homeController.selectedPageIndex.value = 1;
                                   homeController.get_news_details();
+                                  homeController.scrollController.value.animateTo(0,
+                                      duration: const Duration(seconds: 1), curve: Curves.linear);
                                 },
 
                                 child: Obx(() => Container(
@@ -358,7 +357,6 @@ class PhotoGalFragment extends StatelessWidget{
                                           style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                           textAlign: TextAlign.justify,
                                         ),
-
                                         ),
 
                                       ],
@@ -368,10 +366,43 @@ class PhotoGalFragment extends StatelessWidget{
                               )
                           );
                         },
-                      ):SizedBox()
+                      )
 
                   ),
               ),
+
+              SizedBox(
+                height: 10,
+              ),
+
+              GestureDetector(
+                onTap: (){
+                  homeController.all_latest_newsList.clear();
+                  homeController.dataLoaded.value = false;
+                  homeController.selectedPageIndex.value = 5;
+                  if(homeController.button.value == 1){
+                    homeController.last_most_text.value = 'সর্বশেষ সব খবর';
+                    homeController.get_all_latest_news(1);
+                  }else{
+                    homeController.last_most_text.value = 'সর্বাধিক পঠিত';
+                    homeController.get_all_most_view_news(1);
+                  }
+
+                },
+                child:Container(
+                  alignment: Alignment.centerLeft,
+                  color: Color(0xff3A495E),
+                  padding: EdgeInsets.all(7),
+                  child:Text("সব খবর",
+                    style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,
+                        color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
+
+                ),
+
+              ),
+
               SizedBox(height: 20,),
               BottomView()
             ],

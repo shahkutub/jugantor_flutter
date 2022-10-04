@@ -479,9 +479,10 @@ class AjkerPaperFragment extends StatelessWidget {
                           ),
                       ),
 
+                      //last entry mostview
                       Obx(() =>
                           Container(
-                              margin: EdgeInsets.only(left: 20,right: 20,top: 10),
+                              margin: EdgeInsets.only(left: 0,right: 0),
                               //alignment: Alignment.center,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -499,9 +500,10 @@ class AjkerPaperFragment extends StatelessWidget {
                               )
                           ),
                       ),
+
                       Obx(() =>
                           Container(
-                              margin: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 20),
+                              margin: EdgeInsets.only(top: 10,bottom: 5,right: 0,left: 0),
                               alignment: Alignment.center,
                               child:ListView.builder(
                                 primary: false,
@@ -512,7 +514,6 @@ class AjkerPaperFragment extends StatelessWidget {
                                 // Provide a builder function. This is where the magic happens.
                                 // Convert each item into a widget based on the type of item it is.
                                 itemBuilder: (context, index) {
-                                  final item = homeController.last_entry_newsList[index];
 
                                   return Container(
                                       margin: EdgeInsets.only(top: 10),
@@ -520,8 +521,9 @@ class AjkerPaperFragment extends StatelessWidget {
                                         onTap: (){
                                           homeController.dataLoaded.value = false;
                                           homeController.newsId.value = homeController.last_entry_newsList[index].id.toString();
-                                          homeController.selectedPageIndex.value = 1;
                                           homeController.get_news_details();
+                                          homeController.scrollController.value.animateTo(0,
+                                              duration: const Duration(seconds: 1), curve: Curves.linear);
                                         },
 
                                         child: Obx(() => Container(
@@ -574,6 +576,37 @@ class AjkerPaperFragment extends StatelessWidget {
                           ),
                       ),
 
+                      SizedBox(
+                        height: 10,
+                      ),
+
+                      GestureDetector(
+                        onTap: (){
+                          homeController.all_latest_newsList.clear();
+                          homeController.dataLoaded.value = false;
+                          homeController.selectedPageIndex.value = 5;
+                          if(homeController.button.value == 1){
+                            homeController.last_most_text.value = 'সর্বশেষ সব খবর';
+                            homeController.get_all_latest_news(1);
+                          }else{
+                            homeController.last_most_text.value = 'সর্বাধিক পঠিত';
+                            homeController.get_all_most_view_news(1);
+                          }
+
+                        },
+                        child:Container(
+                          alignment: Alignment.centerLeft,
+                          color: Color(0xff3A495E),
+                          padding: EdgeInsets.all(7),
+                          child:Text("সব খবর",
+                            style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          ),
+
+                        ),
+
+                      ),
                       //bottom
                       BottomView()
 

@@ -220,100 +220,133 @@ class SobKhoborFragment extends StatelessWidget {
                                     ),
 
                                     //last entry, mostview
-                                    Obx(() =>
-                                        Container(
-                                            margin: EdgeInsets.only(left: 20,right: 20),
-                                            //alignment: Alignment.center,
-                                            child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                children: [
-                                                    //Flexible(child:
-                                                    homeController.CustomRadioButton("সর্বশেষ", 1,context),
-                                                    //flex: 1,),
-                                                    SizedBox(width: 20,),
-                                                    //Flexible(child:
-                                                    homeController.CustomRadioButton("সর্বাধিক পঠিত", 2,context),
-                                                    // flex: 1,),
+                                  Obx(() =>
+                                      Container(
+                                          margin: EdgeInsets.only(left: 0,right: 0),
+                                          //alignment: Alignment.center,
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              //Flexible(child:
+                                              homeController.CustomRadioButton("সর্বশেষ", 1,context),
+                                              //flex: 1,),
+                                              SizedBox(width: 20,),
+                                              //Flexible(child:
+                                              homeController.CustomRadioButton("সর্বাধিক পঠিত", 2,context),
+                                              // flex: 1,),
 
-                                                ],
-                                            )
-                                        ),
-                                    ),
-                                    Obx(() =>
-                                        Container(
-                                            margin: EdgeInsets.only(top: 10,bottom: 5,right: 20,left: 20),
-                                            alignment: Alignment.center,
-                                            child:ListView.builder(
-                                                primary: false,
-                                                shrinkWrap: true,
-                                                // Let the ListView know how many items it needs to build.
-                                                itemCount: homeController.last_entry_newsList.length,
-                                                // Provide a builder function. This is where the magic happens.
-                                                // Convert each item into a widget based on the type of item it is.
-                                                itemBuilder: (context, index) {
-                                                    //final item = homeController.last_entry_newsList[index];
+                                            ],
+                                          )
+                                      ),
+                                  ),
 
-                                                    return Container(
-                                                        margin: EdgeInsets.only(top: 10),
-                                                        child:   GestureDetector(
-                                                            onTap: (){
-                                                              homeController.dataLoaded.value = false;
-                                                              homeController.newsId.value = homeController.last_entry_newsList[index].id.toString();
-                                                              homeController.selectedPageIndex.value = 1;
-                                                              homeController.get_news_details();
-                                                            },
+                                  Obx(() =>
+                                      Container(
+                                          margin: EdgeInsets.only(top: 10,bottom: 5,right: 0,left: 0),
+                                          alignment: Alignment.center,
+                                          child:ListView.builder(
+                                            primary: false,
+                                            shrinkWrap: true,
+                                            physics: NeverScrollableScrollPhysics(),
+                                            // Let the ListView know how many items it needs to build.
+                                            itemCount: homeController.last_entry_newsList.length,
+                                            // Provide a builder function. This is where the magic happens.
+                                            // Convert each item into a widget based on the type of item it is.
+                                            itemBuilder: (context, index) {
 
-                                                            child: Obx(() => Container(
-                                                                //height: ,
-                                                                //alignment: Alignment.center,
-                                                                child: Row(
-                                                                    mainAxisAlignment: MainAxisAlignment.start,
-                                                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                                                    children: [
-                                                                        Container(
-                                                                            margin: EdgeInsets.only(right: 10),
-                                                                            height: 70,
-                                                                            width: 100,
-                                                                            child: Stack(
-                                                                                fit: StackFit.expand,
-                                                                                children: [
-                                                                                    FadeInImage.assetNetwork(
-                                                                                        height: 70,
-                                                                                        width: 100,
-                                                                                        fit: BoxFit.fill,
-                                                                                        image:homeController.last_entry_newsList[index].img_url!,
-                                                                                        placeholder:"assets/images/jugantordefault.jpg" // your assets image path
-                                                                                    ),
-                                                                                    Positioned(
-                                                                                        bottom: 20,
-                                                                                        left:35,
-                                                                                        child: homeController.last_entry_newsList[index].video_dis  == 0 ?
-                                                                                        Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+                                              return Container(
+                                                  margin: EdgeInsets.only(top: 10),
+                                                  child:   GestureDetector(
+                                                    onTap: (){
+                                                      homeController.dataLoaded.value = false;
+                                                      homeController.newsId.value = homeController.last_entry_newsList[index].id.toString();
+                                                      homeController.get_news_details();
+                                                      homeController.scrollController.value.animateTo(0,
+                                                          duration: const Duration(seconds: 1), curve: Curves.linear);
+                                                    },
 
-                                                                                    ),
-                                                                                ],
-                                                                            ),
-                                                                        ),
-                                                                        Flexible(child:
-                                                                        Text(homeController.last_entry_newsList[index].title!,
-                                                                            style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
-                                                                            textAlign: TextAlign.justify,
-                                                                        ),
+                                                    child: Obx(() => Container(
+                                                      //height: ,
+                                                      //alignment: Alignment.center,
+                                                        child: Row(
+                                                          mainAxisAlignment: MainAxisAlignment.start,
+                                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                                          children: [
+                                                            Container(
+                                                              margin: EdgeInsets.only(right: 10),
+                                                              height: 70,
+                                                              width: 100,
+                                                              child: Stack(
+                                                                fit: StackFit.expand,
+                                                                children: [
+                                                                  FadeInImage.assetNetwork(
+                                                                      height: 70,
+                                                                      width: 100,
+                                                                      fit: BoxFit.fill,
+                                                                      image:homeController.last_entry_newsList[index].img_url!,
+                                                                      placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                                  ),
+                                                                  Positioned(
+                                                                    bottom: 20,
+                                                                    left:35,
+                                                                    child: homeController.last_entry_newsList[index].video_dis  == 0 ?
+                                                                    Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
 
-                                                                        ),
-
-                                                                    ],
-                                                                )
-                                                            )
+                                                                  ),
+                                                                ],
+                                                              ),
                                                             ),
-                                                        )
-                                                    );
-                                                },
-                                            )
+                                                            Flexible(child:
+                                                            Text(homeController.last_entry_newsList[index].title!,
+                                                              style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                                              textAlign: TextAlign.justify,
+                                                            ),
+                                                            ),
 
-                                        ),
+                                                          ],
+                                                        )
+                                                    )
+                                                    ),
+                                                  )
+                                              );
+                                            },
+                                          )
+
+                                      ),
+                                  ),
+
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+
+                                  GestureDetector(
+                                    onTap: (){
+                                      homeController.all_latest_newsList.clear();
+                                      homeController.dataLoaded.value = false;
+                                      homeController.selectedPageIndex.value = 5;
+                                      if(homeController.button.value == 1){
+                                        homeController.last_most_text.value = 'সর্বশেষ সব খবর';
+                                        homeController.get_all_latest_news(1);
+                                      }else{
+                                        homeController.last_most_text.value = 'সর্বাধিক পঠিত';
+                                        homeController.get_all_most_view_news(1);
+                                      }
+
+                                    },
+                                    child:Container(
+                                      alignment: Alignment.centerLeft,
+                                      color: Color(0xff3A495E),
+                                      padding: EdgeInsets.all(7),
+                                      child:Text("সব খবর",
+                                        style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,
+                                            color: Colors.white),
+                                        textAlign: TextAlign.center,
+                                      ),
+
                                     ),
+
+                                  ),
                                     SizedBox(height: 20,),
                                     BottomView()
                                 ],
