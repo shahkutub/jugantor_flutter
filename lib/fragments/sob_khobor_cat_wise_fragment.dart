@@ -59,7 +59,7 @@ class SobKhoborCatWiseFragment extends StatelessWidget {
                                                                 child:Text("প্রচ্ছদ",style: TextStyle(color: Colors.black,fontSize: 15),)
                                                             ),
 
-                                                            Text("          সর্বশেষ সব খবর",style: TextStyle(color: Colors.black,fontSize: 15),)
+                                                            Text("      ${homeController.selectedCategoryName.value} সব খবর",style: TextStyle(color: Colors.black,fontSize: 15),)
 
 
                                                         ],
@@ -93,7 +93,7 @@ class SobKhoborCatWiseFragment extends StatelessWidget {
                                                             // //homeController.selectedPageIndex.value = 1;
                                                             // homeController.get_news_details();
 
-                                                          int id = homeController.all_latest_newsList[index]["id"];
+                                                          int id = homeController.all_cat_wise_newsList[index]["id"];
                                                           //print('click :'+ "Clicked  "+homeController.all_latest_newsList[index]["title"]);
                                                           print('click :'+ "Id  "+id.toString());
                                                           homeController.dataLoaded.value = false;

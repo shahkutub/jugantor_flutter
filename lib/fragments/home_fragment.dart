@@ -1990,15 +1990,21 @@ class HomeFragment extends GetView<HomeController> {
                 }else{
                     return Center(
 
-                        //child: CircularProgressIndicator()
+                        child: CircularProgressIndicator()
+                        // child: Container(
+                        //     width: MediaQuery.of(context).size.width,
+                        //     height: MediaQuery.of(context).size.height,
+                        //     color: Colors.grey.withOpacity(0.5),
+                        //     child: const Center(child: CircularProgressIndicator())  ,
+                        // )
                         //child: _sendingMsgProgressBar.show(context)
-                        child:ColorLoader5(
-                            dotOneColor: Colors.red,
-                            dotTwoColor: Colors.blue,
-                            dotThreeColor: Colors.green,
-                            dotType: DotType.circle,
-                            duration: Duration(seconds: 1),
-                        )
+                        // child:ColorLoader5(
+                        //     dotOneColor: Colors.red,
+                        //     dotTwoColor: Colors.blue,
+                        //     dotThreeColor: Colors.green,
+                        //     dotType: DotType.circle,
+                        //     duration: Duration(seconds: 1),
+                        // )
 
                     );
                 }

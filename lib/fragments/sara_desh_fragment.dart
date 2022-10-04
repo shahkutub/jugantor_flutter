@@ -350,6 +350,7 @@ class SaraDeshFragment extends StatelessWidget {
                         onTap: (){
                           //Ui.showLoaderDialog(context);
                           homeController.dataLoaded.value = false;
+                          homeController.catId.value = 11;
                           homeController.all_cat_wise_newsList.clear();
                           homeController.selectedPageIndex.value = 6;
                           homeController.get_all_cat_wise_news(1,context);
@@ -626,6 +627,7 @@ class SaraDeshFragment extends StatelessWidget {
                               )
                           ),
                       ),
+
                       Obx(() =>
                           Container(
                               margin: EdgeInsets.only(top: 10,bottom: 5,right: 0,left: 0),
@@ -633,6 +635,7 @@ class SaraDeshFragment extends StatelessWidget {
                               child:ListView.builder(
                                 primary: false,
                                 shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
                                 // Let the ListView know how many items it needs to build.
                                 itemCount: homeController.last_entry_newsList.length,
                                 // Provide a builder function. This is where the magic happens.
@@ -643,16 +646,14 @@ class SaraDeshFragment extends StatelessWidget {
                                       margin: EdgeInsets.only(top: 10),
                                       child:   GestureDetector(
                                         onTap: (){
-                                          //Get.back();
-                                          // if(homeController.showNewsList[index].cat_name == "প্রচ্ছদ"){
-                                          //   //homeController.selectedIndex.value = 0;
-                                          // }else{
-                                          //   // homeController.selectedIndex.value = 1;
-                                          // }
+                                          homeController.dataLoaded.value = false;
+                                          homeController.newsId.value = homeController.last_entry_newsList[index].id.toString();
+                                          homeController.get_news_details();
+                                          homeController.scrollController.value.animateTo(0,
+                                              duration: const Duration(seconds: 1), curve: Curves.linear);
                                         },
 
-                                        child: Obx(() =>
-                                            Container(
+                                        child: Obx(() => Container(
                                           //height: ,
                                           //alignment: Alignment.center,
                                             child: Row(
@@ -688,7 +689,6 @@ class SaraDeshFragment extends StatelessWidget {
                                                   style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
                                                   textAlign: TextAlign.justify,
                                                 ),
-
                                                 ),
 
                                               ],
@@ -703,18 +703,31 @@ class SaraDeshFragment extends StatelessWidget {
                           ),
                       ),
 
+                      SizedBox(
+                        height: 10,
+                      ),
+
                       GestureDetector(
                         onTap: (){
+                          homeController.all_latest_newsList.clear();
+                          homeController.dataLoaded.value = false;
                           homeController.selectedPageIndex.value = 5;
-                          homeController.get_all_latest_news(1);
+                          if(homeController.button.value == 1){
+                            homeController.last_most_text.value = 'সর্বশেষ সব খবর';
+                            homeController.get_all_latest_news(1);
+                          }else{
+                            homeController.last_most_text.value = 'সর্বাধিক পঠিত';
+                            homeController.get_all_most_view_news(1);
+                          }
+
                         },
                         child:Container(
                           alignment: Alignment.centerLeft,
                           color: Color(0xff3A495E),
                           padding: EdgeInsets.all(7),
                           child:Text("সব খবর",
-                              style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,
-                                  color: Colors.white),
+                            style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,
+                                color: Colors.white),
                             textAlign: TextAlign.center,
                           ),
 

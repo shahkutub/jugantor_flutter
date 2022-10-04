@@ -360,6 +360,8 @@ class HomePage extends GetView<HomeController> {
               );
             }
             ),
+
+
             floatingActionButton: FloatingActionButton(
               onPressed: () {
                 homeController.scrollController.value.animateTo(0,

@@ -495,6 +495,7 @@ class NewsDetailseFragment extends StatelessWidget {
                                               child: Obx(() =>
                                                   GestureDetector(
                                                       onTap: (){
+                                                        homeController.dataLoaded.value = false;
                                                         homeController.newsId.value = homeController.detail_page_aro_button_newsList[index]["id"];
                                                         homeController.get_news_details();
                                                         homeController.scrollController.value.animateTo(0,
@@ -595,7 +596,7 @@ class NewsDetailseFragment extends StatelessWidget {
                                           itemBuilder: (context, index) {
                                             return  GestureDetector(
                                               onTap: (){
-
+                                                homeController.dataLoaded.value = false;
                                                 homeController.newsId.value = homeController.moreCatNewsList[index].id.toString();
                                                 homeController.get_news_details();
                                                 homeController.scrollController.value.animateTo(0,
@@ -692,6 +693,7 @@ class NewsDetailseFragment extends StatelessWidget {
                                             margin: EdgeInsets.only(top: 10),
                                             child:   GestureDetector(
                                               onTap: (){
+                                                homeController.dataLoaded.value = false;
                                                 homeController.newsId.value = homeController.last_entry_newsList[index].id.toString();
                                                 homeController.get_news_details();
                                                 homeController.scrollController.value.animateTo(0,
@@ -814,6 +816,7 @@ class NewsDetailseFragment extends StatelessWidget {
                                                     margin: EdgeInsets.only(top: 8),
                                                     child:   GestureDetector(
                                                       onTap: (){
+                                                        homeController.dataLoaded.value = false;
                                                         homeController.newsId.value = homeController.tagNewsList[index].id.toString();
                                                         homeController.get_news_details();
 
@@ -887,7 +890,16 @@ class NewsDetailseFragment extends StatelessWidget {
 
             );
           }else{
-            return Center(child: CircularProgressIndicator());
+            return Center(
+                child: CircularProgressIndicator()
+
+                // child: Container(
+                //   width: MediaQuery.of(context).size.width,
+                //   height: MediaQuery.of(context).size.height,
+                //   color: Colors.grey.withOpacity(0.5),
+                //   child: const Center(child: CircularProgressIndicator())  ,
+                // )
+            );
           }
 
         })
