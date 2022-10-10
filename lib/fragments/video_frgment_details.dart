@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_share/flutter_share.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
@@ -37,9 +38,9 @@ class VideoFragmentDetailse extends StatelessWidget{
         //     r'.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*',
         //     caseSensitive: false,
         //     multiLine: false,
-        // );
+        // // );
         //
-        // final match = regExp.firstMatch(photoUrl)!.group(1); // <- This is the fix
+        // final matchYoutubeUrl = regExp.firstMatch(photoUrl)!.group(1); // <- This is the fix
 
 
         return Container(
@@ -109,31 +110,49 @@ class VideoFragmentDetailse extends StatelessWidget{
                             ),
                             SizedBox(height: 20,),
                             // share icons
+                            // share icons
                             Row(
                                 children: <Widget>[
 
-                                    GestureDetector(
-                                        child:Container(
-                                            //height: 80,
-                                            alignment: Alignment.center,
-                                            child: SvgPicture.asset(
-                                                'assets/images/facebook.svg',
-                                                height: 35, width: 35,
-                                            ),
-                                            decoration: BoxDecoration(
-                                                color: Color(0xff4469B3),
-                                                borderRadius: BorderRadius.all(Radius.circular(20)),
-                                            ),
-                                        ),
-                                    ),
-                                    SizedBox(width: 10,),
+                                    // GestureDetector(
+                                    //
+                                    //   child:Container(
+                                    //     //height: 80,
+                                    //     alignment: Alignment.center,
+                                    //     child: Image.asset(
+                                    //       'assets/images/socialmedia.png',
+                                    //       height: 50, width: 50,
+                                    //     ),
+                                    //     // decoration: BoxDecoration(
+                                    //     //   color: Color(0xff4469B3),
+                                    //     //   borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    //     // ),
+                                    //   ),
+                                    //   onTap: () async {
+                                    //     FlutterShare.share(
+                                    //         title: homeController.newsDetails.value.title!,
+                                    //         text: homeController.newsDetails.value.title!,
+                                    //         chooserTitle: homeController.newsDetails.value.title!,
+                                    //         linkUrl: homeController.newsDetails.value.generate_url
+                                    //         //text: 'Please click on attach link to show & download pdf',
+                                    //         // filePath: controller.searchPdfPath.value,
+                                    //         // fileType: '*/*'
+                                    //       //chooserTitle: 'Please click on attach link to show & download pdf'
+                                    //     );
+                                    //
+                                    //
+                                    //     //await SocialSharePlugin.shareToFeedFacebookLink(quote: 'quote', url: 'https://flutter.dev');
+                                    //   },
+                                    // ),
+                                    // SizedBox(width: 10,),
+
                                     GestureDetector(
                                         child:Container(
                                             //height: 80,
                                             padding: EdgeInsets.all(5),
                                             alignment: Alignment.center,
                                             child: SvgPicture.asset(
-                                                'assets/images/messenger.svg',
+                                                'assets/images/facebook.svg',
                                                 height: 30, width: 30,
                                             ),
                                             decoration: BoxDecoration(
@@ -141,8 +160,24 @@ class VideoFragmentDetailse extends StatelessWidget{
                                                 borderRadius: BorderRadius.all(Radius.circular(20)),
                                             ),
                                         ),
-                                    ),
+                                        // onTap: () async {
+                                        //   await SocialSharePlugin.shareToFeedFacebookLink(quote: 'text', url: 'https://flutter.dev');
+                                        // },
 
+
+                                        onTap: (){
+                                            FlutterShare.share(
+                                                title: homeController.newsDetails.value.title!,
+                                                text: homeController.newsDetails.value.title!,
+                                                chooserTitle: homeController.newsDetails.value.title!,
+                                                linkUrl: homeController.fullYoutubeUrl.value
+                                                //text: 'Please click on attach link to show & download pdf',
+                                                // filePath: controller.searchPdfPath.value,
+                                                // fileType: '*/*'
+                                                //chooserTitle: 'Please click on attach link to show & download pdf'
+                                            );
+                                        },
+                                    ),
                                     SizedBox(width: 10,),
                                     GestureDetector(
                                         child:Container(
@@ -158,6 +193,22 @@ class VideoFragmentDetailse extends StatelessWidget{
                                                 borderRadius: BorderRadius.all(Radius.circular(20)),
                                             ),
                                         ),
+                                        // onTap: () async {
+                                        //   await SocialSharePlugin.shareToTwitterLink(text: 'text', url: 'https://flutter.dev');
+                                        //   },
+
+                                        onTap: (){
+                                            FlutterShare.share(
+                                                title: homeController.newsDetails.value.title!,
+                                                text: homeController.newsDetails.value.title!,
+                                                chooserTitle: homeController.newsDetails.value.title!,
+                                                linkUrl: homeController.fullYoutubeUrl.value
+                                                //text: 'Please click on attach link to show & download pdf',
+                                                // filePath: controller.searchPdfPath.value,
+                                                // fileType: '*/*'
+                                                //chooserTitle: 'Please click on attach link to show & download pdf'
+                                            );
+                                        },
                                     ),
                                     SizedBox(width: 10,),
                                     GestureDetector(
@@ -173,6 +224,18 @@ class VideoFragmentDetailse extends StatelessWidget{
                                                 borderRadius: BorderRadius.all(Radius.circular(20)),
                                             ),
                                         ),
+                                        onTap: (){
+                                            FlutterShare.share(
+                                                title: homeController.newsDetails.value.title!,
+                                                text: homeController.newsDetails.value.title!,
+                                                chooserTitle: homeController.newsDetails.value.title!,
+                                                linkUrl: homeController.fullYoutubeUrl.value
+                                                //text: 'Please click on attach link to show & download pdf',
+                                                // filePath: controller.searchPdfPath.value,
+                                                // fileType: '*/*'
+                                                //chooserTitle: 'Please click on attach link to show & download pdf'
+                                            );
+                                        },
                                     ),
 
                                     SizedBox(width: 10,),
@@ -189,7 +252,48 @@ class VideoFragmentDetailse extends StatelessWidget{
                                                 borderRadius: BorderRadius.all(Radius.circular(20)),
                                             ),
                                         ),
+                                        onTap: (){
+                                            FlutterShare.share(
+                                                title: homeController.newsDetails.value.title!,
+                                                text: homeController.newsDetails.value.title!,
+                                                chooserTitle: homeController.newsDetails.value.title!,
+                                                linkUrl: homeController.fullYoutubeUrl.value
+                                                //text: 'Please click on attach link to show & download pdf',
+                                                // filePath: controller.searchPdfPath.value,
+                                                // fileType: '*/*'
+                                                //chooserTitle: 'Please click on attach link to show & download pdf'
+                                            );
+                                        },
                                     ),
+
+                                    SizedBox(width: 10,),
+                                    GestureDetector(
+                                        child:Container(
+                                            //height: 80,
+                                            padding: EdgeInsets.all(5),
+                                            alignment: Alignment.center,
+                                            child:Icon(Icons.share_sharp,size: 30,color: Colors.white,),
+                                            decoration: BoxDecoration(
+                                                color: Color(0xff00B0ED),
+                                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                            ),
+                                        ),
+
+                                        onTap: (){
+                                            FlutterShare.share(
+                                                title: homeController.newsDetails.value.title!,
+                                                text: homeController.newsDetails.value.title!,
+                                                chooserTitle: homeController.newsDetails.value.title!,
+                                                linkUrl: homeController.fullYoutubeUrl.value
+                                                //text: 'Please click on attach link to show & download pdf',
+                                                // filePath: controller.searchPdfPath.value,
+                                                // fileType: '*/*'
+                                                //chooserTitle: 'Please click on attach link to show & download pdf'
+                                            );
+                                        },
+                                    ),
+
+
 
                                 ],
                             ),

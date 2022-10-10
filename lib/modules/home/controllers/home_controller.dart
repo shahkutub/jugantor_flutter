@@ -199,6 +199,7 @@ class HomeController extends GetxController {
   );
 
   var vidId = ''.obs;
+  var fullYoutubeUrl = ''.obs;
 
   Future<void> initPackageInfo() async {
     final info = await PackageInfo.fromPlatform();
@@ -2033,6 +2034,7 @@ class HomeController extends GetxController {
     Iterable<RegExpMatch> matches = exp.allMatches(text);
     matches.forEach((match) {
       photoUrl = text.substring(match.start, match.end);
+      fullYoutubeUrl.value = text.substring(match.start, match.end);
     });
 
     RegExp regExp = new RegExp(
