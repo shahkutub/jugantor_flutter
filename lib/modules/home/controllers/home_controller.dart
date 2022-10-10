@@ -333,7 +333,7 @@ class HomeController extends GetxController {
     try {
       //response = await _manager.get(ApiClient.newsDetails+'/'+newsId.value);
       final response = await http.get(Uri.parse(ApiClient.newsDetails+'/'+newsId.value));
-      selectedPageIndex.value = 1;
+     // selectedPageIndex.value = 1;
       print(response.body);
      // print('newsdetails: ${response}');
       dataLoaded.value = true;
@@ -441,7 +441,11 @@ class HomeController extends GetxController {
         get_tag_name(newsDetails.value.spc_event_tag_id.toString());
       }
 
-      //Get.to(NewsDetailsPage());
+      //Navigator.push(Get.context, MaterialPageRoute(builder: (context) => NewsDetailseFragment()));
+      if(newsDetails.value.title != null){
+        Get.to(NewsDetailseFragment());
+      }
+
 
       //Utils.dateBengaliNewsDetailse(Utils.dateTimeFormat(newsDetails.value.news_date_time));
     } catch (e) {

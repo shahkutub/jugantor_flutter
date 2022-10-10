@@ -16,6 +16,7 @@ import 'package:touch_ripple_effect/touch_ripple_effect.dart';
 
 import '../ui.dart';
 import '../utils/utils.dart';
+import 'news_detailse_fragment.dart';
 
 class HomeFragment extends GetView<HomeController> {
     final HomeController homeController = Get.put(HomeController());
