@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
+import 'package:jugantor.com/fragments/ajker_paper_fragment_new.dart';
+import 'package:jugantor.com/fragments/news_detailse_fragment_new.dart';
 import 'package:jugantor.com/fragments/video_frgment_details.dart';
 import 'package:jugantor.com/model/AppversionModel.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -368,6 +370,10 @@ class HomeController extends GetxController {
       newsDetails.value.bread_parent_cat_name = user['bread_parent_cat_name'];
       newsDetails.value.bread_sub_cat_id = user['bread_sub_cat_id'];
       newsDetails.value.bread_sub_cat_name = user['bread_sub_cat_name'];
+
+      if(newsDetails.value.title != null){
+        Get.to(NewsDetailseFragmentNew());
+      }
       // print('datanews: ${datanews}');
       //print('title: ${title}');
 
@@ -443,9 +449,144 @@ class HomeController extends GetxController {
       }
 
       //Navigator.push(Get.context, MaterialPageRoute(builder: (context) => NewsDetailseFragment()));
-      if(newsDetails.value.title != null){
-        Get.to(NewsDetailseFragment());
+      // if(newsDetails.value.title != null){
+      //   Get.to(NewsDetailseFragmentNew());
+      // }
+
+
+      //Utils.dateBengaliNewsDetailse(Utils.dateTimeFormat(newsDetails.value.news_date_time));
+    } catch (e) {
+
+    }
+  }
+
+  Future<dynamic> get_news_detailsAjkerPaper() async {
+
+    //newsDetails.value = null;
+
+    print('url: ${ApiClient.newsDetails+'/'+newsId.value}');
+    //Ui.showLoaderDialog(Get.context);
+    APIManager _manager = APIManager();
+    var response;
+    try {
+      //response = await _manager.get(ApiClient.newsDetails+'/'+newsId.value);
+      final response = await http.get(Uri.parse(ApiClient.newsDetails+'/'+newsId.value));
+      // selectedPageIndex.value = 1;
+      print(response.body);
+      // print('newsdetails: ${response}');
+      dataLoaded.value = true;
+      Map<String, dynamic> user = jsonDecode(response.body);
+      newsDetails.value.id = user['id'];
+      newsDetails.value.title = user['title'];
+      newsDetails.value.shoulder = user['shoulder'];
+      newsDetails.value.hanger = user['hanger'];
+      newsDetails.value.video_dis = user['video_dis'];
+      newsDetails.value.generate_url = user['generate_url'];
+      newsDetails.value.img_url = user['img_url'];
+      newsDetails.value.parent_cat_id = user['parent_cat_id'];
+      newsDetails.value.parent_cat_url = user['parent_cat_url'];
+      newsDetails.value.category_name = user['category_name'];
+      newsDetails.value.reporter = user['reporter'];
+      newsDetails.value.news_sum = user['news_sum'];
+      newsDetails.value.detail = user['detail'];
+      newsDetails.value.photo_caption = user['photo_caption'];
+      newsDetails.value.photo_alt_txt = user['photo_alt_txt'];
+      newsDetails.value.news_tags = user['news_tags'];
+      newsDetails.value.spc_event_tag_id = user['spc_event_tag_id'];
+      newsDetails.value.news_date_time = user['news_date_time'];
+      newsDetails.value.news_edition = user['news_edition'];
+      newsDetails.value.location_name = user['location_name'];
+      newsDetails.value.location_tag = user['location_tag'];
+      newsDetails.value.people_name = user['people_name'];
+      newsDetails.value.people_tag = user['people_tag'];
+      newsDetails.value.org_name = user['org_name'];
+      newsDetails.value.org_tag = user['org_tag'];
+      newsDetails.value.bread_parent_cat_id = user['bread_parent_cat_id'];
+      newsDetails.value.bread_parent_cat_name = user['bread_parent_cat_name'];
+      newsDetails.value.bread_sub_cat_id = user['bread_sub_cat_id'];
+      newsDetails.value.bread_sub_cat_name = user['bread_sub_cat_name'];
+
+      // if(newsDetails.value.title != null){
+      //   Get.to(NewsDetailseFragmentNew());
+      // }
+      // print('datanews: ${datanews}');
+      //print('title: ${title}');
+
+
+      // Map<String, dynamic> newsdata = jsonDecode(response.body);
+      // newsdata.forEach((k, v) =>
+      //     print("Key : $k, Value : $v")
+      //   //detail_page_aro_button_newsList.add(v)
+      // );
+      //if(response != null){
+      //newsDetails.value = NewsDetailseResponse.fromJson(response.body.toString());
+
+      // Map<String, dynamic> newsdata = jsonDecode(response);
+      // newsdata.forEach((k, v) =>
+      // print("Key : $k, Value : $v")
+      // //detail_page_aro_button_newsList.add(v)
+      // );
+      //print('newslenth: ${detail_page_aro_button_newsList.length}');
+
+
+      categoryName.value = '';
+      categoryName.value = newsDetails.value.category_name!;
+      dataLoaded.value = true;
+      print('newsdetailstitle: ${newsDetails.value.title}');
+      print('newsddate: ${Utils.dateTimeFormat(newsDetails.value.news_date_time!)}');
+      //Navigator.of(Get.context).pop();
+      // }
+      newsDate.value = '';
+      List<String> mainDataList  = Utils.dateTimeFormatymd(newsDetails.value.news_date_time!).split(' ');
+
+      var amPm = '';
+      if(mainDataList[2] == 'am'){
+        amPm = 'এএম';
+      }else{
+        amPm = 'পিএম';
       }
+      newsDate.value = Utils.allNewsDateConvert(mainDataList[0])+" "+ Utils.replaceEngNumberToBangla(mainDataList[1])+' '+amPm;
+      if(newsDetails.value.news_edition == 1){
+        newsEdition.value = "অনলাইন সংস্করণ";
+      }else{
+        newsEdition.value = "প্রিন্ট সংস্করণ";
+      }
+
+
+      get_more_cat_news(newsDetails.value.parent_cat_id.toString(),newsDetails.value.id.toString());
+
+      spc_event_tag_id.value = '';
+      spc_event_tag_id.value = newsDetails.value.spc_event_tag_id!;
+
+      if(spc_event_tag_id.value.isNotEmpty){
+        get_event_news_paginate(eventPage.value);
+      }
+
+      tag.value = '';
+      if(newsDetails.value.location_name!.isNotEmpty){
+        tag.value = newsDetails.value.location_name!;
+      }
+
+      if(newsDetails.value.org_name!.isNotEmpty){
+        tag.value = newsDetails.value.org_name!;
+      }
+
+      if(newsDetails.value.people_name!.isNotEmpty){
+        tag.value = newsDetails.value.people_name!;
+      }
+
+      if(newsDetails.value.location_name!.isNotEmpty){
+        get_tag_wise_news(tag.value);
+      }
+
+      if(newsDetails.value.spc_event_tag_id!.isNotEmpty){
+        get_tag_name(newsDetails.value.spc_event_tag_id.toString());
+      }
+
+      //Navigator.push(Get.context, MaterialPageRoute(builder: (context) => NewsDetailseFragment()));
+      // if(newsDetails.value.title != null){
+      //   Get.to(NewsDetailseFragmentNew());
+      // }
 
 
       //Utils.dateBengaliNewsDetailse(Utils.dateTimeFormat(newsDetails.value.news_date_time));
@@ -985,6 +1126,8 @@ class HomeController extends GetxController {
         get_ajker_paper_subcategory_wise_newsList(element);
       });
 
+
+
     } on SocketException {
 
     }
@@ -1048,6 +1191,10 @@ class HomeController extends GetxController {
       var data = HomeCategoryWithNewsList(categoryResponse.cat_name,categoryResponse.id,newsList);
       ajker_paper_subcategory_list_with_newsList.add(data);
       dataLoaded.value = true;
+
+      Get.to(AjkerPaperFragmentNew());
+
+
       // print('category_wise_newsList: ${category_wise_newsList[0].title.toString()}');
       //return category_wise_newsList;
     } on SocketException {

@@ -64,7 +64,8 @@ class HomePage extends GetView<HomeController> {
                           onTap: (){
                             // ajker paper page index 3
                             //Get.back();
-                            homeController.selectedPageIndex.value = 3;
+                            //homeController.selectedPageIndex.value = 3;
+                            homeController.dataLoaded.value = false;
                             homeController.selectedCategoryName.value = "আজকের পত্রিকা";
                             homeController.selectedSubCategoryName.value = "";
                             homeController.catListShow.value = false;
@@ -116,8 +117,8 @@ class HomePage extends GetView<HomeController> {
 
         ),
 
-        body:Scaffold(
-          backgroundColor: Colors.white,
+        // body:Scaffold(
+        //   backgroundColor: Colors.white,
           body: Scaffold(
             backgroundColor: Colors.white,
             appBar:AppBar(
@@ -373,7 +374,7 @@ class HomePage extends GetView<HomeController> {
 
             ),
           ),
-        )
+        //)
     );
   }
 

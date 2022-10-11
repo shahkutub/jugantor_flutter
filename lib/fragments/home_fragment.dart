@@ -17,6 +17,7 @@ import 'package:touch_ripple_effect/touch_ripple_effect.dart';
 import '../ui.dart';
 import '../utils/utils.dart';
 import 'news_detailse_fragment.dart';
+import 'news_detailse_fragment_new.dart';
 
 class HomeFragment extends GetView<HomeController> {
     final HomeController homeController = Get.put(HomeController());
@@ -74,7 +75,13 @@ class HomeFragment extends GetView<HomeController> {
 
                                         homeController.dataLoaded.value = false;
                                         homeController.newsId.value = homeController.leadnews.value.id.toString();
+                                        //homeController.get_news_details();
+
                                         homeController.get_news_details();
+                                        // if(homeController.newsDetails.value.title != null){
+                                        //     Get.to(NewsDetailseFragmentNew());
+                                        // }
+                                        //Get.to(NewsDetailseFragmentNew());
                                         //homeController.selectedPageIndex.value = 1;
 
                                     },
@@ -175,6 +182,7 @@ class HomeFragment extends GetView<HomeController> {
                                                 itemBuilder: (context, index) {
                                                     return  GestureDetector(
                                                         onTap: (){
+
                                                             homeController.selectedPageIndex.value = 2;
                                                             homeController.selectedCategoryName.value = homeController.catExtraLinkList[index].parent_cat_name!;
                                                             homeController.selectedSubCategoryName.value = homeController.catExtraLinkList[index].cat_name!;
@@ -239,6 +247,7 @@ class HomeFragment extends GetView<HomeController> {
                                                                 homeController.newsId.value = homeController.showNewsList[0].id.toString();
                                                                 //homeController.selectedPageIndex.value = 1;
                                                                 homeController.get_news_details();
+                                                                //Get.to(NewsDetailseFragmentNew());
 
                                                             },
 
@@ -292,6 +301,7 @@ class HomeFragment extends GetView<HomeController> {
                                                                 homeController.newsId.value = homeController.showNewsList[1].id.toString();
                                                                 //homeController.selectedPageIndex.value = 1;
                                                                 homeController.get_news_details();
+                                                                Get.to(NewsDetailseFragmentNew());
 
                                                             },
 
@@ -352,6 +362,7 @@ class HomeFragment extends GetView<HomeController> {
                                                                 homeController.newsId.value = homeController.showNewsList[2].id.toString();
                                                                 //homeController.selectedPageIndex.value = 1;
                                                                 homeController.get_news_details();
+                                                                Get.to(NewsDetailseFragmentNew());
 
                                                             },
 
@@ -405,7 +416,7 @@ class HomeFragment extends GetView<HomeController> {
                                                                 homeController.newsId.value = homeController.showNewsList[3].id.toString();
                                                                 //homeController.selectedPageIndex.value = 1;
                                                                 homeController.get_news_details();
-
+                                                                Get.to(NewsDetailseFragmentNew());
                                                             },
 
                                                             child: Obx(() => Container(
@@ -464,7 +475,7 @@ class HomeFragment extends GetView<HomeController> {
                                                                 homeController.newsId.value = homeController.showNewsList[4].id.toString();
                                                                 //homeController.selectedPageIndex.value = 1;
                                                                 homeController.get_news_details();
-
+                                                                Get.to(NewsDetailseFragmentNew());
                                                             },
 
                                                             child: Obx(() => Container(
@@ -517,7 +528,7 @@ class HomeFragment extends GetView<HomeController> {
                                                                 homeController.newsId.value = homeController.showNewsList[5].id.toString();
                                                                 //homeController.selectedPageIndex.value = 1;
                                                                 homeController.get_news_details();
-
+                                                                Get.to(NewsDetailseFragmentNew());
                                                             },
 
                                                             child: Obx(() => Container(
@@ -577,7 +588,7 @@ class HomeFragment extends GetView<HomeController> {
                                                                 homeController.newsId.value = homeController.showNewsList[6].id.toString();
                                                                 //homeController.selectedPageIndex.value = 1;
                                                                 homeController.get_news_details();
-
+                                                                Get.to(NewsDetailseFragmentNew());
                                                             },
 
                                                             child: Obx(() => Container(
@@ -630,7 +641,7 @@ class HomeFragment extends GetView<HomeController> {
                                                                 homeController.newsId.value = homeController.showNewsList[7].id.toString();
                                                                 //homeController.selectedPageIndex.value = 1;
                                                                 homeController.get_news_details();
-
+                                                                Get.to(NewsDetailseFragmentNew());
                                                             },
 
                                                             child: Obx(() => Container(
@@ -796,6 +807,11 @@ class HomeFragment extends GetView<HomeController> {
                                                 itemBuilder: (context, index) {
                                                     //final item = homeController.last_entry_newsList[index];
 
+                                                    // if(index==0){
+                                                    //     homeController.newsId.value = homeController.last_entry_newsList[0].id.toString();
+                                                    //     homeController.get_news_details();
+                                                    // }
+
                                                     return Container(
                                                         margin: EdgeInsets.only(top: 10),
                                                         child:   GestureDetector(
@@ -804,6 +820,10 @@ class HomeFragment extends GetView<HomeController> {
                                                                 homeController.newsId.value = homeController.last_entry_newsList[index].id.toString();
                                                                 //homeController.selectedPageIndex.value = 1;
                                                                 homeController.get_news_details();
+                                                                if(homeController.newsDetails.value.title != null){
+                                                                    Get.to(NewsDetailseFragmentNew());
+                                                                }
+
                                                             },
 
                                                             child: Obx(() => Container(
@@ -964,6 +984,7 @@ class HomeFragment extends GetView<HomeController> {
                                                                                                     homeController.newsId.value = homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].id.toString();
                                                                                                     //homeController.selectedPageIndex.value = 1;
                                                                                                     homeController.get_news_details();
+                                                                                                    Get.to(NewsDetailseFragmentNew());
                                                                                                 },
                                                                                                 child: Container(
                                                                                                     margin: EdgeInsets.only(top: 5,bottom: 5,right: 0,left: 0),
@@ -1023,6 +1044,7 @@ class HomeFragment extends GetView<HomeController> {
                                                                                                         homeController.newsId.value = homeController.category_list_with_news_newsList[index].category_wise_newsList![index2].id.toString();
                                                                                                         //homeController.selectedPageIndex.value = 1;
                                                                                                         homeController.get_news_details();
+                                                                                                        Get.to(NewsDetailseFragmentNew());
                                                                                                     },
 
                                                                                                     child: Obx(() =>
