@@ -209,6 +209,7 @@ class HomeController extends GetxController {
       _packageInfo = info;
     print('App name'+_packageInfo.appName);
     print('version'+_packageInfo.version);
+    print('serverIosversion'+appversionData.value.ios_current_version.toString());
 
     if (Platform.isAndroid){
       if(appversionData.value.android_current_version != _packageInfo.version){
