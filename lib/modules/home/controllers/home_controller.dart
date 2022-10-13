@@ -356,7 +356,11 @@ class HomeController extends GetxController {
       newsDetails.value.reporter = user['reporter'];
       newsDetails.value.news_sum = user['news_sum'];
       newsDetails.value.detail = user['detail'];
+
+
+
       newsDetails.value.photo_caption = user['photo_caption'];
+
       newsDetails.value.photo_alt_txt = user['photo_alt_txt'];
       newsDetails.value.news_tags = user['news_tags'];
       newsDetails.value.spc_event_tag_id = user['spc_event_tag_id'];
@@ -368,10 +372,12 @@ class HomeController extends GetxController {
       newsDetails.value.people_tag = user['people_tag'];
       newsDetails.value.org_name = user['org_name'];
       newsDetails.value.org_tag = user['org_tag'];
+
       newsDetails.value.bread_parent_cat_id = user['bread_parent_cat_id'];
       newsDetails.value.bread_parent_cat_name = user['bread_parent_cat_name'];
       newsDetails.value.bread_sub_cat_id = user['bread_sub_cat_id'];
       newsDetails.value.bread_sub_cat_name = user['bread_sub_cat_name'];
+
       selectedPageIndex.value = 1;
 
       // if(newsDetails.value.title != null){

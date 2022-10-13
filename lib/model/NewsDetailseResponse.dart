@@ -3,7 +3,7 @@
 class NewsDetailseResponse {
     int? bread_parent_cat_id;
     String? bread_parent_cat_name;
-    String? bread_sub_cat_id;
+    dynamic? bread_sub_cat_id;
     String? bread_sub_cat_name;
     String? category_name;
     String? detail;
