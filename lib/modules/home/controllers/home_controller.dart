@@ -120,6 +120,7 @@ class HomeController extends GetxController {
   var appversionData = AppversionModel().obs;
   //var cat_wise_photoListResponse = CtwisePhotoRersponse();
   var newsDetails = NewsDetailseResponse().obs;
+ // var newsDetails;
   var tagNameResponse = TagNameResponse().obs;
   var last_online_pollResponse = LastOnlinePoll().obs;
   var categoryName = ''.obs;
@@ -230,7 +231,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
 
-
+    newsDetails = NewsDetailseResponse().obs;
 
     var now = new DateTime.now();
     var formatter = new DateFormat('yyyy/MM/dd');
@@ -371,10 +372,11 @@ class HomeController extends GetxController {
       newsDetails.value.bread_parent_cat_name = user['bread_parent_cat_name'];
       newsDetails.value.bread_sub_cat_id = user['bread_sub_cat_id'];
       newsDetails.value.bread_sub_cat_name = user['bread_sub_cat_name'];
+      selectedPageIndex.value = 1;
 
-      if(newsDetails.value.title != null){
-        Get.to(NewsDetailseFragmentNew());
-      }
+      // if(newsDetails.value.title != null){
+      //   Get.to(NewsDetailseFragmentNew());
+      // }
       // print('datanews: ${datanews}');
       //print('title: ${title}');
 
@@ -448,6 +450,7 @@ class HomeController extends GetxController {
       if(newsDetails.value.spc_event_tag_id!.isNotEmpty){
         get_tag_name(newsDetails.value.spc_event_tag_id.toString());
       }
+
 
       //Navigator.push(Get.context, MaterialPageRoute(builder: (context) => NewsDetailseFragment()));
       // if(newsDetails.value.title != null){
@@ -1193,7 +1196,7 @@ class HomeController extends GetxController {
       ajker_paper_subcategory_list_with_newsList.add(data);
       dataLoaded.value = true;
 
-      Get.to(AjkerPaperFragmentNew());
+     // Get.to(AjkerPaperFragmentNew());
 
 
       // print('category_wise_newsList: ${category_wise_newsList[0].title.toString()}');

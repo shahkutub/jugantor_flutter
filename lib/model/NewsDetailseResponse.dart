@@ -1,3 +1,5 @@
+
+
 class NewsDetailseResponse {
     int? bread_parent_cat_id;
     String? bread_parent_cat_name;

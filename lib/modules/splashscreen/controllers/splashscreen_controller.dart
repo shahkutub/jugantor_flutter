@@ -57,6 +57,7 @@ class SplashscreenController extends GetxController {
 
       print('categoryname: ${categoryList[0].cat_name.toString()}');
       Get.offAllNamed(Routes.HOME);
+      //Get.to(Routes.HOME);
     } on SocketException {
 
     }
