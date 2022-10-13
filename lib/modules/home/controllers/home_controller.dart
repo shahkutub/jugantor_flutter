@@ -378,7 +378,7 @@ class HomeController extends GetxController {
       newsDetails.value.bread_sub_cat_id = user['bread_sub_cat_id'];
       newsDetails.value.bread_sub_cat_name = user['bread_sub_cat_name'];
 
-      selectedPageIndex.value = 1;
+
 
       // if(newsDetails.value.title != null){
       //   Get.to(NewsDetailseFragmentNew());
@@ -425,7 +425,7 @@ class HomeController extends GetxController {
       }else{
         newsEdition.value = "প্রিন্ট সংস্করণ";
       }
-
+      selectedPageIndex.value = 1;
 
       get_more_cat_news(newsDetails.value.parent_cat_id.toString(),newsDetails.value.id.toString());
 
@@ -453,7 +453,7 @@ class HomeController extends GetxController {
         get_tag_wise_news(tag.value);
       }
 
-      if(newsDetails.value.spc_event_tag_id!.isNotEmpty){
+      if(newsDetails.value.spc_event_tag_id! != null){
         get_tag_name(newsDetails.value.spc_event_tag_id.toString());
       }
 

@@ -28,7 +28,7 @@ class NewsDetailseResponse {
     String? reporter;
     String? shoulder;
     String? spc_event_tag_id;
-    String? title;
+    dynamic? title;
     int? video_dis;
 
     NewsDetailseResponse({this.bread_parent_cat_id, this.bread_parent_cat_name, this.bread_sub_cat_id, this.bread_sub_cat_name, this.category_name, this.detail, this.generate_url, this.hanger, this.id, this.img_url, this.location_name, this.location_tag, this.news_date_time, this.news_edition, this.news_sum, this.news_tags, this.org_name, this.org_tag, this.parent_cat_id, this.parent_cat_url, this.people_name, this.people_tag, this.photo_alt_txt, this.photo_caption, this.reporter, this.shoulder, this.spc_event_tag_id, this.title, this.video_dis});

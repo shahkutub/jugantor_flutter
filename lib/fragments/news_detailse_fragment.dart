@@ -472,7 +472,7 @@ class NewsDetailseFragment extends StatelessWidget {
                                       Row(
                                         children: [
                                           Icon(Icons.calendar_today_sharp,color: Colors.black,),
-                                          Text(homeController.tagNameResponse.value.tag_name.toString()),
+                                          Flexible(child: Text(homeController.tagNameResponse.value.tag_name.toString()),)
                                         ],
                                       ),
                                       Divider(
