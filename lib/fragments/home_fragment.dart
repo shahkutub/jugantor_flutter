@@ -76,7 +76,7 @@ class HomeFragment extends GetView<HomeController> {
                                         homeController.dataLoaded.value = false;
                                         homeController.newsId.value = homeController.leadnews.value.id.toString();
                                         //homeController.get_news_details();
-                                        homeController.selectedPageIndex.value = 1;
+                                        //homeController.selectedPageIndex.value = 1;
                                         homeController.get_news_details();
                                         // if(homeController.newsDetails.value.title != null){
                                         //     Get.to(NewsDetailseFragmentNew());

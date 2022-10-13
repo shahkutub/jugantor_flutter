@@ -145,7 +145,7 @@ class SubCatFragment extends StatelessWidget {
                                   onTap: (){
                                     homeController.dataLoaded.value = false;
                                     homeController.newsId.value = homeController.category_wise_newsList[index2].id.toString();
-                                    homeController.selectedPageIndex.value = 1;
+                                    //homeController.selectedPageIndex.value = 1;
                                     homeController.get_news_details();
                                   },
                                   child: Container(
@@ -208,7 +208,7 @@ class SubCatFragment extends StatelessWidget {
                                       onTap: (){
                                          homeController.dataLoaded.value = false;
                                          homeController.newsId.value = homeController.category_wise_newsList[index2].id.toString();
-                                         homeController.selectedPageIndex.value = 1;
+                                         //homeController.selectedPageIndex.value = 1;
                                          homeController.get_news_details();
                                       },
 
@@ -408,7 +408,7 @@ class SubCatFragment extends StatelessWidget {
                                                                       onTap: (){
                                                                         homeController.dataLoaded.value = false;
                                                                         homeController.newsId.value = homeController.subcategory_list_with_news_newsList[index].category_wise_newsList![index2].id.toString();
-                                                                        homeController.selectedPageIndex.value = 1;
+                                                                        //homeController.selectedPageIndex.value = 1;
                                                                         homeController.get_news_details();
                                                                       },
                                                                       child:Container(
@@ -502,7 +502,7 @@ class SubCatFragment extends StatelessWidget {
                                                                           onTap: (){
                                                                             homeController.dataLoaded.value = false;
                                                                             homeController.newsId.value = homeController.subcategory_list_with_news_newsList[index].category_wise_newsList![index2].id.toString();
-                                                                            homeController.selectedPageIndex.value = 1;
+                                                                            //homeController.selectedPageIndex.value = 1;
                                                                             homeController.get_news_details();
                                                                           },
 
@@ -648,9 +648,10 @@ class SubCatFragment extends StatelessWidget {
                                         onTap: (){
                                           homeController.dataLoaded.value = false;
                                           homeController.newsId.value = homeController.last_entry_newsList[index].id.toString();
+                                          //homeController.selectedPageIndex.value = 1;
                                           homeController.get_news_details();
-                                          homeController.scrollController.value.animateTo(0,
-                                              duration: const Duration(seconds: 1), curve: Curves.linear);
+                                          // homeController.scrollController.value.animateTo(0,
+                                          //     duration: const Duration(seconds: 1), curve: Curves.linear);
                                         },
 
                                         child: Obx(() => Container(
