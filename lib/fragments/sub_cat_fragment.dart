@@ -50,13 +50,18 @@ class SubCatFragment extends StatelessWidget {
                                         }
 
                                       },
-                                      child:Container(
+
+                                      child:
+                                      homeController.sub_categoryList.length > 0?
+                                      Container(
                                         //height: 80,
                                           alignment: Alignment.centerRight,
                                           child:homeController.catListShow.value?
                                           Icon(Icons.keyboard_arrow_up_sharp,size: 40,):
                                           Icon(Icons.keyboard_arrow_down_sharp,size: 40,)
-                                      )
+                                      ):SizedBox()
+
+
                                     )
 
                                   ],
@@ -362,29 +367,37 @@ class SubCatFragment extends StatelessWidget {
                                                     mainAxisAlignment: MainAxisAlignment.center,
                                                     crossAxisAlignment: CrossAxisAlignment.center,
                                                     children: [
-                                                      Stack(alignment: Alignment.centerLeft,
-                                                        children: <Widget>[
-                                                          Container(
-                                                            //height: 80,
-                                                            alignment: Alignment.centerLeft,
-                                                            //child: Flexible(
+                                                      GestureDetector(
+                                                        child: Stack(alignment: Alignment.centerLeft,
+                                                          children: <Widget>[
+                                                            Container(
+                                                              //height: 80,
+                                                                alignment: Alignment.centerLeft,
+                                                                //child: Flexible(
                                                                 child: Text(homeController.subcategory_list_with_news_newsList[index].cat_name!,
-                                                                style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)
-                                                            )
-                                                            //),
-                                                          ),
-                                                          Container(
-                                                            alignment: Alignment.centerRight,
-                                                            child: Column(
-                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                                              children: [
-                                                                Icon(Icons.arrow_forward_sharp,color: Colors.red,),
-                                                              ],
+                                                                    style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)
+                                                                )
+                                                              //),
                                                             ),
-                                                          )
-                                                        ],
+                                                            Container(
+                                                              alignment: Alignment.centerRight,
+                                                              child: Column(
+                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                                children: [
+                                                                  Icon(Icons.arrow_forward_sharp,color: Colors.red,),
+                                                                ],
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                        onTap: (){
+                                                          homeController.catListShow.value = false;
+                                                          homeController.selectedSubCategoryName.value = homeController.sub_categoryList[index].cat_name!;
+                                                          homeController.get_category_page_subcat_wise_news(homeController.sub_categoryList[index].id!);
+                                                        },
                                                       ),
+
                                                       Divider(
                                                           color: Colors.red
                                                       ),

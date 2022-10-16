@@ -98,7 +98,9 @@ class AjkerPaperFragment extends StatelessWidget {
                                   homeController.selectedSubCategoryName.value = homeController.ajkert_paper_sub_categoryList[index].cat_name!;
                                   homeController.ajker_paper_subcategory_list_with_newsList.clear();
                                   homeController.get_category_page_subcat_wise_news(homeController.ajkert_paper_sub_categoryList[index].id!);
-                                },
+
+
+                                  },
 
                                 child: Container(
                                   padding: EdgeInsets.all(10),
@@ -264,234 +266,232 @@ class AjkerPaperFragment extends StatelessWidget {
                                   //homeController.get_category_wise_news(homeController.home_categoryList[index].id);
 
                                   return Container(
-                                      child:   GestureDetector(
-                                        onTap: (){
-                                          //Get.back();
-                                          // if(homeController.showNewsList[index].cat_name == "প্রচ্ছদ"){
-                                          //   //homeController.selectedIndex.value = 0;
-                                          // }else{
-                                          //   // homeController.selectedIndex.value = 1;
-                                          // }
-                                        },
+                                      child:Obx(() =>
+                                      Container(
+                                          margin: EdgeInsets.only(top: 0),
+                                          //height: ,
+                                          //alignment: Alignment.center,
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
 
-                                        child: Obx(() =>
-                                            Container(
-                                                margin: EdgeInsets.only(top: 0),
-                                                //height: ,
-                                                //alignment: Alignment.center,
+                                              GestureDetector(
+                                                onTap: (){
+
+                                                  print('clickedAjsub');
+                                                  homeController.get_category_page_subcat_wise_news(homeController.ajker_paper_subcategory_list_with_newsList[index].id!);
+
+                                                  homeController.catListShow.value = false;
+                                                  homeController.selectedSubCategoryName.value = homeController.ajker_paper_subcategory_list_with_newsList[index].cat_name!;
+                                                  homeController.ajker_paper_subcategory_list_with_newsList.clear();
+                                                  ///homeController.get_category_page_subcat_wise_news(homeController.ajker_paper_subcategory_list_with_newsList[index].id!);
+
+
+                                                  // homeController.category_wise_newsList.clear();
+                                                  // homeController.subcategory_list_with_news_newsList.clear();
+                                                  // homeController.catId.value = homeController.ajker_paper_subcategory_list_with_newsList[index].id!;
+                                                  // homeController.selectedSubCategoryName.value = "";
+                                                  // homeController.selectedCategoryName.value = homeController.ajker_paper_subcategory_list_with_newsList[index].cat_name.toString();
+                                                  // homeController.dataLoaded.value = false;
+                                                  // homeController.get_sub_category(homeController.ajker_paper_subcategory_list_with_newsList[index].id!);
+                                                  // //sub_category page index 2
+                                                  // homeController.selectedPageIndex.value = 2;
+                                                },
                                                 child: Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: [
-
-                                                    GestureDetector(
-                                                      onTap: (){
-                                                        homeController.category_wise_newsList.clear();
-                                                        homeController.subcategory_list_with_news_newsList.clear();
-                                                        homeController.catId.value = homeController.ajker_paper_subcategory_list_with_newsList[index].id!;
-                                                        homeController.selectedSubCategoryName.value = "";
-                                                        homeController.selectedCategoryName.value = homeController.ajker_paper_subcategory_list_with_newsList[index].cat_name.toString();
-                                                        homeController.dataLoaded.value = false;
-                                                        homeController.get_sub_category(homeController.ajker_paper_subcategory_list_with_newsList[index].id!);
-                                                        //sub_category page index 2
-                                                        homeController.selectedPageIndex.value = 2;
-                                                      },
-                                                      child: Column(
-                                                        children: [
-                                                          Stack(alignment: Alignment.centerLeft,
-                                                            children: <Widget>[
-                                                              Container(
-                                                                //height: 80,
-                                                                  alignment: Alignment.centerLeft,
-                                                                  //child: Flexible(
-                                                                  child: Text(homeController.ajker_paper_subcategory_list_with_newsList[index].cat_name!,
-                                                                      style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)
-                                                                  )
-                                                                //),
-                                                              ),
-                                                              Container(
-                                                                alignment: Alignment.centerRight,
-                                                                child: Column(
-                                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                                                  children: [
-                                                                    Icon(Icons.arrow_forward_sharp,color: Colors.red,),
-                                                                  ],
-                                                                ),
-                                                              )
+                                                    Stack(alignment: Alignment.centerLeft,
+                                                      children: <Widget>[
+                                                        Container(
+                                                          //height: 80,
+                                                            alignment: Alignment.centerLeft,
+                                                            //child: Flexible(
+                                                            child: Text(homeController.ajker_paper_subcategory_list_with_newsList[index].cat_name!,
+                                                                style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)
+                                                            )
+                                                          //),
+                                                        ),
+                                                        Container(
+                                                          alignment: Alignment.centerRight,
+                                                          child: Column(
+                                                            mainAxisAlignment: MainAxisAlignment.center,
+                                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                                            children: [
+                                                              Icon(Icons.arrow_forward_sharp,color: Colors.red,),
                                                             ],
                                                           ),
-                                                          Divider(
-                                                              color: Colors.red
-                                                          ),
-                                                        ],
-                                                      ),
+                                                        )
+                                                      ],
                                                     ),
-
-
-                                                    Obx(() =>
-                                                        Container(
-                                                            margin: EdgeInsets.only(top: 0,bottom: 5),
-                                                            alignment: Alignment.center,
-                                                            child:ListView.builder(
-                                                              primary: false,
-                                                              shrinkWrap: true,
-                                                              physics: NeverScrollableScrollPhysics(),
-                                                              // Let the ListView know how many items it needs to build.
-                                                              itemCount: homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList!.length,
-                                                              // Provide a builder function. This is where the magic happens.
-                                                              // Convert each item into a widget based on the type of item it is.
-                                                              itemBuilder: (context, index2) {
-                                                                //final item = homeController.category_list_with_news_newsList[index].category_wise_newsList![index2];
-                                                                //homeController.homecatId.value = homeController.showNewsList[index].id;
-
-                                                                if(index2 == 0){
-                                                                  return GestureDetector(
-                                                                    onTap: (){
-                                                                      homeController.dataLoaded.value = false;
-                                                                      homeController.categoryName.value = "আজকের পত্রিকা";
-                                                                      homeController.newsId.value = homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].id.toString();
-                                                                      homeController.selectedPageIndex.value = 1;
-                                                                      homeController.get_news_details();
-                                                                    },
-                                                                    child: Container(
-                                                                      margin: EdgeInsets.only(top: 15,bottom: 5,right: 0,left: 0),
-                                                                      height: width*.6,
-                                                                      width: width,
-                                                                      child: Stack(
-                                                                        fit: StackFit.expand,
-                                                                        children: [
-
-                                                                          Align(
-                                                                            alignment: Alignment.center,
-                                                                            child: FadeInImage.assetNetwork(
-                                                                                fit: BoxFit.fill,
-                                                                                height: width*.6,
-                                                                                image:homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].img_url!,
-                                                                                placeholder:"assets/images/jugantordefault.jpg" // your assets image path
-                                                                            ),
-                                                                          ),
-
-                                                                          Align(
-                                                                            alignment: Alignment.center,
-                                                                            child: homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].video_dis  == 0 ?
-                                                                            Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
-                                                                          ),
-
-                                                                          Align(
-                                                                            alignment: Alignment.bottomCenter,
-                                                                            child: Container(
-                                                                                width: width,
-                                                                                padding: EdgeInsets.all(15),
-                                                                                color: Colors.black54,
-                                                                                child: Row(
-                                                                                  children: [
-                                                                                    Expanded(
-                                                                                      child:Text(
-                                                                                        homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].title!+'  ',
-                                                                                        style: TextStyle(
-                                                                                            fontSize: 16,
-                                                                                            fontWeight: FontWeight.bold,
-                                                                                            color: Colors.white),
-                                                                                      ),
-                                                                                    ),
-                                                                                  ],
-                                                                                )
-
-
-                                                                            ),
-                                                                          ),
-
-
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                  );
-                                                                }else{
-                                                                  return Container(
-                                                                      margin: EdgeInsets.only(top: 10),
-                                                                      child:   GestureDetector(
-                                                                        onTap: (){
-                                                                          homeController.dataLoaded.value = false;
-                                                                          homeController.categoryName.value = "আজকের পত্রিকা";
-                                                                          homeController.newsId.value = homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].id.toString();
-                                                                          homeController.selectedPageIndex.value = 1;
-                                                                          homeController.get_news_details();
-                                                                        },
-
-                                                                        child: Obx(() =>
-                                                                            Container(
-                                                                              //height: ,
-                                                                              //alignment: Alignment.center,
-                                                                                child: Row(
-                                                                                  mainAxisAlignment: MainAxisAlignment.start,
-                                                                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                                                                  children: [
-                                                                                    // Container(
-                                                                                    //   margin: EdgeInsets.only(right: 10),
-                                                                                    //   height: 70,
-                                                                                    //   width: 100,
-                                                                                    //   child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
-                                                                                    //     fit: BoxFit.fill,
-                                                                                    //   ),
-                                                                                    //   //height: 80,
-                                                                                    //   // width: 60,
-                                                                                    // ),
-
-                                                                                    Container(
-                                                                                      margin: EdgeInsets.only(right: 10),
-                                                                                      height: 70,
-                                                                                      width: 100,
-                                                                                      child: Stack(
-                                                                                        fit: StackFit.expand,
-                                                                                        children: [
-                                                                                          FadeInImage.assetNetwork(
-                                                                                              height: 70,
-                                                                                              width: 100,
-                                                                                              fit: BoxFit.fill,
-                                                                                              image:homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].img_url!,
-                                                                                              placeholder:"assets/images/jugantordefault.jpg" // your assets image path
-                                                                                          ),
-                                                                                          Positioned(
-                                                                                            bottom: 20,
-                                                                                            left:35,
-                                                                                            child: homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].video_dis  == 0 ?
-                                                                                            Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
-
-                                                                                          ),
-                                                                                        ],
-                                                                                      ),
-                                                                                    ),
-
-                                                                                    Flexible(child:
-                                                                                    Text(homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].title!,
-                                                                                      style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
-                                                                                      textAlign: TextAlign.justify,
-                                                                                    ),
-                                                                                    ),
-
-                                                                                  ],
-                                                                                )
-
-
-
-                                                                            )
-                                                                        ),
-
-                                                                      )
-                                                                  );
-                                                                }
-
-                                                              },
-                                                            )
-
-                                                        ),
+                                                    Divider(
+                                                        color: Colors.red
                                                     ),
                                                   ],
-                                                )
-                                            )
-                                        ),
-                                      )
+                                                ),
+                                              ),
+
+
+                                              Obx(() =>
+                                                  Container(
+                                                      margin: EdgeInsets.only(top: 0,bottom: 5),
+                                                      alignment: Alignment.center,
+                                                      child:ListView.builder(
+                                                        primary: false,
+                                                        shrinkWrap: true,
+                                                        physics: NeverScrollableScrollPhysics(),
+                                                        // Let the ListView know how many items it needs to build.
+                                                        itemCount: homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList!.length,
+                                                        // Provide a builder function. This is where the magic happens.
+                                                        // Convert each item into a widget based on the type of item it is.
+                                                        itemBuilder: (context, index2) {
+                                                          //final item = homeController.category_list_with_news_newsList[index].category_wise_newsList![index2];
+                                                          //homeController.homecatId.value = homeController.showNewsList[index].id;
+
+                                                          if(index2 == 0){
+                                                            return GestureDetector(
+                                                              onTap: (){
+                                                                homeController.dataLoaded.value = false;
+                                                                homeController.categoryName.value = "আজকের পত্রিকা";
+                                                                homeController.newsId.value = homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].id.toString();
+                                                                homeController.selectedPageIndex.value = 1;
+                                                                homeController.get_news_details();
+                                                              },
+                                                              child: Container(
+                                                                margin: EdgeInsets.only(top: 15,bottom: 5,right: 0,left: 0),
+                                                                height: width*.6,
+                                                                width: width,
+                                                                child: Stack(
+                                                                  fit: StackFit.expand,
+                                                                  children: [
+
+                                                                    Align(
+                                                                      alignment: Alignment.center,
+                                                                      child: FadeInImage.assetNetwork(
+                                                                          fit: BoxFit.fill,
+                                                                          height: width*.6,
+                                                                          image:homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].img_url!,
+                                                                          placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                                      ),
+                                                                    ),
+
+                                                                    Align(
+                                                                      alignment: Alignment.center,
+                                                                      child: homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].video_dis  == 0 ?
+                                                                      Text("") : Image.asset("assets/images/video_icon.png", height: 60, width: 60,),
+                                                                    ),
+
+                                                                    Align(
+                                                                      alignment: Alignment.bottomCenter,
+                                                                      child: Container(
+                                                                          width: width,
+                                                                          padding: EdgeInsets.all(15),
+                                                                          color: Colors.black54,
+                                                                          child: Row(
+                                                                            children: [
+                                                                              Expanded(
+                                                                                child:Text(
+                                                                                  homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].title!+'  ',
+                                                                                  style: TextStyle(
+                                                                                      fontSize: 16,
+                                                                                      fontWeight: FontWeight.bold,
+                                                                                      color: Colors.white),
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          )
+
+
+                                                                      ),
+                                                                    ),
+
+
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }else{
+                                                            return Container(
+                                                                margin: EdgeInsets.only(top: 10),
+                                                                child:   GestureDetector(
+                                                                  onTap: (){
+                                                                    homeController.dataLoaded.value = false;
+                                                                    homeController.categoryName.value = "আজকের পত্রিকা";
+                                                                    homeController.newsId.value = homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].id.toString();
+                                                                    homeController.selectedPageIndex.value = 1;
+                                                                    homeController.get_news_details();
+                                                                  },
+
+                                                                  child: Obx(() =>
+                                                                      Container(
+                                                                        //height: ,
+                                                                        //alignment: Alignment.center,
+                                                                          child: Row(
+                                                                            mainAxisAlignment: MainAxisAlignment.start,
+                                                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                                                            children: [
+                                                                              // Container(
+                                                                              //   margin: EdgeInsets.only(right: 10),
+                                                                              //   height: 70,
+                                                                              //   width: 100,
+                                                                              //   child: Image.network(homeController.category_list_with_news_newsList[index].category_wise_newsList[index2].img_url,
+                                                                              //     fit: BoxFit.fill,
+                                                                              //   ),
+                                                                              //   //height: 80,
+                                                                              //   // width: 60,
+                                                                              // ),
+
+                                                                              Container(
+                                                                                margin: EdgeInsets.only(right: 10),
+                                                                                height: 70,
+                                                                                width: 100,
+                                                                                child: Stack(
+                                                                                  fit: StackFit.expand,
+                                                                                  children: [
+                                                                                    FadeInImage.assetNetwork(
+                                                                                        height: 70,
+                                                                                        width: 100,
+                                                                                        fit: BoxFit.fill,
+                                                                                        image:homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].img_url!,
+                                                                                        placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                                                                                    ),
+                                                                                    Positioned(
+                                                                                      bottom: 20,
+                                                                                      left:35,
+                                                                                      child: homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].video_dis  == 0 ?
+                                                                                      Text("") : Image.asset("assets/images/video_icon.png", height: 30, width: 30,),
+
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+
+                                                                              Flexible(child:
+                                                                              Text(homeController.ajker_paper_subcategory_list_with_newsList[index].category_wise_newsList![index2].title!,
+                                                                                style: TextStyle(color: Colors.black,fontSize: 13,fontWeight:FontWeight.bold ),
+                                                                                textAlign: TextAlign.justify,
+                                                                              ),
+                                                                              ),
+
+                                                                            ],
+                                                                          )
+
+
+
+                                                                      )
+                                                                  ),
+
+                                                                )
+                                                            );
+                                                          }
+
+                                                        },
+                                                      )
+
+                                                  ),
+                                              ),
+                                            ],
+                                          )
+                                      ))
                                   );
                                 },
                               )
