@@ -64,6 +64,7 @@ class HomePage extends GetView<HomeController> {
                           onTap: (){
                             // ajker paper page index 3
                             //Get.back();
+                            homeController.category_wise_newsList.clear();
                             homeController.selectedPageIndex.value = 3;
                             homeController.dataLoaded.value = false;
                             homeController.selectedCategoryName.value = "আজকের পত্রিকা";
@@ -233,6 +234,7 @@ class HomePage extends GetView<HomeController> {
                                       homeController.get_saradesh_top_news();
                                       homeController.get_division();
                                     }else{
+                                      homeController.category_wise_newsList.clear();
                                       homeController.subcategory_list_with_news_newsList.clear();
                                       homeController.catId.value = homeController.categoryList[index].id!;
                                       homeController.selectedSubCategoryName.value = "";

@@ -283,32 +283,52 @@ class AjkerPaperFragment extends StatelessWidget {
                                                   mainAxisAlignment: MainAxisAlignment.center,
                                                   crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: [
-                                                    Stack(alignment: Alignment.centerLeft,
-                                                      children: <Widget>[
-                                                        Container(
-                                                          //height: 80,
-                                                          alignment: Alignment.centerLeft,
-                                                          //child: Flexible(
-                                                            child: Text(homeController.ajker_paper_subcategory_list_with_newsList[index].cat_name!,
-                                                              style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)
-                                                          )
-                                                          //),
-                                                        ),
-                                                        Container(
-                                                          alignment: Alignment.centerRight,
-                                                          child: Column(
-                                                            mainAxisAlignment: MainAxisAlignment.center,
-                                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                                            children: [
-                                                              Icon(Icons.arrow_forward_sharp,color: Colors.red,),
+
+                                                    GestureDetector(
+                                                      onTap: (){
+                                                        homeController.category_wise_newsList.clear();
+                                                        homeController.subcategory_list_with_news_newsList.clear();
+                                                        homeController.catId.value = homeController.ajker_paper_subcategory_list_with_newsList[index].id!;
+                                                        homeController.selectedSubCategoryName.value = "";
+                                                        homeController.selectedCategoryName.value = homeController.ajker_paper_subcategory_list_with_newsList[index].cat_name.toString();
+                                                        homeController.dataLoaded.value = false;
+                                                        homeController.get_sub_category(homeController.ajker_paper_subcategory_list_with_newsList[index].id!);
+                                                        //sub_category page index 2
+                                                        homeController.selectedPageIndex.value = 2;
+                                                      },
+                                                      child: Column(
+                                                        children: [
+                                                          Stack(alignment: Alignment.centerLeft,
+                                                            children: <Widget>[
+                                                              Container(
+                                                                //height: 80,
+                                                                  alignment: Alignment.centerLeft,
+                                                                  //child: Flexible(
+                                                                  child: Text(homeController.ajker_paper_subcategory_list_with_newsList[index].cat_name!,
+                                                                      style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold)
+                                                                  )
+                                                                //),
+                                                              ),
+                                                              Container(
+                                                                alignment: Alignment.centerRight,
+                                                                child: Column(
+                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                                  children: [
+                                                                    Icon(Icons.arrow_forward_sharp,color: Colors.red,),
+                                                                  ],
+                                                                ),
+                                                              )
                                                             ],
                                                           ),
-                                                        )
-                                                      ],
+                                                          Divider(
+                                                              color: Colors.red
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
-                                                    Divider(
-                                                        color: Colors.red
-                                                    ),
+
+
                                                     Obx(() =>
                                                         Container(
                                                             margin: EdgeInsets.only(top: 0,bottom: 5),
