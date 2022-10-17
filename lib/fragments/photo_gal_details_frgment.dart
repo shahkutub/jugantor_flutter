@@ -93,7 +93,7 @@ class PhotoGalDetailsFragment extends StatelessWidget{
                                 SizedBox(height: 10,),
                                 GestureDetector(
                                   onTap: (){
-                                    // homeController.bigphoto.value = homeController.photosAll.value[index];
+                                     homeController.bigphoto.value = homeController.photosAll.value[index];
                                      Navigator.of(context).push(FullScreenModal());
 
                                     // showDialog(
