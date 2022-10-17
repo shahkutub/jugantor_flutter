@@ -133,6 +133,7 @@ class HomePage extends GetView<HomeController> {
                         alignment: Alignment.centerLeft,
                         child:GestureDetector(
                             onTap: (){
+                              homeController.dataLoaded.value = true;
                               homeController.selectedPageIndex.value = 0;
                             },
                             child:SvgPicture.asset(

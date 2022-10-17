@@ -729,14 +729,14 @@ class HomeController extends GetxController {
   // }
 
   Future<dynamic> get_tag_name(String tag_id) async {
-    print('urltagname: ${ApiClient.tag_name+'/'+tag_id}');
+    print('eventurltagname: ${ApiClient.tag_name+'/'+tag_id}');
     //Ui.showLoaderDialog(Get.context);
     APIManager _manager = APIManager();
     var response;
     try {
       response = await _manager.get(ApiClient.tag_name+'/'+tag_id);
       //response = await _manager.get(ApiClient.newsDetails+'/558122');
-      print('tagname: ${response}');
+      print('eventresponse: ${response}');
       //if(response != null){
       tagNameResponse.value = TagNameResponse.fromJson(response);
       //Utils.dateBengaliNewsDetailse(Utils.dateTimeFormat(newsDetails.value.news_date_time));
@@ -1283,6 +1283,7 @@ class HomeController extends GetxController {
     try {
       final response = await http.get(Uri.parse(ApiClient.category_wise_news+'/'+catId.toString()));
       print(response.body.toString());
+      dataLoaded.value = false;
       List<LastEntryNewsResponse> list = (json.decode(response.body) as List)
           .map((data) => LastEntryNewsResponse.fromJson(data))
           .toList();
@@ -1686,7 +1687,7 @@ class HomeController extends GetxController {
       Map<String, dynamic> user = jsonDecode(response.body);
       var datanews = jsonEncode(user['data']);
      // print('datanews: ${datanews}');
-      print('datanews: ${datanews}');
+      print('Arobuttonnewsdatanews: ${datanews}');
 
 
       Map<String, dynamic> newsdata = jsonDecode(datanews);

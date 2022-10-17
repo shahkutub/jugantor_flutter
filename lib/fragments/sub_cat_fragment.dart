@@ -367,7 +367,7 @@ class SubCatFragment extends StatelessWidget {
                                                     mainAxisAlignment: MainAxisAlignment.center,
                                                     crossAxisAlignment: CrossAxisAlignment.center,
                                                     children: [
-                                                      GestureDetector(
+                                                      InkWell(
                                                         child: Stack(alignment: Alignment.centerLeft,
                                                           children: <Widget>[
                                                             Container(
@@ -392,6 +392,9 @@ class SubCatFragment extends StatelessWidget {
                                                           ],
                                                         ),
                                                         onTap: (){
+                                                          homeController.dataLoaded.value = false;
+                                                          homeController.scrollController.value.animateTo(0,
+                                                              duration: const Duration(seconds: 1), curve: Curves.linear);
                                                           homeController.catListShow.value = false;
                                                           homeController.selectedSubCategoryName.value = homeController.sub_categoryList[index].cat_name!;
                                                           homeController.get_category_page_subcat_wise_news(homeController.sub_categoryList[index].id!);

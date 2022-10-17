@@ -498,13 +498,14 @@ class NewsDetailseFragment extends StatelessWidget {
                                               return Container(
                                                 margin: EdgeInsets.only(top: 10),
                                                 child: Obx(() =>
-                                                    GestureDetector(
+                                                    InkWell(
                                                         onTap: (){
                                                           homeController.dataLoaded.value = false;
-                                                          homeController.newsId.value = homeController.detail_page_aro_button_newsList[index]["id"];
+                                                          homeController.newsId.value = homeController.detail_page_aro_button_newsList[index]["id"].toString();
                                                           homeController.get_news_details();
                                                           homeController.scrollController.value.animateTo(0,
                                                               duration: const Duration(seconds: 1), curve: Curves.linear);
+
                                                         },
                                                         child: Container(
                                                           //height: ,

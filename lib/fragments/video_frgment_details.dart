@@ -55,8 +55,9 @@ class VideoFragmentDetailse extends StatelessWidget{
                         children: [
                             Row(
                                 children: <Widget>[
-                                    GestureDetector(
+                                    InkWell(
                                         onTap: (){
+                                            homeController.dataLoaded.value = true;
                                             homeController.selectedPageIndex.value = 0;
                                             // Get.back();
                                             //Navigator.pop(context);
@@ -76,6 +77,8 @@ class VideoFragmentDetailse extends StatelessWidget{
                                 ],
                             ),
 
+                            SizedBox(height: 20,),
+                            //Obx(() =>
                             Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,6 +111,8 @@ class VideoFragmentDetailse extends StatelessWidget{
 
                                 ],
                             ),
+                           // ),
+
                             SizedBox(height: 20,),
                             // share icons
                             // share icons

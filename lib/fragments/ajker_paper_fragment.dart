@@ -276,15 +276,18 @@ class AjkerPaperFragment extends StatelessWidget {
                                             crossAxisAlignment: CrossAxisAlignment.center,
                                             children: [
 
-                                              GestureDetector(
+                                              InkWell(
                                                 onTap: (){
 
+                                                  homeController.dataLoaded.value = false;
+                                                  homeController.scrollController.value.animateTo(0,
+                                                      duration: const Duration(seconds: 1), curve: Curves.linear);
                                                   print('clickedAjsub');
                                                   homeController.get_category_page_subcat_wise_news(homeController.ajker_paper_subcategory_list_with_newsList[index].id!);
 
                                                   homeController.catListShow.value = false;
                                                   homeController.selectedSubCategoryName.value = homeController.ajker_paper_subcategory_list_with_newsList[index].cat_name!;
-                                                  homeController.ajker_paper_subcategory_list_with_newsList.clear();
+                                                 // homeController.ajker_paper_subcategory_list_with_newsList.clear();
                                                   ///homeController.get_category_page_subcat_wise_news(homeController.ajker_paper_subcategory_list_with_newsList[index].id!);
 
 
