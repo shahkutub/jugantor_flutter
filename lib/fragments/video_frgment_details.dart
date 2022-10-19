@@ -8,6 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import 'bottom_view.dart';
 class VideoFragmentDetailse extends StatelessWidget{
@@ -41,7 +42,13 @@ class VideoFragmentDetailse extends StatelessWidget{
         // // );
         //
         // final matchYoutubeUrl = regExp.firstMatch(photoUrl)!.group(1); // <- This is the fix
-
+        var controllerYoutube = YoutubePlayerController(
+            initialVideoId: homeController.vidId.value,
+            params: YoutubePlayerParams(
+                startAt: Duration(seconds: 30),
+                autoPlay: true,
+            ),
+        );
 
         return Container(
             margin: EdgeInsets.all(20),
@@ -83,7 +90,15 @@ class VideoFragmentDetailse extends StatelessWidget{
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                    // YoutubePlayerIFrame(
+                                    //     controller: controllerYoutube,
+                                    //     aspectRatio: 16/9,
+                                    // )
+
+
                                     //Obx(() =>
+
+
                                     Container(
                                         //margin: EdgeInsets.only(top: 20),
                                         height: width-125,
@@ -107,6 +122,7 @@ class VideoFragmentDetailse extends StatelessWidget{
                                         )),
 
                                     )
+
                                     //)
 
                                 ],
