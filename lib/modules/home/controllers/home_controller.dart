@@ -51,6 +51,7 @@ import 'package:jugantor.com/routes/app_pages.dart';
 import 'package:jugantor.com/ui.dart';
 import 'package:jugantor.com/utils/utils.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../fragments/FullNewsDetailsModal.dart';
 import '../../../fragments/all_poll_fragment.dart';
@@ -66,6 +67,7 @@ import '../views/news_details_page.dart';
 
 
 class HomeController extends GetxController {
+
   var isLoading= true.obs;
   var selectedPageIndex = 0.obs;
   var preveoiusPageIndex = 0.obs;
@@ -2184,10 +2186,11 @@ class HomeController extends GetxController {
   }
 
 
-  getVideoId(){
+  String getVideoId(){
     String photoUrl = "";
 
     var text = vidDataInfo.value.embed_code.toString();
+
     RegExp exp = new RegExp(r'(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
     Iterable<RegExpMatch> matches = exp.allMatches(text);
     matches.forEach((match) {
@@ -2195,13 +2198,41 @@ class HomeController extends GetxController {
       fullYoutubeUrl.value = text.substring(match.start, match.end);
     });
 
+    print("fullYoutubeUrl:  "+photoUrl);
+
     RegExp regExp = new RegExp(
       r'.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*',
       caseSensitive: false,
       multiLine: false,
     );
 
-    vidId.value = regExp.firstMatch(photoUrl)!.group(1)!; // <- This is the fix
+    print("tubeId:  "+regExp.firstMatch(photoUrl)!.group(1)!);
+   return vidId.value = regExp.firstMatch(photoUrl)!.group(1)!; // <- This is the fix
+
+  }
+
+  String getVideoIdCatVid(String embad){
+    String photoUrl = "";
+
+    var text = embad;
+
+    RegExp exp = new RegExp(r'(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
+    Iterable<RegExpMatch> matches = exp.allMatches(text);
+    matches.forEach((match) {
+      photoUrl = text.substring(match.start, match.end);
+      fullYoutubeUrl.value = text.substring(match.start, match.end);
+    });
+
+    print("fullYoutubeUrl:  "+photoUrl);
+
+    RegExp regExp = new RegExp(
+      r'.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*',
+      caseSensitive: false,
+      multiLine: false,
+    );
+
+    print("tubeId:  "+regExp.firstMatch(photoUrl)!.group(1)!);
+    return vidId.value = regExp.firstMatch(photoUrl)!.group(1)!; // <- This is the fix
 
   }
 

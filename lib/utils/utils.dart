@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 class Utils{
 
+
    static Future<bool> checkConnection() async{
 
       ConnectivityResult connectivityResult = await (new Connectivity().checkConnectivity());

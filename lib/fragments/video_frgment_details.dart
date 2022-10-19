@@ -11,9 +11,13 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import 'bottom_view.dart';
+
+final webViewKey = GlobalKey<WebViewContainerState>();
+String vidIdyoutube = "";
 class VideoFragmentDetailse extends StatelessWidget{
 
     final HomeController homeController = Get.put(HomeController());
+    late WebViewController webViewController;
     @override
     Widget build(BuildContext context) {
         final Completer<WebViewController> _controller =
@@ -25,7 +29,7 @@ class VideoFragmentDetailse extends StatelessWidget{
         double webViewheight = width*2.2;
         print('width: '+webViewWidth.toString());
 
-
+        vidIdyoutube = homeController.vidId.value;
         // String photoUrl = "";
         //
         // var text = homeController.vidDataInfo.value.embed_code.toString();
@@ -104,22 +108,32 @@ class VideoFragmentDetailse extends StatelessWidget{
                                         height: width-125,
                                         width: width-40,
                                         color: Colors.red,
-                                        child:  Obx(() =>
-                                        WebView(
-                                            //initialUrl: Uri.dataFromString('<html><body>'+homeController.vidDataInfo.value.embed_code.toString()+'</body></html>', mimeType: 'text/html').toString(),
+                                        child: WebViewPage()
 
-                                            // initialUrl: Uri.dataFromString('<html><body><iframe width= '+webViewWidth.toString()+'px height='+webViewheight.toString()+' '
-                                            //     'src='+photoUrl.toString()+' title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe></body></html>', mimeType: 'text/html').toString(),
-
-                                            initialUrl: Uri.dataFromString("<iframe width=\"100%\" height=\"100%\" src=\"https://www" +
-                                                ".youtube.com/embed/"+homeController.vidId.value+"\" frameborder=\"0\" " +
-                                                "allowfullscreen></iframe>", mimeType: 'text/html').toString(),
-
-
-                                            javascriptMode: JavascriptMode.unrestricted,
-                                            onWebViewCreated: (WebViewController webViewController) {
-                                                _controller.complete(webViewController);},
-                                        )),
+                                        // Obx(() =>
+                                        //     //WebViewPage()
+                                        //
+                                        //     WebView(
+                                        //     //initialUrl: Uri.dataFromString('<html><body>'+homeController.vidDataInfo.value.embed_code.toString()+'</body></html>', mimeType: 'text/html').toString(),
+                                        //
+                                        //     // initialUrl: Uri.dataFromString('<html><body><iframe width= '+webViewWidth.toString()+'px height='+webViewheight.toString()+' '
+                                        //     //     'src='+photoUrl.toString()+' title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe></body></html>', mimeType: 'text/html').toString(),
+                                        //
+                                        //     initialUrl: Uri.dataFromString("<iframe width=\"100%\" height=\"100%\" src=\"https://www" +
+                                        //         ".youtube.com/embed/"+homeController.vidId.value+"\" frameborder=\"0\" " +
+                                        //         "allowfullscreen></iframe>", mimeType: 'text/html').toString(),
+                                        //
+                                        //
+                                        //     javascriptMode: JavascriptMode.unrestricted,
+                                        //         onWebViewCreated: (controller) {
+                                        //             webViewController = controller;
+                                        //         },
+                                        //
+                                        //     // onWebViewCreated: (WebViewController webViewController) {
+                                        //     //     _controller.complete(webViewController);},
+                                        // )
+                                        //
+                                        // ),
 
                                     )
 
@@ -288,7 +302,7 @@ class VideoFragmentDetailse extends StatelessWidget{
                                     ),
 
                                     SizedBox(width: 10,),
-                                    GestureDetector(
+                                    InkWell(
                                         child:Container(
                                             //height: 80,
                                             padding: EdgeInsets.all(5),
@@ -319,7 +333,6 @@ class VideoFragmentDetailse extends StatelessWidget{
                                 ],
                             ),
                             SizedBox(height: 20,),
-
 
 
                             Container(
@@ -354,13 +367,28 @@ class VideoFragmentDetailse extends StatelessWidget{
                                         ),
                                         itemCount: homeController.cat_wise_vidList.length,
                                         itemBuilder: (context, index) {
-                                            return  GestureDetector(
+                                            return  InkWell(
                                                 onTap: (){
-                                                    homeController.vidDataInfo.value = homeController.cat_wise_vidList![index];
-                                                    homeController.getVideoId();
+                                                    //homeController.vidDataInfo.value = homeController.cat_wise_vidList![index];
+                                                   String embad = homeController.cat_wise_vidList![index]['embed_code'];
+                                                   vidIdyoutube = homeController.getVideoIdCatVid(embad);
+                                                   print("tubeIdcl:  "+homeController.vidId.value);
+
+                                                   playVideo(context);
+                                                  // webViewKey.currentState?.reloadWebView();
+
+                                                   //webViewController.reload();
+                                                   // webViewController.loadHtmlString(Uri.dataFromString("<iframe width=\"100%\" height=\"100%\" src=\"https://www" +
+                                                   //     ".youtube.com/embed/"+homeController.vidId.value+"\" frameborder=\"0\" " +
+                                                   //     "allowfullscreen></iframe>", mimeType: 'text/html').toString(),);
+                                                   // webViewController.reload();
+                                                   //
+                                                   //  Navigator.push(    context, new MaterialPageRoute(
+                                                   //      builder: (context) => this.build(context)));
+
                                                     // homeController.dataLoaded.value = false;
                                                     // homeController.newsId.value = homeController.showNewsList[index].id.toString();
-                                                    // homeController.selectedPageIndex.value = 1;
+                                                     //homeController.selectedPageIndex.value = 16;
                                                     // homeController.get_news_details();
 
                                                 },
@@ -554,6 +582,83 @@ class VideoFragmentDetailse extends StatelessWidget{
         );
     }
 
+    playVideo(
+        BuildContext context,
+
+        ) {
+        return showDialog(
+            context: context,
+            builder: (context) {
+                return Center(
+                    child: SizedBox(
+                        height: 300,
+                        width: 300,
+                        child: VideoWidget(url: vidIdyoutube, play: true)));
+            });
+    }
+
+}
+
+
+class WebViewPage extends StatefulWidget {
+    @override
+    WebViewPageState createState() => WebViewPageState();
+}
+
+class WebViewPageState extends State<WebViewPage> {
+    @override
+    Widget build(BuildContext context) {
+        return Scaffold(
+            // appBar: AppBar(
+            //     title: Text("WebView example"),
+            //     actions: <Widget>[
+            //         IconButton(
+            //             icon: Icon(Icons.refresh),
+            //             onPressed: () {
+            //                 // using currentState with question mark to ensure it's not null
+            //                 webViewKey.currentState?.reloadWebView();
+            //             },
+            //         )
+            //     ],
+            // ),
+            body: WebViewContainer(key: webViewKey),
+        );
+    }
+}
+
+class WebViewContainer extends StatefulWidget {
+    WebViewContainer({required Key key}) : super(key: key);
+
+    @override
+    WebViewContainerState createState() => WebViewContainerState();
+}
+
+class WebViewContainerState extends State<WebViewContainer> {
+    late WebViewController _webViewController;
+    final HomeController homeController = Get.put(HomeController());
+
+
+
+    @override
+    Widget build(BuildContext context) {
+
+        return WebView(
+            onWebViewCreated: (controller) {
+                _webViewController = controller;
+            },
+                initialUrl: Uri.dataFromString("<iframe width=\"100%\" height=\"100%\" src=\"https://www" +
+                    ".youtube.com/embed/"+vidIdyoutube+"\" frameborder=\"0\" " +
+                    "allowfullscreen></iframe>", mimeType: 'text/html').toString(),
+            javascriptMode: JavascriptMode.unrestricted,
+        );
+    }
+
+    void reloadWebView() {
+        _webViewController.loadHtmlString("<iframe width=\"100%\" height=\"100%\" src=\"https://www" +
+            ".youtube.com/embed/"+vidIdyoutube+"\" frameborder=\"0\" " +
+            "allowfullscreen></iframe>");
+        _webViewController?.reload();
+    }
 }
 
 // WebView(
@@ -567,3 +672,41 @@ class VideoFragmentDetailse extends StatelessWidget{
 // _controller.complete(webViewController);},
 //
 // ),
+
+class VideoWidget extends StatefulWidget {
+    final String? url;
+    final bool? play;
+
+    const VideoWidget({@required this.url, @required this.play});
+    @override
+    _VideoWidgetState createState() => _VideoWidgetState();
+}
+
+class _VideoWidgetState extends State<VideoWidget> {
+
+    @override
+    void initState() {
+        super.initState();
+
+
+    }
+
+
+
+    @override
+    void dispose() {
+        //_controller.dispose();
+        super.dispose();
+    }
+
+    @override
+    Widget build(BuildContext context) {
+        return Stack(children: [
+            Container(
+                color: Colors.white,
+                child: WebViewPage()
+            ),
+
+        ]);
+    }
+}
