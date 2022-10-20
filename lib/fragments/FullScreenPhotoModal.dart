@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:photo_view/photo_view.dart';
 
 import '../modules/home/controllers/home_controller.dart';
 
@@ -54,19 +55,26 @@ class FullScreenModal extends ModalRoute {
               ),
 
               Center(
-                child: InteractiveViewer(
-                  panEnabled: true, // Set it to false
-                 // boundaryMargin: EdgeInsets.all(100),
-                  minScale: 0.5,
-                  maxScale: 2,
-                  child: FadeInImage.assetNetwork(
-                      height: 250,
-                      width: Get.width,
-                      fit: BoxFit.fill,
-                      image:homeController.bigphoto.value,
-                      placeholder:"assets/images/jugantordefault.jpg" // your assets image path
-                  ),
-                ),
+                child: Container(
+                    child: PhotoView(
+                      imageProvider: NetworkImage(homeController.bigphoto.value),
+                    )
+
+                )
+
+                // InteractiveViewer(
+                //   panEnabled: true, // Set it to false
+                //  // boundaryMargin: EdgeInsets.all(100),
+                //   minScale: 0.5,
+                //   maxScale: 2,
+                //   child: FadeInImage.assetNetwork(
+                //       height: 250,
+                //       width: Get.width,
+                //       fit: BoxFit.fill,
+                //       image:homeController.bigphoto.value,
+                //       placeholder:"assets/images/jugantordefault.jpg" // your assets image path
+                //   ),
+                // ),
               )
 
             ],

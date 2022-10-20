@@ -17,6 +17,7 @@ import 'bottom_view.dart';
 String vidIdyoutube = "";
 String vidTitledialoge = "";
 late WebViewController webViewController;
+late WebViewController webViewControllerDailog;
 
 class VideoFragmentDetailse extends StatelessWidget{
 
@@ -588,10 +589,7 @@ class VideoFragmentDetailse extends StatelessWidget{
         );
     }
 
-    playVideo(
-        BuildContext context,
-
-        ) {
+    playVideo(BuildContext context,) {
         return showDialog(
             context: context,
             builder: (context) {
@@ -599,18 +597,35 @@ class VideoFragmentDetailse extends StatelessWidget{
                     backgroundColor: Colors.transparent,
                     body: Center(
                         child:Container(
-                            height: 400,
+                            color: Colors.white,
+                            height: 430,
                             child: Column(
                                 children: [
+                                    SizedBox(height: 5,),
+                                    Row(
+                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children: <Widget>[
+                                            InkWell(
+                                                child: Icon(Icons.cancel_outlined,color: Colors.red,size: 40,),
+                                                onTap: (){
+                                                    Navigator.pop(context);
+                                                },
+                                            ),
+                                            SizedBox(height: 30,),
+                                        ],
+                                    ),
+                                    SizedBox(height: 5,),
                                     SizedBox(
                                         //height: 350,
                                         width: Get.width,
                                         child: VideoWidget(url: vidIdyoutube, play: true)
                                     ),
 
-                                    SizedBox(height: 20,),
+                                    SizedBox(height: 10,),
                                     Row(
                                         children: <Widget>[
+                                            SizedBox(width: 30,),
                                             InkWell(
                                                 child:Container(
                                                     //height: 80,
@@ -762,7 +777,7 @@ class VideoFragmentDetailse extends StatelessWidget{
 
                                         ],
                                     ),
-                                    SizedBox(height: 20,),
+                                    SizedBox(height: 10,),
                                 ],
 
 
@@ -880,7 +895,7 @@ class _VideoWidgetState extends State<VideoWidget> {
                 color: Colors.white,
                 child: WebView(
                     onWebViewCreated: (controller) {
-                        webViewController = controller;
+                        webViewControllerDailog = controller;
                     },
                     initialUrl: Uri.dataFromString("<iframe width=\"100%\" height=\"100%\" src=\"https://www" +
                         ".youtube.com/embed/"+vidIdyoutube+"\" frameborder=\"0\" " +

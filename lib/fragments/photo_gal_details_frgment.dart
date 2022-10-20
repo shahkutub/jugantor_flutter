@@ -5,9 +5,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_share/flutter_share.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
+import 'package:photo_view/photo_view.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'FullScreenPhotoModal.dart';
@@ -94,7 +96,10 @@ class PhotoGalDetailsFragment extends StatelessWidget{
                                 GestureDetector(
                                   onTap: (){
                                      homeController.bigphoto.value = homeController.photosAll.value[index];
-                                     Navigator.of(context).push(FullScreenModal());
+                                    // Navigator.of(context).push(FullScreenModal());
+
+                                     dailogBigPhoto(context,);
+
 
                                     // showDialog(
                                     //   context: context,
@@ -425,6 +430,213 @@ class PhotoGalDetailsFragment extends StatelessWidget{
 
 
     );
+  }
+
+  dailogBigPhoto(BuildContext context,) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+
+          return Scaffold(
+              backgroundColor: Colors.white70,
+              body:
+              // Center(
+              //     child:
+                  Container(
+                   //color: Colors.white,
+                    alignment: Alignment.center,
+                   // color: Colors.white,
+                    height: context.height,
+                    child: Column(
+                      children: [
+                        SizedBox(height: 200,),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            InkWell(
+                              child: Icon(Icons.cancel_outlined,color: Colors.red,size: 40,),
+                              onTap: (){
+                                Navigator.pop(context);
+                              },
+                            ),
+                            SizedBox(height: 30,),
+                          ],
+                        ),
+                       // homeController.bigphoto.value
+                        SizedBox(height: 5,),
+                        SizedBox(
+                           height: 300,
+                            width: Get.width,
+                            child: PhotoView(
+                              imageProvider:NetworkImage(homeController.bigphoto.value,),
+                              //initialScale: PhotoViewComputedScale.contained * 0.8,
+                              initialScale: PhotoViewComputedScale.covered,
+                            )
+                        ),
+
+                        SizedBox(height: 10,),
+                        Row(
+                          children: <Widget>[
+                            SizedBox(width: 30,),
+                            InkWell(
+                              child:Container(
+                                //height: 80,
+                                padding: EdgeInsets.all(5),
+                                alignment: Alignment.center,
+                                child: SvgPicture.asset(
+                                  'assets/images/facebook.svg',
+                                  height: 30, width: 30,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Color(0xff00B0ED),
+                                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                                ),
+                              ),
+                              // onTap: () async {
+                              //   await SocialSharePlugin.shareToFeedFacebookLink(quote: 'text', url: 'https://flutter.dev');
+                              // },
+
+
+                              onTap: (){
+                                FlutterShare.share(
+                                    title: homeController.album_name.value,
+                                    text: homeController.album_name.value,
+                                    chooserTitle: homeController.album_name.value,
+                                    linkUrl: homeController.bigphoto.value
+                                  //text: 'Please click on attach link to show & download pdf',
+                                  // filePath: controller.searchPdfPath.value,
+                                  // fileType: '*/*'
+                                  //chooserTitle: 'Please click on attach link to show & download pdf'
+                                );
+                              },
+                            ),
+                            SizedBox(width: 10,),
+                            GestureDetector(
+                              child:Container(
+                                //height: 80,
+                                padding: EdgeInsets.all(5),
+                                alignment: Alignment.center,
+                                child: SvgPicture.asset(
+                                  'assets/images/twitter.svg',
+                                  height: 30, width: 30,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Color(0xff00B0ED),
+                                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                                ),
+                              ),
+                              // onTap: () async {
+                              //   await SocialSharePlugin.shareToTwitterLink(text: 'text', url: 'https://flutter.dev');
+                              //   },
+
+                              onTap: (){
+                                FlutterShare.share(
+                                    title: homeController.album_name.value,
+                                    text: homeController.album_name.value,
+                                    chooserTitle: homeController.album_name.value,
+                                    linkUrl: homeController.bigphoto.value
+                                  //text: 'Please click on attach link to show & download pdf',
+                                  // filePath: controller.searchPdfPath.value,
+                                  // fileType: '*/*'
+                                  //chooserTitle: 'Please click on attach link to show & download pdf'
+                                );
+                              },
+                            ),
+                            SizedBox(width: 10,),
+                            InkWell(
+                              child:Container(
+                                padding: EdgeInsets.all(3),
+                                alignment: Alignment.center,
+                                child: SvgPicture.asset(
+                                  'assets/images/whatsapp.svg',
+                                  height: 35, width: 35,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Color(0xff35B94A),
+                                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                                ),
+                              ),
+                              onTap: (){
+                                FlutterShare.share(
+                                    title: homeController.album_name.value,
+                                    text: homeController.album_name.value,
+                                    chooserTitle: homeController.album_name.value,
+                                    linkUrl: homeController.bigphoto.value
+                                  //text: 'Please click on attach link to show & download pdf',
+                                  // filePath: controller.searchPdfPath.value,
+                                  // fileType: '*/*'
+                                  //chooserTitle: 'Please click on attach link to show & download pdf'
+                                );
+                              },
+                            ),
+
+                            SizedBox(width: 10,),
+                            InkWell(
+                              child:Container(
+                                //height: 80,
+                                alignment: Alignment.center,
+                                child: SvgPicture.asset(
+                                  'assets/images/linkedin.svg',
+                                  height: 40, width: 40,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Color(0xff007AB9),
+                                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                                ),
+                              ),
+                              onTap: (){
+                                FlutterShare.share(
+                                    title: homeController.album_name.value,
+                                    text: homeController.album_name.value,
+                                    chooserTitle: homeController.album_name.value,
+                                    linkUrl: homeController.bigphoto.value
+                                  //text: 'Please click on attach link to show & download pdf',
+                                  // filePath: controller.searchPdfPath.value,
+                                  // fileType: '*/*'
+                                  //chooserTitle: 'Please click on attach link to show & download pdf'
+                                );
+                              },
+                            ),
+
+                            SizedBox(width: 10,),
+                            InkWell(
+                              child:Container(
+                                //height: 80,
+                                padding: EdgeInsets.all(5),
+                                alignment: Alignment.center,
+                                child:Icon(Icons.share_sharp,size: 30,color: Colors.white,),
+                                decoration: BoxDecoration(
+                                  color: Color(0xff00B0ED),
+                                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                                ),
+                              ),
+
+                              onTap: (){
+                                FlutterShare.share(
+                                    title: homeController.album_name.value,
+                                    text: homeController.album_name.value,
+                                    chooserTitle: homeController.album_name.value,
+                                    linkUrl: homeController.bigphoto.value
+                                  //text: 'Please click on attach link to show & download pdf',
+                                  // filePath: controller.searchPdfPath.value,
+                                  // fileType: '*/*'
+                                  //chooserTitle: 'Please click on attach link to show & download pdf'
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 10,),
+                      ],
+
+
+                    ),
+                  )
+             // )
+
+          );
+        });
   }
 
 }
