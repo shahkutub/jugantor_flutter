@@ -66,6 +66,7 @@ class Utils{
    }
 
 
+   static String  fullYoutubeUrldialoge = "";
    static String getCurrentDateEng(){
 
       var now = new DateTime.now();

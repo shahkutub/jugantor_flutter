@@ -10,14 +10,18 @@ import 'package:jugantor.com/modules/home/controllers/home_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
+import '../utils/utils.dart';
 import 'bottom_view.dart';
 
-final webViewKey = GlobalKey<WebViewContainerState>();
+//final webViewKey = GlobalKey<WebViewContainerState>();
 String vidIdyoutube = "";
+String vidTitledialoge = "";
+late WebViewController webViewController;
+
 class VideoFragmentDetailse extends StatelessWidget{
 
     final HomeController homeController = Get.put(HomeController());
-    late WebViewController webViewController;
+
     @override
     Widget build(BuildContext context) {
         final Completer<WebViewController> _controller =
@@ -107,33 +111,34 @@ class VideoFragmentDetailse extends StatelessWidget{
                                         //margin: EdgeInsets.only(top: 20),
                                         height: width-125,
                                         width: width-40,
-                                        color: Colors.red,
-                                        child: WebViewPage()
+                                        color: Colors.white,
+                                        child:
+                                        //WebViewPage()
 
-                                        // Obx(() =>
-                                        //     //WebViewPage()
-                                        //
-                                        //     WebView(
-                                        //     //initialUrl: Uri.dataFromString('<html><body>'+homeController.vidDataInfo.value.embed_code.toString()+'</body></html>', mimeType: 'text/html').toString(),
-                                        //
-                                        //     // initialUrl: Uri.dataFromString('<html><body><iframe width= '+webViewWidth.toString()+'px height='+webViewheight.toString()+' '
-                                        //     //     'src='+photoUrl.toString()+' title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe></body></html>', mimeType: 'text/html').toString(),
-                                        //
-                                        //     initialUrl: Uri.dataFromString("<iframe width=\"100%\" height=\"100%\" src=\"https://www" +
-                                        //         ".youtube.com/embed/"+homeController.vidId.value+"\" frameborder=\"0\" " +
-                                        //         "allowfullscreen></iframe>", mimeType: 'text/html').toString(),
-                                        //
-                                        //
-                                        //     javascriptMode: JavascriptMode.unrestricted,
-                                        //         onWebViewCreated: (controller) {
-                                        //             webViewController = controller;
-                                        //         },
-                                        //
-                                        //     // onWebViewCreated: (WebViewController webViewController) {
-                                        //     //     _controller.complete(webViewController);},
-                                        // )
-                                        //
-                                        // ),
+                                        Obx(() =>
+                                            //WebViewPage()
+
+                                            WebView(
+                                            //initialUrl: Uri.dataFromString('<html><body>'+homeController.vidDataInfo.value.embed_code.toString()+'</body></html>', mimeType: 'text/html').toString(),
+
+                                            // initialUrl: Uri.dataFromString('<html><body><iframe width= '+webViewWidth.toString()+'px height='+webViewheight.toString()+' '
+                                            //     'src='+photoUrl.toString()+' title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe></body></html>', mimeType: 'text/html').toString(),
+
+                                            initialUrl: Uri.dataFromString("<iframe width=\"100%\" height=\"100%\" src=\"https://www" +
+                                                ".youtube.com/embed/"+homeController.vidId.value+"\" frameborder=\"0\" " +
+                                                "allowfullscreen></iframe>", mimeType: 'text/html').toString(),
+
+
+                                            javascriptMode: JavascriptMode.unrestricted,
+                                                onWebViewCreated: (controller) {
+                                                    webViewController = controller;
+                                                },
+
+                                            // onWebViewCreated: (WebViewController webViewController) {
+                                            //     _controller.complete(webViewController);},
+                                        )
+
+                                        ),
 
                                     )
 
@@ -316,9 +321,9 @@ class VideoFragmentDetailse extends StatelessWidget{
 
                                         onTap: (){
                                             FlutterShare.share(
-                                                title: homeController.newsDetails.value.title!,
-                                                text: homeController.newsDetails.value.title!,
-                                                chooserTitle: homeController.newsDetails.value.title!,
+                                                title: homeController.vidTitle.value,
+                                                text: homeController.vidTitle.value,
+                                                chooserTitle: homeController.vidTitle.value,
                                                 linkUrl: homeController.fullYoutubeUrl.value
                                                 //text: 'Please click on attach link to show & download pdf',
                                                 // filePath: controller.searchPdfPath.value,
@@ -370,6 +375,7 @@ class VideoFragmentDetailse extends StatelessWidget{
                                             return  InkWell(
                                                 onTap: (){
                                                     //homeController.vidDataInfo.value = homeController.cat_wise_vidList![index];
+                                                    vidTitledialoge =  homeController.cat_wise_vidList![index]['video_title'];
                                                    String embad = homeController.cat_wise_vidList![index]['embed_code'];
                                                    vidIdyoutube = homeController.getVideoIdCatVid(embad);
                                                    print("tubeIdcl:  "+homeController.vidId.value);
@@ -589,77 +595,248 @@ class VideoFragmentDetailse extends StatelessWidget{
         return showDialog(
             context: context,
             builder: (context) {
-                return Center(
-                    child: SizedBox(
-                        height: 300,
-                        width: 300,
-                        child: VideoWidget(url: vidIdyoutube, play: true)));
+                return Scaffold(
+                    backgroundColor: Colors.transparent,
+                    body: Center(
+                        child:Container(
+                            height: 400,
+                            child: Column(
+                                children: [
+                                    SizedBox(
+                                        //height: 350,
+                                        width: Get.width,
+                                        child: VideoWidget(url: vidIdyoutube, play: true)
+                                    ),
+
+                                    SizedBox(height: 20,),
+                                    Row(
+                                        children: <Widget>[
+                                            InkWell(
+                                                child:Container(
+                                                    //height: 80,
+                                                    padding: EdgeInsets.all(5),
+                                                    alignment: Alignment.center,
+                                                    child: SvgPicture.asset(
+                                                        'assets/images/facebook.svg',
+                                                        height: 30, width: 30,
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                        color: Color(0xff00B0ED),
+                                                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                                                    ),
+                                                ),
+                                                // onTap: () async {
+                                                //   await SocialSharePlugin.shareToFeedFacebookLink(quote: 'text', url: 'https://flutter.dev');
+                                                // },
+
+
+                                                onTap: (){
+                                                    FlutterShare.share(
+                                                        title: vidTitledialoge,
+                                                        text: vidTitledialoge,
+                                                        chooserTitle: vidTitledialoge,
+                                                        linkUrl: Utils.fullYoutubeUrldialoge
+                                                        //text: 'Please click on attach link to show & download pdf',
+                                                        // filePath: controller.searchPdfPath.value,
+                                                        // fileType: '*/*'
+                                                        //chooserTitle: 'Please click on attach link to show & download pdf'
+                                                    );
+                                                },
+                                            ),
+                                            SizedBox(width: 10,),
+                                            GestureDetector(
+                                                child:Container(
+                                                    //height: 80,
+                                                    padding: EdgeInsets.all(5),
+                                                    alignment: Alignment.center,
+                                                    child: SvgPicture.asset(
+                                                        'assets/images/twitter.svg',
+                                                        height: 30, width: 30,
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                        color: Color(0xff00B0ED),
+                                                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                                                    ),
+                                                ),
+                                                // onTap: () async {
+                                                //   await SocialSharePlugin.shareToTwitterLink(text: 'text', url: 'https://flutter.dev');
+                                                //   },
+
+                                                onTap: (){
+                                                    FlutterShare.share(
+                                                        title: vidTitledialoge,
+                                                        text: vidTitledialoge,
+                                                        chooserTitle: vidTitledialoge,
+                                                        linkUrl: Utils.fullYoutubeUrldialoge
+                                                        //text: 'Please click on attach link to show & download pdf',
+                                                        // filePath: controller.searchPdfPath.value,
+                                                        // fileType: '*/*'
+                                                        //chooserTitle: 'Please click on attach link to show & download pdf'
+                                                    );
+                                                },
+                                            ),
+                                            SizedBox(width: 10,),
+                                            InkWell(
+                                                child:Container(
+                                                    padding: EdgeInsets.all(3),
+                                                    alignment: Alignment.center,
+                                                    child: SvgPicture.asset(
+                                                        'assets/images/whatsapp.svg',
+                                                        height: 35, width: 35,
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                        color: Color(0xff35B94A),
+                                                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                                                    ),
+                                                ),
+                                                onTap: (){
+                                                    FlutterShare.share(
+                                                        title: vidTitledialoge,
+                                                        text: vidTitledialoge,
+                                                        chooserTitle: vidTitledialoge,
+                                                        linkUrl: Utils.fullYoutubeUrldialoge
+                                                        //text: 'Please click on attach link to show & download pdf',
+                                                        // filePath: controller.searchPdfPath.value,
+                                                        // fileType: '*/*'
+                                                        //chooserTitle: 'Please click on attach link to show & download pdf'
+                                                    );
+                                                },
+                                            ),
+
+                                            SizedBox(width: 10,),
+                                            InkWell(
+                                                child:Container(
+                                                    //height: 80,
+                                                    alignment: Alignment.center,
+                                                    child: SvgPicture.asset(
+                                                        'assets/images/linkedin.svg',
+                                                        height: 40, width: 40,
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                        color: Color(0xff007AB9),
+                                                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                                                    ),
+                                                ),
+                                                onTap: (){
+                                                    FlutterShare.share(
+                                                        title: vidTitledialoge,
+                                                        text: vidTitledialoge,
+                                                        chooserTitle: vidTitledialoge,
+                                                        linkUrl: Utils.fullYoutubeUrldialoge
+                                                        //text: 'Please click on attach link to show & download pdf',
+                                                        // filePath: controller.searchPdfPath.value,
+                                                        // fileType: '*/*'
+                                                        //chooserTitle: 'Please click on attach link to show & download pdf'
+                                                    );
+                                                },
+                                            ),
+
+                                            SizedBox(width: 10,),
+                                            InkWell(
+                                                child:Container(
+                                                    //height: 80,
+                                                    padding: EdgeInsets.all(5),
+                                                    alignment: Alignment.center,
+                                                    child:Icon(Icons.share_sharp,size: 30,color: Colors.white,),
+                                                    decoration: BoxDecoration(
+                                                        color: Color(0xff00B0ED),
+                                                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                                                    ),
+                                                ),
+
+                                                onTap: (){
+                                                    FlutterShare.share(
+                                                        title: vidTitledialoge,
+                                                        text: vidTitledialoge,
+                                                        chooserTitle: vidTitledialoge,
+                                                        linkUrl: Utils.fullYoutubeUrldialoge
+                                                        //text: 'Please click on attach link to show & download pdf',
+                                                        // filePath: controller.searchPdfPath.value,
+                                                        // fileType: '*/*'
+                                                        //chooserTitle: 'Please click on attach link to show & download pdf'
+                                                    );
+                                                },
+                                            ),
+
+
+
+                                        ],
+                                    ),
+                                    SizedBox(height: 20,),
+                                ],
+
+
+                            ),
+                        )
+                    )
+
+                );
             });
     }
 
 }
 
 
-class WebViewPage extends StatefulWidget {
-    @override
-    WebViewPageState createState() => WebViewPageState();
-}
-
-class WebViewPageState extends State<WebViewPage> {
-    @override
-    Widget build(BuildContext context) {
-        return Scaffold(
-            // appBar: AppBar(
-            //     title: Text("WebView example"),
-            //     actions: <Widget>[
-            //         IconButton(
-            //             icon: Icon(Icons.refresh),
-            //             onPressed: () {
-            //                 // using currentState with question mark to ensure it's not null
-            //                 webViewKey.currentState?.reloadWebView();
-            //             },
-            //         )
-            //     ],
-            // ),
-            body: WebViewContainer(key: webViewKey),
-        );
-    }
-}
-
-class WebViewContainer extends StatefulWidget {
-    WebViewContainer({required Key key}) : super(key: key);
-
-    @override
-    WebViewContainerState createState() => WebViewContainerState();
-}
-
-class WebViewContainerState extends State<WebViewContainer> {
-    late WebViewController _webViewController;
-    final HomeController homeController = Get.put(HomeController());
-
-
-
-    @override
-    Widget build(BuildContext context) {
-
-        return WebView(
-            onWebViewCreated: (controller) {
-                _webViewController = controller;
-            },
-                initialUrl: Uri.dataFromString("<iframe width=\"100%\" height=\"100%\" src=\"https://www" +
-                    ".youtube.com/embed/"+vidIdyoutube+"\" frameborder=\"0\" " +
-                    "allowfullscreen></iframe>", mimeType: 'text/html').toString(),
-            javascriptMode: JavascriptMode.unrestricted,
-        );
-    }
-
-    void reloadWebView() {
-        _webViewController.loadHtmlString("<iframe width=\"100%\" height=\"100%\" src=\"https://www" +
-            ".youtube.com/embed/"+vidIdyoutube+"\" frameborder=\"0\" " +
-            "allowfullscreen></iframe>");
-        _webViewController?.reload();
-    }
-}
+// class WebViewPage extends StatefulWidget {
+//     @override
+//     WebViewPageState createState() => WebViewPageState();
+// }
+//
+// class WebViewPageState extends State<WebViewPage> {
+//     @override
+//     Widget build(BuildContext context) {
+//         return Scaffold(
+//             // appBar: AppBar(
+//             //     title: Text("WebView example"),
+//             //     actions: <Widget>[
+//             //         IconButton(
+//             //             icon: Icon(Icons.refresh),
+//             //             onPressed: () {
+//             //                 // using currentState with question mark to ensure it's not null
+//             //                 webViewKey.currentState?.reloadWebView();
+//             //             },
+//             //         )
+//             //     ],
+//             // ),
+//             body: WebViewContainer(key: webViewKey),
+//         );
+//     }
+// }
+//
+// class WebViewContainer extends StatefulWidget {
+//     WebViewContainer({required Key key}) : super(key: key);
+//
+//     @override
+//     WebViewContainerState createState() => WebViewContainerState();
+// }
+//
+// class WebViewContainerState extends State<WebViewContainer> {
+//     late WebViewController _webViewController;
+//     final HomeController homeController = Get.put(HomeController());
+//
+//
+//
+//     @override
+//     Widget build(BuildContext context) {
+//
+//         return WebView(
+//             onWebViewCreated: (controller) {
+//                 _webViewController = controller;
+//             },
+//                 initialUrl: Uri.dataFromString("<iframe width=\"100%\" height=\"100%\" src=\"https://www" +
+//                     ".youtube.com/embed/"+vidIdyoutube+"\" frameborder=\"0\" " +
+//                     "allowfullscreen></iframe>", mimeType: 'text/html').toString(),
+//             javascriptMode: JavascriptMode.unrestricted,
+//         );
+//     }
+//
+//     void reloadWebView() {
+//         _webViewController.loadHtmlString("<iframe width=\"100%\" height=\"100%\" src=\"https://www" +
+//             ".youtube.com/embed/"+vidIdyoutube+"\" frameborder=\"0\" " +
+//             "allowfullscreen></iframe>");
+//         _webViewController?.reload();
+//     }
+// }
 
 // WebView(
 //   initialUrl: 'https://epaper.jugantor.com/2022/06/06/index.php',
@@ -687,11 +864,7 @@ class _VideoWidgetState extends State<VideoWidget> {
     @override
     void initState() {
         super.initState();
-
-
     }
-
-
 
     @override
     void dispose() {
@@ -701,12 +874,19 @@ class _VideoWidgetState extends State<VideoWidget> {
 
     @override
     Widget build(BuildContext context) {
-        return Stack(children: [
-            Container(
+        return Container(
+                width: Get.width,
+                height: 300,
                 color: Colors.white,
-                child: WebViewPage()
-            ),
+                child: WebView(
+                    onWebViewCreated: (controller) {
+                        webViewController = controller;
+                    },
+                    initialUrl: Uri.dataFromString("<iframe width=\"100%\" height=\"100%\" src=\"https://www" +
+                        ".youtube.com/embed/"+vidIdyoutube+"\" frameborder=\"0\" " +
+                        "allowfullscreen></iframe>", mimeType: 'text/html').toString(),
+                    javascriptMode: JavascriptMode.unrestricted,)
 
-        ]);
+        );
     }
 }

@@ -206,6 +206,9 @@ class HomeController extends GetxController {
   var vidId = ''.obs;
   var fullYoutubeUrl = ''.obs;
 
+  var vidTitle = ''.obs;
+
+
   Future<void> initPackageInfo() async {
     final info = await PackageInfo.fromPlatform();
     //setState(() {
@@ -2189,6 +2192,7 @@ class HomeController extends GetxController {
   String getVideoId(){
     String photoUrl = "";
 
+    vidTitle.value = vidDataInfo.value.video_title.toString();
     var text = vidDataInfo.value.embed_code.toString();
 
     RegExp exp = new RegExp(r'(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
@@ -2220,7 +2224,7 @@ class HomeController extends GetxController {
     Iterable<RegExpMatch> matches = exp.allMatches(text);
     matches.forEach((match) {
       photoUrl = text.substring(match.start, match.end);
-      fullYoutubeUrl.value = text.substring(match.start, match.end);
+      Utils.fullYoutubeUrldialoge = text.substring(match.start, match.end);
     });
 
     print("fullYoutubeUrl:  "+photoUrl);
