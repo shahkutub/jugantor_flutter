@@ -417,7 +417,8 @@ class PhotoGalDetailsFromHomeFragment extends StatelessWidget{
                                       homeController.photosAll.value.clear();
                                       homeController.photosAll.value.addAll(photos);
                                       homeController.album_name.value = homeController.photoDetailData.value.photoData![index2].album_name.toString();
-                                      //homeController.selectedPageIndex.value = 13;
+                                      homeController.scrollController.value.animateTo(0,
+                                          duration: const Duration(seconds: 1), curve: Curves.linear);
                                     },
 
                                     child:
