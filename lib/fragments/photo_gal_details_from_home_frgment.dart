@@ -35,40 +35,44 @@ class PhotoGalDetailsFromHomeFragment extends StatelessWidget{
 
 
     return Container(
-        margin: EdgeInsets.all(10),
+
       child:SingleChildScrollView(
         child: Container(
           child: Column(
             children: [
 
-              Row(
-                children: <Widget>[
-                  GestureDetector(
-                    onTap: (){
-                      homeController.selectedPageIndex.value = 0;
-                      //Get.back();
-                      //Navigator.pop(context);
-                    },
-                    child:Text("প্রচ্ছদ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
-                  ),
+              Container(
+                margin: EdgeInsets.all(10),
+                child:Row(
+                  children: <Widget>[
+                    GestureDetector(
+                      onTap: (){
+                        homeController.selectedPageIndex.value = 0;
+                        //Get.back();
+                        //Navigator.pop(context);
+                      },
+                      child:Text("প্রচ্ছদ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
+                    ),
 
-                  //homeController.categoryName.value.isNotEmpty?
-                  Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
-                     // :Text(''),
+                    //homeController.categoryName.value.isNotEmpty?
+                    Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
+                    // :Text(''),
 
-                  //Obx(() =>
-                      Visibility(visible: true,child:Text("  ছবি ",style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
-                  //),
+                    //Obx(() =>
+                    Visibility(visible: true,child:Text("  ছবি ",style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
+                    //),
 
-                  Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
+                    Text(" >> ",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black),),
 
-                  Obx(() =>
-                  Visibility(visible: true,child:Text(homeController.fromhomectnme.value.toString(),style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
-                  ),
+                    Obx(() =>
+                        Visibility(visible: true,child:Text(homeController.fromhomectnme.value.toString(),style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
+                    ),
 
 
-                ],
+                  ],
+                ),
               ),
+              
 
               // Obx(() =>
               //     Visibility(visible: true,child:Text(homeController.album_name.value,style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.blue),),),
