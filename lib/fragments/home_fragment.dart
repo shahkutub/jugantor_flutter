@@ -1607,7 +1607,7 @@ class HomeFragment extends GetView<HomeController> {
                                                 SizedBox(height: 20,),
                                                 Container(
                                                     alignment: Alignment.center,
-                                                    child: GestureDetector(
+                                                    child: InkWell(
                                                         child:Container(
                                                             padding: EdgeInsets.all(10),
                                                             margin: EdgeInsets.only(left: 100,right: 100),
