@@ -1754,13 +1754,19 @@ class HomeFragment extends GetView<HomeController> {
                                                     children: [
                                                         Expanded(
                                                             flex:1,
-                                                            child: FittedBox(
-                                                                child: Image(image: AssetImage('assets/images/mosq.png'),
-                                                                    //width: width,
-                                                                    //height: 183,
-                                                                ),
+                                                            child: Image.asset(
+                                                                'assets/images/mosq.png',
+                                                                // height: 400,
+                                                                // width: 400,
                                                                 fit: BoxFit.fitHeight,
-                                                            )
+                                                            ),
+                                                            // FittedBox(
+                                                            //     child: Image(image: AssetImage('assets/images/mosq.png'),
+                                                            //         //width: width,
+                                                            //         //height: 183,
+                                                            //     ),
+                                                            //     fit: BoxFit.fitHeight,
+                                                            // )
                                                         ),
                                                         Expanded(
                                                             flex:1,
