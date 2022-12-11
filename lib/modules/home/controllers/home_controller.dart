@@ -333,7 +333,9 @@ class HomeController extends GetxController {
 
 
   Future<dynamic> get_news_details() async {
-
+    tagNameResponse.value.tag_name = "";
+    spc_event_tag_id.value = '';
+    detail_page_aro_button_newsList.clear();
     //newsDetails.value = null;
 
     print('url: ${ApiClient.newsDetails+'/'+newsId.value}');
