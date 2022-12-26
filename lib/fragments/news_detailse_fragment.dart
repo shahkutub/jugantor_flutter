@@ -443,25 +443,36 @@ class NewsDetailseFragment extends StatelessWidget {
                               ),
 
                               SizedBox( height:20),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("যুগান্তর ইউটিউব চ্যানেলে সাবস্ক্রাইব করুন",style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,color: Colors.black),),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      // Image.asset(
-                                      //     'assets/images/youtube.jpg',
-                                      //     height: 70,
-                                      //     fit:BoxFit.fill),
-                                      Image.asset(
-                                          'assets/images/juganyoutubepng.png',
-                                          // height: 70,
-                                          fit:BoxFit.fill)
-                                    ],
-                                  )
-                                ],
+                              InkWell(
+                                onTap:() async {
+                                  //https://www.youtube.com/channel/UCKbhCXpZwAmFN4UHeT8HTjA
+                                  const url = 'https://www.youtube.com/channel/UCKbhCXpZwAmFN4UHeT8HTjA';
+                                  if(await canLaunchUrl(Uri.parse(url))){
+                                  await launchUrl(Uri.parse(url));
+                                  }else {
+                                  throw 'Could not launch $url';
+                                  }
+                                },
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("যুগান্তর ইউটিউব চ্যানেলে সাবস্ক্রাইব করুন",style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal,color: Colors.black),),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        // Image.asset(
+                                        //     'assets/images/youtube.jpg',
+                                        //     height: 70,
+                                        //     fit:BoxFit.fill),
+                                        Image.asset(
+                                            'assets/images/juganyoutubepng.png',
+                                            // height: 70,
+                                            fit:BoxFit.fill)
+                                      ],
+                                    )
+                                  ],
+                                ),
                               ),
                               SizedBox( height:20),
 
